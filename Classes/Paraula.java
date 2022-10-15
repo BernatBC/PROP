@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.Math;
 
 /** Paraula que pot ser continguda a algun document.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
@@ -14,18 +15,25 @@ public class Paraula {
     /** Número d'ocurrencies. */
     private Int ocurrencia;
 
-    /** Constructora per defecte de paraula */
+    /** Constructora per defecte de paraula. */
     public Paraula() {
         mot = "";
         ocurrencia = 0;
     }
 
-    /** Constructora per defecte de paraula
+    /** Constructora per defecte de paraula.
      *  @param p Paraula representada per la classe.
     */
     public Paraula(String p) {
         mot = p;
         ocurrencia = 1;
+    }
+
+    /** Retorna el valor idf.
+    * @return Double : Valor idf.
+    */
+    public Double getIdf() {
+        return idf;
     }
 
     /** Retorna el nombre d'ocurrencies total.
@@ -82,6 +90,8 @@ public class Paraula {
         //Necessita:
         //getNDocuments()
         //Desar d'alguna manera els documents on la paraula apareix
+        
+        //idf = Math.log(n_documents/n_documents_apareix);
     }
 
 }
