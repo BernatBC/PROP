@@ -13,7 +13,7 @@ public class Paraula {
     private String mot;
 
     /** Número d'ocurrencies. */
-    private Int ocurrencia;
+    private int ocurrencia;
 
     /** Constructora per defecte de paraula. */
     public Paraula() {
@@ -39,7 +39,7 @@ public class Paraula {
     /** Retorna el nombre d'ocurrencies total.
      * @return Int : Nombre d'ocurrencies.
      */
-    public Int getOcurrencia() {
+    public int getOcurrencia() {
         return ocurrencia;
     }
 
@@ -61,14 +61,14 @@ public class Paraula {
     /** Assigna el nombre d'ocurrencies.
      * @param n Nombre d'ocurrencies.
      */
-    public void setOcurrencia(Int n) {
+    public void setOcurrencia(int n) {
         ocurrencia = n;
     }
 
     /** Decrementa en n unitats el nombre d'ocurrencies.
      * @param n Nombre d'ocurrencies.
      */
-    public void decrementarOcurrencia(Int n) {
+    public void decrementarOcurrencia(int n) {
         ocurrencia -= n;
         if (n < 0) {
             n = 0;
@@ -79,7 +79,7 @@ public class Paraula {
     /** Incrementa en n unitats el nombre d'ocurrencies.
      * @param n Nombre d'ocurrencies.
      */
-    public void incrementarOcurrencia(Int n) {
+    public void incrementarOcurrencia(int n) {
         ocurrencia += n;
     }
 
