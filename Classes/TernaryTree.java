@@ -1,3 +1,4 @@
+import java.io.*;
 import Paraula.java;
 
 /** Estructura de dades per contenir el diccionari de paraules.
@@ -63,6 +64,22 @@ public class TernaryTree {
             if (esquerra == NULL) esquerra = new TernaryTree(s.charAt(i));
             esquerra.inserirParaula(p, s, i);
         }
+    }
+
+    /**Obtenir la classe Paraula que correspon a la seqüència s.
+     * @param s seqüencia de caràcters que forma la paraula.
+     * @param i index de la paraula des d'on falta fer la cerca.
+     * @return Paraula : Classe paraula.
+     */
+    public Paraula obtenirParaula(String s, Int i) {
+        if (s.charAt(i) > lletra && dreta != NULL) return dreta.obtenirParaula(s, i);
+        if (s.charAt(i) < lletra && esquerra != NULL) return esquerra.obtenirParaula(s, i);
+        if (s.charAt(i) == lletra) {
+            if (i < s.length() - 1 && centre != NULL) return centre.obtenirParaula(s, i + 1);
+            if (i == s.length() - 1 && paraula != NULL) return paraula;
+        }
+        System.out.println("Paraula " + s + " no trobada al diccionari.");
+        return NULL;
     }
 
 }
