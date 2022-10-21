@@ -28,6 +28,7 @@ public class Frase {
         text = frase;
         Oracio = new Paraula[0];
         Puntuacio = new ArrayList<String>();
+        n_paraules = 0;
 
         int aux = frase.length();
         String a_insertP = "", a_insertW = "";
@@ -35,10 +36,15 @@ public class Frase {
         for (int i = 0; i < aux; ++i) {
             c = frase.charAt(i);
 
+            /**Mentre estiguem llegint una concatenació de caràcters d'una paraula no insertem la Paraula a Oració. 
+             *Un cop llegim un signe de puntuació sí que insertem a_insertW (la paraula temporal construida pels chars llegits de la paraula).
+             *El mateix per una concatenació de signes de puntuació (possible malgrat improbable). */
+            
             if(isPuntuacio(c)) {
                 if (!a_insertW.equals("")) {
                     //crea paraula amb mot a_insertW i a_insertW = NULL
                     a_insertW = "";
+                    ++n_paraules;
                 }
                 a_insertP += c;
             }
@@ -51,8 +57,14 @@ public class Frase {
                 a_insertW += c;
             }
         }
+        //comprovem que no quedin paraules paraules per insertar (l'ultima)
+        if (!a_insertW.equals("")) {
+            //crea paraula amb mot a_insertW i a_insertW = NULL
+            ++n_paraules;
+        }
 
-        n_paraules = 0;
+        if (!a_insertP.equals("")) Puntuacio.add(a_insertP);
+
     }
 
     /** Retorna un vector de les paraules que formen la frase */
