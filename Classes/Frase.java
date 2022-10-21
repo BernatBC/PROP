@@ -61,6 +61,19 @@ public class Frase {
     }
 
 
+    /** Retorna true si la frase conté la paraula passada per paràmetre */
+    /** Returns: bool */
+    public boolean conteParaula(String Paraula) {
+        boolean trobat = false;
+        int it = 0;
+        while (!trobat && it < n_paraules) {
+            if (Oracio[it] == Paraula) trobat = true;
+        }
+        return trobat;
+
+    }
+
+
     /** Retorna la frase original en format string */
     /** Returns: String[] */
     public String[] enString() {
