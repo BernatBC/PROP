@@ -1,5 +1,6 @@
 import java.io.*;
 import java.lang.Math;
+import Paraula.java;
 
 
 
@@ -9,7 +10,7 @@ import java.lang.Math;
 public class Frase {
 
     /** Conjunt de paraules de la frase. */
-    private String[] Oracio;
+    private Paraula[] Oracio;
 
     /** Conjunt de caràcters (espai, exclamació, punt, coma, etc) que separen cada parella de paraules de la frase */
     private String[] Puntuacio;
@@ -21,13 +22,13 @@ public class Frase {
     /** Constructora per defecte. */
     public Frase() {
         n_paraules = 0;
-        Oracio = new String[n_paraules];
+        Oracio = new Paraula[n_paraules];
         Puntuacio = new String[n_paraules];
     }
 
     /** Retorna un vector de les paraules que formen la frase */
     /** Returns: String[] */
-    public String[] getOracio() {
+    public Paraula[] getOracio() {
         return Oracio;
     }
 
@@ -44,7 +45,7 @@ public class Frase {
         int it = 0;
         int tamany_sequencia = Paraules.length;
         for (int i = 0; i < n_paraules && !trobat; ++i) {
-            if (Oracio[i] == Paraules[it]) {
+            if (Oracio[i].getParaula() == Paraules[it]) {
                 /* Hem trobat una word de Paraules en Oracio */
                 ++it;
                 /* Si era l'ultima ja hem acabat */
@@ -52,7 +53,7 @@ public class Frase {
             }
             else {
                 /* Es trenca la sequencia. Cal mirar, però, si es reseteja a 0 o a 1 */
-                if (Oracio[i] == Paraules[0]) it = 1;
+                if (Oracio[i].getParaula() == Paraules[0]) it = 1;
                 else it = 0;
                 
             }
@@ -67,7 +68,7 @@ public class Frase {
         boolean trobat = false;
         int it = 0;
         while (!trobat && it < n_paraules) {
-            if (Oracio[it] == Paraula) trobat = true;
+            if (Oracio[it].getParaula() == Paraula) trobat = true;
         }
         return trobat;
 
@@ -85,7 +86,7 @@ public class Frase {
                 ++it_punt;
             }
             else {
-                frase[i] = Oracio[it_ora];
+                frase[i] = Oracio[it_ora].getParaula();
                 ++it_ora;
             }
         }
