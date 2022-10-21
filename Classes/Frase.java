@@ -3,18 +3,18 @@ import java.lang.Math;
 
 
 
-/* Classe que representa un conjunt de paraules.
+/** Classe que representa un conjunt de paraules.
  * @author Oscar Ramos Nuñez (oscar.ramos.nunez@estudiantat.upc.edu)
  */
 public class Frase {
 
-    /* Conjunt de paraules de la frase. */
+    /** Conjunt de paraules de la frase. */
     private String[] Oracio;
 
-    /* Conjunt de caràcters (espai, exclamació, punt, coma, etc) que separen cada parella de paraules de la frase */
+    /** Conjunt de caràcters (espai, exclamació, punt, coma, etc) que separen cada parella de paraules de la frase */
     private String[] Puntuacio;
 
-    /* Número de paraules de la frase */
+    /** Número de paraules de la frase */
     private int n_paraules;
 
 
@@ -25,20 +25,20 @@ public class Frase {
         Puntuacio = new String[n_paraules];
     }
 
-    /* Retorna un vector de les paraules que formen la frase */
-    /* Returns: String[] */
+    /** Retorna un vector de les paraules que formen la frase */
+    /** Returns: String[] */
     public String[] getOracio() {
         return Oracio;
     }
 
-    /* Retorna un vector de les puntuacions que separen les paraules que formen la frase */
-    /* Returns: String[] */
+    /** Retorna un vector de les puntuacions que separen les paraules que formen la frase */
+    /** Returns: String[] */
     public String[] getPuntuacio() {
         return Puntuacio;
     }
 
-    /* Retorna true si la frase conté les paraules "Paraules" concatenades */
-    /* Returns: bool */
+    /** Retorna true si la frase conté les paraules "Paraules" concatenades */
+    /** Returns: bool */
     public boolean conteSequencia(String[] Paraules) {
         boolean trobat = false;
         int it = 0;
@@ -61,8 +61,8 @@ public class Frase {
     }
 
 
-    /* Retorna la frase original en format string */
-    /* Returns: String[] */
+    /** Retorna la frase original en format string */
+    /** Returns: String[] */
     public String[] enString() {
         String[] frase = new String[2*n_paraules+1];
         int it_ora = 0; int it_punt = 0;
