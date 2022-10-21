@@ -1,6 +1,7 @@
 import java.io.*;
 import java.lang.Math;
 import Paraula.java;
+import java.util.ArrayList;
 
 
 
@@ -13,17 +14,45 @@ public class Frase {
     private Paraula[] Oracio;
 
     /** Conjunt de caràcters (espai, exclamació, punt, coma, etc) que separen cada parella de paraules de la frase */
-    private String[] Puntuacio;
+    private ArrayList<String> Puntuacio;
 
     /** Número de paraules de la frase */
     private int n_paraules;
 
 
+    /** Frase en string */
+    private String text;
+
     /** Constructora per defecte. */
-    public Frase() {
+    public Frase(String frase) {
+        text = frase;
+        Oracio = new Paraula[0];
+        Puntuacio = new ArrayList<String>();
+
+        int aux = frase.length();
+        String a_insertP = "", a_insertW = "";
+        char c; 
+        for (int i = 0; i < aux; ++i) {
+            c = frase.charAt(i);
+
+            if(isPuntuacio(c)) {
+                if (!a_insertW.equals("")) {
+                    //crea paraula amb mot a_insertW i a_insertW = NULL
+                    a_insertW = "";
+                }
+                a_insertP += c;
+            }
+
+            else {
+                if (!a_insertP.equals("")) {
+                    Puntuacio.add(a_insertP);
+                    a_insertP = "";
+                }
+                a_insertW += c;
+            }
+        }
+
         n_paraules = 0;
-        Oracio = new Paraula[n_paraules];
-        Puntuacio = new String[n_paraules];
     }
 
     /** Retorna un vector de les paraules que formen la frase */
@@ -34,7 +63,7 @@ public class Frase {
 
     /** Retorna un vector de les puntuacions que separen les paraules que formen la frase */
     /** Returns: String[] */
-    public String[] getPuntuacio() {
+    public ArrayList<String> getPuntuacio() {
         return Puntuacio;
     }
 
@@ -76,7 +105,7 @@ public class Frase {
 
 
     /** Retorna la frase original en format string */
-    /** Returns: String[] */
+    /** Returns: String[] 
     public String[] enString() {
         String[] frase = new String[2*n_paraules+1];
         int it_ora = 0; int it_punt = 0;
@@ -91,7 +120,12 @@ public class Frase {
             }
         }
         return frase;
-    }
+    }*/
     
+
+    private boolean isPuntuacio(char c) {
+        return c == '.' || c == ',' || c == ';' || c == '?' || c == '¿' || c == '!' || c == '¡' || c == '(' || c == ')' ||
+         c == '{' || c == '}' || c == '[' || c == ']' || c == ' ';
+    }
 
 }
