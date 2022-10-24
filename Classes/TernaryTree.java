@@ -82,4 +82,29 @@ public class TernaryTree {
         return NULL;
     }
 
+    /**Obtenir la classe Paraula que correspon a la seqüència s, la crea si no existeix aquesta.
+     * @param s seqüencia de caràcters que forma la paraula.
+     * @param i index de la paraula des d'on falta fer la cerca.
+     * @return Paraula : Classe paraula.
+     */
+    public Paraula inserirObtenirParaula(String s, Int i) {
+        if (lletra == NULL) lletra = s.charAt(i);
+        if (s.charAt(i) == lletra) {
+            if (i == s.length() - 1) {
+                paraula = new Paraula(p);
+                return paruala;
+            }
+            if (centre == NULL) centre = new TernaryTree(s.charAt(i + 1));
+            return centre.inserirObtenirParaula(s, i + 1);
+        }
+        else if (s.charAt(i) > lletra) {
+            if (dreta == NULL) dreta = new TernaryTree(s.charAt(i));
+            return dreta.inserirObtenirParaula(s, i);
+        }
+        else {
+            if (esquerra == NULL) esquerra = new TernaryTree(s.charAt(i));
+            return esquerra.inserirObtenirParaula(s, i);
+        }
+    }
+
 }

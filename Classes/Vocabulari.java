@@ -32,4 +32,12 @@ public class Vocabulari {
         System.out.println("Paraula " + s + " no trobada al diccionari.");
         return NULL;
     }
+
+    /**Obtenir la classe Paraula que correspon a la seqüència s, la crea si no existeix aquesta.
+     * @param s seqüencia de caràcters que forma la paraula.
+     * @return Paraula : Classe paraula.
+     */
+    public Paraula inserirObtenirParaula(String s) {
+        return inserirObtenirParaula(s, 0);
+    }
 }
