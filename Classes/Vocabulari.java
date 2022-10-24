@@ -38,6 +38,20 @@ public class Vocabulari {
      * @return Paraula : Classe paraula.
      */
     public Paraula inserirObtenirParaula(String s) {
-        return inserirObtenirParaula(s, 0);
+        return arrel.inserirObtenirParaula(s, 0);
+    }
+
+    /**Esborra una paraula del diccionari.
+     * @param s paraula que es vol esborrar.
+     */
+    public void esborrarParaula(String s) {
+        arrel.esborrarParaula(s, 0);
+    }
+
+    /**Esborra una paraula del diccionari.
+     * @param p paraula que es vol esborrar.
+     */
+    public void esborrarParaula(Paraula p) {
+        arrel.esborrarParaula(p.getParaula(), 0);
     }
 }

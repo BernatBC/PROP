@@ -107,4 +107,18 @@ public class TernaryTree {
         }
     }
 
+    /**Esborrar la classe Paraula que correspon a la seqüència s.
+     * @param s seqüencia de caràcters que forma la paraula.
+     * @param i index de la paraula des d'on falta fer la cerca.
+     */
+    public void esborrarParaula(String s, Int i) {
+        //TO DO: esborrar nodes innecessaris
+        if (s.charAt(i) > lletra && dreta != NULL) dreta.esborrarParaula(s, i);
+        if (s.charAt(i) < lletra && esquerra != NULL) esquerra.esborrarParaula(s, i);
+        if (s.charAt(i) == lletra) {
+            if (i < s.length() - 1 && centre != NULL) centre.esborrarParaula(s, i + 1);
+            if (i == s.length() - 1 && paraula != NULL) paraula = NULL;
+        }
+    }
+
 }
