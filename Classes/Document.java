@@ -1,5 +1,5 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 class Document {
 	
@@ -28,7 +28,7 @@ class Document {
 	}
 	
 	public Frase getTitol(){
-		return titol;
+		return title;
 	}
 	
 	public LocalDate getData(){
@@ -40,7 +40,7 @@ class Document {
 	}
 	
 	// Index of word and number of occurrences
-	public ArrayList<Pair<int, int>> getWords(){
+	public HashMap<Integer, Integer> getWords(){
 		return cont.getWords();
 	}
 
@@ -48,8 +48,8 @@ class Document {
 	public String toString(){
 		StringBuilder str = new StringBuilder();
 		
-		str.append(title + '\n');
-		str.append(author + '\n');
+		str.append(title + "\n");
+		str.append(author + "\n");
 		str.append(cont);
 		
 		return str.toString();

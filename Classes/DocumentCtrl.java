@@ -27,7 +27,7 @@ class DocumentCtrl {
 			while (!Character.isLetter(phr.charAt(i))) ++i;
 		}
 		
-		if (Character.isLetter(phr.charAt(--i))) listWords.add(currWord);
+		if (Character.isLetter(phr.charAt(--i))) listWords.add(currWord.toString());
 		
 		return listWords;
 	}
@@ -41,11 +41,46 @@ class DocumentCtrl {
 		String author = in.nextLine();
 		ArrayList<String> authordecomp = decomposeWords(author);
 		
-		StringBuilder content = new StringBuilder("");
-		while (in.hasNextLine()) content.append(in.nextLine() + " ");
-		ArrayList<String> contentdecomp = decomposeWords(content);
+		ArrayList<String> content = new ArrayList<String>();
+		while (in.hasNextLine()) content.add(in.nextLine());
+		ArrayList<ArrayList<String>> contentdecomp = new ArrayList<ArrayList<String>>();
+
+		for (int s = 0; s < content.size(); ++s){
+			contentdecomp.add(decomposeWords(content.get(s)));
+		}
 		
 		// Now create the words read, insert them in the Vocab...
+		// Comencem per crear les paraules
+		ArrayList<Paraula> arrWords = new ArrayList<Paraula>();
+		for (int w = 0; w < titledecomp.size(); ++w){
+			Paraula wd = vocab.inserirObtenirParaula(titledecomp.get(w));
+			arrWords.add(wd);
+		}
+
+		Frase titlePhrase = new Frase(arrWords, title); 
+
+		// Ara per l'autor
+		arrWords.clear();
+		for (int w = 0; w < authordecomp.size(); ++w){
+			Paraula wd = vocab.inserirObtenirParaula(authordecomp.get(w));
+			arrWords.add(wd);
+		}
+
+		Frase authorPhrase = new Frase(arrWords, author);
+		
+		// Finalment pel contingut
+		/* 
+		arrWords.clear();
+		for (int w = 0; w < contentdecomp.size(); ++w){
+			Paraula wd = vocab.inserirObtenirParaula(contentdecomp.get(w));
+			arrWords.add(wd);
+		}
+
+		Frase content = new Frase(arrWords, author);
+		*/
+
+
+		return 0;
 	}
 	
 }

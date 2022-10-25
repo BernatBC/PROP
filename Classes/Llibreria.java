@@ -1,23 +1,26 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 class Llibreria {
 	// Sparse vector representation as pairs of ints (idx, occurrences)
-	private ArrayList< Pair<Document, ArrayList< Pair<int, int> >> > docs;
+	//private ArrayList< Pair<Document, ArrayList< Pair<Integer, Integer> >> > docs;
+	private ArrayList< Pair<Document, HashMap<Integer, Integer>>> docs;
 	private int nDocs;
 	
 	Llibreria(){
-		docs = new ArrayList< Pair<Document, ArrayList< Pair<int, int> >> >(); 
+		docs = new ArrayList< Pair<Document, HashMap<Integer, Integer>>>();
 		nDocs = 0;
 	}
 	
 	public void addDocument(Document d){
-		docs.add(new Pair<Document, ArrayList< Pair<int, int> >>(d, d.getWords());
+		//docs.add(new Pair<Document, ArrayList< Pair<Integer, Integer> >>(d, d.getWords());
+		docs.add(new Pair<>(d, d.getWords()));
 		++nDocs;
 	} 
 	
 	public void deleteDocument(Document d){
 		for (int i = 0; i < docs.size(); ++i){
-			if (d == docs[i].getL()){
+			if (d == docs.get(i).getL()){
 				docs.remove(i);
 				--nDocs;
 				return;
@@ -30,9 +33,9 @@ class Llibreria {
 		
 		
 		for (int i = 0; i< docs.size(); ++i){
-			if (docs[i].getL().getFavourite()){
+			if (docs.get(i).getL().getFavourite()){
 				// Si el document és preferit
-				Llibreria.addDoc(docs[i].getL());
+				favLib.addDocument(docs.get(i).getL());
 			}
 		}
 		
@@ -43,11 +46,17 @@ class Llibreria {
 		return nDocs;
 	}
 	
-	public String toString()
+	public String toString(){
+		StringBuilder str = new StringBuilder("");
+
 		for (int i = 0; i < docs.size(); ++i){
-			System.out.println(docs[i].getL().getTitol());
-			System.out.print(docs[i].getL().getAutor());
-			System.out.println("---------------------");
+			str.append(docs.get(i).getL().getTitol());
+			str.append("\n");
+			str.append(docs.get(i).getL().getAutor());
+			str.append("\n");
+			str.append("---------------------\n");
 		}
+
+		return str.toString();
 	}
 }

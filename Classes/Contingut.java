@@ -1,24 +1,61 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
 class Contingut {
 	
 	private String plaintext;
 	private Frase[] phrases;
-	private double[] tf;
-	private ArrayList<Pair<int, int>> words;
+	private HashMap<Integer, Double> tf;
+	private HashMap<Integer, Integer> words;
+	private int n_paraules;
 	
-	Contingut(){
-		// Constructor
-	}
-	
-	public double getTf(int phr, int idx){
-		// Get the TF value of word from phrase 'phr' in position 'idx'
-		int off = 0;
-		
-		for (int i = 0; i < phr; ++i) off += phrases[phr].getLength();
+	Contingut(String plaintext, Frase[] phrases){
+		this.plaintext = plaintext;
+
+		n_paraules = 0;
+
+		this.phrases = phrases.clone();
+
+		words = new HashMap<Integer, Integer>();
+
+		for (int p = 0; p < phrases.length; ++p){
+			ArrayList<Pair<Integer, Integer>> arrWords = phrases[p].donaWords();
 			
-		return tf[off+idx];
+			for (int w = 0; w < arrWords.size(); ++w){
+				int index = arrWords.get(w).getL();
+				int ocurr = arrWords.get(w).getR();
+
+				if (words.containsKey(index)){
+					// If the word has already been inserted
+					words.put(index, words.get(index) + ocurr);
+				} else {
+					words.put(index, ocurr);
+				}
+
+				n_paraules += ocurr;
+			}
+		}
 	}
 	
-	public ArrayList<Pair<int, int>> getWords(){
+	public double getTf(int index){
+		int rawcount = 0;
+
+		// Get the TF value of word 'index'
+		for (int p = 0; p < phrases.length; ++p){
+			ArrayList<Pair<Integer, Integer>> arrWords = phrases[p].donaWords();
+
+			for (int i = 0; i < arrWords.size(); ++i){
+				if (arrWords.get(i).getL() == index){
+					rawcount += arrWords.get(i).getR();
+					break;
+				}
+			}
+		}
+
+		return (double) rawcount / n_paraules;
+	}
+	
+	public HashMap<Integer, Integer> getWords(){
 		return words;
 	}
 	
