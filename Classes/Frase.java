@@ -118,7 +118,8 @@ public class Frase {
 
     }
 
-
+    /** Retorna la frase en string */
+    /** Returns: String */
     public String toString() {
         return text;
     }
@@ -165,8 +166,13 @@ public class Frase {
         return q;
 
     }
-    
 
+    public int getNparaules() {
+        return n_paraules;
+    }
+    
+    /** Retorna true si el char paràmetre és un signe de puntuació */
+    /** Returns: bool */
     private boolean isPuntuacio(char c) {
         return c == '.' || c == ',' || c == ';' || c == '?' || c == '¿' || c == '!' || c == '¡' || c == '(' || c == ')' ||
          c == '{' || c == '}' || c == '[' || c == ']' || c == ' ';
