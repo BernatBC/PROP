@@ -19,8 +19,7 @@ public class Vocabulari {
      * @param p paraula que es vol inserir.
      */
     public void inserirParaula(Paraula p) {
-        String s = p.getParaula();
-        if (s.length() > 0) arrel.inserirParaula(p, s, 0);
+        if (s.length() > 0) arrel.inserirParaula(p, p.getParaula(), 0);
     }
 
     /**Obtenir la classe Paraula que correspon a la seqüència s.
@@ -34,18 +33,11 @@ public class Vocabulari {
     }
 
     /**Obtenir la classe Paraula que correspon a la seqüència s, la crea si no existeix aquesta.
-     * @param s seqüencia de caràcters que forma la paraula.
+     * @param p paraula a inserir/obtenir.
      * @return Paraula : Classe paraula.
      */
-    public Paraula inserirObtenirParaula(String s) {
-        return arrel.inserirObtenirParaula(s, 0);
-    }
-
-    /**Esborra una paraula del diccionari.
-     * @param s paraula que es vol esborrar.
-     */
-    public void esborrarParaula(String s) {
-        arrel.esborrarParaula(s, 0);
+    public Paraula inserirObtenirParaula(Paraula p) {
+        return arrel.inserirObtenirParaula(p, p.getParaula(), 0);
     }
 
     /**Esborra una paraula del diccionari.

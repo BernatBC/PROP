@@ -7,7 +7,7 @@ import java.lang.Math;
 public class Paraula {
 
     /** Valor de la mètrica idf assignat. */
-    private Double idf;
+    //private Double idf;
 
     /** Mot repressentat per la classe. */
     private String mot;
@@ -15,11 +15,18 @@ public class Paraula {
     /** Número d'ocurrencies. */
     private int ocurrencia;
 
+    /** Identificador de la paraula. */
+    private int index;
+
+    private static int proxim_index = 0;
+
     /** Constructora per defecte de paraula. */
-    public Paraula() {
+    /*public Paraula() {
         mot = "";
         ocurrencia = 0;
-    }
+        index = proxim_index;
+
+    }*/
 
     /** Constructora per defecte de paraula.
      *  @param p Paraula representada per la classe.
@@ -27,6 +34,8 @@ public class Paraula {
     public Paraula(String p) {
         mot = p;
         ocurrencia = 1;
+        index = proxim_index;
+        ++index;
     }
 
     /** Retorna el valor idf.
@@ -85,6 +94,7 @@ public class Paraula {
 
     /** Calcula el valor idf de la paraula.
      */
+    /*
     private void calcularIdf() {
         //idf = log(nDocumentsTotals/nDocumentsOnApareix)
         //Necessita:
@@ -92,6 +102,6 @@ public class Paraula {
         //Desar d'alguna manera els documents on la paraula apareix
         
         //idf = Math.log(n_documents/n_documents_apareix);
-    }
+    }*/
 
 }

@@ -87,23 +87,23 @@ public class TernaryTree {
      * @param i index de la paraula des d'on falta fer la cerca.
      * @return Paraula : Classe paraula.
      */
-    public Paraula inserirObtenirParaula(String s, Int i) {
+    public Paraula inserirObtenirParaula(Paraula p, String s, Int i) {
         if (lletra == NULL) lletra = s.charAt(i);
         if (s.charAt(i) == lletra) {
             if (i == s.length() - 1) {
-                paraula = new Paraula(p);
+                if (paraula == NULL) paraula = p;
                 return paruala;
             }
             if (centre == NULL) centre = new TernaryTree(s.charAt(i + 1));
-            return centre.inserirObtenirParaula(s, i + 1);
+            return centre.inserirObtenirParaula(p, s, i + 1);
         }
         else if (s.charAt(i) > lletra) {
             if (dreta == NULL) dreta = new TernaryTree(s.charAt(i));
-            return dreta.inserirObtenirParaula(s, i);
+            return dreta.inserirObtenirParaula(p, s, i);
         }
         else {
             if (esquerra == NULL) esquerra = new TernaryTree(s.charAt(i));
-            return esquerra.inserirObtenirParaula(s, i);
+            return esquerra.inserirObtenirParaula(p, s, i);
         }
     }
 
