@@ -22,7 +22,7 @@ import Frase.java;
     public void afegirDocument(Document d) {
         Frase autor = d.getAutor().enString();
         Llibreria l = coleccions.get(autor);
-        if (l == NULL) l = new Llibreria();
+        if (l == null) l = new Llibreria();
         l.addDocument(d);
         coleccions.put(autor, l);
     }

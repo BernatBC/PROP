@@ -29,7 +29,7 @@ public class Vocabulari {
     public Paraula obtenirParaula(String s) {
         if (s.length() > 0) return arrel.obtenirParaula(s, 0);
         System.out.println("Paraula " + s + " no trobada al diccionari.");
-        return NULL;
+        return null;
     }
 
     /**Obtenir la classe Paraula que correspon a la seqüència s, la crea si no existeix aquesta.

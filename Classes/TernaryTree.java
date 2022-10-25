@@ -19,25 +19,25 @@ public class TernaryTree {
     Paraula paraula;
 
     /** Lletra que conté el node. */
-    Char lletra;
+    char lletra;
 
     /**Constructora per defecte de TernaryTree. */
     public TernaryTree() {
-        esquerra = NULL;
-        dreta = NULL;
-        centre = NULL;
-        paraula = NULL;
-        lletra = NULL;
+        esquerra = null;
+        dreta = null;
+        centre = null;
+        paraula = null;
+        lletra = null;
     }
 
     /**Constructora per defecte de TernaryTree.
      * @param c lletra que representa el node nou.
      */
     public TernaryTree(Char c) {
-        esquerra = NULL;
-        dreta = NULL;
-        centre = NULL;
-        paraula = NULL;
+        esquerra = null;
+        dreta = null;
+        centre = null;
+        paraula = null;
         lletra = c;
     }
 
@@ -46,22 +46,22 @@ public class TernaryTree {
      * @param s paraula que es vol inserir en format de string.
      * @param i índex de la paraula des d'on falta inserir.
      */
-    public void inserirParaula(Paraula p, String s, Int i) {
-        if (lletra == NULL) lletra = s.charAt(i);
+    public void inserirParaula(Paraula p, String s, int i) {
+        if (lletra == null) lletra = s.charAt(i);
         if (s.charAt(i) == lletra) {
             if (i == s.length() - 1) {
                 paraula = p;
                 return;
             }
-            if (centre == NULL) centre = new TernaryTree(s.charAt(i + 1));
+            if (centre == null) centre = new TernaryTree(s.charAt(i + 1));
             centre.inserirParaula(p, s, i + 1);
         }
         else if (s.charAt(i) > lletra) {
-            if (dreta == NULL) dreta = new TernaryTree(s.charAt(i));
+            if (dreta == null) dreta = new TernaryTree(s.charAt(i));
             dreta.inserirParaula(p, s, i);
         }
         else {
-            if (esquerra == NULL) esquerra = new TernaryTree(s.charAt(i));
+            if (esquerra == null) esquerra = new TernaryTree(s.charAt(i));
             esquerra.inserirParaula(p, s, i);
         }
     }
@@ -71,15 +71,15 @@ public class TernaryTree {
      * @param i index de la paraula des d'on falta fer la cerca.
      * @return Paraula : Classe paraula.
      */
-    public Paraula obtenirParaula(String s, Int i) {
-        if (s.charAt(i) > lletra && dreta != NULL) return dreta.obtenirParaula(s, i);
-        if (s.charAt(i) < lletra && esquerra != NULL) return esquerra.obtenirParaula(s, i);
+    public Paraula obtenirParaula(String s, int i) {
+        if (s.charAt(i) > lletra && dreta != null) return dreta.obtenirParaula(s, i);
+        if (s.charAt(i) < lletra && esquerra != null) return esquerra.obtenirParaula(s, i);
         if (s.charAt(i) == lletra) {
-            if (i < s.length() - 1 && centre != NULL) return centre.obtenirParaula(s, i + 1);
-            if (i == s.length() - 1 && paraula != NULL) return paraula;
+            if (i < s.length() - 1 && centre != null) return centre.obtenirParaula(s, i + 1);
+            if (i == s.length() - 1 && paraula != null) return paraula;
         }
         System.out.println("Paraula " + s + " no trobada al diccionari.");
-        return NULL;
+        return null;
     }
 
     /**Obtenir la classe Paraula que correspon a la seqüència s, la crea si no existeix aquesta.
@@ -87,22 +87,22 @@ public class TernaryTree {
      * @param i index de la paraula des d'on falta fer la cerca.
      * @return Paraula : Classe paraula.
      */
-    public Paraula inserirObtenirParaula(Paraula p, String s, Int i) {
-        if (lletra == NULL) lletra = s.charAt(i);
+    public Paraula inserirObtenirParaula(Paraula p, String s, int i) {
+        if (lletra == null) lletra = s.charAt(i);
         if (s.charAt(i) == lletra) {
             if (i == s.length() - 1) {
-                if (paraula == NULL) paraula = p;
+                if (paraula == null) paraula = p;
                 return paruala;
             }
-            if (centre == NULL) centre = new TernaryTree(s.charAt(i + 1));
+            if (centre == null) centre = new TernaryTree(s.charAt(i + 1));
             return centre.inserirObtenirParaula(p, s, i + 1);
         }
         else if (s.charAt(i) > lletra) {
-            if (dreta == NULL) dreta = new TernaryTree(s.charAt(i));
+            if (dreta == null) dreta = new TernaryTree(s.charAt(i));
             return dreta.inserirObtenirParaula(p, s, i);
         }
         else {
-            if (esquerra == NULL) esquerra = new TernaryTree(s.charAt(i));
+            if (esquerra == null) esquerra = new TernaryTree(s.charAt(i));
             return esquerra.inserirObtenirParaula(p, s, i);
         }
     }
@@ -111,13 +111,13 @@ public class TernaryTree {
      * @param s seqüencia de caràcters que forma la paraula.
      * @param i index de la paraula des d'on falta fer la cerca.
      */
-    public void esborrarParaula(String s, Int i) {
+    public void esborrarParaula(String s, int i) {
         //TO DO: esborrar nodes innecessaris
-        if (s.charAt(i) > lletra && dreta != NULL) dreta.esborrarParaula(s, i);
-        if (s.charAt(i) < lletra && esquerra != NULL) esquerra.esborrarParaula(s, i);
+        if (s.charAt(i) > lletra && dreta != null) dreta.esborrarParaula(s, i);
+        if (s.charAt(i) < lletra && esquerra != null) esquerra.esborrarParaula(s, i);
         if (s.charAt(i) == lletra) {
-            if (i < s.length() - 1 && centre != NULL) centre.esborrarParaula(s, i + 1);
-            if (i == s.length() - 1 && paraula != NULL) paraula = NULL;
+            if (i < s.length() - 1 && centre != null) centre.esborrarParaula(s, i + 1);
+            if (i == s.length() - 1 && paraula != null) paraula = null;
         }
     }
 
