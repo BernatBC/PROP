@@ -24,7 +24,7 @@ public class ConsultaData {
         anterior = ant;
         posterior = post;
         docs = new ArrayList<Document>();
-//algo aixi
+        //algo aixi
         for (int i = 0; i < Llibreria.getNdocs()) {
             Document d = Llibreria[i].first();
             LocalDate aux = d.getData();
@@ -32,10 +32,14 @@ public class ConsultaData {
         }
     }
 
+    /** Retorna la data inicial de l'interval de cerca */
+    /** Returns: LocalDate */
     public LocalDate getAnterior() {
         return anterior;
     }
 
+    /** Retorna la data final de l'interval de cerca */
+    /** Returns: LocalDate */
     public LocalDate getPosterior() {
         return posterior;
     }
