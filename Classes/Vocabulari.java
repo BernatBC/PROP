@@ -33,11 +33,11 @@ public class Vocabulari {
     }
 
     /**Obtenir la classe Paraula que correspon a la seqüència s, la crea si no existeix aquesta.
-     * @param p paraula a inserir/obtenir.
+     * @param s paraula a inserir/obtenir.
      * @return Paraula : Classe paraula.
      */
-    public Paraula inserirObtenirParaula(Paraula p) {
-        return arrel.inserirObtenirParaula(p, p.getParaula(), 0);
+    public Paraula inserirObtenirParaula(String s) {
+        return arrel.inserirObtenirParaula(s, 0);
     }
 
     /**Esborra una paraula del diccionari.

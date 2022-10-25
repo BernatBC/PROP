@@ -87,11 +87,11 @@ public class TernaryTree {
      * @param i index de la paraula des d'on falta fer la cerca.
      * @return Paraula : Classe paraula.
      */
-    public Paraula inserirObtenirParaula(Paraula p, String s, int i) {
+    public Paraula inserirObtenirParaula(String s, int i) {
         if (lletra == null) lletra = s.charAt(i);
         if (s.charAt(i) == lletra) {
             if (i == s.length() - 1) {
-                if (paraula == null) paraula = p;
+                if (paraula == null) paraula = new Paraula(s);
                 return paruala;
             }
             if (centre == null) centre = new TernaryTree(s.charAt(i + 1));
