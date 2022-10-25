@@ -27,45 +27,36 @@ public class Frase {
     private String text;
 
     /** Constructora per defecte. */
-    public Frase(String frase) {
+    public Frase(ArrayList<Paraula> words, String frase) {
+        //paràmetre
         text = frase;
+        
         Oracio = new Paraula[0];
+        //posem les words
+        for (int j = 0; j < words.size(); ++j) Oracio[j] = words.get(j);
+
         Puntuacio = new ArrayList<String>();
-        n_paraules = 0;
+        n_paraules = words.size();
 
         int aux = frase.length();
-        String a_insertP = "", a_insertW = "";
+        String a_insertP = "";
         char c; 
         for (int i = 0; i < aux; ++i) {
             c = frase.charAt(i);
 
-            /**Mentre estiguem llegint una concatenació de caràcters d'una paraula no insertem la Paraula a Oració. 
-             *Un cop llegim un signe de puntuació sí que insertem a_insertW (la paraula temporal construida pels chars llegits de la paraula).
-             *El mateix per una concatenació de signes de puntuació (possible malgrat improbable). */
+            /**Mentre estiguem llegint una concatenació de signes de puntuació no els insertem (possible malgrat improbable)
+             * Quan llegim una lletra sabem que hem passat a analitzar una paraula (que al estar guardada ja en la línia 36 no fa falta "trackejarla").
+             */
 
-            if(isPuntuacio(c)) {
-                if (!a_insertW.equals("")) {
-                    //crea paraula amb mot a_insertW i a_insertW = NULL
-                    a_insertW = "";
-                    ++n_paraules;
-                }
-                a_insertP += c;
-            }
+            if(isPuntuacio(c)) a_insertP += c;
 
-            else {
-                if (!a_insertP.equals("")) {
+            else if (!a_insertP.equals("")) {
                     Puntuacio.add(a_insertP);
                     a_insertP = "";
                 }
-                a_insertW += c;
-            }
-        }
-        //comprovem que no quedin paraules paraules per insertar (l'ultima)
-        if (!a_insertW.equals("")) {
-            //crea paraula amb mot a_insertW i a_insertW = NULL
-            ++n_paraules;
-        }
+         }
 
+        //comprovem que no quedin paraules signes per insertar (l'ultim punt, per exemple)
         if (!a_insertP.equals("")) Puntuacio.add(a_insertP);
 
     }
