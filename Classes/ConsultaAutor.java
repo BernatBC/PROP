@@ -3,7 +3,7 @@ import Llibreria.java;
 import Document.java;
 import Frase.java;
 
-/** Diccionari de les paraules.
+/** Classe per a la consulta de documents per autor.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
  */
  public class ConsultaAutor {
