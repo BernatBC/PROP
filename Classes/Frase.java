@@ -2,6 +2,9 @@ import java.io.*;
 import java.lang.Math;
 import Paraula.java;
 import java.util.ArrayList;
+import javafx.util.Pair;
+import java.util.Map;
+import java.util.HashMap;;
 
 
 
@@ -116,7 +119,7 @@ public class Frase {
     }
 
 
-    public String enString() {
+    public String toString() {
         return text;
     }
 
@@ -137,6 +140,30 @@ public class Frase {
         }
         return frase;
     }*/
+
+
+    public ArrayList<Pair<Integer, Integer>> donaWords() {
+        ArrayList<Pair<Integer, Integer>> q = new ArrayList<Pair< Integer,Integer>>();
+        //parella id-n_aparicions
+        Map<Integer,Integer> map = new HashMap<Integer, Integer>();
+        Paraula actual; int id;
+        for (int i = 0; i < n_paraules; ++i) {
+            actual = Oracio[i];
+            id = actual.getIndex();
+            if (map.containsKey(id)) map.put(id, map.get(id) +1);
+            else map.put(id, 0);
+            
+        }
+        //leemos todas las pairs
+
+        for (Integer i : map.keySet()) {
+            Integer nombre = map.get(i);
+            Pair<Integer, Integer> par = new Pair<>(i,nombre);
+            q.add(par);
+        }
+        return q;
+
+    }
     
 
     private boolean isPuntuacio(char c) {
