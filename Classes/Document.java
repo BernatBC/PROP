@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 class Document {
 	
@@ -9,8 +10,13 @@ class Document {
 	private LocalDate date;
 	private Contingut cont;
 	
-	Document(){
-		// Constructora
+	Document(Frase author, Frase title, boolean isFav, String path, LocalDate date, Contingut cont){
+		this.author = author;
+		this.title = title;
+		this.isFav = isFav;
+		this.path = path;
+		this.date = date;
+		this.cont = cont;
 	}
 	
 	public void setFavourite(boolean val){
@@ -32,6 +38,12 @@ class Document {
 	public boolean getFavourite(){
 		return isFav;
 	}
+	
+	// Index of word and number of occurrences
+	public ArrayList<Pair<int, int>> getWords(){
+		return cont.getWords();
+	}
+
 	
 	public String toString(){
 		StringBuilder str = new StringBuilder();
