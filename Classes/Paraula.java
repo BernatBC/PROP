@@ -92,6 +92,13 @@ public class Paraula {
         ocurrencia += n;
     }
 
+    /** Retorna l'índex de la paraula.
+     * @return int : índex de la paraula.
+     */
+    public int getId() {
+        return index;
+    }
+
     /** Calcula el valor idf de la paraula.
      */
     /*
