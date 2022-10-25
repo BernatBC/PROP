@@ -141,7 +141,8 @@ public class Frase {
         return frase;
     }*/
 
-
+    /** Retorna una llista de parelles d'Integers, tantes com a paraules diferents té la frase; el primer correspón amb l'index de la paraula i el segon amb el número d'ocurrències d'aquesta en la frase */
+    /** Returns: bool */
     public ArrayList<Pair<Integer, Integer>> donaWords() {
         ArrayList<Pair<Integer, Integer>> q = new ArrayList<Pair< Integer,Integer>>();
         //parella id-n_aparicions
@@ -149,7 +150,7 @@ public class Frase {
         Paraula actual; int id;
         for (int i = 0; i < n_paraules; ++i) {
             actual = Oracio[i];
-            id = actual.getIndex();
+            id = actual.getId();
             if (map.containsKey(id)) map.put(id, map.get(id) +1);
             else map.put(id, 0);
             
