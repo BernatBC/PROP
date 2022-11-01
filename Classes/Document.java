@@ -1,6 +1,9 @@
 import java.time.LocalDate;
 import java.util.HashMap;
 
+/** Document.
+ * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
+ */
 class Document {
 	
 	private Frase author;
@@ -25,6 +28,10 @@ class Document {
 	
 	public Frase getAutor(){
 		return author;
+	}
+
+	public Contingut getContingut(){
+		return cont;
 	}
 	
 	public Frase getTitol(){

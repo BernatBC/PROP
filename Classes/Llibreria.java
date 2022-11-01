@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/** Llibreria (conjunt) de documents.
+ * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
+ */
 class Llibreria {
 	// Sparse vector representation as pairs of ints (idx, occurrences)
 	//private ArrayList< Pair<Document, ArrayList< Pair<Integer, Integer> >> > docs;
@@ -26,6 +29,19 @@ class Llibreria {
 				return;
 			}
 		}
+	}
+
+	public Pair<Document, Boolean> getDocument(String author, String title){
+		// Donat un autor i títol, ens retorna el document
+		for (int i = 0; i < docs.size(); ++i){
+			if (docs.get(i).getL().getAutor().toString().equals(author) && docs.get(i).getL().getTitol().toString().equals(title)){
+				return new Pair(docs.get(i).getL(), true);
+			}
+		}
+
+		// Nothing found
+		return new Pair(null, false);
+
 	}
 	
 	public Llibreria getPreferits(){

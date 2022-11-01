@@ -1,13 +1,19 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/** Classe controladora de mètodes relacionats amb documents.
+ * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
+ */
+
 class DocumentCtrl {
 
 	private Vocabulari vocab;
 	private Llibreria lib;
 
-	// Classe Controlador que implementa mètodes del projecte
-	DocumentCtrl(){};
+	DocumentCtrl(Vocabulari v, Llibreria l){
+		vocab = v;
+		lib = l;
+	};
 	
 	private ArrayList<String> decomposeWords(String phr){
 		int i = 0;
@@ -32,7 +38,7 @@ class DocumentCtrl {
 		return listWords;
 	}
 	
-	public int crearDocument(){
+	public void crearDocument(){
 		Scanner in = new Scanner(System.in);
 		
 		String title = in.nextLine();
@@ -69,18 +75,46 @@ class DocumentCtrl {
 		Frase authorPhrase = new Frase(arrWords, author);
 		
 		// Finalment pel contingut
-		/* 
-		arrWords.clear();
+		 
+		Frase[] cont = new Frase[contentdecomp.size()];
+
 		for (int w = 0; w < contentdecomp.size(); ++w){
-			Paraula wd = vocab.inserirObtenirParaula(contentdecomp.get(w));
-			arrWords.add(wd);
+			ArrayList<String> currphrase = contentdecomp.get(w);
+			arrWords.clear();
+
+			for (int y = 0; y < currphrase.size(); ++y){
+				Paraula wd = vocab.inserirObtenirParaula(currphrase.get(y));
+				arrWords.add(wd);
+			}
+
+			cont[w] = new Frase(arrWords, content.get(w));
 		}
 
-		Frase content = new Frase(arrWords, author);
-		*/
+		Contingut contentFinal = new Contingut(String.join("\n", content), cont);
+		
+		// Finalment creem el document i el guardem
 
+		Document doc = new Document(authorPhrase, titlePhrase, false, "NULL", LocalDate.now(), contentFinal);
 
-		return 0;
+		lib.addDocument(doc);
 	}
 	
+	public void eliminarDocument(){
+		Scanner in = new Scanner(System.in);
+
+		String author = in.nextLine();
+		String title = in.nextLine();
+
+		Pair<Document, Boolean> docboolean = lib.getDocument(author, title);
+		
+		if (!docboolean.getR()){
+			System.out.println("Document with such author and title not found!");
+			return;
+		}
+
+		// Per a fer:
+		// Rebaixar per 1 les ocurrències de cada paraula 
+		// Eliminar totes les frases
+		// Eliminar el contingut i document
+	}
 }

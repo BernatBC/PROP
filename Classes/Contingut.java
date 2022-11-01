@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/** Contingut d'un document.
+ * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
+ */
 class Contingut {
 	
 	private String plaintext;
