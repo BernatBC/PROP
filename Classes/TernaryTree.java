@@ -122,4 +122,17 @@ public class TernaryTree {
         }
     }
 
+    public void decrementarOcurrencia(String s, int i) {
+        //TO DO: esborrar nodes innecessaris
+        if (s.charAt(i) > lletra && dreta != null) dreta.decrementarOcurrencia(s, i);
+        if (s.charAt(i) < lletra && esquerra != null) esquerra.decrementarOcurrencia(s, i);
+        if (s.charAt(i) == lletra) {
+            if (i < s.length() - 1 && centre != null) centre.decrementarOcurrencia(s, i + 1);
+            if (i == s.length() - 1 && paraula != null) {
+                paraula.decrementarOcurrencia(1);
+                if (paraula.getOcurrencia() <= 0) paraula = null;
+            }
+        }
+    }
+
 }
