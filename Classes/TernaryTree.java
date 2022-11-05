@@ -122,6 +122,10 @@ public class TernaryTree {
         }
     }
 
+    /**Decrementa en una unitat el nombre d'ocurrencies de la paraula corresponent a la seqüència s. En el cas que posteriorment el número sigui 0, s'esborra la paraula.
+     * @param s seqüencia de caràcters que forma la paraula.
+     * @param i index de la paraula des d'on falta fer la cerca.
+     */
     public void decrementarOcurrencia(String s, int i) {
         //TO DO: esborrar nodes innecessaris
         if (s.charAt(i) > lletra && dreta != null) dreta.decrementarOcurrencia(s, i);
