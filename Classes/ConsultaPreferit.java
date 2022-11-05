@@ -1,6 +1,6 @@
 package Classes;
-import Classes.Llibreria.java;
-import Classes.Document.java;
+import Classes.Llibreria;
+import Classes.Document;
 
 /** Diccionari de les paraules.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
