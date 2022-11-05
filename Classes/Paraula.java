@@ -6,27 +6,19 @@ import java.lang.Math;
  */
 public class Paraula {
 
-    /** Valor de la mètrica idf assignat. */
-    //private Double idf;
-
     /** Mot repressentat per la classe. */
     private String mot;
 
     /** Número d'ocurrencies. */
     private int ocurrencia;
 
+    /** Número de documents on la paraula apareix. */
+    private int nDocuments;
+
     /** Identificador de la paraula. */
     private int index;
 
     private static int proxim_index = 0;
-
-    /** Constructora per defecte de paraula. */
-    /*public Paraula() {
-        mot = "";
-        ocurrencia = 0;
-        index = proxim_index;
-
-    }*/
 
     /** Constructora per defecte de paraula.
      *  @param p Paraula representada per la classe.
@@ -34,15 +26,16 @@ public class Paraula {
     public Paraula(String p) {
         mot = p;
         ocurrencia = 1;
+        nDocuments = 0;
         index = proxim_index;
         ++index;
     }
 
-    /** Retorna el valor idf.
-    * @return Double : Valor idf.
+    /** Retorna el número de documents on la paraula apareix.
+    * @return Double : Número de documents.
     */
-    public Double getIdf() {
-        return idf;
+    public Double getNumDocuments() {
+        return nDocuments;
     }
 
     /** Retorna el nombre d'ocurrencies total.
@@ -92,23 +85,21 @@ public class Paraula {
         ocurrencia += n;
     }
 
+    /** Decrementa en una unitat el número de documents on la paraula apareix. */
+    public void decrementarNumDocuments() {
+        --nDocuments;
+    }
+
+    /** Incrementa en una unitat el número de documents on la paraula apareix. */
+    public void incrementarNumDocuments() {
+        ++nDocuments;
+    }
+
+
     /** Retorna l'índex de la paraula.
      * @return int : índex de la paraula.
      */
     public int getId() {
         return index;
     }
-
-    /** Calcula el valor idf de la paraula.
-     */
-    /*
-    private void calcularIdf() {
-        //idf = log(nDocumentsTotals/nDocumentsOnApareix)
-        //Necessita:
-        //getNDocuments()
-        //Desar d'alguna manera els documents on la paraula apareix
-        
-        //idf = Math.log(n_documents/n_documents_apareix);
-    }*/
-
 }
