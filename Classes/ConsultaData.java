@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Vector;
+
 import Llibreria.java;
 import Document.java;
 import Frase.java;
@@ -16,20 +18,32 @@ public class ConsultaData {
     /** Data final de l'interval a buscar (possiblement NULL -> es busca fins a la data maxima) */
     private LocalDate posterior;
 
-    /** Array dels Documents que compleixen l'interval */
-    private ArrayList<Document> docs;
+    /** Llibreria dels Documents ordenats per data */
+    private Llibreria docs;
 
-    /** Constructora default, a l'interficie una casella deixada en blanc -> Null -> valor maxim o minim depenent de la casella */
-    public ConsultaData(LocalDate ant, LocalDate post) {
+
+    /** Constructora empty */
+    public ConsultaData() {
+        anterior = null;
+        posterior = null;
+        docs = new Llibreria();
+    }
+
+    /** Constructora, a l'interficie una casella deixada en blanc -> Null -> valor maxim o minim depenent de la casella */
+    public ConsultaData(LocalDate ant, LocalDate pos,Llibreria documents) {
         anterior = ant;
-        posterior = post;
-        docs = new ArrayList<Document>();
-        //algo aixi
-        for (int i = 0; i < Llibreria.getNdocs()) {
-            Document d = Llibreria[i].first();
-            LocalDate aux = d.getData();
-            if ((aux == anterior) || (aux == posterior) || (aux.isAfter(anterior) && aux.isBefore(posterior))) docs.add(d);
+        posterior = pos;
+        //vector de N_documents posicions
+        docs = new Llibreria();
+        
+        for (int i = 0; i < documents.getNdocs(); ++i) {
+            //per cada document del sistema mirem les dates
+            Document doc = documents.getIessim(i);
+            LocalDate data = doc.getData();
+            if ( (data.isAfter(anterior) || data.isEqual(anterior)) &&  (data.isAfter(posterior) || data.isEqual(posterior))) docs.addDocument(doc);
         }
+        
+
     }
 
     /** Retorna la data inicial de l'interval de cerca */
@@ -42,6 +56,19 @@ public class ConsultaData {
     /** Returns: LocalDate */
     public LocalDate getPosterior() {
         return posterior;
+    }
+
+
+    /** Fixa la data inicial de l'interval de cerca  
+     * Returns: void */
+    public void setAnterior(LocalDate data) {
+        anterior = data;
+    }
+
+    /** Fixa la data final de l'interval de cerca  
+     * Returns: void */
+    public void setPosterior(LocalDate data) {
+        posterior = data;
     }
 
 
