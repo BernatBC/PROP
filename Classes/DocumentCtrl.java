@@ -1,5 +1,8 @@
+package Classes;
+
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 /** Classe controladora de mètodes relacionats amb documents.
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
@@ -27,7 +30,7 @@ class DocumentCtrl {
 				currWord.append(phr.charAt(i++));
 			} 
 			
-			listWords.add(currWord);
+			listWords.add(currWord.toString());
 			currWord = new StringBuilder("");
 			
 			while (!Character.isLetter(phr.charAt(i))) ++i;

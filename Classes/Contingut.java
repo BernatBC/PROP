@@ -1,5 +1,9 @@
+package Classes;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /** Contingut d'un document.
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
@@ -62,6 +66,27 @@ class Contingut {
 		return words;
 	}
 	
+	public HashMap<Integer, Double> getTFIDF(){
+
+		HashMap<Integer, Double> tfidf = new HashMap<Integer, Double>();
+
+		for (int p = 0; p < phrases.length; ++p){
+			ArrayList<Pair<Integer, Integer>> arrWords = phrases[p].donaWords();
+			HashMap<Integer, Double> idfs = phrases[p].getIdfs();
+
+			for (int i = 0; i < arrWords.size(); ++i){
+				int index = arrWords.get(i).getL();
+
+				if (tfidf.containsKey(index)) continue;
+
+				tfidf.put(arrWords.get(i).getL(), getTf(index) * idfs.get(index));
+				
+			}
+		}
+
+		return tfidf;
+	}
+
 	public String toString(){
 		return plaintext;
 	}

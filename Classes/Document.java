@@ -1,3 +1,5 @@
+package Classes;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 
@@ -51,6 +53,10 @@ class Document {
 		return cont.getWords();
 	}
 
+	// Index of word -> TF_IDF for the document
+	public HashMap<Integer, Double> getTFIDF(){
+		return cont.getTFIDF();
+	}
 	
 	public String toString(){
 		StringBuilder str = new StringBuilder();

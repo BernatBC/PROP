@@ -1,3 +1,5 @@
+package Classes;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -5,19 +7,19 @@ import java.util.HashMap;
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
  */
 class Llibreria {
-	// Sparse vector representation as pairs of ints (idx, occurrences)
-	//private ArrayList< Pair<Document, ArrayList< Pair<Integer, Integer> >> > docs;
-	private ArrayList< Pair<Document, HashMap<Integer, Integer>>> docs;
+	// Sparse vector representation as pairs of ints (idx, tf-idf)
+	//private ArrayList< Pair<Document, ArrayList< Pair<Integer, Double> >> > docs;
+	private ArrayList< Pair<Document, HashMap<Integer, Double>>> docs;
 	private int nDocs;
 	
 	Llibreria(){
-		docs = new ArrayList< Pair<Document, HashMap<Integer, Integer>>>();
+		docs = new ArrayList< Pair<Document, HashMap<Integer, Double>>>();
 		nDocs = 0;
 	}
 	
 	public void addDocument(Document d){
 		//docs.add(new Pair<Document, ArrayList< Pair<Integer, Integer> >>(d, d.getWords());
-		docs.add(new Pair<>(d, d.getWords()));
+		docs.add(new Pair<>(d, d.getTFIDF()));
 		++nDocs;
 	} 
 	
@@ -35,12 +37,12 @@ class Llibreria {
 		// Donat un autor i títol, ens retorna el document
 		for (int i = 0; i < docs.size(); ++i){
 			if (docs.get(i).getL().getAutor().toString().equals(author) && docs.get(i).getL().getTitol().toString().equals(title)){
-				return new Pair(docs.get(i).getL(), true);
+				return new Pair<>(docs.get(i).getL(), true);
 			}
 		}
 
 		// Nothing found
-		return new Pair(null, false);
+		return new Pair<>(null, false);
 
 	}
 	
@@ -58,6 +60,10 @@ class Llibreria {
 		return favLib;
 	}
 	
+	public Document getIessim(int i){
+		return docs.get(i).getL();
+	}
+
 	public int getNdocs(){
 		return nDocs;
 	}
