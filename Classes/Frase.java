@@ -1,6 +1,7 @@
+package Classes;
 import java.io.*;
 import java.lang.Math;
-import Paraula.java;
+import Classes.Paraula.java;
 import java.util.ArrayList;
 import javafx.util.Pair;
 import java.util.Map;

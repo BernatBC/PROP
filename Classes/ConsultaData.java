@@ -1,10 +1,11 @@
+package Classes;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Vector;
 
-import Llibreria.java;
-import Document.java;
-import Frase.java;
+import Classes.Llibreria.java;
+import Classes.Document.java;
+import Classes.Frase.java;
 import java.util.ArrayList;
 
 /** Dates.
