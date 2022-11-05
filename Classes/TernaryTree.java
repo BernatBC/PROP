@@ -1,5 +1,6 @@
+package Classes;
 import java.io.*;
-import Paraula.java;
+import Classes.Paraula;
 
 /** Estructura de dades per contenir el diccionari de paraules.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
@@ -27,13 +28,13 @@ public class TernaryTree {
         dreta = null;
         centre = null;
         paraula = null;
-        lletra = null;
+        lletra = ' ';
     }
 
     /**Constructora per defecte de TernaryTree.
      * @param c lletra que representa el node nou.
      */
-    public TernaryTree(Char c) {
+    public TernaryTree(char c) {
         esquerra = null;
         dreta = null;
         centre = null;
@@ -47,7 +48,7 @@ public class TernaryTree {
      * @param i índex de la paraula des d'on falta inserir.
      */
     public void inserirParaula(Paraula p, String s, int i) {
-        if (lletra == null) lletra = s.charAt(i);
+        if (lletra == ' ') lletra = s.charAt(i);
         if (s.charAt(i) == lletra) {
             if (i == s.length() - 1) {
                 paraula = p;
@@ -88,23 +89,23 @@ public class TernaryTree {
      * @return Paraula : Classe paraula.
      */
     public Paraula inserirObtenirParaula(String s, int i) {
-        if (lletra == null) lletra = s.charAt(i);
+        if (lletra == ' ') lletra = s.charAt(i);
         if (s.charAt(i) == lletra) {
             if (i == s.length() - 1) {
                 if (paraula == null) paraula = new Paraula(s);
                 else paraula.incrementarOcurrencia(1);
-                return paruala;
+                return paraula;
             }
             if (centre == null) centre = new TernaryTree(s.charAt(i + 1));
-            return centre.inserirObtenirParaula(p, s, i + 1);
+            return centre.inserirObtenirParaula(s, i + 1);
         }
         else if (s.charAt(i) > lletra) {
             if (dreta == null) dreta = new TernaryTree(s.charAt(i));
-            return dreta.inserirObtenirParaula(p, s, i);
+            return dreta.inserirObtenirParaula(s, i);
         }
         else {
             if (esquerra == null) esquerra = new TernaryTree(s.charAt(i));
-            return esquerra.inserirObtenirParaula(p, s, i);
+            return esquerra.inserirObtenirParaula(s, i);
         }
     }
 

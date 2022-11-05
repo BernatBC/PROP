@@ -1,6 +1,7 @@
+package Classes;
 import java.io.*;
-import TernaryTree.java;
-import Paraula.java;
+import Classes.TernaryTree;
+import Classes.Paraula;
 
 /** Diccionari de les paraules.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
@@ -19,7 +20,7 @@ public class Vocabulari {
      * @param p paraula que es vol inserir.
      */
     public void inserirParaula(Paraula p) {
-        if (s.length() > 0) arrel.inserirParaula(p, p.getParaula(), 0);
+        if (p.getParaula().length() > 0) arrel.inserirParaula(p, p.getParaula(), 0);
     }
 
     /**Obtenir la classe Paraula que correspon a la seqüència s.
@@ -50,7 +51,7 @@ public class Vocabulari {
     /**Decrementa en una unitat el nombre d'ocurrencies de la paraula p. En el cas que posteriorment el número sigui 0, s'esborra la paraula.
      * @param p paraula que es vol decrementar el número d'ocurrències.
      */
-    public void decrementarOcurrencia(Paraula P) {
+    public void decrementarOcurrencia(Paraula p) {
         arrel.decrementarOcurrencia(p.getParaula(), 0);
     }
 }

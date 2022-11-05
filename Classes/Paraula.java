@@ -1,5 +1,5 @@
+package Classes;
 import java.io.*;
-import java.lang.Math;
 
 /** Paraula que pot ser continguda a algun document.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
@@ -34,7 +34,7 @@ public class Paraula {
     /** Retorna el número de documents on la paraula apareix.
     * @return Double : Número de documents.
     */
-    public Double getNumDocuments() {
+    public int getNumDocuments() {
         return nDocuments;
     }
 

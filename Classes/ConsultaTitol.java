@@ -1,7 +1,8 @@
+package Classes;
 import java.util.HashMap;
-import Llibreria.java;
-import Document.java;
-import Frase.java;
+import Classes.Llibreria;
+import Classes.Document;
+import Classes.Frase;
 
 /** Classe per a la consulta de documents per autor.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
