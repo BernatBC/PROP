@@ -6,13 +6,13 @@ import Frase.java;
 /** Classe per a la consulta de documents per autor.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
  */
- public class ConsultaAutor {
+ public class ConsultaTitol {
 
     /** Conjunt de llibreries, una per a cada autor. */
     HashMap<String, Llibreria>  coleccions;
 
     /** Constructora per defecte. */
-    public ConsultaAutor() {
+    public ConsultaTitol() {
         coleccions = new HashMap<String, Llibreria>();
     }
 
