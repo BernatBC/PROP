@@ -1,6 +1,6 @@
-import Llibreria.java;
-import Vocabulari.java;
-import DocumentCtrl.java;
+import Classes.Llibreria.java;
+import Classes.Vocabulari.java;
+import Classes.DocumentCtrl.java;
 
 /** Main.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
