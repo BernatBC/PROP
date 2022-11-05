@@ -34,7 +34,7 @@ public class Paraula {
     /** Retorna el número de documents on la paraula apareix.
     * @return Double : Número de documents.
     */
-    public Double getNumDocuments() {
+    public int getNumDocuments() {
         return nDocuments;
     }
 
