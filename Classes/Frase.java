@@ -26,7 +26,8 @@ public class Frase {
     /** Frase en string */
     private String text;
 
-    /** Constructora per defecte. */
+    /** Constructora per defecte. 
+     * Returns: Frase inicialitzada amb els paràmetres words (pels atributs Oracio i n_paraules) i frase (pels atributs text i Puntuacio). */
     public Frase(ArrayList<Paraula> words, String frase) {
         //paràmetre
         text = frase;
@@ -109,7 +110,7 @@ public class Frase {
 
     }
 
-    /** Retorna la frase en string */
+    /** Retorna la frase en  format string */
     /** Returns: String */
     public String toString() {
         return text;
@@ -158,9 +159,29 @@ public class Frase {
 
     }
 
+
+    /** Retorna el nombre de paraules de la frase.
+     * Returns: int */
     public int getNparaules() {
         return n_paraules;
     }
+
+    /** Retorna un Map de parelles int int, per cada parella el primer element correspon a la id d'una paraula i el segon al seu IDF.
+     * Per cada Paraula retorna una parella.
+     * Returns: HashMap */
+    public HashMap<Integer, Double> getIdfs() {
+        HashMap<Integer, Double> idfs = new HashMap<Integer, Double>();
+
+        for (int i = 0; i < n_paraules; ++i) {
+            Paraula p = Oracio[i];
+            idfs.put(p.getId(),p.getIdf());
+        }
+
+        return idfs;
+    }
+
+
+
     
     /** Retorna true si el char paràmetre és un signe de puntuació */
     /** Returns: bool */
