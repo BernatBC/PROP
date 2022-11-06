@@ -140,7 +140,7 @@ public class TernaryTree {
                 centre.esborrarParaula(s, i, esborrable, dir);
             }
             if (i == s.length() - 1 && paraula != null) {
-                if (esborrable == null || centre != null) paraula == null;
+                if (esborrable == null || centre != null) paraula = null;
                 else {
                     if (dir == 0) esborrable.esquerra = null;
                     else if (dir == 1) esborrable.centre = null;

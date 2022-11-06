@@ -49,6 +49,10 @@ class Contingut {
 		return (double) words.get(index) / n_paraules;
 	}
 	
+	public HashMap<Integer, Integer> getWords(){
+		return words;
+	}
+
 	public HashMap<Integer, Double> getTF(){
 
 		HashMap<Integer, Double> tf_map = new HashMap<Integer, Double>();

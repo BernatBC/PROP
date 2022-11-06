@@ -3,7 +3,6 @@ import Classes.Llibreria;
 import Classes.Vocabulari;
 import Classes.DocumentCtrl;
 
-import javax.swing.text.Document;
 import java.time.LocalDate;
 
 import Classes.ConsultaData;

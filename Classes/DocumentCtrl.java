@@ -40,6 +40,10 @@ class DocumentCtrl {
 		
 		return listWords;
 	}
+
+	public Pair<Document, Boolean> getDocument(String nomAutor, String nomTitol){
+		return lib.getDocument(nomAutor, nomTitol);
+	}
 	
 	public void crearDocument(){
 		Scanner in = new Scanner(System.in);
