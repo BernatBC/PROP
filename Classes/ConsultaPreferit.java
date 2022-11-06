@@ -1,38 +1,38 @@
 package Classes;
-import Classes.Llibreria;
 import Classes.Document;
+import java.util.Set;
 
-/** Diccionari de les paraules.
+/** Consulta documents preferits.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
  */
  public class ConsultaPreferit {
 
-    /** Conjunt de llibreries, una per a cada autor. */
-    Llibreria preferits;
+    /** Conjunt de documents preferits. */
+    Set<Document> preferits;
 
     /** Constructora per defecte. */
     public ConsultaPreferit() {
-        preferits = new Llibreria();
+        
     }
 
     /** Afegeix el document a la llibreria.
      * @param d document que es vol afegir.
      */
     public void afegirDocument(Document d) {
-        preferits.addDocument(d);
+        preferits.add(d);
     }
 
-    /** Elimina el document de la llibreria.
+    /** Elimina el document del conjunt.
      * @param d document que es vol eliminar.
      */
     public void eliminarDocument(Document d) {
-        preferits.deleteDocument(d);
+        preferits.remove(d);
     }
 
-    /** Retorna la llibreria de preferits.
-     * @return Llibreria : llibreria dels documents preferits.
+    /** Retorna el conjunt de documents preferits.
+     * @return Set<Document> : conjunt dels documents preferits.
      */
-    public Llibreria getDocPreferit() {
+    public Set<Document> getDocPreferit() {
         return preferits;
     }
  }
