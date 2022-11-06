@@ -47,15 +47,15 @@ class Document {
 	public boolean getFavourite(){
 		return isFav;
 	}
-	
-	// Index of word and number of occurrences
-	public HashMap<Integer, Integer> getWords(){
-		return cont.getWords();
+
+	public double getTFofWord(int index)
+	{
+		return cont.getTFofWord(index);
 	}
 
-	// Index of word -> TF_IDF for the document
-	public HashMap<Integer, Double> getTFIDF(){
-		return cont.getTFIDF();
+	// Index of word -> TF for the document
+	public HashMap<Integer, Double> getTF(){
+		return cont.getTF();
 	}
 	
 	public String toString(){

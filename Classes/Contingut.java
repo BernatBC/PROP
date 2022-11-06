@@ -12,7 +12,6 @@ class Contingut {
 	
 	private String plaintext;
 	private Frase[] phrases;
-	private HashMap<Integer, Double> tf;
 	private HashMap<Integer, Integer> words;
 	private int n_paraules;
 	
@@ -26,11 +25,11 @@ class Contingut {
 		words = new HashMap<Integer, Integer>();
 
 		for (int p = 0; p < phrases.length; ++p){
-			ArrayList<Pair<Integer, Integer>> arrWords = phrases[p].donaWords();
+			HashMap<Integer, Integer> arrWords = phrases[p].donaWords();
 			
-			for (int w = 0; w < arrWords.size(); ++w){
-				int index = arrWords.get(w).getL();
-				int ocurr = arrWords.get(w).getR();
+			for (int index : arrWords.keySet()){
+
+				int ocurr = arrWords.get(index);
 
 				if (words.containsKey(index)){
 					// If the word has already been inserted
@@ -44,47 +43,21 @@ class Contingut {
 		}
 	}
 	
-	public double getTf(int index){
-		int rawcount = 0;
+	public double getTFofWord(int index){
+		if (!words.containsKey(index)) return -1.0;
 
-		// Get the TF value of word 'index'
-		for (int p = 0; p < phrases.length; ++p){
-			ArrayList<Pair<Integer, Integer>> arrWords = phrases[p].donaWords();
-
-			for (int i = 0; i < arrWords.size(); ++i){
-				if (arrWords.get(i).getL() == index){
-					rawcount += arrWords.get(i).getR();
-					break;
-				}
-			}
-		}
-
-		return (double) rawcount / n_paraules;
+		return (double) words.get(index) / n_paraules;
 	}
 	
-	public HashMap<Integer, Integer> getWords(){
-		return words;
-	}
-	
-	public HashMap<Integer, Double> getTFIDF(){
+	public HashMap<Integer, Double> getTF(){
 
-		HashMap<Integer, Double> tfidf = new HashMap<Integer, Double>();
+		HashMap<Integer, Double> tf_map = new HashMap<Integer, Double>();
 
-		for (int p = 0; p < phrases.length; ++p){
-			ArrayList<Pair<Integer, Integer>> arrWords = phrases[p].donaWords();
-			HashMap<Integer, Double> idfs = phrases[p].getIdfs();
-
-			for (int i = 0; i < arrWords.size(); ++i){
-				int index = arrWords.get(i).getL();
-
-				if (tfidf.containsKey(index)) continue;
-
-				tfidf.put(arrWords.get(i).getL(), getTf(index) * idfs.get(index));
-				
-			}
+		for (int index : words.keySet()){
+			tf_map.put(index, getTFofWord(index));
 		}
 
-		return tfidf;
+		return tf_map;
 	}
 
 	public String toString(){
