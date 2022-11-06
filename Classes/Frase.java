@@ -135,8 +135,8 @@ public class Frase {
         return frase;
     }*/
 
-    /** Retorna una llista de parelles d'Integers, tantes com a paraules diferents té la frase; el primer correspón amb l'index de la paraula i el segon amb el número d'ocurrències d'aquesta en la frase */
-    /** Returns: bool */
+    /** Retorna una HashMap<Integer,Integer>, amt tants elements com a paraules diferents té la frase; la key correspón amb l'index de la paraula i el value amb el número d'ocurrències d'aquesta en la frase */
+    /** Returns: HashMap */
     public HashMap<Integer, Integer> donaWords() {
         HashMap<Integer, Integer> q = new HashMap<Integer, Integer>();
         //parella id-n_aparicions
