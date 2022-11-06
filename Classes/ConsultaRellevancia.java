@@ -40,7 +40,7 @@ public class ConsultaRellevancia {
         docs = new Llibreria();
 
         //hashmap de suma de ocurrèncias, document 
-        HashMap<Integer,ArrayList<Document>> ordenats;
+        HashMap<Integer,ArrayList<Document>> ordenats = new HashMap<>();
 
         if (mode == 1) {
             //mode 1 -> per cada document mirem el n_ocurrencies de cada paraula de la query. Els k documents que sumin més són els seleccionats
