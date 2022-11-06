@@ -1,9 +1,6 @@
 package Classes;
-import java.io.*;
-import java.lang.Math;
 import Classes.Paraula;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;;
 
 
