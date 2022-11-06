@@ -1,5 +1,6 @@
 package Classes;
 import java.time.LocalDate;
+import java.util.Set;
 
 import Classes.Llibreria;
 import Classes.Document;
@@ -16,15 +17,15 @@ public class ConsultaData {
     /** Data final de l'interval a buscar (possiblement NULL -> es busca fins a la data maxima) */
     private LocalDate posterior;
 
-    /** Llibreria dels Documents ordenats per data */
-    private Llibreria docs;
+    /** Llibreria dels Documents dintre de l'interval de dates ordenats per data */
+    private Set<Document> docs;
 
 
     /** Constructora empty */
     public ConsultaData() {
         anterior = null;
         posterior = null;
-        docs = new Llibreria();
+        docs = new Set<Document>();
     }
 
     /** Constructora, a l'interficie una casella deixada en blanc -> Null -> valor maxim o minim depenent de la casella */
@@ -32,13 +33,13 @@ public class ConsultaData {
         anterior = ant;
         posterior = pos;
         //vector de N_documents posicions
-        docs = new Llibreria();
+        docs = new Set<Document>();
         
         for (int i = 0; i < documents.getNdocs(); ++i) {
             //per cada document del sistema mirem les dates
             Document doc = documents.getIessim(i);
             LocalDate data = doc.getData();
-            if ( (data.isAfter(anterior) || data.isEqual(anterior)) &&  (data.isAfter(posterior) || data.isEqual(posterior))) docs.addDocument(doc);
+            if ( (data.isAfter(anterior) || data.isEqual(anterior)) &&  (data.isAfter(posterior) || data.isEqual(posterior))) docs.add(doc);
         }
         
 
