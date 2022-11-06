@@ -19,24 +19,28 @@ class DocumentCtrl {
 	};
 	
 	private ArrayList<String> decomposeWords(String phr){
+
+		if (phr.length() <= 0) return new ArrayList<String>();
+
 		int i = 0;
 		ArrayList<String> listWords = new ArrayList<String>();
 		StringBuilder currWord = new StringBuilder("");
 		
-		while (!Character.isLetter(phr.charAt(i))) ++i;
+		while (i < phr.length() && !Character.isLetter(phr.charAt(i))) ++i;
 		
 		while (i < phr.length()){
 			while (Character.isLetter(phr.charAt(i))){
 				currWord.append(phr.charAt(i++));
+				if (i >= phr.length()) break;
 			} 
 			
 			listWords.add(currWord.toString());
 			currWord = new StringBuilder("");
 			
-			while (!Character.isLetter(phr.charAt(i))) ++i;
+			while (i < phr.length() && !Character.isLetter(phr.charAt(i))) ++i;
 		}
 		
-		if (Character.isLetter(phr.charAt(--i))) listWords.add(currWord.toString());
+		if (i == phr.length() && Character.isLetter(phr.charAt(--i))) listWords.add(currWord.toString());
 		
 		return listWords;
 	}
@@ -57,6 +61,8 @@ class DocumentCtrl {
 		ArrayList<String> content = new ArrayList<String>();
 		while (in.hasNextLine()) content.add(in.nextLine());
 		ArrayList<ArrayList<String>> contentdecomp = new ArrayList<ArrayList<String>>();
+
+		in.close();
 
 		for (int s = 0; s < content.size(); ++s){
 			contentdecomp.add(decomposeWords(content.get(s)));
@@ -118,6 +124,8 @@ class DocumentCtrl {
 			System.out.println("Document with such author and title not found!");
 			return;
 		}
+
+
 
 		// Per a fer:
 		// Rebaixar per 1 les ocurrències de cada paraula 
