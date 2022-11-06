@@ -112,32 +112,60 @@ public class TernaryTree {
     /**Esborrar la classe Paraula que correspon a la seqüència s.
      * @param s seqüencia de caràcters que forma la paraula.
      * @param i index de la paraula des d'on falta fer la cerca.
+     * @param esborrable últim node que pot esborrar un dels seus fills.
+     * @param dir direcció del node fill que es pot esborrar.
      */
-    public void esborrarParaula(String s, int i) {
-        //TO DO: esborrar nodes innecessaris
-        if (s.charAt(i) > lletra && dreta != null) dreta.esborrarParaula(s, i);
-        if (s.charAt(i) < lletra && esquerra != null) esquerra.esborrarParaula(s, i);
+    public void esborrarParaula(String s, int i, TernaryTree esborrable, int dir) {
+
+        if (s.charAt(i) > lletra && dreta != null) {
+            if (dreta != null || esquerra != null || paraula != null) {
+                esborrable = this;
+                dir = 2;
+            }
+            dreta.esborrarParaula(s, i, esborrable, dir);
+        }
+        if (s.charAt(i) < lletra && esquerra != null) {
+            if (dreta != null || esquerra != null || paraula != null) {
+                esborrable = this;
+                dir = 0;
+            }
+            esquerra.esborrarParaula(s, i, esborrable, dir);
+        }
         if (s.charAt(i) == lletra) {
-            if (i < s.length() - 1 && centre != null) centre.esborrarParaula(s, i + 1);
-            if (i == s.length() - 1 && paraula != null) paraula = null;
+            if (i < s.length() - 1 && centre != null) {
+                if (dreta != null || esquerra != null || paraula != null) {
+                    esborrable = this;
+                    dir = 0;
+                }
+                centre.esborrarParaula(s, i, esborrable, dir);
+            }
+            if (i == s.length() - 1 && paraula != null) {
+                if (esborrable == null || centre != null) paraula == null;
+                else {
+                    if (dir == 0) esborrable.esquerra = null;
+                    else if (dir == 1) esborrable.centre = null;
+                    else esborrable.esquerra = null;
+                }
+            }
         }
     }
 
-    /**Decrementa en una unitat el nombre d'ocurrencies de la paraula corresponent a la seqüència s. En el cas que posteriorment el número sigui 0, s'esborra la paraula.
+    /**Decrementa en una unitat el nombre d'ocurrencies de la paraula corresponent a la seqüència s.
      * @param s seqüencia de caràcters que forma la paraula.
      * @param i index de la paraula des d'on falta fer la cerca.
+     * @return int : número d'ocurrències restants després de decrementar. 
      */
-    public void decrementarOcurrencia(String s, int i) {
-        //TO DO: esborrar nodes innecessaris
-        if (s.charAt(i) > lletra && dreta != null) dreta.decrementarOcurrencia(s, i);
-        if (s.charAt(i) < lletra && esquerra != null) esquerra.decrementarOcurrencia(s, i);
+    public int decrementarOcurrencia(String s, int i) {
+        if (s.charAt(i) > lletra && dreta != null) return dreta.decrementarOcurrencia(s, i);
+        if (s.charAt(i) < lletra && esquerra != null) return esquerra.decrementarOcurrencia(s, i);
         if (s.charAt(i) == lletra) {
-            if (i < s.length() - 1 && centre != null) centre.decrementarOcurrencia(s, i + 1);
+            if (i < s.length() - 1 && centre != null) return centre.decrementarOcurrencia(s, i + 1);
             if (i == s.length() - 1 && paraula != null) {
                 paraula.decrementarOcurrencia(1);
-                if (paraula.getOcurrencia() <= 0) paraula = null;
+                return paraula.getOcurrencia();
             }
         }
+        return -1;
     }
 
 }

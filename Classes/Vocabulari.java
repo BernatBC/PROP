@@ -45,13 +45,13 @@ public class Vocabulari {
      * @param p paraula que es vol esborrar.
      */
     public void esborrarParaula(Paraula p) {
-        arrel.esborrarParaula(p.getParaula(), 0);
+        arrel.esborrarParaula(p.getParaula(), 0, null, 1);
     }
 
     /**Decrementa en una unitat el nombre d'ocurrencies de la paraula p. En el cas que posteriorment el número sigui 0, s'esborra la paraula.
      * @param p paraula que es vol decrementar el número d'ocurrències.
      */
     public void decrementarOcurrencia(Paraula p) {
-        arrel.decrementarOcurrencia(p.getParaula(), 0);
+        if (arrel.decrementarOcurrencia(p.getParaula(), 0) == 0) esborrarParaula(p);
     }
 }
