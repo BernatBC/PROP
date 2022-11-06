@@ -1,12 +1,12 @@
 package Classes;
-import Classes.Llibreria.java;
+import Classes.Llibreria;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import Document.java;
+import Classes.Document;
 
 
 
@@ -59,7 +59,7 @@ public class ConsultaRellevancia {
                      if (paraules.containsKey(query[0].getId())) count += paraules.get(query[0].getId());
                 }
                 //afegim el document amb la suma d'aparicions, en negatiu per donar l'ordre correcte, i el propi document
-                ArrayList<Document> temp = new ArrayList<Document>()
+                ArrayList<Document> temp = new ArrayList<Document>();
                 if (ordenats.containsKey(-count)) temp = ordenats.get(-count);
                 
                 temp.add(doc);

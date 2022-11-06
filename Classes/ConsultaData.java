@@ -1,12 +1,9 @@
 package Classes;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Vector;
 
-import Classes.Llibreria.java;
-import Classes.Document.java;
-import Classes.Frase.java;
-import java.util.ArrayList;
+import Classes.Llibreria;
+import Classes.Document;
+import Classes.Frase;
 
 /** Dates.
  * @author Oscar Ramos Nuñez (oscar.ramos.nunez@estudiantat.upc.edu)
