@@ -137,10 +137,10 @@ public class Frase {
 
     /** Retorna una llista de parelles d'Integers, tantes com a paraules diferents té la frase; el primer correspón amb l'index de la paraula i el segon amb el número d'ocurrències d'aquesta en la frase */
     /** Returns: bool */
-    public ArrayList<Pair<Integer, Integer>> donaWords() {
-        ArrayList<Pair<Integer, Integer>> q = new ArrayList<Pair< Integer,Integer>>();
+    public HashMap<Integer, Integer> donaWords() {
+        HashMap<Integer, Integer> q = new HashMap<Integer, Integer>();
         //parella id-n_aparicions
-        Map<Integer,Integer> map = new HashMap<Integer, Integer>();
+        HashMap<Integer,Integer> map = new HashMap<Integer, Integer>();
         Paraula actual; int id;
         for (int i = 0; i < n_paraules; ++i) {
             actual = Oracio[i];
@@ -153,8 +153,7 @@ public class Frase {
 
         for (Integer i : map.keySet()) {
             Integer nombre = map.get(i);
-            Pair<Integer, Integer> par = new Pair<>(i,nombre);
-            q.add(par);
+            q.put(i,nombre);
         }
         return q;
 
