@@ -21,7 +21,7 @@ import Classes.Frase;
      * @param d document que es vol afegir.
      */
     public void afegirDocument(Document d) {
-        Frase autor = d.getAutor().enString();
+        String autor = d.getAutor().toString();
         Llibreria l = coleccions.get(autor);
         if (l == null) l = new Llibreria();
         l.addDocument(d);
@@ -32,10 +32,10 @@ import Classes.Frase;
      * @param d document que es vol eliminar.
      */
     public void eliminarDocument(Document d) {
-        Frase autor = d.getAutor().enString();
+        String autor = d.getAutor().toString();
         Llibreria l = coleccions.get(autor);
         l.deleteDocument(d);
-        if (l.getNDocuments() != 0) coleccions.put(autor, l);
+        if (l.getNdocs() != 0) coleccions.put(autor, l);
         else coleccions.remove(autor);
     }
 
@@ -53,6 +53,6 @@ import Classes.Frase;
      * @return Llibreria : llibreria corresponent a l'autor.
      */
     public Llibreria getDocAutor(Frase autor) {
-        return coleccions.get(autor.enString());
+        return coleccions.get(autor.toString());
     }
  }
