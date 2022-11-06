@@ -1,9 +1,8 @@
 package Classes;
 import java.io.*;
 import java.lang.Math;
-import Classes.Paraula.java;
+import Classes.Paraula;
 import java.util.ArrayList;
-import javafx.util.Pair;
 import java.util.Map;
 import java.util.HashMap;;
 
@@ -168,13 +167,25 @@ public class Frase {
 
     /** Retorna un Map de parelles int int, per cada parella el primer element correspon a la id d'una paraula i el segon al seu IDF.
      * Per cada Paraula retorna una parella.
-     * Returns: HashMap */
+     * Returns: HashMap 
     public HashMap<Integer, Double> getIdfs() {
         HashMap<Integer, Double> idfs = new HashMap<Integer, Double>();
 
         for (int i = 0; i < n_paraules; ++i) {
             Paraula p = Oracio[i];
-            idfs.put(p.getId(),p.getIdf());
+            Double idf = p.getNumDocuments() / ;
+            idfs.put(p.getId(),idf);
+        }
+
+        return idfs;
+    }*/
+
+    public HashMap<Integer, Integer> getNdocs() {
+        HashMap<Integer, Integer> idfs = new HashMap<Integer, Integer>();
+
+        for (int i = 0; i < n_paraules; ++i) {
+            Paraula p = Oracio[i];
+            idfs.put(p.getId(),p.getNumDocuments());
         }
 
         return idfs;
