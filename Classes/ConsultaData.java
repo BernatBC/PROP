@@ -1,6 +1,6 @@
 package Classes;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.ArrayList;
 
 import Classes.Llibreria;
 import Classes.Document;
@@ -18,32 +18,59 @@ public class ConsultaData {
     private LocalDate posterior;
 
     /** Llibreria dels Documents dintre de l'interval de dates ordenats per data */
-    private Set<Document> docs;
+    private ArrayList<Document> docs;
+
+    /** Nombre de documents actual */
+    private Integer n_docs;
 
 
-    /** Constructora empty */
+    /** Constructora per defecte */
     public ConsultaData() {
         anterior = null;
         posterior = null;
         docs = null;
     }
 
-    /** Constructora, a l'interficie una casella deixada en blanc -> Null -> valor maxim o minim depenent de la casella */
-    public ConsultaData(LocalDate ant, LocalDate pos,Llibreria documents) {
-        anterior = ant;
-        posterior = pos;
-        //vector de N_documents posicions
-        docs = null;
-        
-        for (int i = 0; i < documents.getNdocs(); ++i) {
-            //per cada document del sistema mirem les dates
-            Document doc = documents.getIessim(i);
-            LocalDate data = doc.getData();
-            if ( (data.isAfter(anterior) || data.isEqual(anterior)) &&  (data.isAfter(posterior) || data.isEqual(posterior))) docs.add(doc);
+    /** Afegeix un element de a la llista de documents ordenats per data mantenint l'ordre (en cas d'empatar es posa l'ultim dintre d'aquesta data). 
+     * Returns: Void */
+    public void addDoc(Document D) {
+        int index = 0;
+        for (int i = 0; i < n_docs; ++i) {
+            if (docs.get(i).getData().isAfter(D.getData())) break;
         }
-        
-
+        docs.add(index,D);
     }
+
+    /** Esborrar un element de la llista de documents ordenats per data. 
+     * Returns: Void */
+    public void deleteDoc(Document D) {
+        if (docs.remove(D) == false);  //error
+    }
+
+
+    /** Consulta de l'interval. Ídem que la consulta sense paràmetres però amb la possibilitat de posar nous paràmetres en la pròpia crida. 
+     * Returns: ArrayList */
+    public ArrayList<Document> consulta(LocalDate ant, LocalDate pos) {
+        anterior = ant; posterior = pos;
+        return consulta();
+    }
+
+
+    /** Consulta de l'interval. Troba l'index inicial i final del nostre array de tots els documents ordenats i construeix un subarray amb els documents de l'interval
+     * Returns: ArrayList*/
+    public ArrayList<Document> consulta() {
+        ArrayList<Document> interval = new ArrayList<>();
+        Integer idxini = 0, idxfin = n_docs-1;
+
+        while(docs.get(idxini).getData().isBefore(anterior)) ++idxini;
+
+        while(docs.get(idxfin).getData().isAfter(posterior)) --idxini;
+
+        for (int q = idxini; q <= idxfin; ++q) interval.add(docs.get(q));
+
+        return interval;
+    }
+
 
     /** Retorna la data inicial de l'interval de cerca */
     /** Returns: LocalDate */
