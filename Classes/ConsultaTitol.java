@@ -1,6 +1,6 @@
 package Classes;
 import java.util.HashMap;
-import Classes.Llibreria;
+import java.util.Set;
 import Classes.Document;
 import Classes.Frase;
 
@@ -10,36 +10,35 @@ import Classes.Frase;
  public class ConsultaTitol {
 
     /** Conjunt de llibreries, una per a cada autor. */
-    HashMap<String, Llibreria>  coleccions;
+    HashMap<String, Set<Document>>  coleccions;
 
     /** Constructora per defecte. */
     public ConsultaTitol() {
-        coleccions = new HashMap<String, Llibreria>();
+        coleccions = new HashMap<String, Set<Document>>();
     }
 
-    /** Afegeix el document a la llibreria corresponent.
+    /** Afegeix el document al conjunt corresponent.
      * @param d document que es vol afegir.
      */
     public void afegirDocument(Document d) {
         String autor = d.getAutor().toString();
-        Llibreria l = coleccions.get(autor);
-        if (l == null) l = new Llibreria();
-        l.addDocument(d);
-        coleccions.put(autor, l);
+        Set<Document> s = coleccions.get(autor);
+        s.add(d);
+        coleccions.put(autor, s);
     }
 
-    /** Elimina el document de la llibreria corresponent.
+    /** Elimina el document del conjunt corresponent.
      * @param d document que es vol eliminar.
      */
     public void eliminarDocument(Document d) {
         String autor = d.getAutor().toString();
-        Llibreria l = coleccions.get(autor);
-        l.deleteDocument(d);
-        if (l.getNdocs() != 0) coleccions.put(autor, l);
+        Set<Document> s = coleccions.get(autor);
+        s.remove(d);
+        if (s.size() > 0) coleccions.put(autor, s);
         else coleccions.remove(autor);
     }
 
-    /** Mou el document cap a la llibreria de l'autor nou.
+    /** Mou el document cap al conjunt de l'autor nou.
      * @param antic document que es vol afegir.
      * @param nou autor que passarà a tenir el document.
      */
@@ -48,11 +47,11 @@ import Classes.Frase;
         afegirDocument(nou);
     }
 
-    /** Retorna la llibreria corresponent a l'autor.
+    /** Retorna el conjunt de documents corresponent a l'autor.
      * @param autor autor dels documents retornats.
-     * @return Llibreria : llibreria corresponent a l'autor.
+     * @return Set<Document> : conjunt de documents corresponent a l'autor.
      */
-    public Llibreria getDocAutor(Frase autor) {
+    public Set<Document> getDocAutor(Frase autor) {
         return coleccions.get(autor.toString());
     }
  }

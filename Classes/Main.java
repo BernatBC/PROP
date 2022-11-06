@@ -26,14 +26,14 @@ public class Main {
         DocumentCtrl DCtlr = new DocumentCtrl(v, l);
 
         DCtlr.crearDocument();
-
+        /*
         Document doc1 = DCtlr.getDocument("John Doe", "Document Test").getR();
 
         Frase autor = new Frase("John Doe");
         
         Llibreria l1 = CD.getAnterior(LocalDate.now());
         Llibreria l2 = CP.getDocPreferit();
-        Llibreria l3 = CT.getDocAutor(autor);
+        Llibreria l3 = CT.getDocAutor(autor);*/
 
         while (true) ;
     }
