@@ -22,6 +22,40 @@ class Llibreria {
 		nDocs = 0;
 	}
 	
+	public Double computeCosinus(Document d1, Document d2){
+		int i = 0;
+		int j = 0;
+
+		while (docs.get(i).getL() != d1) ++i;
+		while (docs.get(j).getL() != d2) ++j;
+
+		double len1 = 0;
+		double len2 = 0;
+
+		for (int w : docs.get(i).getR().keySet()){
+			double val = docs.get(i).getR().get(w);
+			len1 += (val*val);
+		}
+		
+		for (int w : docs.get(j).getR().keySet()){
+			double val = docs.get(j).getR().get(w);
+			len2 += (val*val);
+		}
+
+		len1 = Math.sqrt(len1);
+		len2 = Math.sqrt(len2);
+
+		double dotproduct = 0;
+
+		for (int w : docs.get(i).getR().keySet()){
+			if (!docs.get(j).getR().containsKey(w)) continue;
+
+			dotproduct += docs.get(i).getR().get(w) * docs.get(j).getR().get(w);
+		}
+
+		return (Double) dotproduct / (len1 * len2);
+	}
+	
 	public void addDocument(Document d){
 		HashMap<Integer, Double> tfs = d.getTF();
 		HashMap<Integer, Double> TFIDF = new HashMap<Integer, Double>();
