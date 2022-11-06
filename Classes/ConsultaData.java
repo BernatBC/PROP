@@ -25,7 +25,7 @@ public class ConsultaData {
     public ConsultaData() {
         anterior = null;
         posterior = null;
-        docs = new Set<Document>();
+        docs = null;
     }
 
     /** Constructora, a l'interficie una casella deixada en blanc -> Null -> valor maxim o minim depenent de la casella */
@@ -33,7 +33,7 @@ public class ConsultaData {
         anterior = ant;
         posterior = pos;
         //vector de N_documents posicions
-        docs = new Set<Document>();
+        docs = null;
         
         for (int i = 0; i < documents.getNdocs(); ++i) {
             //per cada document del sistema mirem les dates
