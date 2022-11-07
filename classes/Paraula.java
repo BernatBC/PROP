@@ -28,7 +28,7 @@ public class Paraula {
         ocurrencia = 1;
         nDocuments = 0;
         index = proxim_index;
-        ++index;
+        ++proxim_index;
     }
 
     /** Retorna el número de documents on la paraula apareix.
