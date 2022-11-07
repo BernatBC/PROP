@@ -7,7 +7,6 @@ import classes.Paraula;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 //import javax.naming.InitialContext;
 //import javax.swing.text.html.HTMLDocument.HTMLReader.ParagraphAction;
