@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 
 
 /** Estructura de dades per contenir el diccionari de paraules.

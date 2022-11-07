@@ -1,6 +1,8 @@
-package Classes;
+package classes;
 import java.util.ArrayList;
-import java.util.HashMap;;
+import java.util.HashMap;
+
+import classes.Paraula;;
 
 
 
@@ -12,8 +14,7 @@ public class Frase {
     /** Conjunt de paraules de la frase. */
     private Paraula[] Oracio;
 
-    /** Conjunt de caràcters (espai, exclamació, punt, coma, etc) que separen cada parella de paraules de la frase */
-    private ArrayList<String> Puntuacio;
+
 
     /** Número de paraules de la frase */
     private int n_paraules;
@@ -32,31 +33,23 @@ public class Frase {
         //posem les words
         for (int j = 0; j < words.size(); ++j) Oracio[j] = words.get(j);
 
-        Puntuacio = new ArrayList<String>();
+
         n_paraules = words.size();
 
-        int aux = frase.length();
-        String a_insertP = "";
-        char c; 
-        for (int i = 0; i < aux; ++i) {
-            c = frase.charAt(i);
+    }
 
-            /**Mentre estiguem llegint una concatenació de signes de puntuació no els insertem (possible malgrat improbable)
-             * Quan llegim una lletra sabem que hem passat a analitzar una paraula (que al estar guardada ja en la línia 36 no fa falta "trackejarla").
-             */
+    public Frase(String frase) {
+        text = frase;
+        ArrayList<Paraula> words = stringToParaules(frase);
 
-            if(isPuntuacio(c)) a_insertP += c;
+        n_paraules = words.size();
 
-            else if (!a_insertP.equals("")) {
-                    Puntuacio.add(a_insertP);
-                    a_insertP = "";
-                }
-         }
-
-        //comprovem que no quedin paraules signes per insertar (l'ultim punt, per exemple)
-        if (!a_insertP.equals("")) Puntuacio.add(a_insertP);
+        Oracio = new Paraula[n_paraules];
+        //posem les words
+        for (int j = 0; j < words.size(); ++j) Oracio[j] = words.get(j);
 
     }
+
 
     /** Retorna un vector de les paraules que formen la frase */
     /** Returns: String[] */
@@ -64,11 +57,7 @@ public class Frase {
         return Oracio;
     }
 
-    /** Retorna un vector de les puntuacions que separen les paraules que formen la frase */
-    /** Returns: String[] */
-    public ArrayList<String> getPuntuacio() {
-        return Puntuacio;
-    }
+
 
     /** Retorna true si la frase conté les paraules "Paraules" concatenades */
     /** Returns: bool */
@@ -96,13 +85,11 @@ public class Frase {
 
     /** Retorna true si la frase conté la paraula passada per paràmetre */
     /** Returns: bool */
-    public boolean conteParaula(String Paraula) {
-        boolean trobat = false;
-        int it = 0;
-        while (!trobat && it < n_paraules) {
-            if (Oracio[it].getParaula() == Paraula) trobat = true;
+    public boolean conteParaula(String paraula) {
+        for (Paraula p : Oracio) {
+            if (p.getParaula().equals(paraula)) return true;
         }
-        return trobat;
+        return false;
 
     }
 
@@ -187,14 +174,21 @@ public class Frase {
         return idfs;
     }
 
-
-
-    
-    /** Retorna true si el char paràmetre és un signe de puntuació */
+     /** Retorna true si el char paràmetre és un signe de puntuació */
     /** Returns: bool */
     private boolean isPuntuacio(char c) {
         return c == '.' || c == ',' || c == ';' || c == '?' || c == '¿' || c == '!' || c == '¡' || c == '(' || c == ')' ||
          c == '{' || c == '}' || c == '[' || c == ']' || c == ' ';
     }
 
+
+    private ArrayList<Paraula> stringToParaules(String frase) {
+        String[] words = frase.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
+
+        ArrayList<Paraula> paraules = new ArrayList<Paraula>();
+        for (String s : words) {
+            paraules.add(new Paraula(s));
+        }
+        return paraules;
+    }
 }

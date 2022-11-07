@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 
 public class Pair<L,R> {
     private L l;

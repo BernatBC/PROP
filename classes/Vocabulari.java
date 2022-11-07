@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 
 
 /** Diccionari de les paraules.

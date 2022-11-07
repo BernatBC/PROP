@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 
 
 /** Paraula que pot ser continguda a algun document.
