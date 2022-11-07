@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
+import java.util.HashMap;
+
 /** Classe controladora de mètodes relacionats amb documents.
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
  */
@@ -19,24 +21,28 @@ class DocumentCtrl {
 	};
 	
 	private ArrayList<String> decomposeWords(String phr){
+
+		if (phr.length() <= 0) return new ArrayList<String>();
+
 		int i = 0;
 		ArrayList<String> listWords = new ArrayList<String>();
 		StringBuilder currWord = new StringBuilder("");
 		
-		while (!Character.isLetter(phr.charAt(i))) ++i;
+		while (i < phr.length() && !Character.isLetter(phr.charAt(i))) ++i;
 		
 		while (i < phr.length()){
 			while (Character.isLetter(phr.charAt(i))){
 				currWord.append(phr.charAt(i++));
+				if (i >= phr.length()) break;
 			} 
 			
 			listWords.add(currWord.toString());
 			currWord = new StringBuilder("");
 			
-			while (!Character.isLetter(phr.charAt(i))) ++i;
+			while (i < phr.length() && !Character.isLetter(phr.charAt(i))) ++i;
 		}
 		
-		if (Character.isLetter(phr.charAt(--i))) listWords.add(currWord.toString());
+		if (i == phr.length() && Character.isLetter(phr.charAt(--i))) listWords.add(currWord.toString());
 		
 		return listWords;
 	}
@@ -57,6 +63,8 @@ class DocumentCtrl {
 		ArrayList<String> content = new ArrayList<String>();
 		while (in.hasNextLine()) content.add(in.nextLine());
 		ArrayList<ArrayList<String>> contentdecomp = new ArrayList<ArrayList<String>>();
+
+		in.close();
 
 		for (int s = 0; s < content.size(); ++s){
 			contentdecomp.add(decomposeWords(content.get(s)));
@@ -112,6 +120,8 @@ class DocumentCtrl {
 		String author = in.nextLine();
 		String title = in.nextLine();
 
+		in.close();
+
 		Pair<Document, Boolean> docboolean = lib.getDocument(author, title);
 		
 		if (!docboolean.getR()){
@@ -119,9 +129,32 @@ class DocumentCtrl {
 			return;
 		}
 
-		// Per a fer:
-		// Rebaixar per 1 les ocurrències de cada paraula 
-		// Eliminar totes les frases
-		// Eliminar el contingut i document
+		// Rebaixar per 1 les ocurrències de cada paraula
+		Frase authorFrase = docboolean.getL().getAutor();
+		Frase titleFrase  =docboolean.getL().getTitol();
+		Contingut content = docboolean.getL().getContingut();
+
+		HashMap<Integer, Integer> wordsContingut = content.getWords();
+		HashMap<Integer, Integer> wordsAutor = authorFrase.donaWords();
+		HashMap<Integer, Integer> wordsTitol = titleFrase.donaWords();
+
+		// Eliminem el document, paraules i frases eliminant les referències (després es crida al GC de Java)
+		lib.deleteDocument(docboolean.getL());
+
+		for (int w : wordsAutor.keySet()){
+			// Com obtenir Paraula o la seva String donat un índex de paraula ???
+			
+		}
+
+		for (int w : wordsTitol.keySet()){
+			// Ídem
+		}
+
+
+		for (int w : wordsContingut.keySet()){
+			// Ídem
+		}
+		
+		System.gc();
 	}
 }
