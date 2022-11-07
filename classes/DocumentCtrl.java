@@ -134,7 +134,13 @@ class DocumentCtrl {
 		Frase titleFrase  =docboolean.getL().getTitol();
 		Contingut content = docboolean.getL().getContingut();
 
-		// Paraula[] wordsContingut = content.();
+		Frase[] frasesContingut = content.getFrases();
+		ArrayList<Paraula[]> wordsContingut = new ArrayList<>();
+
+		for (int i = 0; i < frasesContingut.length; ++i){
+			wordsContingut.add(frasesContingut[i].getOracio());
+		}
+
 		Paraula[] wordsAutor = authorFrase.getOracio();
 		Paraula[] wordsTitol = titleFrase.getOracio();
 
@@ -151,8 +157,10 @@ class DocumentCtrl {
 		}
 
 
-		for (int w : wordsContingut.keySet()){
-			// Ídem
+		for (int i = 0; i < wordsContingut.size(); ++i){
+			for (int j = 0; j < wordsContingut.get(i).length; ++j){
+				vocab.decrementarOcurrencia(wordsContingut.get(i)[j]);
+			}
 		}
 		
 		System.gc();

@@ -46,6 +46,10 @@ class Contingut {
 
 		return (double) words.get(index) / n_paraules;
 	}
+
+	public Frase[] getFrases(){
+		return phrases;
+	}
 	
 	public HashMap<Integer, Integer> getWords(){
 		return words;
