@@ -134,20 +134,20 @@ class DocumentCtrl {
 		Frase titleFrase  =docboolean.getL().getTitol();
 		Contingut content = docboolean.getL().getContingut();
 
-		HashMap<Integer, Integer> wordsContingut = content.getWords();
-		HashMap<Integer, Integer> wordsAutor = authorFrase.donaWords();
-		HashMap<Integer, Integer> wordsTitol = titleFrase.donaWords();
+		// Paraula[] wordsContingut = content.();
+		Paraula[] wordsAutor = authorFrase.getOracio();
+		Paraula[] wordsTitol = titleFrase.getOracio();
 
 		// Eliminem el document, paraules i frases eliminant les referències (després es crida al GC de Java)
 		lib.deleteDocument(docboolean.getL());
 
-		for (int w : wordsAutor.keySet()){
-			// Com obtenir Paraula o la seva String donat un índex de paraula ???
+		for (int i = 0; i < wordsAutor.length; ++i){
+			vocab.decrementarOcurrencia(wordsAutor[i]);
 			
 		}
 
-		for (int w : wordsTitol.keySet()){
-			// Ídem
+		for (int i = 0; i < wordsTitol.length; ++i){
+			vocab.decrementarOcurrencia(wordsTitol[i]);
 		}
 
 
