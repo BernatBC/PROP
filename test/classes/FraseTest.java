@@ -49,6 +49,14 @@ public class FraseTest {
         String[] paraules = {"no", "vull", "fer"};
         // Assert
         assertEquals(true, frase.conteSequencia(paraules));
+        String[] paraules2 = {"no", "vull", "fer", "testos", "a", "prop"};
+        assertEquals(true, frase.conteSequencia(paraules2));
+        String[] paraules3 = {"no", "no", "fer"};
+        assertEquals(false, frase.conteSequencia(paraules3));
+        String[] paraules4 = {"", "", ""};
+        assertEquals(false, frase.conteSequencia(paraules4));
+        String[] paraules5 = {""};
+        assertEquals(false, frase.conteSequencia(paraules5));
 
 
         
