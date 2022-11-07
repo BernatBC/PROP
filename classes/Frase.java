@@ -63,7 +63,7 @@ public class Frase {
         int it = 0;
         int tamany_sequencia = Paraules.length;
         for (int i = 0; i < n_paraules && !trobat; ++i) {
-            if (Oracio[i].getParaula() == Paraules[it]) {
+            if ((Oracio[i].getParaula()).equals(Paraules[it])) {
                 /* Hem trobat una word de Paraules en Oracio */
                 ++it;
                 /* Si era l'ultima ja hem acabat */
@@ -71,7 +71,7 @@ public class Frase {
             }
             else {
                 /* Es trenca la sequencia. Cal mirar, però, si es reseteja a 0 o a 1 */
-                if (Oracio[i].getParaula() == Paraules[0]) it = 1;
+                if ((Oracio[i].getParaula()).equals(Paraules[0])) it = 1;
                 else it = 0;
                 
             }

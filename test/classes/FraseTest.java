@@ -42,15 +42,15 @@ public class FraseTest {
 
 
     @Test                                               
-    @DisplayName("Test frase conte paraula")   
-    public void fraseConteParaula() {
+    @DisplayName("Test frase conte sequencia")   
+    public void fraseConteSequencia() {
         // Init
         Frase frase = new Frase("No vull fer testos a prop.");
-
+        String[] paraules = {"no", "vull", "fer"};
         // Assert
-        assertEquals(true, frase.conteParaula("no"));
-        assertEquals(true, frase.conteParaula("vull"));
-        assertEquals(true, frase.conteParaula("no"));
+        assertEquals(true, frase.conteSequencia(paraules));
+
+
         
     }
 
