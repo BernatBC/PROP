@@ -6,14 +6,14 @@ import java.util.HashMap;
 /** Contingut d'un document.
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
  */
-class Contingut {
+public class Contingut {
 	
 	private String plaintext;
 	private Frase[] phrases;
 	private HashMap<Integer, Integer> words;
 	private int n_paraules;
 	
-	Contingut(String plaintext, Frase[] phrases){
+	public Contingut(String plaintext, Frase[] phrases){
 		this.plaintext = plaintext;
 
 		n_paraules = 0;
