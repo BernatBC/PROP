@@ -1,7 +1,5 @@
 package Classes;
-import java.io.*;
-import Classes.TernaryTree;
-import Classes.Paraula;
+
 
 /** Diccionari de les paraules.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)

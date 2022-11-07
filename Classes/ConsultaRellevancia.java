@@ -1,12 +1,7 @@
 package Classes;
-import Classes.Llibreria;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import Classes.Document;
 
 
 

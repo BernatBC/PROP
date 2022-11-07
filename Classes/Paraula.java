@@ -1,5 +1,5 @@
 package Classes;
-import java.io.*;
+
 
 /** Paraula que pot ser continguda a algun document.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)

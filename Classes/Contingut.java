@@ -1,9 +1,7 @@
 package Classes;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+
 
 /** Contingut d'un document.
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)

@@ -1,5 +1,4 @@
 package Classes;
-import Classes.Document;
 import java.util.Set;
 
 /** Consulta documents preferits.

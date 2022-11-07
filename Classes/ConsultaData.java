@@ -2,9 +2,6 @@ package Classes;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import Classes.Llibreria;
-import Classes.Document;
-import Classes.Frase;
 
 /** Dates.
  * @author Oscar Ramos Nuñez (oscar.ramos.nunez@estudiantat.upc.edu)

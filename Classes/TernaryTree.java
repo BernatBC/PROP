@@ -1,6 +1,5 @@
 package Classes;
-import java.io.*;
-import Classes.Paraula;
+
 
 /** Estructura de dades per contenir el diccionari de paraules.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)

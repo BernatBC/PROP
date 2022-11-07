@@ -1,14 +1,5 @@
 package Classes;
-import Classes.Llibreria;
-import Classes.Vocabulari;
-import Classes.DocumentCtrl;
 
-import java.time.LocalDate;
-
-import Classes.ConsultaData;
-import Classes.ConsultaPreferit;
-import Classes.ConsultaRellevancia;
-import Classes.ConsultaTitol;
 
 /** Main.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
