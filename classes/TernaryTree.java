@@ -92,7 +92,7 @@ public class TernaryTree {
         if (s.charAt(i) == lletra) {
             if (i == s.length() - 1) {
                 if (paraula == null) paraula = new Paraula(s);
-                else paraula.incrementarOcurrencia(1);
+                else paraula.incrementarOcurrencia();
                 return paraula;
             }
             if (centre == null) centre = new TernaryTree(s.charAt(i + 1));
@@ -160,7 +160,7 @@ public class TernaryTree {
         if (s.charAt(i) == lletra) {
             if (i < s.length() - 1 && centre != null) return centre.decrementarOcurrencia(s, i + 1);
             if (i == s.length() - 1 && paraula != null) {
-                paraula.decrementarOcurrencia(1);
+                paraula.decrementarOcurrencia();
                 return paraula.getOcurrencia();
             }
         }

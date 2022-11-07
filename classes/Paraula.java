@@ -44,19 +44,16 @@ public class Paraula {
     /** Decrementa en n unitats el nombre d'ocurrencies.
      * @param n Nombre d'ocurrencies.
      */
-    public void decrementarOcurrencia(int n) {
-        ocurrencia -= n;
-        if (n < 0) {
-            n = 0;
-            System.out.println("ERROR: Ocurrencies negatives a la paraula " + mot);
-        }
+    public void decrementarOcurrencia() {
+        ocurrencia--;
+        if (ocurrencia < 0) ocurrencia = 0;
     }
 
     /** Incrementa en n unitats el nombre d'ocurrencies.
      * @param n Nombre d'ocurrencies.
      */
-    public void incrementarOcurrencia(int n) {
-        ocurrencia += n;
+    public void incrementarOcurrencia() {
+        ocurrencia++;
     }
 
     /** Retorna l'índex de la paraula.
