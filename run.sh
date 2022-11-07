@@ -1,3 +1,3 @@
 #!/bin/bash
-javac --release 11 Classes/Main.java
-java Classes.Main
+javac --release 11 classes/Main.java
+java classes.Main
