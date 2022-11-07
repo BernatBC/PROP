@@ -1,11 +1,13 @@
 package test.classes;
 
 import classes.Frase;
+import classes.Paraula;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+import java.util.ArrayList;
+import java.util.HashMap;
 
 //import javax.naming.InitialContext;
 //import javax.swing.text.html.HTMLDocument.HTMLReader.ParagraphAction;
@@ -20,6 +22,25 @@ public class FraseTest {
         System.out.println("SetUp Completed!");
     }
 
+
+    @Test
+    @DisplayName("Test frase donawords")   
+    public void fraseDonaWords() {
+        // Init
+        ArrayList<Paraula> q = new ArrayList<>();
+        q.add(new Paraula("hello"));
+        q.add(new Paraula("world"));
+        q.add(q.get(0));
+        Frase frase2 = new Frase(q, "hello world hello");
+
+        assertEquals(2, frase2.donaWords().get(0));
+
+        assertEquals(1,frase2.donaWords().get(1));
+
+        
+    }
+
+
     @Test                                               
     @DisplayName("Test frase conte paraula")   
     public void fraseConteParaula() {
@@ -28,5 +49,11 @@ public class FraseTest {
 
         // Assert
         assertEquals(true, frase.conteParaula("no"));
+        assertEquals(true, frase.conteParaula("vull"));
+        assertEquals(true, frase.conteParaula("no"));
+        
     }
+
+
+    
 }

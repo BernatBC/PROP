@@ -25,13 +25,13 @@ public class Frase {
     public Frase(ArrayList<Paraula> words, String frase) {
         //paràmetre
         text = frase;
-        
-        Oracio = new Paraula[0];
+        n_paraules = words.size();
+        Oracio = new Paraula[n_paraules];
         //posem les words
         for (int j = 0; j < words.size(); ++j) Oracio[j] = words.get(j);
 
 
-        n_paraules = words.size();
+        
 
     }
 
@@ -108,7 +108,7 @@ public class Frase {
             actual = Oracio[i];
             id = actual.getId();
             if (map.containsKey(id)) map.put(id, map.get(id) +1);
-            else map.put(id, 0);
+            else map.put(id, 1);
             
         }
         //leemos todas las pairs
@@ -126,18 +126,6 @@ public class Frase {
      * Returns: int */
     public int getNparaules() {
         return n_paraules;
-    }
-
-
-    public HashMap<Integer, Integer> getNdocs() {
-        HashMap<Integer, Integer> idfs = new HashMap<Integer, Integer>();
-
-        for (int i = 0; i < n_paraules; ++i) {
-            Paraula p = Oracio[i];
-            idfs.put(p.getId(),p.getNumDocuments());
-        }
-
-        return idfs;
     }
 
 

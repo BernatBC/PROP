@@ -72,5 +72,6 @@ public class ConsultaRellevancia {
                 }
             }
         }
+        ///else metode 2
     }
 }
