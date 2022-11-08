@@ -67,4 +67,8 @@ class Document {
 		
 		return str.toString();
 	}
+
+	public boolean conteSequencia(String seq){
+		return (author.conteCaracters(seq) || title.conteCaracters(seq) || cont.conteSequencia(seq));
+	}
 }
