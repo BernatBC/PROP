@@ -2,6 +2,7 @@ package classes;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 
 
@@ -37,7 +38,7 @@ public class ConsultaRellevancia {
         docs = new Llibreria();
 
         //hashmap de suma de ocurrèncias, document 
-        HashMap<Integer,ArrayList<Document>> ordenats = new HashMap<>();
+        TreeMap<Integer,ArrayList<Document>> ordenats = new TreeMap<>();
 
         if (mode == 1) {
             //mode 1 -> per cada document mirem el n_ocurrencies de cada paraula de la query. Els k documents que sumin més són els seleccionats
@@ -53,7 +54,7 @@ public class ConsultaRellevancia {
                  for (int j = 0; j < k; ++j) {
 
                      //si la paraula està en el doc
-                     if (paraules.containsKey(query[0].getId())) count += paraules.get(query[0].getId());
+                     if (paraules.containsKey(query[j].getId())) count += paraules.get(query[j].getId());
                 }
                 //afegim el document amb la suma d'aparicions, en negatiu per donar l'ordre correcte, i el propi document
                 ArrayList<Document> temp = new ArrayList<Document>();
