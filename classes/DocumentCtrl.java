@@ -14,10 +14,16 @@ class DocumentCtrl {
 
 	private Vocabulari vocab;
 	private Llibreria lib;
+	private ConsultaData CD;
+	private ConsultaTitol CT;
+	private ConsultaPreferit CP;
 
-	DocumentCtrl(Vocabulari v, Llibreria l){
+	DocumentCtrl(Vocabulari v, Llibreria l, ConsultaData cd, ConsultaTitol ct, ConsultaPreferit cp){
 		vocab = v;
 		lib = l;
+		CP = cp;
+		CT = ct;
+		CD = cd;
 	};
 	
 	private ArrayList<String> decomposeWords(String phr){
@@ -112,6 +118,8 @@ class DocumentCtrl {
 		Document doc = new Document(authorPhrase, titlePhrase, false, "NULL", LocalDate.now(), contentFinal);
 
 		lib.addDocument(doc);
+		CT.afegirDocument(doc);
+		CD.addDoc(doc);
 	}
 	
 	public void eliminarDocument(){
@@ -146,6 +154,8 @@ class DocumentCtrl {
 
 		// Eliminem el document, paraules i frases eliminant les referències (després es crida al GC de Java)
 		lib.deleteDocument(docboolean.getL());
+		CT.eliminarDocument(docboolean.getL());
+		CD.deleteDoc(docboolean.getL());
 
 		for (int i = 0; i < wordsAutor.length; ++i){
 			vocab.decrementarOcurrencia(wordsAutor[i]);
@@ -164,5 +174,31 @@ class DocumentCtrl {
 		}
 		
 		System.gc();
+	}
+
+	public void togglePreferit(){
+		Scanner in = new Scanner(System.in);
+
+		String author = in.nextLine();
+		String title = in.nextLine();
+
+		in.close();
+
+		Pair<Document, Boolean> docboolean = lib.getDocument(author, title);
+
+		if (!docboolean.getR()){
+			System.out.println("Document no trobat");
+			return;
+		}
+
+		// Fem el toggle
+		docboolean.getL().setFavourite(!docboolean.getL().getFavourite());
+
+		if (docboolean.getL().getFavourite()){
+			// Si hem fet el toggle de 0 -> 1
+			CP.afegirDocument(docboolean.getL());
+		} else CP.eliminarDocument(docboolean.getL());
+
+		return;
 	}
 }

@@ -69,4 +69,23 @@ public class Contingut {
 	public String toString(){
 		return plaintext;
 	}
+
+	public boolean conteSequencia(String str){
+		if (str.equals("")){
+			System.out.println("La seqüència no conté cap caràcter.");
+			return false;
+		}
+
+		int it = 0;
+
+		for (char c : plaintext.toCharArray()){
+			if (c == str.charAt(it)) ++it;
+			else if (c == str.charAt(0)) it = 1;
+			else it = 0;
+
+			if (it == str.length()) return true;
+		}
+		
+		return false;
+	}
 }
