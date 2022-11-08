@@ -22,7 +22,7 @@ public class ConsultaAvancada {
 
     /**
      * Obté els documents de la seqüència de la constructora.
-     * @return
+     * @return Set<Document> : conjunt de documents de la cerca.
      */
     public Set<Document> obtenirDocuments() {
         return docs;
