@@ -3,8 +3,11 @@ package test.classes;
 import classes.Frase;
 import classes.Paraula;
 
+import java.util.Arrays;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 
@@ -68,9 +71,36 @@ public class FraseTest {
         String[] paraules5 = {""};
         assertEquals(false, frase.conteSequencia(paraules5));
 
-
-
     }
+
+
+    @Test                                               
+    @DisplayName("Test frase conte caracters")   
+    public void fraseConteCaractersEnOrdre() {
+        // Init
+        Frase fraseC = new Frase("Vull buscar-ne lletres aqui.");
+        String lletres = "-ne lletres";
+        // Assert
+        assertTrue(fraseC.conteCaracters(lletres));
+        //ultima lletra
+        assertTrue(fraseC.conteCaracters("i"));
+        //
+        assertFalse(fraseC.conteCaracters("vull"));
+        assertTrue(fraseC.conteCaracters("Vull"));
+        //canviem nomes una lletra
+        assertFalse(fraseC.conteCaracters("Vull buscar-ne lletra"));
+        //
+        assertTrue(fraseC.conteCaracters(""));
+        //
+        assertTrue(fraseC.conteCaracters(" "));
+
+
+        
+    }
+
+
+
+    
 
 
     

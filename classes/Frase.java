@@ -70,7 +70,7 @@ public class Frase {
     public boolean conteSequencia(String[] Paraules) {
         int it = 0;
         int tamany_sequencia = Paraules.length;
-        for (int i = 0; i < n_paraules && !trobat; ++i) {
+        for (int i = 0; i < n_paraules; ++i) {
             if ((Oracio[i].getParaula()).equals(Paraules[it])) {
                 /* Hem trobat una word de Paraules en Oracio */
                 ++it;
@@ -91,14 +91,18 @@ public class Frase {
     /** Retorna true si la frase conte una sequencia de lletres 
      * @return:bool */
     public boolean conteCaracters(String lletres) {
-        int it = 0, length = lletres.length();
-        for (char c: lletres.toCharArray()) {
+        if (lletres.equals("")) {
+            System.out.println("Sequencia empty");
+            return true;
+        }
+        int it = 0;
+        for (char c: text.toCharArray()) {
             if (c == lletres.charAt(it)) ++it;
 
             else if (c == lletres.charAt(0)) it = 1;
             else it = 0;
 
-            if (it == length) return true;
+            if (it == lletres.length()) return true;
         }
         return false;
     }
@@ -154,9 +158,38 @@ public class Frase {
         return n_paraules;
     }
 
+    /** Retorna true si el char paràmetre és un signe de puntuació */
+     /** Retorna true si el char paràmetre és un signe de puntuació */
+    /** Returns: bool */
+    private boolean isPuntuacio(char c) {
+        return c == '.' || c == ',' || c == ';' || c == ':' || c == '?' || c == '¿' || c == '!' || c == '¡' || c == '(' || c == ')' ||
+         c == '{' || c == '}' || c == '[' || c == ']' || c == ' ';
+    }
+
+    /** Decomposa la frase en paraules en format String
+     * @return ArrayList<String>
+     */
+    private ArrayList<String> decompose(String frase) {
+        ArrayList<String> paraules = new ArrayList<>();
+        String a_insert = "";
+
+        for (char c: frase.toCharArray()) {
+            if (!isPuntuacio(c)) {
+                if (a_insert.length() != 0) {
+                    paraules.add(a_insert);
+                    a_insert = "";
+                }
+            }
+            else a_insert += c;
+        }
+
+        return paraules;
+    }
+
+
 
     private ArrayList<Paraula> stringToParaules(String frase) {
-        String[] words = frase.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
+        ArrayList<String> words = decompose(frase);
 
         ArrayList<Paraula> paraules = new ArrayList<Paraula>();
         for (String s : words) {
