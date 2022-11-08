@@ -68,7 +68,6 @@ public class Frase {
     /** Retorna true si la frase conté les paraules "Paraules" concatenades */
     /** Returns: bool */
     public boolean conteSequencia(String[] Paraules) {
-        boolean trobat = false;
         int it = 0;
         int tamany_sequencia = Paraules.length;
         for (int i = 0; i < n_paraules && !trobat; ++i) {
@@ -76,7 +75,7 @@ public class Frase {
                 /* Hem trobat una word de Paraules en Oracio */
                 ++it;
                 /* Si era l'ultima ja hem acabat */
-                if (it == tamany_sequencia) trobat = true;
+                if (it == tamany_sequencia) return  true;
             }
             else {
                 /* Es trenca la sequencia. Cal mirar, però, si es reseteja a 0 o a 1 */
@@ -85,8 +84,26 @@ public class Frase {
                 
             }
         }
-        return trobat;
+        return false;
     }
+
+
+    /** Retorna true si la frase conte una sequencia de lletres 
+     * @return:bool */
+    public boolean conteCaracters(String lletres) {
+        int it = 0, length = lletres.length();
+        for (char c: lletres.toCharArray()) {
+            if (c == lletres.charAt(it)) ++it;
+
+            else if (c == lletres.charAt(0)) it = 1;
+            else it = 0;
+
+            if (it == length) return true;
+        }
+        return false;
+    }
+
+
 
 
     /** Retorna true si la frase conté la paraula passada per paràmetre */
