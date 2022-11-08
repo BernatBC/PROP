@@ -82,16 +82,16 @@ public class FraseTest {
         String lletres = "-ne lletres";
         // Assert
         assertTrue(fraseC.conteCaracters(lletres));
-        //ultima lletra
+        //ultima lletra.
         assertTrue(fraseC.conteCaracters("i"));
-        //
+        //Mirem que la funcio conteCaracters diferencia correctament les majuscules i les minuscules.
         assertFalse(fraseC.conteCaracters("vull"));
         assertTrue(fraseC.conteCaracters("Vull"));
         //canviem nomes una lletra
         assertFalse(fraseC.conteCaracters("Vull buscar-ne lletra"));
-        //
+        //Si passem un string sense caràcters sempre retornarà true ja que una subword de qualsevol paraula pot ser "".
         assertTrue(fraseC.conteCaracters(""));
-        //
+        //Provem de buscar un espai en blanc.
         assertTrue(fraseC.conteCaracters(" "));
 
 
