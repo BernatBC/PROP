@@ -153,9 +153,11 @@ class DocumentCtrl {
 		Paraula[] wordsTitol = titleFrase.getOracio();
 
 		// Eliminem el document, paraules i frases eliminant les referències (després es crida al GC de Java)
-		lib.deleteDocument(docboolean.getL());
+		if (docboolean.getL().getFavourite()) CP.eliminarDocument(docboolean.getL());
 		CT.eliminarDocument(docboolean.getL());
 		CD.deleteDoc(docboolean.getL());
+		lib.deleteDocument(docboolean.getL());
+
 
 		for (int i = 0; i < wordsAutor.length; ++i){
 			vocab.decrementarOcurrencia(wordsAutor[i]);
