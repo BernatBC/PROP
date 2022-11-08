@@ -21,6 +21,17 @@ public class FraseTest {
         System.out.println("SetUp Completed!");
     }
 
+    @Test
+    @DisplayName("Test frase conte paraula")   
+    public void fraseConteParaula() {
+        // Init
+        Frase frase = new Frase("No vull fer testos a prop.");
+
+        // Assert
+        assertEquals(true, frase.conteParaula("no"));
+    }
+
+
 
     @Test
     @DisplayName("Test frase donawords")   
@@ -58,7 +69,7 @@ public class FraseTest {
         assertEquals(false, frase.conteSequencia(paraules5));
 
 
-        
+
     }
 
 

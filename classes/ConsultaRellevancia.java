@@ -1,6 +1,9 @@
 package classes;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import java.time.LocalDate;
 
 
 
@@ -29,7 +32,7 @@ public class ConsultaRellevancia {
 
     /** Constructora per defecte. Li arriba un conjunt de paraules pertanyents al vocabulari (si s'haguessin possat a la query paraules que no pertanyen
      * al vocabulari el controlador les hauria filtrat), un mode per els diversos mètodes de seleccionar elements i la llibreria amb tots els documents */
-    public ConsultaRellevancia(Paraula[] words, Integer mode, Llibreria documents) {
+    public ConsultaRellevancia(Paraula[] words, String frase, Integer mode, Llibreria documents) {
         k = words.length;
         query = words;
         docs = new Llibreria();
@@ -73,5 +76,24 @@ public class ConsultaRellevancia {
             }
         }
         ///else metode 2
+
+        else {
+
+            Frase titol = new Frase(words, frase);
+            Frase[] frases = {titol};
+            Contingut contingut = new Contingut(frase,frases);
+            Document auxiliar = new Document(titol, titol, false, null, LocalDate.now(),contingut);
+
+            docs = getNdocs(auxiliar,k);
+
+        }
+    }
+
+
+    /** Retorna la llibreria construida a la constructora 
+     * Returns: Llibreria.
+    */
+    public Llibreria getDocs() {
+        return docs;
     }
 }

@@ -30,11 +30,20 @@ public class Frase {
         //posem les words
         for (int j = 0; j < words.size(); ++j) Oracio[j] = words.get(j);
 
+    }
 
-        
+    /** Constructora amb Paraula[] i la frase en un string. */
+    public Frase(Paraula[] words, String frase) {
+        //paràmetre
+        text = frase;
+        n_paraules = words.length;
+        Oracio = new Paraula[n_paraules];
+        //posem les words
+        Oracio = words;
 
     }
 
+    /** Constructora nomes amb la frase en un string. */
     public Frase(String frase) {
         text = frase;
         ArrayList<Paraula> words = stringToParaules(frase);
