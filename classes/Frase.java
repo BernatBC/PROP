@@ -21,7 +21,8 @@ public class Frase {
     private String text;
 
     /** Constructora per defecte. 
-     * Returns: Frase inicialitzada amb els paràmetres words (pels atributs Oracio i n_paraules) i frase (pels atributs text i Puntuacio). */
+     * @return: Frase inicialitzada amb els paràmetres words (pels atributs Oracio i n_paraules) i frase (pels atributs text i Puntuacio).
+     */
     public Frase(ArrayList<Paraula> words, String frase) {
         //paràmetre
         text = frase;
@@ -57,16 +58,19 @@ public class Frase {
     }
 
 
-    /** Retorna un vector de les paraules que formen la frase */
-    /** Returns: String[] */
+    /** Retorna un vector de les paraules que formen la frase.
+     * @return String[]
+     */
     public Paraula[] getOracio() {
         return Oracio;
     }
 
 
 
-    /** Retorna true si la frase conté les paraules "Paraules" concatenades */
-    /** Returns: bool */
+    /** Retorna true si la frase conté les paraules "Paraules" concatenades.
+     * @param Paraules
+     * @return bool
+     */
     public boolean conteSequencia(String[] Paraules) {
         int it = 0;
         int tamany_sequencia = Paraules.length;
@@ -88,8 +92,9 @@ public class Frase {
     }
 
 
-    /** Retorna true si la frase conte una sequencia de lletres 
-     * @return:bool */
+    /** Retorna true si la frase conte una sequencia de lletres.
+     * @return bool 
+     */
     public boolean conteCaracters(String lletres) {
         if (lletres.equals("")) {
             System.out.println("Sequencia empty");
@@ -110,8 +115,10 @@ public class Frase {
 
 
 
-    /** Retorna true si la frase conté la paraula passada per paràmetre */
-    /** Returns: bool */
+    /** Retorna true si la frase conté la paraula passada per paràmetre. No case sensitive ja que si no es crearien potencialment dues paraules, en majuscula i minuscula, per cadascuna.
+     * @param paraula
+     * @return bool
+     */
     public boolean conteParaula(String paraula) {
         for (Paraula p : Oracio) {
             if (p.getParaula().equals(paraula)) return true;
@@ -120,15 +127,17 @@ public class Frase {
 
     }
 
-    /** Retorna la frase en  format string */
-    /** Returns: String */
+    /** Retorna la frase en  format string.
+     * @return String
+     */
     public String toString() {
         return text;
     }
 
 
-    /** Retorna una HashMap<Integer,Integer>, amt tants elements com a paraules diferents té la frase; la key correspón amb l'index de la paraula i el value amb el número d'ocurrències d'aquesta en la frase */
-    /** Returns: HashMap */
+    /** Retorna una HashMap<Integer,Integer>, amt tants elements com a paraules diferents té la frase; la key correspón amb l'index de la paraula i el value amb el número d'ocurrències d'aquesta en la frase.
+     * @return HashMap
+     */
     public HashMap<Integer, Integer> donaWords() {
         HashMap<Integer, Integer> q = new HashMap<Integer, Integer>();
         //parella id-n_aparicions
@@ -141,7 +150,7 @@ public class Frase {
             else map.put(id, 1);
             
         }
-        //leemos todas las pairs
+        //leemos todas las pairs.
 
         for (Integer i : map.keySet()) {
             Integer nombre = map.get(i);
@@ -153,20 +162,24 @@ public class Frase {
 
 
     /** Retorna el nombre de paraules de la frase.
-     * Returns: int */
+     * @return: int 
+     */
     public int getNparaules() {
         return n_paraules;
     }
 
-    /** Retorna true si el char paràmetre és un signe de puntuació */
-     /** Retorna true si el char paràmetre és un signe de puntuació */
-    /** Returns: bool */
+
+    /** Retorna true si c paràmetre és un signe de puntuació.
+     * @param c
+     * @return bool
+    */
     private boolean isPuntuacio(char c) {
         return c == '.' || c == ',' || c == ';' || c == ':' || c == '?' || c == '¿' || c == '!' || c == '¡' || c == '(' || c == ')' ||
          c == '{' || c == '}' || c == '[' || c == ']' || c == ' ';
     }
 
-    /** Decomposa la frase en paraules en format String
+    /** Decomposa la frase en paraules en format String.
+     * @param frase
      * @return ArrayList<String>
      */
     private ArrayList<String> decompose(String frase) {
@@ -187,7 +200,10 @@ public class Frase {
     }
 
 
-
+    /** Donat un string que representa una frase dona les paraules d'aquesta en un Array
+     * @param frase
+     * @return ArrayList<Paraula>
+     */
     private ArrayList<Paraula> stringToParaules(String frase) {
         ArrayList<String> words = decompose(frase);
 

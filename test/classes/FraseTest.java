@@ -3,16 +3,13 @@ package test.classes;
 import classes.Frase;
 import classes.Paraula;
 
-import java.util.Arrays;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
 
-//import javax.naming.InitialContext;
-//import javax.swing.text.html.HTMLDocument.HTMLReader.ParagraphAction;
+import java.util.ArrayList;
 
 import org.junit.*;
 import org.junit.jupiter.api.DisplayName;
@@ -35,10 +32,9 @@ public class FraseTest {
     }
 
 
-
     @Test
     @DisplayName("Test frase donawords")   
-    public void fraseDonaWords() {
+    public void fraseDonaWordsRetornaHashMapDeIdparaulaINumeroAparicions() {
         // Init
         ArrayList<Paraula> q = new ArrayList<>();
         q.add(new Paraula("hello"));
@@ -46,11 +42,18 @@ public class FraseTest {
         q.add(q.get(0));
         Frase frase2 = new Frase(q, "hello world hello");
 
+       
+        //ASSERTS
+
+        //mirem el numero de aparicions de la paraula hello i a mes comprovem que te Id = 0.
         assertEquals(2, frase2.donaWords().get(0));
 
+        //mirem el numero de aparicions de la paraula world i a mes comprovem que te Id = 1.
         assertEquals(1,frase2.donaWords().get(1));
 
-        
+        //comprovem que el HashMap nomes te 2 elements i, per etant, un hipotetic element 3 (amb Id = 2) apareix "null" cops.
+        assertEquals(null,frase2.donaWords().get(2));
+
     }
 
 
@@ -60,14 +63,27 @@ public class FraseTest {
         // Init
         Frase frase = new Frase("No vull fer testos a prop.");
         String[] paraules = {"no", "vull", "fer"};
-        // Assert
+        
+        
+        // Asserts
+
+        //Hem de tenir en compte que el constructor de Frase guarda les paraules en minuscula (per evitar crear-ne dues paraules per la mateixa [Hola i hola]).
+        //Les tres primeres paraules.
         assertEquals(true, frase.conteSequencia(paraules));
+
+        //Tota la frase.
         String[] paraules2 = {"no", "vull", "fer", "testos", "a", "prop"};
         assertEquals(true, frase.conteSequencia(paraules2));
+
+        //Repetim una paraula.
         String[] paraules3 = {"no", "no", "fer"};
         assertEquals(false, frase.conteSequencia(paraules3));
+
+        //Tres paraules empty.
         String[] paraules4 = {"", "", ""};
         assertEquals(false, frase.conteSequencia(paraules4));
+
+        //Una paraula empty.
         String[] paraules5 = {""};
         assertEquals(false, frase.conteSequencia(paraules5));
 
