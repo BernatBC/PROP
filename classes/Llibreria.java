@@ -2,6 +2,8 @@ package classes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 
 /** Llibreria (conjunt) de documents.
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
@@ -141,6 +143,16 @@ class Llibreria {
 		return nDocs;
 	}
 	
+	public Set<Document> getSetDocuments(){
+		Set<Document> mySet = new HashSet<Document>();
+
+		for (int i = 0; i < docs.size(); ++i){
+			mySet.add(docs.get(i).getL());
+		}
+
+		return mySet;
+	}
+
 	public String toString(){
 		StringBuilder str = new StringBuilder("");
 
