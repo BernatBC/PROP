@@ -20,9 +20,12 @@ public class ConsultaAutors {
      */
     public void addAutor(Frase autor) {
         String nom_cognom = autor.toString();
+       
         while (nom_cognom.length() > 0) {
             //inserim l'autor
+            System.out.println("arribo");
             autors.inserirAutor(autor, nom_cognom, 0);
+            
             //esborrem la primera paraula de l'estring
             int ini = 0;
             int length = nom_cognom.length();

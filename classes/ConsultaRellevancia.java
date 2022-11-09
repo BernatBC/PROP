@@ -58,6 +58,7 @@ public class ConsultaRellevancia {
                 }
                 //afegim el document amb la suma d'aparicions, en negatiu per donar l'ordre correcte, i el propi document
                 ArrayList<Document> temp = new ArrayList<Document>();
+                //si ja n'hi havia algun document amb el mateix numero de aparicions l'afegim al ArrayList corresponent.
                 if (ordenats.containsKey(-count)) temp = ordenats.get(-count);
                 
                 temp.add(doc);
