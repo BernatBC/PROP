@@ -14,13 +14,6 @@ public class Vocabulari {
         arrel = new TernaryTree();
     }
 
-    /**Insereix una paraula al diccionari.
-     * @param p paraula que es vol inserir.
-     */
-    public void inserirParaula(Paraula p) {
-        if (p.getParaula().length() > 0) arrel.inserirParaula(p, p.getParaula(), 0);
-    }
-
     /**Obtenir la classe Paraula que correspon a la seqüència s.
      * @param s seqüencia de caràcters que forma la paraula.
      * @return Paraula : Classe paraula.

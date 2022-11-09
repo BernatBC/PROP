@@ -68,11 +68,13 @@ public class TernaryTreeAutorTest {
         Frase autor2 = new Frase("Leo Tolstoy");
         Frase autor3 = new Frase("Leon Uris");
         Frase autor4 = new Frase("Jules Verne");
+        Frase autor5 = new Frase("");
 
         autors.inserirAutor(autor1, autor1.toString(), 0);
         autors.inserirAutor(autor2, autor2.toString(), 0);
         autors.inserirAutor(autor3, autor3.toString(), 0);
         autors.inserirAutor(autor4, autor4.toString(), 0);
+        autors.inserirAutor(autor5, autor5.toString(), 0);
 
         Set<Frase> resultat_esperat = new HashSet<>();
         resultat_esperat.add(autor2);

@@ -49,7 +49,7 @@ public class TernaryTreeAutor {
      * @param i índex de l'autor des d'on falta inserir.
      */
     public void inserirAutor(Frase a, String s, int i) {
-        System.out.println(s.charAt(i));
+        if (s == "") return;
         if (lletra == '*') lletra = s.charAt(i);
         if (s.charAt(i) == lletra) {
             autors.add(a);

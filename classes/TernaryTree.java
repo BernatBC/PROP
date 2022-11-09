@@ -41,53 +41,29 @@ public class TernaryTree {
         lletra = c;
     }
 
-    /** Insereix la paraula p al diccionari.
-     * @param p paraula que es vol inserir.
-     * @param s paraula que es vol inserir en format de string.
-     * @param i índex de la paraula des d'on falta inserir.
-     */
-    public void inserirParaula(Paraula p, String s, int i) {
-        if (lletra == ' ') lletra = s.charAt(i);
-        if (s.charAt(i) == lletra) {
-            if (i == s.length() - 1) {
-                paraula = p;
-                return;
-            }
-            if (centre == null) centre = new TernaryTree(s.charAt(i + 1));
-            centre.inserirParaula(p, s, i + 1);
-        }
-        else if (s.charAt(i) > lletra) {
-            if (dreta == null) dreta = new TernaryTree(s.charAt(i));
-            dreta.inserirParaula(p, s, i);
-        }
-        else {
-            if (esquerra == null) esquerra = new TernaryTree(s.charAt(i));
-            esquerra.inserirParaula(p, s, i);
-        }
-    }
-
     /**Obtenir la classe Paraula que correspon a la seqüència s.
      * @param s seqüencia de caràcters que forma la paraula.
      * @param i index de la paraula des d'on falta fer la cerca.
      * @return Paraula : Classe paraula.
      */
     public Paraula obtenirParaula(String s, int i) {
+        if (s == "") return null;
         if (s.charAt(i) > lletra && dreta != null) return dreta.obtenirParaula(s, i);
         if (s.charAt(i) < lletra && esquerra != null) return esquerra.obtenirParaula(s, i);
         if (s.charAt(i) == lletra) {
             if (i < s.length() - 1 && centre != null) return centre.obtenirParaula(s, i + 1);
-            if (i == s.length() - 1 && paraula != null) return paraula;
+            if (i == s.length() - 1) return paraula;
         }
-        System.out.println("Paraula " + s + " no trobada al diccionari.");
         return null;
     }
 
-    /**Obtenir la classe Paraula que correspon a la seqüència s, la crea si no existeix aquesta.
+    /**Obtenir la classe Paraula que correspon a la seqüència s, la crea si no existeix aquesta, també actualitza el número d'ocurrències si aquesta ja existia.
      * @param s seqüencia de caràcters que forma la paraula.
      * @param i index de la paraula des d'on falta fer la cerca.
      * @return Paraula : Classe paraula.
      */
     public Paraula inserirObtenirParaula(String s, int i) {
+        if (s == "") return null;
         if (lletra == ' ') lletra = s.charAt(i);
         if (s.charAt(i) == lletra) {
             if (i == s.length() - 1) {
@@ -148,6 +124,21 @@ public class TernaryTree {
             }
         }
     }
+
+        /**Esborrar la classe Paraula que correspon a la seqüència s.
+     * @param s seqüencia de caràcters que forma la paraula.
+     * @param i index de la paraula des d'on falta fer la cerca.
+     */
+    public void esborrarParaula(String s, int i) {
+        //TO DO: esborrar nodes innecessaris
+        if (s.charAt(i) > lletra && dreta != null) dreta.esborrarParaula(s, i);
+        if (s.charAt(i) < lletra && esquerra != null) esquerra.esborrarParaula(s, i);
+        if (s.charAt(i) == lletra) {
+            if (i < s.length() - 1 && centre != null) centre.esborrarParaula(s, i + 1);
+            if (i == s.length() - 1 && paraula != null) paraula = null;
+        }
+    }
+
 
     /**Decrementa en una unitat el nombre d'ocurrencies de la paraula corresponent a la seqüència s.
      * @param s seqüencia de caràcters que forma la paraula.
