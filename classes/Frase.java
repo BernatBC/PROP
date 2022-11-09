@@ -205,7 +205,7 @@ public class Frase {
      * @return ArrayList<Paraula>
      */
     private ArrayList<Paraula> stringToParaules(String frase) {
-        ArrayList<String> words = decompose(frase.toLowerCase());
+        ArrayList<String> words = decompose(frase);
 
         ArrayList<Paraula> paraules = new ArrayList<Paraula>();
         for (String s : words) {

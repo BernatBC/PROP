@@ -64,21 +64,21 @@ public class FraseTest {
     public void fraseConteSequencia() {
         // Init
         Frase fraseC = new Frase("No vull fer testos a prop.");
-        String[] paraules = {"no", "vull", "fer"};
+        String[] paraules = {"No", "vull", "fer"};
         
         
         // Asserts
 
-        //Hem de tenir en compte que el constructor de Frase guarda les paraules en minuscula (per evitar crear-ne dues paraules per la mateixa [Hola i hola]).
+        //Hem de tenir en compte que el constructor de Frase NO guarda les paraules en minuscula (podent crear dues paraules per la mateixa [Hola i hola]).
         //Les tres primeres paraules.
         assertEquals(true, fraseC.conteSequencia(paraules));
 
         //Tota la frase.
-        String[] paraules2 = {"no", "vull", "fer", "testos", "a", "prop"};
+        String[] paraules2 = {"No", "vull", "fer", "testos", "a", "prop"};
         assertEquals(true, fraseC.conteSequencia(paraules2));
 
         //Repetim una paraula.
-        String[] paraules3 = {"no", "no", "fer"};
+        String[] paraules3 = {"No", "no", "fer"};
         assertEquals(false, fraseC.conteSequencia(paraules3));
 
         //Tres paraules empty.
@@ -88,6 +88,10 @@ public class FraseTest {
         //Una paraula empty.
         String[] paraules5 = {""};
         assertEquals(false, fraseC.conteSequencia(paraules5));
+
+        //Una paraula amb majuscula, quan no deberia.
+        String[] paraules6 = {"Fer"};
+        assertEquals(false, fraseC.conteSequencia(paraules6));
 
     }
 
