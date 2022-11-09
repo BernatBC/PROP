@@ -32,8 +32,8 @@ public class ConsultaRellevancia {
 
     /** Constructora per defecte. Li arriba un conjunt de paraules pertanyents al vocabulari (si s'haguessin possat a la query paraules que no pertanyen
      * al vocabulari el controlador les hauria filtrat), un mode per els diversos mètodes de seleccionar elements i la llibreria amb tots els documents */
-    public ConsultaRellevancia(Paraula[] words, String frase, Integer mode, Llibreria documents) {
-        k = words.length;
+    public ConsultaRellevancia(Integer k_docs, Paraula[] words, String frase, Integer mode, Llibreria documents) {
+        k = k_docs;
         query = words;
         docs = new Llibreria();
 
@@ -49,12 +49,15 @@ public class ConsultaRellevancia {
 
                 //hashMap de paraules id + ocurrencies
                 HashMap<Integer, Integer> paraules = doc.getContingut().getWords();
+                //System.out.println(paraules.keySet());
                 int count = 0;
 
-                 for (int j = 0; j < k; ++j) {
-
+                 for (int j = 0; j < words.length; ++j) {
+                   // System.out.println(j);
+                    //System.out.println(query[j].getId());
                      //si la paraula està en el doc
                      if (paraules.containsKey(query[j].getId())) count += paraules.get(query[j].getId());
+                     //System.out.print(count);
                 }
                 //afegim el document amb la suma d'aparicions, en negatiu per donar l'ordre correcte, i el propi document
                 ArrayList<Document> temp = new ArrayList<Document>();
@@ -63,16 +66,16 @@ public class ConsultaRellevancia {
                 
                 temp.add(doc);
                 ordenats.put(-count, temp);
+                //System.out.println(-count +" "+ doc.getTitol().toString());
             }
         
             //tenim a ordenats tots els documents ordenats de menor a major en base a la suma del nombre d'aparicions de les paraules de la query.
-            int items = 0;
             for (ArrayList<Document> lista: ordenats.values()) {
                 //lista = tots els documents que comparteixen suma
-                for (int i = 0; i < lista.size(); ++i) {
+                for (int i = 0; i < lista.size() && docs.getNdocs() < k; ++i) {
                     docs.addDocument(lista.get(i));
-                    ++items;
-                    if (items == k) break;
+                    //System.out.println(docs.getNdocs());
+                   // if (docs.getNdocs() == k) break;
                 }
             }
         }
