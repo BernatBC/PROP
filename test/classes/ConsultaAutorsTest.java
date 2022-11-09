@@ -34,12 +34,14 @@ public class ConsultaAutorsTest {
         Frase q4 = new Frase("Norman Norman");
         Frase q5 = new Frase("Pol Ramos");
         Frase q6 = new Frase("Manel Ramos");
+        Frase q7 = new Frase("Tomas Perez Castany Ferri i Normal");
         autors.addAutor(q1);
         autors.addAutor(q2);
         autors.addAutor(q3);
         autors.addAutor(q4);
         autors.addAutor(q5);
         autors.addAutor(q6);
+        autors.addAutor(q7);
 
 
 
@@ -69,5 +71,19 @@ public class ConsultaAutorsTest {
         //cas prefix null o cas prefix espai
         assertEquals(null, autors.donaAutors(""));
         assertEquals(null, autors.donaAutors(" "));
+
+        //mirem la q7, que conte una "i" i mes de 2 cognoms
+        result = new HashSet<>();
+        result.add(q7); //Tomas Perez Castany Ferri i Normal
+        assertEquals(result, autors.donaAutors("i"));
+        assertEquals(result, autors.donaAutors("i No"));
+        assertEquals(result, autors.donaAutors("Ferri i"));
+
+        //comprovem quan el prefix es troba al nom d'una persona i al cognom d'una altre
+        result = new HashSet<>();
+        result.add(q7); //Tomas Perez Castany Ferri i Normal
+        result.add(q4); //Norman Norman
+        assertEquals(result, autors.donaAutors("N"));
+        assertEquals(result, autors.donaAutors("Norm"));
     }
 }
