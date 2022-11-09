@@ -20,7 +20,6 @@ public class Vocabulari {
      */
     public Paraula obtenirParaula(String s) {
         if (s.length() > 0) return arrel.obtenirParaula(s, 0);
-        System.out.println("Paraula " + s + " no trobada al diccionari.");
         return null;
     }
 
@@ -36,8 +35,7 @@ public class Vocabulari {
      * @param p paraula que es vol esborrar.
      */
     public void esborrarParaula(Paraula p) {
-        //arrel.esborrarParaula(p.getParaula(), 0, null, 1);
-        arrel.esborrarParaula(p.getParaula(), 0);
+        arrel.esborrarParaula(p.getParaula(), 0, arrel, 1);
     }
 
     /**Decrementa en una unitat el nombre d'ocurrencies de la paraula p. En el cas que posteriorment el número sigui 0, s'esborra la paraula.

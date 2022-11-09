@@ -29,7 +29,7 @@ public class TernaryTreeTest {
         assertEquals(p1, t.obtenirParaula("Paraula", 0));
         assertEquals(p1.getOcurrencia(), 1);
 
-        t.esborrarParaula("Paraula", 0);
+        t.esborrarParaula("Paraula", 0, t, 1);
         assertEquals(null, t.obtenirParaula("Paraula", 0));
 
         p1 = t.inserirObtenirParaula("Paraula", 0);
@@ -44,7 +44,7 @@ public class TernaryTreeTest {
         assertEquals(1, t.decrementarOcurrencia("Paraula", 0));
         assertEquals(0, t.decrementarOcurrencia("Paraula", 0));
         assertEquals(0, t.decrementarOcurrencia("Paraula", 0));
-        t.esborrarParaula("Paraula", 0);
+        t.esborrarParaula("Paraula", 0, t, 1);
         assertEquals(-1, t.decrementarOcurrencia("Paraula", 0));
     }
 
@@ -65,14 +65,14 @@ public class TernaryTreeTest {
         assertEquals(p4, t.obtenirParaula("Document", 0));
         assertEquals(p5, t.obtenirParaula("Parabola", 0));
 
-        t.esborrarParaula("Paraula", 0);
+        t.esborrarParaula("Paraula", 0, t, 1);
         assertEquals(null, t.obtenirParaula("Paraula", 0));
         assertEquals(p2, t.obtenirParaula("Test", 0));
         assertEquals(p3, t.obtenirParaula("Joan", 0));
         assertEquals(p4, t.obtenirParaula("Document", 0));
         assertEquals(p5, t.obtenirParaula("Parabola", 0));
 
-        t.esborrarParaula("Joan", 0);
+        t.esborrarParaula("Joan", 0, t, 1);
         assertEquals(null, t.obtenirParaula("Paraula", 0));
         assertEquals(p2, t.obtenirParaula("Test", 0));
         assertEquals(null, t.obtenirParaula("Joan", 0));
