@@ -8,7 +8,7 @@ import java.util.HashSet;
 /** Llibreria (conjunt) de documents.
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
  */
-class Llibreria {
+public class Llibreria {
 
 	// Sparse vector representation as pairs of ints (idx, tf-idf)
 	//private ArrayList< Pair<Document, ArrayList< Pair<Integer, Double> >> > docs;
@@ -19,9 +19,10 @@ class Llibreria {
 
 	private int nDocs;
 	
-	Llibreria(){
+	public Llibreria(){
 		docs = new ArrayList< Pair<Document, HashMap<Integer, Double>>>();
 		nDocs = 0;
+		word_ocurrences = new HashMap<>();
 	}
 	
 	public Double computeCosinus(Document d1, Document d2){

@@ -6,7 +6,7 @@ import java.util.HashMap;
 /** Document.
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
  */
-class Document {
+public class Document {
 	
 	private Frase author;
 	private Frase title;
@@ -15,7 +15,7 @@ class Document {
 	private LocalDate date;
 	private Contingut cont;
 	
-	Document(Frase author, Frase title, boolean isFav, String path, LocalDate date, Contingut cont){
+	public Document(Frase author, Frase title, boolean isFav, String path, LocalDate date, Contingut cont){
 		this.author = author;
 		this.title = title;
 		this.isFav = isFav;
