@@ -23,15 +23,28 @@ public class ConsultaData {
 
     /** Constructora per defecte */
     public ConsultaData() {
-        anterior = null;
-        posterior = null;
-        docs = null;
+        anterior = LocalDate.MIN;
+        posterior = LocalDate.MAX;
+        docs = new ArrayList<>();
+        n_docs = 0;
+    }
+
+    /** Constructora amb la possibilitat d'afegir els dos parametres limits de l'interval.
+     * 
+     * @param ant
+     * @param post
+     */
+    public ConsultaData(LocalDate ant, LocalDate post) {
+        anterior = ant;
+        posterior = post;
+        docs = new ArrayList<>();
+        n_docs = 0;
     }
 
     /** Afegeix un element de a la llista de documents ordenats per data mantenint l'ordre (en cas d'empatar es posa segons ordre alfabetic). 
      * Returns: Void */
     public void addDoc(Document D) {
-        int index = 0; boolean tie = false;
+        int index = 0; boolean tie = false, putted = false;
         for (int i = 0; i < n_docs; ++i) {
             if (docs.get(i).getData().isAfter(D.getData())) break;
             else if (docs.get(i).getData().isEqual(D.getData())) tie = true;
@@ -39,19 +52,31 @@ public class ConsultaData {
         }
         if (tie) {
             //n'hi ha minim 1 document amb la mateixa data -> s'inserta per ordre alfabètic de títol
-            while (docs.get(index).getData().isEqual(D.getData()) && index < n_docs) {
+            while (index < n_docs && docs.get(index).getData().isEqual(D.getData())) {
                 if (docs.get(index).getTitol().toString().compareTo(D.getTitol().toString()) < 0) ++index;
-                else docs.add(index,D);
+                else {
+                    docs.add(index,D); 
+                    putted = true;
+                    break;
+                }
             }
-            if (!(index < n_docs)) docs.add(index,D);
+            if (index < n_docs && !putted) docs.add(index,D);
         }
+        
         else docs.add(index,D);
+        //System.out.println("putted " + docs.get(index).getTitol().toString());
+        //System.out.println(D.getTitol().toString());
+        
+        ++n_docs;
+        //for (int i = 0; i < n_docs; ++i) System.out.println(docs.get(i).getTitol().toString());  //testing
+        //System.out.println("/////////////////");   //testing
     }
 
     /** Esborrar un element de la llista de documents ordenats per data. 
      * Returns: Void */
     public void deleteDoc(Document D) {
-        if (docs.remove(D) == false);  //error
+        if (docs.remove(D) == false) System.out.println("error al esborrar Document " + D.getTitol().toString());  //error
+        else --n_docs;
     }
 
 
@@ -69,9 +94,9 @@ public class ConsultaData {
         ArrayList<Document> interval = new ArrayList<>();
         Integer idxini = 0, idxfin = n_docs-1;
 
-        while(docs.get(idxini).getData().isBefore(anterior)) ++idxini;
+        while(idxini < n_docs && docs.get(idxini).getData().isBefore(anterior)) ++idxini;
 
-        while(docs.get(idxfin).getData().isAfter(posterior)) --idxini;
+        while(idxfin >= 0 && docs.get(idxfin).getData().isAfter(posterior)) --idxfin;
 
         for (int q = idxini; q <= idxfin; ++q) interval.add(docs.get(q));
 
