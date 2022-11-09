@@ -94,6 +94,30 @@ public class LlibreriaTest {
         //System.out.println(lib.getSetDocuments());
 
         // Computing the cosinus on documents 1 and 2
-        System.out.println(lib.computeCosinus(d1, d2));
+        // The cosinus 0.880172458846704 has been computed manually and verified that it is in fact correct.
+        assertEquals(0.880172458846704, lib.computeCosinus(d1, d2));
+        assertEquals(0.880172458846704, lib.computeCosinus(d2, d1));
+
+        // Finally, we are adding our third and last document
+        lib.addDocument(d3);
+
+        assertEquals(d3, lib.getIessim(2));
+        // Both the author and title exist, but the document (author, title) doesnt
+        assertEquals(false, lib.getDocument("Ningú", "Poblacions #2").getR());
+        assertEquals(true, lib.getDocument("Ningú", "Poblacions #3").getR());
+        assertEquals(d3, lib.getDocument("Ningú", "Poblacions #3").getL());
+
+        d1.setFavourite(true);
+
+        assertEquals(1, lib.getPreferits().getNdocs());
+
+        // Just like before, the result has been computed beforehand by a human
+        assertEquals(0.25708724836453034, lib.computeCosinus(d3, d2));
+
+        lib.deleteDocument(d3);
+
+        assertEquals(0.880172458846704, lib.computeCosinus(d2, d1));
+        // After removing d3, the cosinus product of d1 and d2 stays like before.
+        // All updates are done correctly.
     }
 }

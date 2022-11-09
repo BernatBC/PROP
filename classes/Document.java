@@ -62,7 +62,7 @@ public class Document {
 		StringBuilder str = new StringBuilder();
 		
 		str.append(title + "\n");
-		str.append(author + "\n");
+		str.append(author + "\n\n");
 		str.append(cont);
 		
 		return str.toString();
