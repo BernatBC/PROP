@@ -1,4 +1,5 @@
 package classes;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -27,7 +28,7 @@ public class TernaryTreeAutor {
         esquerra = null;
         dreta = null;
         centre = null;
-        autors = null;
+        autors = new HashSet<>();
         lletra = ' ';
     }
 
@@ -38,7 +39,7 @@ public class TernaryTreeAutor {
         esquerra = null;
         dreta = null;
         centre = null;
-        autors = null;
+        autors = new HashSet<>();
         lletra = c;
     }
 
@@ -78,22 +79,6 @@ public class TernaryTreeAutor {
             if (i == s.length() - 1) return autors;
         }
         return null;
-    }
-
-    /**Esborrar l'autor de l'arbre
-     * @param s seqüencia de caràcters que forma l'autor.
-     * @param i index de l'autor des d'on falta fer la cerca.
-     * @param a autor a esborrar.
-     */
-    public void esborrarAutor(String s, int i, Frase a) {
-        autors.remove(a);
-        if (s.charAt(i) > lletra && dreta != null) dreta.esborrarAutor(s, i, a);
-        if (s.charAt(i) < lletra && esquerra != null) esquerra.esborrarAutor(s, i, a);
-        if (s.charAt(i) == lletra) {
-            if (i < s.length() - 1 && centre != null) centre.esborrarAutor(s, i + 1, a);
-            if (i == s.length() - 1) return;
-        }
-        return;
     }
 
 }
