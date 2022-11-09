@@ -29,7 +29,7 @@ public class TernaryTreeAutor {
         dreta = null;
         centre = null;
         autors = new HashSet<>();
-        lletra = ' ';
+        lletra = '*';
     }
 
     /**Constructora per defecte de TernaryTreeAutor.
@@ -49,9 +49,10 @@ public class TernaryTreeAutor {
      * @param i índex de l'autor des d'on falta inserir.
      */
     public void inserirAutor(Frase a, String s, int i) {
-        autors.add(a);
-        if (lletra == ' ') lletra = s.charAt(i);
+        System.out.println(s.charAt(i));
+        if (lletra == '*') lletra = s.charAt(i);
         if (s.charAt(i) == lletra) {
+            autors.add(a);
             if (i == s.length() - 1) return;
             if (centre == null) centre = new TernaryTreeAutor(s.charAt(i + 1));
             centre.inserirAutor(a, s, i + 1);
@@ -72,13 +73,18 @@ public class TernaryTreeAutor {
      * @return Set<Frase> : Conjunt d'autors.
      */
     public Set<Frase> obtenirAutors(String s, int i) {
-        if (s == "") return autors;
+        if (s == "") return null;
+        System.out.println(s.charAt(i));
         if (s.charAt(i) > lletra && dreta != null) return dreta.obtenirAutors(s, i);
         if (s.charAt(i) < lletra && esquerra != null) return esquerra.obtenirAutors(s, i);
+        System.out.println("Lletra: " + lletra);
         if (s.charAt(i) == lletra) {
+            System.out.println("Entered");
             if (i < s.length() - 1 && centre != null) return centre.obtenirAutors(s, i + 1);
+            System.out.println("Before if");
             if (i == s.length() - 1) return autors;
         }
+        System.out.println("Return null");
         return null;
     }
 
