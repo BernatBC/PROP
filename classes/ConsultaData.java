@@ -28,14 +28,24 @@ public class ConsultaData {
         docs = null;
     }
 
-    /** Afegeix un element de a la llista de documents ordenats per data mantenint l'ordre (en cas d'empatar es posa l'ultim dintre d'aquesta data). 
+    /** Afegeix un element de a la llista de documents ordenats per data mantenint l'ordre (en cas d'empatar es posa segons ordre alfabetic). 
      * Returns: Void */
     public void addDoc(Document D) {
-        int index = 0;
+        int index = 0; boolean tie = false;
         for (int i = 0; i < n_docs; ++i) {
             if (docs.get(i).getData().isAfter(D.getData())) break;
+            else if (docs.get(i).getData().isEqual(D.getData())) tie = true;
+            else ++index;
         }
-        docs.add(index,D);
+        if (tie) {
+            //n'hi ha minim 1 document amb la mateixa data -> s'inserta per ordre alfabètic de títol
+            while (docs.get(index).getData().isEqual(D.getData()) && index < n_docs) {
+                if (docs.get(index).getTitol().toString().compareTo(D.getTitol().toString()) < 0) ++index;
+                else docs.add(index,D);
+            }
+            if (!(index < n_docs)) docs.add(index,D);
+        }
+        else docs.add(index,D);
     }
 
     /** Esborrar un element de la llista de documents ordenats per data. 
