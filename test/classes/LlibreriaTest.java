@@ -22,8 +22,8 @@ public class LlibreriaTest {
 
 
     @Test
-    @DisplayName("Test Cosinus")   
-    public void testCosinus() {
+    @DisplayName("Test Únic")   
+    public void testLib() {
         // Init
         Paraula p1 = new Paraula("lleida");
         Paraula p2 = new Paraula("tarragona");
@@ -91,6 +91,9 @@ public class LlibreriaTest {
         assertEquals(d1, lib.getIessim(0));
         assertEquals(d2, lib.getIessim(1));
         assertEquals(2, lib.getNdocs());
-        System.out.println(lib.getSetDocuments());
+        //System.out.println(lib.getSetDocuments());
+
+        // Computing the cosinus on documents 1 and 2
+        System.out.println(lib.computeCosinus(d1, d2));
     }
 }

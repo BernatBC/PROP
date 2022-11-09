@@ -37,16 +37,20 @@ public class Llibreria {
 
 		for (int w : docs.get(i).getR().keySet()){
 			double val = docs.get(i).getR().get(w);
+			System.out.println("For doc "+i+" word "+w+" tf-idf "+val);
 			len1 += (val*val);
 		}
-		
+
 		for (int w : docs.get(j).getR().keySet()){
 			double val = docs.get(j).getR().get(w);
+			System.out.println("For doc "+j+" word " + w +" tf-idf "+val);
 			len2 += (val*val);
 		}
 
 		len1 = Math.sqrt(len1);
 		len2 = Math.sqrt(len2);
+
+		System.out.println(len1 + " " + len2);
 
 		double dotproduct = 0;
 
@@ -61,18 +65,37 @@ public class Llibreria {
 	
 	public void addDocument(Document d){
 		HashMap<Integer, Double> tfs = d.getTF();
+		//System.out.println(tfs);
 		HashMap<Integer, Double> TFIDF = new HashMap<Integer, Double>();
+
+		++nDocs;
 
 		// Since there can't be repeated keys, no need to check if the word has already been processed
 		for (int index : tfs.keySet()){
+			//System.out.println("Processing word #"+index+"...");
+
 			if (word_ocurrences.containsKey(index)) word_ocurrences.put(index, word_ocurrences.get(index) + 1);
 			else word_ocurrences.put(index, 1);
 
-			TFIDF.put(index, tfs.get(index) * ((double) word_ocurrences.get(index) / nDocs));
+			System.out.println(word_ocurrences);
+			System.out.println("Word #"+index+ " tfidf "+tfs.get(index) * ((double) nDocs / word_ocurrences.get(index)));
+
+			TFIDF.put(index, tfs.get(index) * ((double) nDocs / word_ocurrences.get(index)));
+
+		}
+
+		// Now we need to update the IDF of every word added
+		for (int j = 0; j < docs.size(); ++j){
+
+			HashMap<Integer, Double> words_of_doc = docs.get(j).getR();
+			
+			for (int w : words_of_doc.keySet()){
+									
+				words_of_doc.put(w, docs.get(j).getL().getTFofWord(w) * (double) nDocs / word_ocurrences.get(w));
+			}
 		}
 
 		docs.add(new Pair<>(d, TFIDF));
-		++nDocs;
 	} 
 	
 	public void deleteDocument(Document d){
@@ -98,7 +121,7 @@ public class Llibreria {
 						
 						if (words_of_doc.containsKey(w)){
 							
-							words_of_doc.put(w, docs.get(j).getL().getTFofWord(w) * (double) word_ocurrences.get(j) / nDocs);
+							words_of_doc.put(w, docs.get(j).getL().getTFofWord(w) * (double) nDocs / word_ocurrences.get(w));
 						}
 					}
 
