@@ -187,7 +187,7 @@ public class Frase {
         String a_insert = "";
 
         for (char c: frase.toCharArray()) {
-            if (!isPuntuacio(c)) {
+            if (isPuntuacio(c)) {
                 if (a_insert.length() != 0) {
                     paraules.add(a_insert);
                     a_insert = "";
@@ -205,7 +205,7 @@ public class Frase {
      * @return ArrayList<Paraula>
      */
     private ArrayList<Paraula> stringToParaules(String frase) {
-        ArrayList<String> words = decompose(frase);
+        ArrayList<String> words = decompose(frase.toLowerCase());
 
         ArrayList<Paraula> paraules = new ArrayList<Paraula>();
         for (String s : words) {

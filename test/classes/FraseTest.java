@@ -25,13 +25,15 @@ public class FraseTest {
     @DisplayName("Test frase conte paraula")   
     public void fraseConteParaula() {
         // Init
-        Frase frase = new Frase("No vull fer testos a prop.");
+        Frase fraseP2 = new Frase("No vull fer testos a prop.");
 
         // Assert
-        assertEquals(true, frase.conteParaula("no"));
+        assertEquals(true, fraseP2.conteParaula("prop"));
     }
 
 
+////EXECUTAR PER SEPARAT //// EXECUTAR PER SEPARAT //// EXECUTAR PER SEPARAT /// EXECUTAR PER SEPARAT //// EXECUTAR PER SEPARAT ////
+//EXECUTAR AQUEST TEST PER SEPARAT (si es fa juntament amb la resta els asserts fallen)
     @Test
     @DisplayName("Test frase donawords")   
     public void fraseDonaWordsRetornaHashMapDeIdparaulaINumeroAparicions() {
@@ -61,7 +63,7 @@ public class FraseTest {
     @DisplayName("Test frase conte sequencia")   
     public void fraseConteSequencia() {
         // Init
-        Frase frase = new Frase("No vull fer testos a prop.");
+        Frase fraseC = new Frase("No vull fer testos a prop.");
         String[] paraules = {"no", "vull", "fer"};
         
         
@@ -69,23 +71,23 @@ public class FraseTest {
 
         //Hem de tenir en compte que el constructor de Frase guarda les paraules en minuscula (per evitar crear-ne dues paraules per la mateixa [Hola i hola]).
         //Les tres primeres paraules.
-        assertEquals(true, frase.conteSequencia(paraules));
+        assertEquals(true, fraseC.conteSequencia(paraules));
 
         //Tota la frase.
         String[] paraules2 = {"no", "vull", "fer", "testos", "a", "prop"};
-        assertEquals(true, frase.conteSequencia(paraules2));
+        assertEquals(true, fraseC.conteSequencia(paraules2));
 
         //Repetim una paraula.
         String[] paraules3 = {"no", "no", "fer"};
-        assertEquals(false, frase.conteSequencia(paraules3));
+        assertEquals(false, fraseC.conteSequencia(paraules3));
 
         //Tres paraules empty.
         String[] paraules4 = {"", "", ""};
-        assertEquals(false, frase.conteSequencia(paraules4));
+        assertEquals(false, fraseC.conteSequencia(paraules4));
 
         //Una paraula empty.
         String[] paraules5 = {""};
-        assertEquals(false, frase.conteSequencia(paraules5));
+        assertEquals(false, fraseC.conteSequencia(paraules5));
 
     }
 
