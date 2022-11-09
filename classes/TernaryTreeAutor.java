@@ -72,6 +72,7 @@ public class TernaryTreeAutor {
      * @return Set<Frase> : Conjunt d'autors.
      */
     public Set<Frase> obtenirAutors(String s, int i) {
+        if (s == "") return autors;
         if (s.charAt(i) > lletra && dreta != null) return dreta.obtenirAutors(s, i);
         if (s.charAt(i) < lletra && esquerra != null) return esquerra.obtenirAutors(s, i);
         if (s.charAt(i) == lletra) {

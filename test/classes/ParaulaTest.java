@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.*;
 import org.junit.jupiter.api.DisplayName;
 
+/** Joc de proves per a la classe Paraula.
+ * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
+ */
 public class ParaulaTest {
     
     @Before                                         
