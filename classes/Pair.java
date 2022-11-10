@@ -1,5 +1,6 @@
 package classes;
 
+// Class that implements a pair of values (like in C++)
 public class Pair<L,R> {
     private L l;
     private R r;

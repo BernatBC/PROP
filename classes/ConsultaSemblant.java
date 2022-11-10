@@ -10,7 +10,7 @@ import java.util.Set;
 public class ConsultaSemblant {
 
     // There's only this query
-    static ArrayList<Pair<Double, Document>> executeQuery(Llibreria lib, Document doc, int k){
+    public static ArrayList<Pair<Double, Document>> executeQuery(Llibreria lib, Document doc, int k){
         Set<Document> mySet = lib.getSetDocuments();
 
         // En ordre decreixent per el cosinus (els primers k seran els q es retornen)
@@ -22,6 +22,8 @@ public class ConsultaSemblant {
         }
 
         for (Document T : mySet){
+            if (T == doc) continue;
+
             double cosinus = lib.computeCosinus(T, doc);
 
             boolean inserted = false;
@@ -30,6 +32,7 @@ public class ConsultaSemblant {
                 if (orderedDocs.get(i).getL() >= cosinus) continue;
                 if (orderedDocs.get(i).getL() < cosinus){
                     orderedDocs.add(i, new Pair<>(cosinus, T));
+                    inserted = true;
                 }
             }
 
