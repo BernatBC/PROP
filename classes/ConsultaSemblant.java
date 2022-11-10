@@ -9,7 +9,18 @@ import java.util.Set;
  **/
 public class ConsultaSemblant {
 
-    // There's only this query
+    /**
+     * Mètode static de la classe que ens permetrà executar querys.
+     * Aquest és l'únic mètode de la classe.
+     * 
+     * @param lib La llibreria en la qual fem la consulta
+     * @param doc El document amb el qual volem comparar i ordenar els <b>k</b> més semblants
+     * @param k El número de documents a retornar. Si <i>k > |lib|</i> llavors es retornen <i>|lib|-1</i> documents
+     * @return Es retorna una llista de parells <cosinus, Document D> ordenats. El cosinus és el grau de semblança (entre -1 i 1) dels
+     *         documents <i>doc</i> i <i>D</i>, aquest grau és el cosinus de la representació dels documents en un vector TF-IDF.
+     * 
+     *         Els documents s'ordenen en ordre decreiexent de semblança amb <i>doc</i>. <i>doc</i> no pot ser retornat.
+     */
     public static ArrayList<Pair<Double, Document>> executeQuery(Llibreria lib, Document doc, int k){
         Set<Document> mySet = lib.getSetDocuments();
 
