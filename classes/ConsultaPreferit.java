@@ -1,4 +1,5 @@
 package classes;
+import java.util.HashSet;
 import java.util.Set;
 
 /** Consulta documents preferits.
@@ -11,7 +12,7 @@ import java.util.Set;
 
     /** Constructora per defecte. */
     public ConsultaPreferit() {
-        
+        preferits = new HashSet<>();
     }
 
     /** Afegeix el document a la llibreria.
