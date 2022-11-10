@@ -119,5 +119,7 @@ public class LlibreriaTest {
         assertEquals(0.880172458846704, lib.computeCosinus(d2, d1));
         // After removing d3, the cosinus product of d1 and d2 stays like before.
         // All updates are done correctly.
+
+        System.out.println(d3);
     }
 }

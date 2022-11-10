@@ -43,6 +43,10 @@ public class Document {
 	public LocalDate getData(){
 		return date; // LocalDate is immutable type
 	}
+
+	public void setData(LocalDate d){
+		date = d;
+	}
 	
 	public boolean getFavourite(){
 		return isFav;
@@ -63,8 +67,14 @@ public class Document {
 		
 		str.append(title + "\n");
 		str.append(author + "\n\n");
-		str.append(cont);
+		str.append(cont + "\n\n");
 		
+		str.append("Date creation: "+date.toString()+" / Marked as favourite: ");
+		if (isFav) str.append("YES");
+		else str.append("NO");
+
+		str.append("\n");
+
 		return str.toString();
 	}
 
