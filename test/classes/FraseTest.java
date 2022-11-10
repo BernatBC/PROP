@@ -32,8 +32,6 @@ public class FraseTest {
     }
 
 
-////EXECUTAR PER SEPARAT //// EXECUTAR PER SEPARAT //// EXECUTAR PER SEPARAT /// EXECUTAR PER SEPARAT //// EXECUTAR PER SEPARAT ////
-//EXECUTAR AQUEST TEST PER SEPARAT (si es fa juntament amb la resta els asserts fallen)
     @Test
     @DisplayName("Test frase donawords")   
     public void fraseDonaWordsRetornaHashMapDeIdparaulaINumeroAparicions() {
