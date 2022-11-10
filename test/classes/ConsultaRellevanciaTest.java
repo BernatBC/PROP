@@ -28,6 +28,9 @@ public class ConsultaRellevanciaTest {
     @DisplayName("Test Dates")   
     public void ConsultaRellevanciaProvaModePrimer() {
 
+        //Cal comentar primer que el mode 2 es, en essencia, una cerca per semblança la qual agafa k=k i el document referencia s'aconsegueix
+        //amb titol=autor=contingut = la nostra query. Per construccio el mode 2 funcionara, i quedara comprovat, al comprovar-se la cerca per Semblança (ja tested).
+
         //Init
 
         /* Com que la Classe ConsultaRellevancia nomes te un metode trivial (que retorna la llibreria que s'ha construit a la constructora)
@@ -35,9 +38,16 @@ public class ConsultaRellevanciaTest {
          * Amb una Llibreria canviant i una query fixa (amb una k canviant).
          * Amb una Llibreria fixa i una query canviant (amb una k canviant).
          */
-        //MODE 1 // MOD2 1 // MODE 1 // MODE 1
+        //MODE 1 // MODE 1 // MODE 1 // MODE 1
+
+        /* El que ara anem a fer es construir una serie de 6 documents (cadascun de dues frases per fer el test viable i no excesivament enorme).
+         * Pere fer-ho n'hi han parametres trivials (titol, autor, favorit [no interve en la cerca], path [no interve en la cerca] i Data [no interve en la cerca])
+         * i el contingut. Per crear aquest necessitem dues frases. Per crearles, però, no podem fer-ho directament mitjançant la constructora que utilitza un 
+         * string ja totes les paraules tindran IDs diferents (fins i tot si son la mateixa) cosa que dificulta molt trobar el nombre d'aparicions d'una paraula
+         * determinada en una frase; per això s'insereixen totes en un Vocabulari (on paraules iguals tenen IDs iguals) aixi com les de la query.
+         */
         Vocabulari paraules = new Vocabulari();
-        Paraula q = paraules.inserirObtenirParaula("primera");
+        paraules.inserirObtenirParaula("primera");
         Frase test[] = new Frase[2];
         ArrayList<Paraula> words = new ArrayList<>();
 
@@ -265,19 +275,4 @@ public class ConsultaRellevanciaTest {
 
     }
 
-
-    @Test
-    @DisplayName("Test Dates")   
-    public void ConsultaRellevanciaProvaMode2() {
-
-        //Init
-
-        /* Com que la Classe ConsultaRellevancia nomes te un metode trivial (que retorna la llibreria que s'ha construit a la constructora)
-         * mirarem de veure si aquesta llibreria dona els resultats esperats de la seguent manera:
-         * Amb una Llibreria canviant i una query fixa (amb una k canviant).
-         * Amb una Llibreria fixa i una query canviant (amb una k canviant).
-         */
-        //MODE 2 // MOD2 2 // MODE 2 // MODE 2
-
-    }
 }
