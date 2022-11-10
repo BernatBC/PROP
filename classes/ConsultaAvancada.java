@@ -1,5 +1,6 @@
 package classes;
 import java.util.Set;
+import java.util.HashSet;
 
 /** Consulta documents que conte la seqüència indicada.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
@@ -15,6 +16,7 @@ public class ConsultaAvancada {
      */
     public ConsultaAvancada(Llibreria l, String s) {
         Set<Document> documents = l.getSetDocuments();
+        docs = new HashSet<>();
         for (Document d : documents) {
             if (d.conteSequencia(s)) docs.add(d);
         }

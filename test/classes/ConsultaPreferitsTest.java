@@ -28,11 +28,7 @@ public class ConsultaPreferitsTest {
     public void ConsultaPreferits() {
         // Init
         ConsultaPreferit consulta = new ConsultaPreferit();
-        /*voldrem comprovar que a mesura que anem inserint els documents es mantinguin ordenats. 
-        * Per això després de fer cada inserció demanarem tots els documents per veure'n l'ordre.
-        * Com nomes volem comporvar l'ordre dels documents segons la seva data, aquests seran gairebe trivials. */
 
-        //creem un contingut base.
         Frase test[] = new Frase[1];
         test[0] = new Frase("text inutil");
         Contingut cont = new Contingut("text inutil", test);
