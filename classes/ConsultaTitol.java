@@ -1,5 +1,6 @@
 package classes;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -22,6 +23,7 @@ import java.util.Set;
     public void afegirDocument(Document d) {
         String autor = d.getAutor().toString();
         Set<Document> s = coleccions.get(autor);
+        if (s == null) s = new HashSet<>();
         s.add(d);
         coleccions.put(autor, s);
     }
@@ -32,18 +34,10 @@ import java.util.Set;
     public void eliminarDocument(Document d) {
         String autor = d.getAutor().toString();
         Set<Document> s = coleccions.get(autor);
+        if (s == null) return;
         s.remove(d);
         if (s.size() > 0) coleccions.put(autor, s);
         else coleccions.remove(autor);
-    }
-
-    /** Mou el document cap al conjunt de l'autor nou.
-     * @param antic document que es vol afegir.
-     * @param nou autor que passarà a tenir el document.
-     */
-    public void canviarAutor(Document antic, Document nou) {
-        eliminarDocument(antic);
-        afegirDocument(nou);
     }
 
     /** Retorna el conjunt de documents corresponent a l'autor.
