@@ -36,11 +36,11 @@ public class ConsultaPreferitsTest {
         Frase test[] = new Frase[1];
         test[0] = new Frase("text inutil");
         Contingut cont = new Contingut("text inutil", test);
-        Document d1 = new Document(new Frase("autor"), new Frase("document1"), false, null, null, cont);
-        Document d2 = new Document(new Frase("autor"), new Frase("document1"), false, null, null, cont);
-        Document d3 = new Document(new Frase("autor"), new Frase("document1"), false, null, null, cont);
-        Document d4 = new Document(new Frase("autor"), new Frase("document1"), false, null, null, cont);
-        Document d5 = new Document(new Frase("autor"), new Frase("document1"), false, null, null, cont);
+        Document d1 = new Document(new Frase("autor1"), new Frase("document1"), false, null, null, cont);
+        Document d2 = new Document(new Frase("autor2"), new Frase("document2"), false, null, null, cont);
+        Document d3 = new Document(new Frase("autor3"), new Frase("document3"), false, null, null, cont);
+        Document d4 = new Document(new Frase("autor4"), new Frase("document2"), false, null, null, cont);
+        Document d5 = new Document(new Frase("autor2"), new Frase("document5"), false, null, null, cont);
 
         Set<Document> esperat = new HashSet<>();
 
