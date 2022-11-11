@@ -74,17 +74,12 @@ public class TernaryTreeAutor {
      */
     public Set<Frase> obtenirAutors(String s, int i) {
         if (s == "") return null;
-        System.out.println(s.charAt(i));
         if (s.charAt(i) > lletra && dreta != null) return dreta.obtenirAutors(s, i);
         if (s.charAt(i) < lletra && esquerra != null) return esquerra.obtenirAutors(s, i);
-        System.out.println("Lletra: " + lletra);
         if (s.charAt(i) == lletra) {
-            System.out.println("Entered");
             if (i < s.length() - 1 && centre != null) return centre.obtenirAutors(s, i + 1);
-            System.out.println("Before if");
             if (i == s.length() - 1) return autors;
         }
-        System.out.println("Return null");
         return null;
     }
 
