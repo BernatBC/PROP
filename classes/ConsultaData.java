@@ -60,7 +60,7 @@ public class ConsultaData {
                     break;
                 }
             }
-            if (index < n_docs && !putted) docs.add(index,D);
+            if (!putted) docs.add(index,D);
         }
         
         else docs.add(index,D);
@@ -68,6 +68,7 @@ public class ConsultaData {
         //System.out.println(D.getTitol().toString());
         
         ++n_docs;
+
         //for (int i = 0; i < n_docs; ++i) System.out.println(docs.get(i).getTitol().toString());  //testing
         //System.out.println("/////////////////");   //testing
     }
