@@ -20,7 +20,7 @@ public class Main {
         Scanner read = new Scanner(System.in);
 
         while (read.hasNextLine()) {
-            switch (read.nextLine()) {
+            switch (read.nextLine().toLowerCase()) {
                 case "c":
                     controlador.crearDocument();
                 break;
@@ -35,6 +35,8 @@ public class Main {
 		            String author = read.nextLine();
                     imprimirFrases(ca.donaAutors(author));
                 break;
+                default:
+                    System.out.println("Command not found. Please enter a valid command.");
             }
             imprimirComandes();
         }
@@ -54,18 +56,19 @@ public class Main {
     }
 
     private static void imprimirComandes() {
-        System.out.println("\nCOMANDES:");
-        System.out.println("c    Crear Document");
-        System.out.println("m    Modificar Document");
-        System.out.println("e    Eliminar Document");
-        System.out.println("");
-        System.out.println("ca   Consulta d'Autors per prefix");
-        System.out.println("cseq Consulta de Documents per sequencia");
-        System.out.println("cd   Consulta de Documents per data");
-        System.out.println("cp   Consulta de Documents preferits");
-        System.out.println("cr   Consulta de Documents per rellevancia");
-        System.out.println("cs   Consulta de Documents semblants");
-        System.out.println("ct   Consulta de Documents per autors");
-        System.out.println("");
+        System.out.println("\n+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-");
+        System.out.println("|  COMANDES:                                        |");
+        System.out.println("|  C    Crear Document                              |");
+        System.out.println("|  M    Modificar Document                          |");
+        System.out.println("|  E    Eliminar Document                           |");
+        System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+|");
+        System.out.println("|  CA   Consulta d'Autors per prefix                |");
+        System.out.println("|  CSEQ Consulta de Documents per sequencia         |");
+        System.out.println("|  CD   Consulta de Documents per data              |");
+        System.out.println("|  CP   Consulta de Documents preferits             |");
+        System.out.println("|  CR   Consulta de Documents per rellevancia       |");
+        System.out.println("|  CS   Consulta de Documents per semblança         |");
+        System.out.println("|  CT   Consulta de Documents per autors            |");
+        System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-\n");
     }
 }
