@@ -173,7 +173,7 @@ public class DriverControlador {
         System.out.println("|  cr2  Consulta de Documents per rellevancia mètode 2 |");
         System.out.println("|  cs   Consulta de Documents per semblança            |");
         System.out.println("|  ct   Consulta de Documents per autors               |");
-        System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+\n");
+        System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+");
         System.out.println("|  q    Sortir de l'aplicació                          |");
         System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+\n");
     }
