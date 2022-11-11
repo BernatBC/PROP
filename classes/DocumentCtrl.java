@@ -60,7 +60,7 @@ class DocumentCtrl {
 		String author = in.nextLine();
 		ArrayList<String> authordecomp = decomposeWords(author);
 
-		if (!getDocument(author, title).getR()){
+		if (getDocument(author, title).getR()){
 			System.out.println("Can't create the same document twice. Either modify it or delete it.");
 			return;
 		}

@@ -75,8 +75,8 @@ public class ConsultaData {
     /** Esborrar un element de la llista de documents ordenats per data. 
      * Returns: Void */
     public void deleteDoc(Document D) {
-        if (docs.remove(D) == false) System.out.println("error al esborrar Document " + D.getTitol().toString());  //error
-        else --n_docs;
+        Boolean esborrat = docs.remove(D);
+        if (esborrat) --n_docs;
     }
 
 
