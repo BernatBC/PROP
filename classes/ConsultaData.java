@@ -79,6 +79,22 @@ public class ConsultaData {
         if (esborrat) --n_docs;
     }
 
+    /** Consulta anterior a una Data (i només 1).  */
+    public ArrayList<Document> consultaAnterior(LocalDate max){
+        anterior = LocalDate.MIN;
+        posterior = max;
+        return consulta();
+
+    }
+
+    /** Consulta anterior a una Data (i només 1). */
+    public ArrayList<Document> consultaPosterior(LocalDate min){
+        anterior = min;
+        posterior = LocalDate.MAX;
+        return consulta();
+
+    }
+
 
     /** Consulta de l'interval. Ídem que la consulta sense paràmetres però amb la possibilitat de posar nous paràmetres en la pròpia crida. 
      * Returns: ArrayList */
