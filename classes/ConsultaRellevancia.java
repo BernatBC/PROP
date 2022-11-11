@@ -8,30 +8,38 @@ import java.util.TreeMap;
 
 
 
-/** k Documents més rellevants a una query p.
+/** Consulta utilitzada per obtenir els K documents més rellevants d'acord amb una query.
  * @author Oscar Ramos Nuñez (oscar.ramos.nunez@estudiantat.upc.edu)
  */
 public class ConsultaRellevancia {
     
-    /** Número de documents que es volen en la llibreria resultant */
+    /** Número de documents que es volen en la llibreria resultant. */
     private Integer k;
 
-    /** Conjunt de paraules que formen la query, passada per un filtre on s'eliminen les que no estàn a cap document */
+    /** Conjunt de paraules que formen la query. */
     private Paraula[] query;
 
-    /** Conjunt de k documents més rellevants */
+    /** Conjunt de k documents més rellevants. */
     private Llibreria docs;
 
 
-    /** Constructora empty */
+    /** Constructora empty
+     * @return Consulta inicialitzada sense documents afegits.
+     */
     public ConsultaRellevancia() {
         k = 0;
         query = null;
         docs = new Llibreria();
     }
 
-    /** Constructora per defecte. Li arriba un conjunt de paraules pertanyents al vocabulari (si s'haguessin possat a la query paraules que no pertanyen
-     * al vocabulari el controlador les hauria filtrat), un mode per els diversos mètodes de seleccionar elements i la llibreria amb tots els documents */
+    /** Constructora amb paràmetres.
+     * @return ConsultaRellevancia on K=k_docs, query=words i frase es una frase que conté words, mode serveix per seleccionar quin dels dos mètodes de cerca es vol i documents és el conjunt de tots els documents actuals.
+     * @param k_docs
+     * @param words
+     * @param frase
+     * @param mode
+     * @param documents
+     */
     public ConsultaRellevancia(Integer k_docs, Paraula[] words, String frase, Integer mode, Llibreria documents) {
         k = k_docs;
         query = words;
@@ -98,8 +106,8 @@ public class ConsultaRellevancia {
     }
 
 
-    /** Retorna la llibreria construida a la constructora 
-     * Returns: Llibreria.
+    /** Retorna la llibreria construida a la constructora amb els k documents més rellevants.
+     * @return Llibreria
     */
     public Llibreria getDocs() {
         return docs;

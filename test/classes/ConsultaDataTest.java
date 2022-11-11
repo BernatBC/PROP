@@ -31,11 +31,11 @@ public class ConsultaDataTest {
     public void ConsultaDataProvaInserirDocument() {
         // Init
         ConsultaData consulta = new ConsultaData();
-        /*voldrem comprovar que a mesura que anem inserint els documents es mantinguin ordenats. 
+        /** Voldrem comprovar que a mesura que anem inserint els documents aquests es mantinguin ordenats. 
         * Per això després de fer cada inserció demanarem tots els documents per veure'n l'ordre.
-        * Com nomes volem comporvar l'ordre dels documents segons la seva data, aquests seran gairebe trivials. */
+        * Com nomes volem comporvar l'ordre dels documents segons la seva data, aquests seran gairebé trivials. */
 
-        //creem un contingut base.
+        /** Creem un contingut base. */
         Frase test[] = new Frase[1];
         test[0] = new Frase("text inutil");
         Contingut cont = new Contingut("text inutil", test);
@@ -48,7 +48,7 @@ public class ConsultaDataTest {
         Document d7 = new Document(new Frase("prova"), new Frase("el tercer dels tres"), false, null, LocalDate.of(2018, 12, 23),cont);
 
 
-        /*Com que en un ArrayList els elements s'insereixen al final, compararem el resultat de la funcio consulta.consulta() 
+        /** Com que en un ArrayList els elements s'insereixen per defecte al final, compararem el resultat de la funcio consulta.consulta() 
         * (que simplement mostra tots els elements que hi han inserits [si no es posa cap parametre])
         * amb l'array (on manualment s'hauran inserit els elements en ordre).*/
         ArrayList<Document> resultat = new ArrayList<>();
@@ -56,17 +56,17 @@ public class ConsultaDataTest {
         consulta.addDoc(d1);
         assertEquals(resultat, consulta.consulta());
 
-        //afegim un posterior
+        /** Afegim un posterior. */
         resultat.add(d2); // 6-1-2022
         consulta.addDoc(d2);
         assertEquals(resultat, consulta.consulta());
 
-        //un anerior en primera posicio
+        /** Un anterior en primera posició. */
         resultat.add(0, d3);
         consulta.addDoc(d3);
         assertEquals(resultat, consulta.consulta());
 
-        //els afegim de manera equivocada a resultat (d1, d2 i d3) i veiem que l'assert es un not equal (ja que d3 hauria d'estar el primer).
+        /** Els afegim de manera equivocada al resultat (d1, d2 i d3) i veiem que l'assert es un not equal (ja que d3 hauria d'estar el primer). */
         resultat = new ArrayList<>();
         resultat.add(d1); // 23-12-2018 
         resultat.add(d2); // 6-1-2022 
@@ -75,7 +75,7 @@ public class ConsultaDataTest {
         //System.out.println(consulta.consulta()); //Veiem que consulta si dona d3, d1, d2.
 
 
-        //afegim mes documents
+        /** Afegim mes documents. */
         consulta.addDoc(d4);
         consulta.addDoc(d5);
 
@@ -88,7 +88,7 @@ public class ConsultaDataTest {
         resultat.add(d2); // 6-1-2022
         assertEquals(resultat, consulta.consulta());
 
-        //afegim 2 documents que comparteixen data amb un altre i veiem si s'han afegit correctament per ordre alfabetic.
+        /** Afegim 2 documents que comparteixen data amb un altre i veiem si s'han afegit correctament per ordre alfabètic. */
         consulta.addDoc(d6);
         consulta.addDoc(d7);
 
@@ -103,13 +103,13 @@ public class ConsultaDataTest {
     @Test
     @DisplayName("Test Dates")   
     public void ConsultaDataProvaEsborrarDocument() {
-        //Provarem ara d'esborrar documents i veure el set resultant (un altre cop també amb les dates min i max per tal d'obtenir tots els que queden inserits).
-        //Es una funcio trivial i la seva correctesa es bassa en la correctesa del metode delete d'una ArrayList per tant no hauria d'haver cap problema
-        //Tot i així procedim a fer un experiment trivial d'anar fent delete dels documents 1 per 1.
+        /** Provarem ara d'esborrar documents i veure el set resultant (un altre cop també amb les dates min i max per tal d'obtenir tots els que queden inserits).
+        * És una funcio trivial i la seva correctesa es basa en la correctesa del mètode delete d'una ArrayList per tant no hauria d'haver cap problema.
+        * Tot i així procedim a fer un experiment trivial d'anar fent delete dels documents 1 per 1. */
 
 
         ConsultaData consulta = new ConsultaData();
-        //creem un contingut base.
+        //Creem un contingut base.
         Frase test[] = new Frase[1];
         test[0] = new Frase("text inutil");
         Contingut cont = new Contingut("text inutil", test);
@@ -121,7 +121,7 @@ public class ConsultaDataTest {
         Document d6 = new Document(new Frase("prova"), new Frase("aquest primer"), false, null, LocalDate.of(2018, 12, 23),cont);
         Document d7 = new Document(new Frase("prova"), new Frase("el tercer dels tres"), false, null, LocalDate.of(2018, 12, 23),cont);
 
-        //Com que en el test anterior hem comprovat la funcio inserir la podem utilitzar sense problemes per aquest test
+        /** Com que en el test anterior hem comprovat la funcio inserir la podem utilitzar sense problemes per aquest test. */
         consulta.addDoc(d1);
         consulta.addDoc(d2);
         consulta.addDoc(d3);
@@ -131,7 +131,7 @@ public class ConsultaDataTest {
         consulta.addDoc(d7);
 
         ArrayList<Document> resultat = new ArrayList<>();
-        //l'ordre que s'espera 
+        /** L'ordre que s'espera. */
         resultat.add(d3); // 11-10-1840
         resultat.add(d5); // 22-12-2018
         resultat.add(d6); // 23-12-2018
@@ -142,34 +142,34 @@ public class ConsultaDataTest {
 
         assertEquals(resultat, consulta.consulta());
 
-        //ara anem esborrant 1 per 1 , de manera mes o nemnys random;
+        /** Ara anem esborrant 1 per 1 , de manera més o nemnys random. */
 
-        //Doc 6 -> Restants: 1,2,3,4,5 i 7.
+        /** Doc 6 -> Restants: 1,2,3,4,5 i 7. */
         resultat.remove(d6);
         consulta.deleteDoc(d6);
         assertEquals(resultat, consulta.consulta());
 
-        //Doc 2 -> Restants: 1,3,4,5 i 7.
+        /** Doc 2 -> Restants: 1,3,4,5 i 7. */
         resultat.remove(d2);
         consulta.deleteDoc(d2);
         assertEquals(resultat, consulta.consulta());
 
-        //Doc 1 -> Restants: 3,4,5 i 7.
+        /** Doc 1 -> Restants: 3,4,5 i 7. */
         resultat.remove(d1);
         consulta.deleteDoc(d1);
         assertEquals(resultat, consulta.consulta());
 
-        //Doc 7 -> Restants: 3,4 i 5.
+        /** Doc 7 -> Restants: 3,4 i 5. */
         resultat.remove(d7);
         consulta.deleteDoc(d7);
         assertEquals(resultat, consulta.consulta());
 
-        //Doc 3 -> Restants: 4 i 5.
+        /** Doc 3 -> Restants: 4 i 5. */
         resultat.remove(d3);
         consulta.deleteDoc(d3);
         assertEquals(resultat, consulta.consulta());
 
-        //Doc 4 -> Restant: 5.
+        /** Doc 4 -> Restant: 5. */
         resultat.remove(d4);
         consulta.deleteDoc(d4);
         assertEquals(resultat, consulta.consulta());
@@ -182,7 +182,7 @@ public class ConsultaDataTest {
     @DisplayName("Test Dates")   
     public void ConsultaDataGettersSettersIConstructoraAmbParametres() {
 
-        //provem ara les funcions trivials get i set dels atributs LocalDate anterior i LocalDate posterior.
+        /** Provem ara les funcions trivials get i set dels atributs LocalDate anterior i LocalDate posterior. */
         ConsultaData consulta = new ConsultaData();
         LocalDate primera = LocalDate.of(2000, 1, 1);
         LocalDate segona = LocalDate.of(2022, 11, 9);
@@ -203,12 +203,14 @@ public class ConsultaDataTest {
     @Test
     @DisplayName("Test Dates")
     public void ConsultaDataProvaConsultaAcotadaPerParametres() {
-        /*Hem comprovat en l'anterior experiment que tant com la constructora per defecte com la que disposa de dos parametres funcionen correctament.
-         * El test es basara en diversos intervals de cerca amb una llibreria constant (el fet de modificar la llibreria d'una prova a una altra no afecta
-         * ja que hem comprovat que l'inserecio es fa correctament).
+        /** Hem comprovat en l'anterior experiment que tant la constructora per defecte com la que disposa de dos paràmetres funcionen correctament.
+         * El test es basarà en diversos intervals de cerca amb una llibreria constant (el fet de modificar la llibreria d'una prova a una altra no afecta
+         * ja que hem comprovat que l'inserecio es fa correctament). A més les funcions consultaAnterior(LocalDate) i consultaPosterior(LocalDate) funcionaran
+         * correctament si consulta, el que ara anem a analitzar, funciona (en ser totes dues funcions una combinació trivial de setPosterior(Data)+Consulta(), per 
+         * el cas de consultaAnterior, i de setAnterior(Data)+Consulta, en el cas de consultaPosterior).
          */
 
-         //creem un contingut base.
+         //Creem un contingut base.
         Frase test[] = new Frase[1];
         test[0] = new Frase("text inutil");
         Contingut cont = new Contingut("text inutil", test);
@@ -220,7 +222,7 @@ public class ConsultaDataTest {
         Document d6 = new Document(new Frase("prova"), new Frase("aquest primer"), false, null, LocalDate.of(2018, 12, 23),cont);
         Document d7 = new Document(new Frase("prova"), new Frase("el tercer dels tres"), false, null, LocalDate.of(2018, 12, 23),cont);
     
-        //ordre esperat 
+        //Ordre esperat.
         ArrayList<Document> resultat = new ArrayList<>();
         resultat.add(d3); // 11-10-1840
         resultat.add(d5); // 22-12-2018
@@ -230,7 +232,7 @@ public class ConsultaDataTest {
         resultat.add(d4); // 17-7-2020
         resultat.add(d2); // 6-1-2022
 
-        //Hem comprovat tant com les insercions com els Setters aixi que els utilitzem sense por pel test.
+        /** Hem comprovat tant com les insercions com els Setters aixi que els utilitzem sense por pel test. */
         ConsultaData consulta = new ConsultaData();
         LocalDate primera = LocalDate.of(1000, 1, 1);
         LocalDate segona = LocalDate.of(2022, 11, 9);
@@ -246,11 +248,11 @@ public class ConsultaDataTest {
         consulta.setAnterior(primera);
         consulta.setPosterior(segona);
 
-        //Fem un primer interval que agafi tots els documents.
+        /** Fem un primer interval que agafi tots els documents. */
         assertEquals(resultat, consulta.consulta());
 
 
-        //actualitzem l'interval, ara agafara tots menys el 3
+        /** Actualitzem l'interval; ara agafarà tots menys el 3. */
         primera = LocalDate.of(2000, 1, 1);
         segona = LocalDate.of(2022, 11, 9);
         consulta.setAnterior(primera);
@@ -260,7 +262,7 @@ public class ConsultaDataTest {
         assertEquals(resultat, consulta.consulta());
 
 
-        //actualitzem l'interval, ara agafara els 3 que comparteixen data (recordem ordenats per ordre alfabetic).
+        /** Actualitzem l'interval, ara agafarà els 3 que comparteixen data (recordem ordenats per ordre alfabètic). */
         primera = LocalDate.of(2018, 12, 23);
         segona = LocalDate.of(2018, 12, 23);
         consulta.setAnterior(primera);
@@ -272,17 +274,17 @@ public class ConsultaDataTest {
         resultat.add(d7); // 23-12-2018
         assertEquals(resultat, consulta.consulta());
 
-        //Afegim el del dia anterior i mirem que el retorni el primer, ja que es el mes antic.
+        /** Afegim el del dia anterior i mirem que el retorni el primer, ja que és el més antic. */
         primera = LocalDate.of(2018, 12, 22);
         consulta.setAnterior(primera);
 
         resultat.add(0,d5); // 22-12-2018
         assertEquals(resultat, consulta.consulta());
 
-        //Per ultim mirem un interval empty i un interval on la data inicial > final.
+        /** Per últim mirem un interval empty i un interval on la data inicial > final. */
         resultat = new ArrayList<>();
 
-        //dies posteriors i anteriors de documents existents
+        /** Dies posteriors i anteriors de documents existents. */
         primera = LocalDate.of(2018, 12, 24);
         segona = LocalDate.of(2020, 7, 16);
         consulta.setAnterior(primera);
@@ -290,12 +292,12 @@ public class ConsultaDataTest {
         //Resultat = res.
         assertEquals(resultat, consulta.consulta());
 
-        //interval erroni
+        /** Interval erroni. */
         primera = LocalDate.of(2020, 12, 24);
         segona = LocalDate.of(2020, 12, 20);
         consulta.setAnterior(primera);
         consulta.setPosterior(segona);
-        //Resultat = res.
+        /** Resultat = res. */
         assertEquals(resultat, consulta.consulta());
     
     

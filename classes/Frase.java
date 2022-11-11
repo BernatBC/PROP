@@ -12,16 +12,17 @@ public class Frase {
     private Paraula[] Oracio;
 
 
-
-    /** Número de paraules de la frase */
+    /** Número de paraules de la frase. */
     private int n_paraules;
 
 
-    /** Frase en string */
+    /** Frase en un String. */
     private String text;
 
     /** Constructora per defecte. 
-     * @return: Frase inicialitzada amb els paràmetres words (pels atributs Oracio i n_paraules) i frase (pels atributs text i Puntuacio).
+     * @return Frase inicialitzada amb un Array de Paraules i un String.
+     * @param words
+     * @param frase
      */
     public Frase(ArrayList<Paraula> words, String frase) {
         //paràmetre
@@ -32,7 +33,11 @@ public class Frase {
         for (int j = 0; j < words.size(); ++j) Oracio[j] = words.get(j);
     }
 
-    /** Constructora amb Paraula[] i la frase en un string. */
+    /** Constructora amb Paraula[] i la frase en un string. 
+     * @return Frase inicialitzada amb Paraula[] i un String.
+     * @param words
+     * @param frase
+    */
     public Frase(Paraula[] words, String frase) {
         //paràmetre
         text = frase;
@@ -43,7 +48,10 @@ public class Frase {
 
     }
 
-    /** Constructora nomes amb la frase en un string. */
+    /** Constructora nomes amb la frase en un string.
+     * @return Frase inicialitzada amb un String.
+     * @param frase
+     */
     public Frase(String frase) {
         text = frase;
         ArrayList<Paraula> words = stringToParaules(frase);
@@ -66,9 +74,9 @@ public class Frase {
 
 
 
-    /** Retorna true si la frase conté les paraules "Paraules" concatenades.
+    /** Retorna true si la frase conté les paraules "Paraules" concatenades (és a dir una darrera de l'altre).
      * @param Paraules
-     * @return bool
+     * @return boolean
      */
     public boolean conteSequencia(String[] Paraules) {
         int it = 0;
@@ -91,8 +99,9 @@ public class Frase {
     }
 
 
-    /** Retorna true si la frase conte una sequencia de lletres.
+    /** Retorna true si la frase conté una seqüència de lletres concatenades.
      * @return bool 
+     * @param lletres
      */
     public boolean conteCaracters(String lletres) {
         if (lletres.equals("")) {
@@ -114,7 +123,7 @@ public class Frase {
 
 
 
-    /** Retorna true si la frase conté la paraula passada per paràmetre. No case sensitive ja que si no es crearien potencialment dues paraules, en majuscula i minuscula, per cadascuna.
+    /** Retorna true si la frase conté la paraula passada per paràmetre. 
      * @param paraula
      * @return bool
      */
@@ -126,7 +135,7 @@ public class Frase {
 
     }
 
-    /** Retorna la frase en  format string.
+    /** Retorna la frase en format String.
      * @return String
      */
     public String toString() {
@@ -168,9 +177,9 @@ public class Frase {
     }
 
 
-    /** Retorna true si c paràmetre és un signe de puntuació.
+    /** Retorna true si c paràmetre és un signe de puntuació (d'entre uns que ens són d'interès identificar).
      * @param c
-     * @return bool
+     * @return boolean
     */
     private boolean isPuntuacio(char c) {
         return c == '.' || c == ',' || c == ';' || c == ':' || c == '?' || c == '¿' || c == '!' || c == '¡' || c == '(' || c == ')' ||
@@ -199,7 +208,7 @@ public class Frase {
     }
 
 
-    /** Donat un string que representa una frase dona les paraules d'aquesta en un Array
+    /** Donat un string que representa una frase dona les paraules d'aquesta en un ArrayList.
      * @param frase
      * @return ArrayList<Paraula>
      */

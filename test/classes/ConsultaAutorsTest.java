@@ -53,33 +53,33 @@ public class ConsultaAutorsTest {
         result.add(q3); //Manel Macarra
         assertEquals(result, autors.donaAutors("Man"));
 
-        //veiem que els case sensitive, els noms propis i cognoms tenen sempre la primera lletra Majuscula
+        /** Veiem que és case sensitive, els noms propis i cognoms tenen sempre la primera lletra Majúscula.  */
         assertEquals(null, autors.donaAutors("man"));
 
 
-        //provem ara pel cognom Ramos, nomes agafant Ra
+        /** Provem ara pel cognom Ramos, nomes agafant Ra. */
         result = new HashSet<>();
         result.add(q1); //Oscar Ramos
         result.add(q5); //Pol Ramos
         result.add(q6); //Manel Ramos
         assertEquals(result, autors.donaAutors("Ra"));
 
-        //Cas nomes R, resultat igual que l'anterior cas però ara s'afegeix salvador Roura
+        /** Cas només R, resultat igual que l'anterior cas però ara s'afegeix Salvador Roura. (R_oura) */
         result.add(q2); //Salvador Roura
         assertEquals(result, autors.donaAutors("R"));
 
-        //cas prefix null o cas prefix espai
+        /** Cas prefix null o cas prefix espai. */
         assertEquals(null, autors.donaAutors(""));
         assertEquals(null, autors.donaAutors(" "));
 
-        //mirem la q7, que conte una "i" i mes de 2 cognoms
+        /** Mirem la q7, que conté una "i" i més de 2 cognoms. */
         result = new HashSet<>();
-        result.add(q7); //Tomas Perez Castany Ferri i Normal
+        result.add(q7); //Tomas Perez Castany Ferri i Normal. */
         assertEquals(result, autors.donaAutors("i"));
         assertEquals(result, autors.donaAutors("i No"));
         assertEquals(result, autors.donaAutors("Ferri i"));
 
-        //comprovem quan el prefix es troba al nom d'una persona i al cognom d'una altre
+        /** Comprovem quan el prefix es troba al nom d'una persona i al cognom d'una altre. */
         result = new HashSet<>();
         result.add(q7); //Tomas Perez Castany Ferri i Normal
         result.add(q4); //Norman Norman

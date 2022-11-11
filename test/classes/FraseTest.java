@@ -35,7 +35,7 @@ public class FraseTest {
     @Test
     @DisplayName("Test frase donawords")   
     public void fraseDonaWordsRetornaHashMapDeIdparaulaINumeroAparicions() {
-        //Guardem les paraules per tal de mantenir un mateix index per una mateixa paraula, encara que aquesta es torni a crear posteriorment
+        /**Guardem les paraules per tal de mantenir un mateix índex per una mateixa paraula, encara que aquesta es torni a crear posteriorment. */
         Vocabulari words = new Vocabulari();
         // Init
         ArrayList<Paraula> q = new ArrayList<>();
@@ -48,13 +48,13 @@ public class FraseTest {
        
         //ASSERTS
 
-        //mirem el numero de aparicions de la paraula hello i a mes comprovem que te Id = 0.
+        /** Mirem el número d'aparicions de la paraula hello i, a més, comprovem que té Id = 0. */
         assertEquals(3, frase2.donaWords().get(words.inserirObtenirParaula("hello").getId()));
 
-        //mirem el numero de aparicions de la paraula world i a mes comprovem que te Id = 1.
+        /** Mirem el número de aparicions de la paraula world i, a mes, comprovem que té Id = 1. */
         assertEquals(1,frase2.donaWords().get(words.inserirObtenirParaula("world").getId()));
 
-        //comprovem que el HashMap nomes te 2 elements i, per etant, un hipotetic element 3 (amb Id = 2) apareix "null" cops.
+        /** Comprovem que el HashMap només té 2 elements i, per tant, un hipotètic element 3 (amb Id = 2) apareix "null" cops. */
         assertEquals(null,frase2.donaWords().get(words.inserirObtenirParaula("no").getId()));
 
     }
@@ -70,27 +70,27 @@ public class FraseTest {
         
         // Asserts
 
-        //Hem de tenir en compte que el constructor de Frase NO guarda les paraules en minuscula (podent crear dues paraules per la mateixa [Hola i hola]).
-        //Les tres primeres paraules.
+        /** Hem de tenir en compte que el constructor de Frase NO guarda les paraules en minuscula (podent crear dues paraules per la mateixa [Hola i hola]).
+        * Les tres primeres paraules. */
         assertEquals(true, fraseC.conteSequencia(paraules));
 
-        //Tota la frase.
+        /** Tota la frase. */
         String[] paraules2 = {"No", "vull", "fer", "testos", "a", "prop"};
         assertEquals(true, fraseC.conteSequencia(paraules2));
 
-        //Repetim una paraula.
+        /** Repetim una paraula. */
         String[] paraules3 = {"No", "no", "fer"};
         assertEquals(false, fraseC.conteSequencia(paraules3));
 
-        //Tres paraules empty.
+        /** Tres paraules empty. */
         String[] paraules4 = {"", "", ""};
         assertEquals(false, fraseC.conteSequencia(paraules4));
 
-        //Una paraula empty.
+        /** Una paraula empty. */
         String[] paraules5 = {""};
         assertEquals(false, fraseC.conteSequencia(paraules5));
 
-        //Una paraula amb majuscula, quan no deberia.
+        /** Una paraula amb majúscula, quan no hauria. */
         String[] paraules6 = {"Fer"};
         assertEquals(false, fraseC.conteSequencia(paraules6));
 
@@ -105,26 +105,21 @@ public class FraseTest {
         String lletres = "-ne lletres";
         // Assert
         assertTrue(fraseC.conteCaracters(lletres));
-        //ultima lletra.
+        /** Última lletra. */
         assertTrue(fraseC.conteCaracters("i"));
-        //Mirem que la funcio conteCaracters diferencia correctament les majuscules i les minuscules.
+        /** Mirem que la funció conteCaracters diferencia correctament les majúscules i les minúscules. */
         assertFalse(fraseC.conteCaracters("vull"));
         assertTrue(fraseC.conteCaracters("Vull"));
-        //canviem nomes una lletra
+        /** Canviem només una lletra. */
         assertFalse(fraseC.conteCaracters("Vull buscar-ne lletra"));
-        //Si passem un string sense caràcters sempre retornarà true ja que una subword de qualsevol paraula pot ser "".
+        /** Si passem un String sense caràcters sempre retornarà true ja que una subword de qualsevol paraula pot ser "". */
         assertTrue(fraseC.conteCaracters(""));
-        //Provem de buscar un espai en blanc.
+        /** Provem de buscar un espai en blanc. */
         assertTrue(fraseC.conteCaracters(" "));
 
 
         
     }
-
-
-
-    
-
 
     
 }

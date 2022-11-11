@@ -2,20 +2,22 @@ package classes;
 
 import java.util.Set;
 
-/** Prefixos.
+/** Consulta utilitzada per obtenir els noms dels Autors que començen per un prefix (ja sigui el nom o un cognom).
  * @author Oscar Ramos Nuñez (oscar.ramos.nunez@estudiantat.upc.edu)
  */
 public class ConsultaAutors {
     
-    /** Arbre de cerca */
+    /** Arbre de cerca que emmagatzema els autors. */
     private TernaryTreeAutor autors;
 
-
+    /** COnstructora per defecte.
+     * @return Consultora Autors empty
+     */
     public ConsultaAutors() {
         autors = new TernaryTreeAutor();
     }
 
-    /** Insereix l'autor en l'arbre de cerca per prefix
+    /** Insereix l'autor en l'arbre de cerca per prefix. Per cada autor insereix el nom i cada cognom (per tal de poder fer també la cerca per un prefix d'un cognom).
      * @param autor
      */
     public void addAutor(Frase autor) {
@@ -25,7 +27,7 @@ public class ConsultaAutors {
             //inserim l'autor
             autors.inserirAutor(autor, nom_cognom, 0);
             
-            //esborrem la primera paraula de l'estring
+            //esborrem la primera paraula de el String
             int ini = 0;
             int length = nom_cognom.length();
             while (ini < length && Character.isLetter(nom_cognom.charAt(ini))) ++ini;
@@ -38,7 +40,8 @@ public class ConsultaAutors {
         }
     }
 
-    /** Funcio consulta. Retorna els autors els quals compleixen el prefix
+    /** Funció consulta. Retorna els autors els quals compleixen el prefix.
+     * @return Set de Frases on cada frase és un autor.
      * @param prefix
      */
     public Set<Frase> donaAutors(String prefix) {
