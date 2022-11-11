@@ -18,6 +18,15 @@ class DocumentCtrl {
 	private ConsultaPreferit CP;
 	private ConsultaAutors CA;
 
+	/** Constructora del Controlador de Document.
+	 * 
+	 * @param v El vocabulari de paraules.
+	 * @param l La llibreria (cjt de documents).
+	 * @param cd Una referència a la consultora per dates.
+	 * @param ct Una referència a la consultora de títols.
+	 * @param cp Una referència a la consultora per preferits.
+	 * @param ca Una referència a la consultora d'autors.
+	 */
 	DocumentCtrl(Vocabulari v, Llibreria l, ConsultaData cd, ConsultaTitol ct, ConsultaPreferit cp, ConsultaAutors ca){
 		vocab = v;
 		lib = l;
@@ -27,7 +36,13 @@ class DocumentCtrl {
 		CA = ca;
 	};
 
-	private ArrayList<String> decomposeWords(String frase) {
+	/** Mètode privat que ens descomposa una String 'frase' en una llista de Strings, que són les paraules
+	 *  que extraiem de 'frase'. Només es tenen en compte cadenes de lletres per a identificar les paraules.
+	 * 
+	 * @param frase La String que volem descomposar en paraules
+	 * @return Una llista de Strings, que representa la descomposició de 'frase' en paraules.
+	 */
+	static private ArrayList<String> decomposeWords(String frase) {
         ArrayList<String> paraules = new ArrayList<>();
         String a_insert = "";
 
@@ -45,10 +60,19 @@ class DocumentCtrl {
         return paraules;
     }
 
+	/** Getter d'una referència a un document donat el seu autor i títol en Strings.
+	 * 
+	 * @param nomAutor String del nom de l'autor.
+	 * @param nomTitol String del títol del document.
+	 * @return Un parell de Document (el document cercat) i booleà, on el booleà és <b>false</b> si el document no existeix.
+	 */
 	public Pair<Document, Boolean> getDocument(String nomAutor, String nomTitol){
 		return lib.getDocument(nomAutor, nomTitol);
 	}
 	
+	/**
+	 *  Funció que interacciona amb l'usuari i crea un document.
+	 */
 	public void crearDocument(){
 		Scanner in = new Scanner(System.in);
 		
@@ -129,6 +153,9 @@ class DocumentCtrl {
 		System.out.println("Document added successfully!\n");
 	}
 	
+	/**
+	 *  Funció que interacciona amb l'usuari i modifica un document existent.
+	 */
 	public void modificarDocument(){
 		Scanner in = new Scanner(System.in);
 
@@ -201,6 +228,11 @@ class DocumentCtrl {
 		
 	}
 
+
+	/** Funció que elimina un document donada la seva referència
+	 * 
+	 * @param d El Document que volem eliminar de la llibreria.
+	 */
 	public void eliminarDocument(Document d){
 
 		// Rebaixar per 1 les ocurrències de cada paraula
@@ -245,6 +277,9 @@ class DocumentCtrl {
 
 	}
 
+	/**
+	 * Mètode que interacciona amb l'usuari amb l'objectiu d'eliminar un document.
+	 */
 	public void eliminarDocument(){
 		Scanner in = new Scanner(System.in);
 
@@ -305,6 +340,10 @@ class DocumentCtrl {
 
 	}
 
+	/** Mètode que canvia l'estat del booleà preferit d'un document donada una referència a aquest.
+	 * 
+	 * @param d Document en el qual volem fer toggle del booleà <i>isFav</i>.
+	 */
 	public void togglePreferit(Document d){
 
 		// Fem el toggle

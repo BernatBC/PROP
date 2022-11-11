@@ -19,12 +19,21 @@ public class Llibreria {
 
 	private int nDocs;
 	
+	/**
+	 * Constructora d'una Llibreria per defecte.
+	 */
 	public Llibreria(){
 		docs = new ArrayList< Pair<Document, HashMap<Integer, Double>>>();
 		nDocs = 0;
 		word_ocurrences = new HashMap<>();
 	}
 	
+	/** Mètode que ens calcula el cosinus entre dos documents existents en la llibreria.
+	 * 
+	 * @param d1 Referència al primer document.
+	 * @param d2 Referència al segon document.
+	 * @return El cosinus entre els vectors tf-idf que representen d1 i d2.
+	 */
 	public Double computeCosinus(Document d1, Document d2){
 		int i = 0;
 		int j = 0;
@@ -59,6 +68,10 @@ public class Llibreria {
 		return (Double) dotproduct / (len1 * len2);
 	}
 	
+	/** Mètode per a afegir un document a la llibreria.
+	 * 
+	 * @param d Document a afegir.
+	 */
 	public void addDocument(Document d){
 		HashMap<Integer, Double> tfs = d.getTF();
 		HashMap<Integer, Double> TFIDF = new HashMap<Integer, Double>();
@@ -90,6 +103,10 @@ public class Llibreria {
 		docs.add(new Pair<>(d, TFIDF));
 	} 
 	
+	/** Mètode per a eliminar un document de la llibreria.
+	 * 
+	 * @param d Document a eliminar.
+	 */
 	public void deleteDocument(Document d){
 		for (int i = 0; i < docs.size(); ++i){
 			if (d == docs.get(i).getL()){
@@ -121,6 +138,12 @@ public class Llibreria {
 		}
 	}
 
+	/** Getter d'una referència a un document donat el seu autor i títol en Strings.
+	 * 
+	 * @param nomAutor String del nom de l'autor.
+	 * @param nomTitol String del títol del document.
+	 * @return Un parell de Document (el document cercat) i booleà, on el booleà és <b>false</b> si el document no existeix.
+	 */
 	public Pair<Document, Boolean> getDocument(String author, String title){
 		// Donat un autor i títol, ens retorna el document
 		for (int i = 0; i < docs.size(); ++i){
@@ -134,6 +157,10 @@ public class Llibreria {
 
 	}
 	
+	/** Mètode que retorna una nova llibreria amb tots els documents marcats com a preferits.
+	 * 
+	 * @return Llibreria (subconjunt de la llibreria actual) que conté només els documents preferits.
+	 */
 	public Llibreria getPreferits(){
 		Llibreria favLib = new Llibreria();
 		
@@ -148,14 +175,27 @@ public class Llibreria {
 		return favLib;
 	}
 	
+	/** Mètode que retorna l'i-éssim document inserit a la llibreria.
+	 * 
+	 * @param i Índex del document a la llibreria.
+	 * @return Una referència al Document i-éssim.
+	 */
 	public Document getIessim(int i){
 		return docs.get(i).getL();
 	}
 
+	/** Getter del nombre de documents totals a la llibreria.
+	 * 
+	 * @return Natural que indica el nombre de documents actuals a la llibreria.
+	 */
 	public int getNdocs(){
 		return nDocs;
 	}
 	
+	/** Mètode que retorna el conjunt de documents de la llibreria amb un Set.
+	 * 
+	 * @return Un Set de referències als documents de la llibreria.
+	 */
 	public Set<Document> getSetDocuments(){
 		Set<Document> mySet = new HashSet<Document>();
 
