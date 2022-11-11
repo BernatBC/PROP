@@ -59,6 +59,11 @@ class DocumentCtrl {
 		System.out.println("Enter the author's name: ");
 		String author = in.nextLine();
 		ArrayList<String> authordecomp = decomposeWords(author);
+
+		if (!getDocument(author, title).getR()){
+			System.out.println("Can't create the same document twice. Either modify it or delete it.");
+			return;
+		}
 		
 		System.out.println("Please write the body of the document. Separate each phrase by a new line (ENTER). When you're done, press (ENTER) twice.\n");
 		ArrayList<String> content = new ArrayList<String>();
