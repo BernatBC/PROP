@@ -118,7 +118,7 @@ public class Document {
 	}
 
 	public String toString(){
-		StringBuilder str = new StringBuilder();
+		StringBuilder str = new StringBuilder("\n");
 		
 		str.append(title + "\n");
 		str.append(author + "\n\n");

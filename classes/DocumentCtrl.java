@@ -8,8 +8,7 @@ import java.time.LocalDate;
 /** Classe controladora de mètodes relacionats amb documents.
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
  */
-
-class DocumentCtrl {
+public class DocumentCtrl {
 
 	private Vocabulari vocab;
 	private Llibreria lib;
@@ -27,7 +26,7 @@ class DocumentCtrl {
 	 * @param cp Una referència a la consultora per preferits.
 	 * @param ca Una referència a la consultora d'autors.
 	 */
-	DocumentCtrl(Vocabulari v, Llibreria l, ConsultaData cd, ConsultaTitol ct, ConsultaPreferit cp, ConsultaAutors ca){
+	public DocumentCtrl(Vocabulari v, Llibreria l, ConsultaData cd, ConsultaTitol ct, ConsultaPreferit cp, ConsultaAutors ca){
 		vocab = v;
 		lib = l;
 		CP = cp;
