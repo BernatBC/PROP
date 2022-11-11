@@ -52,11 +52,11 @@ class DocumentCtrl {
 	public void crearDocument(){
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Enter the title of the document: ");
+		System.out.print("Enter the title of the document: ");
 		String title = in.nextLine();
 		ArrayList<String> titledecomp = decomposeWords(title);
 		
-		System.out.println("Enter the author's name: ");
+		System.out.print("Enter the author's name: ");
 		String author = in.nextLine();
 		ArrayList<String> authordecomp = decomposeWords(author);
 
@@ -65,7 +65,7 @@ class DocumentCtrl {
 			return;
 		}
 		
-		System.out.println("Please write the body of the document. Separate each phrase by a new line (ENTER). When you're done, press (ENTER) twice.\n");
+		System.out.println("\nPlease write the body of the document. Separate each phrase by a new line (ENTER). When you're done, press (ENTER) twice.\n");
 		ArrayList<String> content = new ArrayList<String>();
 		while (in.hasNextLine()){
 			content.add(in.nextLine());
@@ -126,16 +126,17 @@ class DocumentCtrl {
 		CT.afegirDocument(doc);
 		CD.addDoc(doc);
 
-		System.out.println("Document added successfully!");
+		System.out.println("Document added successfully!\n");
 	}
 	
 	public void modificarDocument(){
 		Scanner in = new Scanner(System.in);
 
-		System.out.println("Enter the author's name: ");
-		String author = in.nextLine();
-		System.out.print("Enter the name of the title: ");
+		System.out.print("\nEnter the name of the title: ");
 		String title = in.nextLine();
+
+		System.out.println("\nEnter the author's name: ");
+		String author = in.nextLine();
 		
 		Pair<Document, Boolean> docboolean = lib.getDocument(author, title);
 
@@ -146,7 +147,7 @@ class DocumentCtrl {
 			 return;
 		}
 
-		System.out.println("Preview of the document: \n\n"+doc);
+		System.out.println("\nPreview of the document: \n\n"+doc);
 
 		System.out.println("What do you wish to modify from the document (1..4)?\n");
 		System.out.println("1) The date of creation");
@@ -157,8 +158,8 @@ class DocumentCtrl {
 
 		switch(choice){
 			case 1:
-			System.out.println("Current date: "+doc.getData());
-			System.out.println("New date (YYYY MM DD): ");
+			System.out.println("\nCurrent date: "+doc.getData());
+			System.out.print("New date (YYYY MM DD): ");
 			int year = in.nextInt(); int month = in.nextInt(); int day = in.nextInt();
 
 			try {
@@ -171,7 +172,7 @@ class DocumentCtrl {
 				 return;
 
 			} catch (DateTimeException e){
-				System.out.println("\nPlease enter a valid date in the format YYYY MM DD next time :)");
+				System.out.println("\nPlease enter a valid date in the format YYYY MM DD next time.");
 				 return;
 			}
 

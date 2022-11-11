@@ -45,7 +45,7 @@ public class Main {
 
     private static void imprimirFrases(Set<Frase> frases) {
         if (frases == null) {
-            System.out.println("No s'ha trobat cap autor.");
+            System.out.println("\nNo s'ha trobat cap autor.");
             return;
         }
         for (Frase f: frases) {
@@ -54,7 +54,7 @@ public class Main {
     }
 
     private static void imprimirComandes() {
-        System.out.println("COMANDES:");
+        System.out.println("\nCOMANDES:");
         System.out.println("c    Crear Document");
         System.out.println("m    Modificar Document");
         System.out.println("e    Eliminar Document");
