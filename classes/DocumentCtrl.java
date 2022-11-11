@@ -135,7 +135,7 @@ class DocumentCtrl {
 		System.out.print("\nEnter the name of the title: ");
 		String title = in.nextLine();
 
-		System.out.println("\nEnter the author's name: ");
+		System.out.print("Enter the author's name: ");
 		String author = in.nextLine();
 		
 		Pair<Document, Boolean> docboolean = lib.getDocument(author, title);
@@ -149,10 +149,10 @@ class DocumentCtrl {
 
 		System.out.println("\nPreview of the document: \n\n"+doc);
 
-		System.out.println("What do you wish to modify from the document (1..4)?\n");
+		System.out.println("What do you wish to modify from the document (1..3)?\n");
 		System.out.println("1) The date of creation");
 		System.out.println("2) I want to toggle the document's favourite status");
-		System.out.println("3) I want to modify the document itself");
+		System.out.println("3) I want to modify the document itself\n");
 		
 		int choice = in.nextInt();
 
@@ -178,20 +178,14 @@ class DocumentCtrl {
 
 			case 2:
 
-			System.out.println("Current favourite status is: ");
-			System.out.print(doc.getFavourite());
-			System.out.print("Do you wish to toggle the status to: ");
-			System.out.print(!doc.getFavourite() + "? (Y/N)\n");
+			System.out.print("Current favourite status is ");
+			System.out.println(doc.getFavourite());
 
-			while (!in.hasNext());
+			togglePreferit(doc);
 
-			String validation = in.nextLine();
+			System.out.println("New favourite status is "+doc.getFavourite());
+			return;
 			
-			if ((validation.charAt(0) == 'Y' || validation.charAt(0) == 'y') && validation.length() == 1){
-				togglePreferit(doc);
-				 return;
-			} else { return;}
-
 			case 3:
 
 			eliminarDocument(doc);
@@ -254,9 +248,11 @@ class DocumentCtrl {
 	public void eliminarDocument(){
 		Scanner in = new Scanner(System.in);
 
-		String author = in.nextLine();
+		System.out.print("\nEnter the name of the title: ");
 		String title = in.nextLine();
 
+		System.out.print("Enter the author's name: ");
+		String author = in.nextLine();
 		
 
 		Pair<Document, Boolean> docboolean = lib.getDocument(author, title);
