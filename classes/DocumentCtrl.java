@@ -71,8 +71,6 @@ class DocumentCtrl {
 		} 
 		ArrayList<ArrayList<String>> contentdecomp = new ArrayList<ArrayList<String>>();
 
-		in.close();
-
 		for (int s = 0; s < content.size(); ++s){
 			contentdecomp.add(decomposeWords(content.get(s)));
 		}
@@ -140,7 +138,7 @@ class DocumentCtrl {
 
 		if (!docboolean.getR()){
 			System.out.println("Document with such author and title not found!");
-			in.close(); return;
+			 return;
 		}
 
 		System.out.println("Preview of the document: \n\n"+doc);
@@ -155,7 +153,7 @@ class DocumentCtrl {
 		switch(choice){
 			case 1:
 			System.out.println("Current date: "+doc.getData());
-			System.out.println("New date (YYYY-MM-DD): ");
+			System.out.println("New date (YYYY MM DD): ");
 			int year = in.nextInt(); int month = in.nextInt(); int day = in.nextInt();
 
 			try {
@@ -165,26 +163,28 @@ class DocumentCtrl {
 
 				CD.deleteDoc(doc);
 				CD.addDoc(doc);
-				in.close(); return;
+				 return;
 
 			} catch (DateTimeException e){
 				System.out.println("\nPlease enter a valid date in the format YYYY MM DD next time :)");
-				in.close(); return;
+				 return;
 			}
 
 			case 2:
 
 			System.out.println("Current favourite status is: ");
 			System.out.print(doc.getFavourite());
-			System.out.println("Do you wish to toggle the status to: ");
+			System.out.print("Do you wish to toggle the status to: ");
 			System.out.print(!doc.getFavourite() + "? (Y/N)\n");
+
+			while (!in.hasNext());
 
 			String validation = in.nextLine();
 			
 			if ((validation.charAt(0) == 'Y' || validation.charAt(0) == 'y') && validation.length() == 1){
 				togglePreferit(doc);
-				in.close(); return;
-			} else {in.close(); return;}
+				 return;
+			} else { return;}
 
 			case 3:
 
@@ -196,9 +196,9 @@ class DocumentCtrl {
 			default:
 
 			System.out.println("Didn't recognize "+choice);
-			in.close(); return;
+			 return;
 		}
-		in.close();
+		
 	}
 
 	public void eliminarDocument(Document d){
@@ -251,7 +251,7 @@ class DocumentCtrl {
 		String author = in.nextLine();
 		String title = in.nextLine();
 
-		in.close();
+		
 
 		Pair<Document, Boolean> docboolean = lib.getDocument(author, title);
 		
