@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.*;
 import org.junit.jupiter.api.DisplayName;
 
-/** Joc de proves per a la classe ConsultaTitol.
+/** Joc de proves per a la classe ConsultaAvancadaTitol.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
  */
 public class ConsultaAvancadaTest {
@@ -26,7 +26,7 @@ public class ConsultaAvancadaTest {
 
     @Test
     @DisplayName("Seqüència al títol")   
-    public void ConsultaAlTitol() {
+    public void ConsultaAvancadaAlTitol() {
         // Init
         Frase test[] = new Frase[1];
         test[0] = new Frase("text_inutil");
@@ -52,33 +52,28 @@ public class ConsultaAvancadaTest {
 
         Set<Document> esperat = new HashSet<>();
 
-        ConsultaAvancada consulta = new ConsultaAvancada(l, "Cap Títol");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Cap Títol"));
 
         esperat.add(d1);
         esperat.add(d2);
         esperat.add(d4);
         esperat.add(d5);
-        consulta = new ConsultaAvancada(l, "Consulta");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Consulta"));
 
         esperat.add(d6);
         esperat.add(d7);
-        consulta = new ConsultaAvancada(l, "Cons");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Cons"));
 
         esperat.remove(d1);
         esperat.remove(d2);
         esperat.remove(d5);
         esperat.add(d3);
-        consulta = new ConsultaAvancada(l, " ");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, " "));
 
         esperat.add(d1);
         esperat.add(d2);
         esperat.add(d5);
-        consulta = new ConsultaAvancada(l, "");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, ""));
     }
 
     @Test
@@ -109,33 +104,28 @@ public class ConsultaAvancadaTest {
 
         Set<Document> esperat = new HashSet<>();
 
-        ConsultaAvancada consulta = new ConsultaAvancada(l, "Cap Autor");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Cap Autor"));
 
         esperat.add(d1);
         esperat.add(d2);
         esperat.add(d4);
         esperat.add(d5);
-        consulta = new ConsultaAvancada(l, "Consulta");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Consulta"));
 
         esperat.add(d6);
         esperat.add(d7);
-        consulta = new ConsultaAvancada(l, "Cons");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Cons"));
 
         esperat.remove(d1);
         esperat.remove(d2);
         esperat.remove(d5);
         esperat.add(d3);
-        consulta = new ConsultaAvancada(l, " ");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, " "));
 
         esperat.add(d1);
         esperat.add(d2);
         esperat.add(d5);
-        consulta = new ConsultaAvancada(l, "");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, ""));
     }
 
     @Test
@@ -183,32 +173,27 @@ public class ConsultaAvancadaTest {
 
         Set<Document> esperat = new HashSet<>();
 
-        ConsultaAvancada consulta = new ConsultaAvancada(l, "No apareix");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "No apareix"));
 
         esperat.add(d2);
         esperat.add(d3);
         esperat.add(d4);
         esperat.add(d5);
-        consulta = new ConsultaAvancada(l, "Accepta");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Accepta"));
 
         esperat.remove(d2);
         esperat.remove(d3);
         esperat.remove(d4);
         esperat.add(d6);
-        consulta = new ConsultaAvancada(l, "no");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "no"));
 
         esperat.add(d3);
         esperat.add(d4);
-        consulta = new ConsultaAvancada(l, " ");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, " "));
 
         esperat.add(d1);
         esperat.add(d2);
-        consulta = new ConsultaAvancada(l, "");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, ""));
 
         esperat.remove(d1);
         esperat.remove(d2);
@@ -217,7 +202,6 @@ public class ConsultaAvancadaTest {
         esperat.remove(d5);
         esperat.remove(d6);
 
-        consulta = new ConsultaAvancada(l, "Aquí tampoc");
-        assertEquals(esperat, consulta.obtenirDocuments());
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Aquí tampoc"));
     }
 }
