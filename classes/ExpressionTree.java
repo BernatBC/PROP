@@ -292,18 +292,18 @@ public class ExpressionTree {
         Node t1,t2,temp;
         ListIterator<String> iter = postfix.listIterator();
  
-        System.out.print("Printing postfix\n");
+        //System.out.print("Printing postfix\n");
         while (iter.hasNext()){
         String value = iter.next();
-        System.out.print(value+"\n");
+       // System.out.print(value+"\n");
             if(value.charAt(0) == '{'){
 
                 while (value.charAt(value.length()-1) != '}'){
-                System.out.print("Creating set of words"+value+"\n");
+                //System.out.print("Creating set of words"+value+"\n");
                 value+=" "+iter.next();
                     
                 }
-                System.out.print("Set = "+value+"\n");
+                //System.out.print("Set = "+value+"\n");
                 temp = new Node(value);
                 st.push(temp);
             }
@@ -344,15 +344,15 @@ public class ExpressionTree {
         if(root==null) return;
  
         inorder(root.left);
-        System.out.print(root.data+ "\n");
+        //System.out.print(root.data+ "\n");
         inorder(root.right);
     }
     
     public Node BooleanTreeGenerator(List<String> postfix) {
         
         Node r = ExpressionTree(postfix);
-        System.out.print("printing tree\n");
-        inorder(r);
+        //System.out.print("printing tree\n");
+        //inorder(r);
         return r;
     }   
 }
