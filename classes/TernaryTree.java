@@ -63,7 +63,7 @@ public class TernaryTree {
      * @return Paraula : Classe paraula.
      */
     public Paraula inserirObtenirParaula(String s, int i) {
-        if (s == "") return null;
+        if (s.length() <= 0) return null;
         if (lletra == ' ') lletra = s.charAt(i);
         if (s.charAt(i) == lletra) {
             if (i == s.length() - 1) {

@@ -23,7 +23,6 @@ public class ConsultaAutors {
        
         while (nom_cognom.length() > 0) {
             //inserim l'autor
-            System.out.println("arribo");
             autors.inserirAutor(autor, nom_cognom, 0);
             
             //esborrem la primera paraula de l'estring

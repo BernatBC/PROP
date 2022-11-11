@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
-import java.util.HashMap;
-
 /** Classe controladora de mètodes relacionats amb documents.
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
  */
@@ -28,33 +26,24 @@ class DocumentCtrl {
 		CD = cd;
 		CA = ca;
 	};
-	
-	private ArrayList<String> decomposeWords(String phr){
 
-		if (phr.length() <= 0) return new ArrayList<String>();
+	private ArrayList<String> decomposeWords(String frase) {
+        ArrayList<String> paraules = new ArrayList<>();
+        String a_insert = "";
 
-		int i = 0;
-		ArrayList<String> listWords = new ArrayList<String>();
-		StringBuilder currWord = new StringBuilder("");
-		
-		while (i < phr.length() && !Character.isLetter(phr.charAt(i))) ++i;
-		
-		while (i < phr.length()){
-			while (Character.isLetter(phr.charAt(i))){
-				currWord.append(phr.charAt(i++));
-				if (i >= phr.length()) break;
-			} 
-			
-			listWords.add(currWord.toString());
-			currWord = new StringBuilder("");
-			
-			while (i < phr.length() && !Character.isLetter(phr.charAt(i))) ++i;
-		}
-		
-		if (i == phr.length() && Character.isLetter(phr.charAt(--i))) listWords.add(currWord.toString());
-		
-		return listWords;
-	}
+        for (char c: frase.toCharArray()) {
+            if (!Character.isLetter(c)) {
+                if (a_insert.length() != 0) {
+                    paraules.add(a_insert);
+                    a_insert = "";
+                }
+            }
+            else a_insert += c;
+        }
+		if (a_insert.length() != 0) paraules.add(a_insert);
+
+        return paraules;
+    }
 
 	public Pair<Document, Boolean> getDocument(String nomAutor, String nomTitol){
 		return lib.getDocument(nomAutor, nomTitol);
@@ -124,7 +113,6 @@ class DocumentCtrl {
 
 			cont[w] = new Frase(arrWords, content.get(w));
 		}
-
 		Contingut contentFinal = new Contingut(String.join("\n", content), cont);
 		
 		// Finalment creem el document i el guardem

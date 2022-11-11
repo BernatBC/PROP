@@ -30,7 +30,6 @@ public class Frase {
         Oracio = new Paraula[n_paraules];
         //posem les words
         for (int j = 0; j < words.size(); ++j) Oracio[j] = words.get(j);
-
     }
 
     /** Constructora amb Paraula[] i la frase en un string. */
