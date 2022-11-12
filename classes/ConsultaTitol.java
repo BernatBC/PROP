@@ -42,7 +42,7 @@ import java.util.Set;
 
     /** Retorna el conjunt de documents corresponent a l'autor.
      * @param autor autor dels documents retornats.
-     * @return Set<Document> : conjunt de documents corresponent a l'autor.
+     * @return Conjunt de documents corresponent a l'autor.
      */
     public Set<Document> getDocAutor(Frase autor) {
         return coleccions.get(autor.toString());

@@ -70,7 +70,7 @@ public class TernaryTreeAutor {
     /**Obtenir els conjunt d'autors que conten el prefix s.
      * @param s seqüencia de caràcters que forma el prefix.
      * @param i index del prefix des d'on falta fer la cerca.
-     * @return Set<Frase> : Conjunt d'autors.
+     * @return Conjunt d'autors.
      */
     public Set<Frase> obtenirAutors(String s, int i) {
         if (s == "") return null;

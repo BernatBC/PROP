@@ -15,6 +15,7 @@ public class Paraula {
     /** Identificador de la paraula. */
     private int index;
 
+    /** Pròxim identificador a assignar. */
     private static int proxim_index = 0;
 
     /** Constructora per defecte de paraula.
@@ -28,7 +29,7 @@ public class Paraula {
     }
 
     /** Retorna el nombre d'ocurrencies total.
-     * @return Int : Nombre d'ocurrencies.
+     * @return int : Nombre d'ocurrencies.
      */
     public int getOcurrencia() {
         return ocurrencia;
@@ -41,17 +42,13 @@ public class Paraula {
         return mot;
     }
 
-    /** Decrementa en n unitats el nombre d'ocurrencies.
-     * @param n Nombre d'ocurrencies.
-     */
+    /** Decrementa en una unitat el nombre d'ocurrencies.*/
     public void decrementarOcurrencia() {
         ocurrencia--;
         if (ocurrencia < 0) ocurrencia = 0;
     }
 
-    /** Incrementa en n unitats el nombre d'ocurrencies.
-     * @param n Nombre d'ocurrencies.
-     */
+    /** Incrementa en una unitat el nombre d'ocurrencies. */
     public void incrementarOcurrencia() {
         ocurrencia++;
     }

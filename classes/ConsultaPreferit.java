@@ -15,7 +15,7 @@ import java.util.Set;
         preferits = new HashSet<>();
     }
 
-    /** Afegeix el document a la llibreria.
+    /** Afegeix el document al conjunt.
      * @param d document que es vol afegir.
      */
     public void afegirDocument(Document d) {
@@ -30,7 +30,7 @@ import java.util.Set;
     }
 
     /** Retorna el conjunt de documents preferits.
-     * @return Set<Document> : conjunt dels documents preferits.
+     * @return Conjunt dels documents preferits.
      */
     public Set<Document> getDocPreferit() {
         return preferits;

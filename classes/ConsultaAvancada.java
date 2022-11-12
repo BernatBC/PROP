@@ -7,10 +7,14 @@ import java.util.HashSet;
  */
 public class ConsultaAvancada {
 
+    /**Constructora per defecte de ConsultaAvançada. */
+    public ConsultaAvancada() {};
+
     /**
-     * Consturctora de la consulta avançada.
+     * Retorna el conjunt de documents dins de l que contenen la seqüència s.
      * @param l conjunt de documents del sistema.
      * @param s seqüència que es vol cercar.
+     * @return Conjunt de documents que contenen la seqüència s.
      */
     public static Set<Document> obtenirDocuments(Llibreria l, String s) {
         Set<Document> documents = l.getSetDocuments();

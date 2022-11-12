@@ -84,10 +84,10 @@ public class TernaryTree {
         }
     }
 
-    /**Esborrar la classe Paraula que correspon a la seqüència s.
+    /**Esborra la paraula corresponent a s juntament amb els nodes innecessaris.
      * @param s seqüencia de caràcters que forma la paraula.
      * @param i index de la paraula des d'on falta fer la cerca.
-     * @param esborrable últim node que pot esborrar un dels seus fills.
+     * @param esborrable node pare des d'on es pot esborrar l'arbre.
      * @param dir direcció del node fill que es pot esborrar.
      */
     public void esborrarParaula(String s, int i, TernaryTree esborrable, int dir) {
