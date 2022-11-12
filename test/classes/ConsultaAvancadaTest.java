@@ -127,7 +127,6 @@ public class ConsultaAvancadaTest {
         esperat.add(d5);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, ""));
     }
-
     @Test
     @DisplayName("Seqüència al contingut")   
     public void ConsultaAlContingut() {
@@ -201,6 +200,94 @@ public class ConsultaAvancadaTest {
         esperat.remove(d4);
         esperat.remove(d5);
         esperat.remove(d6);
+
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Aquí tampoc"));
+    }
+
+    @Test
+    @DisplayName("Consulta variada")
+    public void ConsultaVariada() {
+        // Init
+        Frase test1[] = new Frase[0];
+        Contingut cont1 = new Contingut("", test1);
+        Frase test2[] = new Frase[1];
+        test2[0] = new Frase("Accepta.");
+        Contingut cont2 = new Contingut("Accepta.", test2);
+        Frase test3[] = new Frase[2];
+        test3[0] = new Frase("Accepta.");
+        test3[1] = new Frase("No ho fa.");
+        Contingut cont3 = new Contingut("Accepta. No ho fa.", test3);
+        Frase test4[] = new Frase[2];
+        test4[0] = new Frase("Accepta.");
+        test4[1] = new Frase("Segona ocurrencia d'Accepta.");
+        Contingut cont4 = new Contingut("Accepta. Segona ocurrencia d'Accepta.", test4);
+        Frase test5[] = new Frase[2];
+        test5[0] = new Frase("Ara no hi ha la primera.");
+        test5[1] = new Frase("Segona ocurrencia d'Accepta.");
+        Contingut cont5 = new Contingut("Ara no hi ha la primera. Segona ocurrencia d'Accepta.", test5);
+        Frase test6[] = new Frase[3];
+        test6[0] = new Frase("Ara no hi ha la primera.");
+        test6[1] = new Frase("Ni a la segona frase.");
+        test6[2] = new Frase("Ni tampoc a la tercera.");
+        Contingut cont6 = new Contingut("Ara no hi ha la primera. Ni a la segona frase. Ni tampoc a la tercera.", test6);
+        Frase test7[] = new Frase[3];
+        test7[0] = new Frase("Ara no hi ha la primera.");
+        test7[1] = new Frase("Ni a la segona frase.");
+        test7[2] = new Frase("Ni tampoc a la tercera.");
+        Contingut cont7 = new Contingut("Ara no hi ha la primera. Ni a la segona frase. Ni tampoc a la tercera.", test7);
+
+        Document d1 = new Document(new Frase("Accepta"), new Frase("Accepta"), false, null, null, cont1);
+        Document d2 = new Document(new Frase("Accepta"), new Frase("Accepta"), false, null, null, cont2);
+        Document d3 = new Document(new Frase("autor3"), new Frase("titol3"), false, null, null, cont3);
+        Document d4 = new Document(new Frase("autor4"), new Frase("Accepta"), false, null, null, cont4);
+        Document d5 = new Document(new Frase("autor5"), new Frase("titol5"), false, null, null, cont5);
+        Document d6 = new Document(new Frase("Accepta"), new Frase("titol6"), false, null, null, cont6);
+        Document d7 = new Document(new Frase("autor7"), new Frase("titol7"), false, null, null, cont7);
+
+        Llibreria l = new Llibreria();
+
+        l.addDocument(d1);
+        l.addDocument(d2);
+        l.addDocument(d3);
+        l.addDocument(d4);
+        l.addDocument(d5);
+        l.addDocument(d6);
+        l.addDocument(d7);
+
+        Set<Document> esperat = new HashSet<>();
+
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "No apareix"));
+
+        esperat.add(d1);
+        esperat.add(d2);
+        esperat.add(d3);
+        esperat.add(d4);
+        esperat.add(d5);
+        esperat.add(d6);
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Accepta"));
+
+        esperat.remove(d1);
+        esperat.remove(d2);
+        esperat.remove(d3);
+        esperat.remove(d4);
+        esperat.add(d7);
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "no"));
+
+        esperat.add(d3);
+        esperat.add(d4);
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, " "));
+
+        esperat.add(d1);
+        esperat.add(d2);
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, ""));
+
+        esperat.remove(d1);
+        esperat.remove(d2);
+        esperat.remove(d3);
+        esperat.remove(d4);
+        esperat.remove(d5);
+        esperat.remove(d6);
+        esperat.remove(d7);
 
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Aquí tampoc"));
     }

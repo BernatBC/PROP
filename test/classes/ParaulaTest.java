@@ -13,7 +13,12 @@ public class ParaulaTest {
     public void setUp() {
         System.out.println("SetUp Completed!");
     }
-    
+    /*IMPORTANT
+
+    Executar testos de manera individual.
+
+    Els testos en aquesta classe podt donar incorrecte si s'executen tots a la vegada. Això és degut a que JUnit no executa els testos de manera independent. La classe paraula assigna un identificador començant pel 0, i executant primer els altres testos fa que l'index assignat sigui major al assignat.
+     */
     @Test
     @DisplayName("Test 1 paraula")   
     public void UnaParaulaTest() {
