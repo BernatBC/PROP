@@ -24,7 +24,7 @@ public class DriverControlador {
         Scanner read = new Scanner(System.in);
 
         while (read.hasNextLine()) {
-            switch (read.nextLine()) {
+            switch (read.nextLine().toLowerCase()) {
                 case "n":
                     controlador.crearDocument();
                 break;
@@ -81,6 +81,18 @@ public class DriverControlador {
                         }
                     }
                     
+                break;
+                case "cc":
+                    // Consulta contingut
+                    System.out.print("Entra el títol del document: ");
+                    String tit = read.nextLine();
+                    System.out.print("Entra l'autor del document: ");
+                    String auth = read.nextLine();
+                    Pair<Document, Boolean> p = controlador.getDocument(auth, tit);
+                    
+                    if (!p.getR()) System.out.println("\nNo s'ha trobat un document amb aquest títol i autor");
+                    else System.out.println(p.getL());
+
                 break;
                 case "cp":
                     imprimirDocuments(cp.getDocPreferit());
@@ -162,20 +174,21 @@ public class DriverControlador {
 
         System.out.println("\n+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+");
         System.out.println("|  COMANDES:                                           |");
-        System.out.println("|  n    Nou   Document                                 |");
-        System.out.println("|  m    Modificar Document                             |");
-        System.out.println("|  e    Eliminar Document                              |");
+        System.out.println("|  N    Nou   Document                                 |");
+        System.out.println("|  M    Modificar Document                             |");
+        System.out.println("|  E    Eliminar Document                              |");
         System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-|");
-        System.out.println("|  ca   Consulta d'Autors per prefix                   |");
-        System.out.println("|  cseq Consulta de Documents per sequencia            |");
-        System.out.println("|  cd   Consulta de Documents per data                 |");
-        System.out.println("|  cp   Consulta de Documents preferits                |");
-        System.out.println("|  cr1  Consulta de Documents per rellevancia mètode 1 |");
-        System.out.println("|  cr2  Consulta de Documents per rellevancia mètode 2 |");
-        System.out.println("|  cs   Consulta de Documents per semblança            |");
-        System.out.println("|  ct   Consulta de Documents per autors               |");
+        System.out.println("|  CA   Consulta d'Autors per prefix                   |");
+        System.out.println("|  CSEQ Consulta de Documents per sequencia            |");
+        System.out.println("|  CC   Consulta del Contingut d'un document           |");
+        System.out.println("|  CD   Consulta de Documents per data                 |");
+        System.out.println("|  CP   Consulta de Documents preferits                |");
+        System.out.println("|  CR1  Consulta de Documents per rellevancia mètode 1 |");
+        System.out.println("|  CR2  Consulta de Documents per rellevancia mètode 2 |");
+        System.out.println("|  CS   Consulta de Documents per semblança            |");
+        System.out.println("|  CT   Consulta de Documents per autors               |");
         System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+");
-        System.out.println("|  q    Sortir de l'aplicació                          |");
+        System.out.println("|  Q    Sortir de l'aplicació                          |");
         System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+\n");
     }
 }
