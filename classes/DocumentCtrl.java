@@ -1,7 +1,10 @@
 package classes;
 
 import java.util.Scanner;
+import java.util.Set;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
@@ -16,6 +19,106 @@ public class DocumentCtrl {
 	private ConsultaTitol CT;
 	private ConsultaPreferit CP;
 	private ConsultaAutors CA;
+
+	static private 
+	Comparator<Document> documentDataComparator = new Comparator<Document>(){
+		@Override
+		public int compare(Document d1, Document d2){
+			LocalDate v1 = d1.getData(); 
+			LocalDate v2 = d2.getData();
+
+			if (v1.isBefore(v2)) return -1;
+			else if (v1.isAfter(v2)) return 1;
+			else return 0;
+		}
+	};
+
+	static private
+	Comparator<Document> documentFavouriteComparator = new Comparator<Document>(){
+		@Override
+		public int compare(Document d1, Document d2){
+			boolean f1 = d1.getFavourite();
+			boolean f2 = d2.getFavourite();
+
+			if (f1 && !f2) return -1;
+			else if (f2 && !f1) return 1;
+			else return 0;
+		}
+	};
+
+	static private 
+	Comparator<Document> documentAuthorComparator = new Comparator<Document>(){
+		@Override
+		public int compare(Document d1, Document d2){
+			String a1 = d1.getAutor().toString();
+			String a2 = d2.getAutor().toString();
+
+			return a1.compareTo(a2);
+		}
+	};
+
+	static private 
+	Comparator<Document> documentTitleComparator = new Comparator<Document>(){
+		@Override
+		public int compare(Document d1, Document d2){
+			String a1 = d1.getTitol().toString();
+			String a2 = d2.getTitol().toString();
+
+			return a1.compareTo(a2);
+		}
+	};
+
+
+	/** Mètode static per a ordenar llistes de documents segons un tipus d'ordenació.
+	 * 
+	 * Els tipus d'ordenació són per dates (0), per preferit (1), per autor alfabèticament (2) o per títol alfabèticament (3).
+	 * 
+	 * @param docs La llista de Documents a ordenar per un cert criteri.
+	 * @param type Enter que representa el criteri d'ordenació.
+	 * 
+	 */
+	static public ArrayList<Document> sortDocuments(ArrayList<Document> docs, int type){
+		
+		switch (type){
+			case 0:
+			// Per dates
+			docs.sort(documentDataComparator);
+			break;
+			
+			case 1:
+			// Per preferit
+			docs.sort(documentFavouriteComparator);
+			break;
+
+			case 2:
+			// Per autor
+			docs.sort(documentAuthorComparator);
+			break;
+
+			case 3:
+			// Per títol
+			docs.sort(documentTitleComparator);
+		}
+
+		return docs;
+	}
+
+	/** Mètode static per a ordenar conjunts de documents segons un tipus d'ordenació.
+	 * 
+	 * Els tipus d'ordenació són per dates (0), per preferit (1), per autor alfabèticament (2) o per títol alfabèticament (3)
+	 * 
+	 * @param docs El conjunt de Documents a ordenar per un cert criteri.
+	 * @param type Enter que representa el criteri d'ordenació.
+	 * @return La llista de Documents ordenada.
+	 */
+	static public ArrayList<Document> sortDocuments(Set<Document> docs, int type){
+
+		ArrayList<Document> doclist = new ArrayList<Document>();
+
+		for (Document doc : docs) doclist.add(doc);
+
+		return sortDocuments(doclist, type);
+	}
 
 	/** Constructora del Controlador de Document.
 	 * 

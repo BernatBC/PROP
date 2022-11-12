@@ -55,7 +55,7 @@ public class DriverControlador {
                         try {
                             LocalDate ant = LocalDate.of(year, month, day);
                             LocalDate post = LocalDate.of(year2, month2, day2);
-                            imprimirArray(cd.consulta(ant, post));
+                            imprimirArray(DocumentCtrl.sortDocuments(cd.consulta(ant, post), getCriteris(read)));
                         } catch (DateTimeException e){
                             System.out.println("\nPlease enter a valid date in the format YYYY MM DD next time :)");
                         }
@@ -65,7 +65,7 @@ public class DriverControlador {
                         int year = read.nextInt(); int month = read.nextInt(); int day = read.nextInt();
                         try {
                             LocalDate d = LocalDate.of(year, month, day);
-                            imprimirArray(cd.consultaAnterior(d));
+                            imprimirArray(DocumentCtrl.sortDocuments(cd.consultaAnterior(d), getCriteris(read)));
                         } catch (DateTimeException e){
                             System.out.println("\nPlease enter a valid date in the format YYYY MM DD next time :)");
                         }
@@ -75,7 +75,7 @@ public class DriverControlador {
                         int year = read.nextInt(); int month = read.nextInt(); int day = read.nextInt();
                         try {
                             LocalDate d = LocalDate.of(year, month, day);
-                            imprimirArray(cd.consultaPosterior(d));
+                            imprimirArray(DocumentCtrl.sortDocuments(cd.consultaPosterior(d), getCriteris(read)));
                         } catch (DateTimeException e){
                             System.out.println("\nPlease enter a valid date in the format YYYY MM DD next time :)");
                         }
@@ -95,7 +95,7 @@ public class DriverControlador {
 
                 break;
                 case "cp":
-                    imprimirDocuments(cp.getDocPreferit());
+                    imprimirArray(DocumentCtrl.sortDocuments(cp.getDocPreferit(), getCriteris(read)));
                 break;
                 case "cr1":
                     System.out.print("Entra un conjunt de paraules seperades per espais: ");
@@ -124,12 +124,18 @@ public class DriverControlador {
                 break;
                 case "cseq":
                     System.out.print("Enter the sequence: ");
-                    String s3 = read.nextLine();imprimirDocuments(ConsultaAvancada.obtenirDocuments(l, s3));
+                    String s3 = read.nextLine();
+                    Set<Document> results = ConsultaAvancada.obtenirDocuments(l, s3);
+
+                    imprimirArray(DocumentCtrl.sortDocuments(results, getCriteris(read)));
+
                 break;
                 case "ct":
                     System.out.print("Enter the author of the document: ");
                     String aut = read.nextLine();
-                    imprimirDocuments(ct.getDocAutor(new Frase(aut)));
+
+                    imprimirArray(DocumentCtrl.sortDocuments(ct.getDocAutor(new Frase(aut)), getCriteris(read)));
+
                 break;
             }
             imprimirComandes();
@@ -166,8 +172,27 @@ public class DriverControlador {
     private static void imprimirSemblant(ArrayList<Pair<Double,Document>> documents) {
         if (documents == null) return;
         for (Pair<Double, Document> d: documents) {
-            System.out.println(d.getL() + " " + d.getR().toString());
+            System.out.println("GRAU DE SEMBLANÇA: " + d.getL());
+            System.out.println(d.getR().toString());
         }
+    }
+
+    private static int getCriteris(Scanner read){
+        System.out.println("\nPer quin criteri d'ordenació vols ordenar els documents? (0..3)");
+        System.out.println("\n[0] Per les dates de creació ascendentment");
+        System.out.println("[1] Primer els documents preferits, llavors els no-preferits.");
+        System.out.println("[2] Per ordre alfabètic dels autors.");
+        System.out.println("[3] Per ordre alfabètic dels títols dels documents");
+    
+        int crit = read.nextInt();
+
+        if (crit < 0 || crit > 4){
+            System.out.println("Ho sentim, "+crit+ " no és un criteri vàlid d'ordenació");
+            System.out.println("Els ordenarem per data per defecte.");
+            crit = 0;
+        }
+
+        return crit;
     }
 
     private static void imprimirComandes() {
