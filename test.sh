@@ -1,4 +1,5 @@
 #!/bin/bash
 rm classes/*.class
-javac --release 11 classes/DriverControlador.java
-java classes.DriverControlador
+rm test/classes/DriverControlador.class
+javac --release 11 test/classes/DriverControlador.java
+java test.classes.DriverControlador

@@ -1,4 +1,5 @@
-package classes;
+package test.classes;
+import classes.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
