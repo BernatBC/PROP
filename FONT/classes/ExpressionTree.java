@@ -74,7 +74,6 @@ public class ExpressionTree {
         while(!Operands.empty()){
             postfix.add(Operands.pop());
         }
-        System.out.print("postfix = " + postfix + "\n");
         return postfix;
 
     }
