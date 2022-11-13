@@ -29,6 +29,11 @@ public class FraseTest {
 
         // Assert
         assertEquals(true, fraseP2.conteParaula("prop"));
+        assertEquals(true, fraseP2.conteParaula("No"));
+        assertEquals(true, fraseP2.conteParaula("a"));
+        assertEquals(false, fraseP2.conteParaula(""));
+        assertEquals(false, fraseP2.conteParaula(" "));
+        assertEquals(false, fraseP2.conteParaula("no"));
     }
 
 
