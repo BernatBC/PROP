@@ -73,11 +73,12 @@ public class DriverControlador {
                         imprimirArray(DocumentCtrl.sortDocuments(e.getResultat(l), getCriteris(read)));
                         }
                     else if (mode == 2){
-                        Set<String> expressions = controladorb.GetNomExpressions();
-                        if (expressions.isEmpty()){
+                        
+                        if (controladorb.isEmpty()){
                             System.out.print("No hi ha expressions booleanes guardades!");
                         }
                         else{
+                        Set<String> expressions = controladorb.GetNomExpressions();
                         System.out.print("Les expressions que hi ha guardades son: ");
                         System.out.print(expressions);
                         String nom_consultar = read.nextLine();

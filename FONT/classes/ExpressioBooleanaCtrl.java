@@ -17,6 +17,10 @@ public class ExpressioBooleanaCtrl{
         return SetDeExpressions.keySet();
     }
 
+    public Boolean isEmpty(){
+    return SetDeExpressions.isEmpty();
+    }
+
     public void ExpressioBooleanaCtrl(String nom, String cos){
         ExpressioBooleana temp = new ExpressioBooleana(nom, cos);
         SetDeExpressions.put(nom, temp);
