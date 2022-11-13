@@ -1,0 +1,2 @@
+ContingutTest.sh -> Executable del JUnit de la classe.
+descripcio.txt -> Descripció del joc de proves.

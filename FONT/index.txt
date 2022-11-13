@@ -1,0 +1,3 @@
+classes-> Codi del projecte
+lib -> executables .jar de JUnit.
+test -> Codi del driverControlador i dels tests JUnit.

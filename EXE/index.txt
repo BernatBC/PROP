@@ -1,0 +1,2 @@
+DriverControlador -> Executable del driver general
+JUnit* -> Executable de JUnit de la classe indicada.
