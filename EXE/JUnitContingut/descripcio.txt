@@ -1,0 +1,13 @@
+CONTINGUT
+
+Per a comprovar aquesta classe no gaire complexa s’ha dut a terme un sol test que comprova tots els mètodes i funcionalitats d’aquesta. S’afegeixen set paraules, quatre frases i llavors es crea el contingut.
+
+Primer es comprova que el Term Frequency (TF) de la primera paraula sigui el que s’espera (20%). Llavors es comprova que totes les TF (mètode getTF) siguin les adequades mitjançant el HashMap que retorna. També es comproven les ocurrències amb el getWords (molt similar al test anterior, però sense dividir pel nombre de paraules totals) i es comprova que al passar el contingut a String, el que retorna és exactament la String plaintext que vam passar-li a la seva constructora.
+
+A més a més, hi ha dos asserts on es comprova que el mètode getFrases preserva l’ordre de les frases i llavors els últim tests són per a comprovar el mètode contéSequencia, que retorna un booleà segons si una sequüència es troba o no al contingut. Hi ha diversos casos extrems que comproven tot tipus de casos.
+
+
+S'estudien els valors i efectes de tots els mètodes de la classe.
+
+Operativa:
+1- Executar el bash script proporcionat.

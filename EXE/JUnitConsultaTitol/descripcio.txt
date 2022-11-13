@@ -1,0 +1,8 @@
+CONSULTA TÍTOL
+
+A la classe ConsultaTitol, hem decidit fer dos tests, un amb documents d’un sol autor, i un altre amb documents de varis autors. En un començament, quan encara no hi ha cap document, la consulta no ens retorna cap document de l’autor. Tampoc ens en retorna cap si fem una consulta amb altres autors i un autor buit. Llavors afegim un document i comprovem que ens el retorna al fer la consulta en amb aquell autor i no amb d’altres. L’afegim una altra vegada per comprovar que només ens retorna una sola instància d’aquest. L’eliminem múltiples vegades per comprovar la funció eliminarDocument, i tot seguit el tornem a afegir per comprovar que no hi hagi problemes amb eafegir i eliminar un document vàries vegades. Tot seguit anem afegint més documents d’aquell autor i comprovem que es retornin correctament al fer la consulta. Despreś seguim eliminant i afegint diferents documents per fer un cas més representatiu. El segon test comprova casos amb documents de diferents autors. Bàsicament anem afegint i eliminant varis documents i comprovem que retorna el conjunt adequat a cada autor. Això ens permet representar un cas més pròxim a l’ús d’aquesta classe. Aquests tests ens han permès comprovar que totes les funcions de ConsultaTitol es comportem com teníem previst.
+
+S'estudien els valors i efectes de tots els mètodes de la classe.
+
+Operativa:
+1- Executar el bash script proporcionat.

@@ -1,0 +1,16 @@
+DOCUMENT
+
+La classe document, tot i que és vital per al projecte, és bastant trivial. Per aquesta raó és innecessari fer jocs de prova molt extensos per a aquesta classe. En total hi ha dos testos, un que comprova getters i setters i un altra que comprova TFs i el conteSequencia de Document.
+
+En primer lloc, es crea el mateix Document que a contingut, però amb un Autor i un Títol. Els getters comproven que el booleà de preferit es modifica correctament, que la data es modifica correctament, i que esl autors; títols i continguts amb els getters són els mateixos que els originals.
+
+El segon test fa dos comprovacions de Term Frequencies calculades fàcilemnt a mà (recordem, només les calcula al contingut i ja hem vist que funcionava al test de Contingut).
+
+Llavors es fan proves del conteSequencia, que busca si la seqüència apareix a almenys un objecte dels següents: Frase Autor, Frase Títol i Contingut. Els jocs de prova comproven moltes combinacions i veiem al final que són correctes i que Document funciona correctament.
+
+
+
+S'estudien els valors i efectes de tots els mètodes de la classe.
+
+Operativa:
+1- Executar el bash script proporcionat.

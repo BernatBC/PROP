@@ -1,0 +1,6 @@
+VOCABULARI
+
+Per a aquesta classe fem dos tests, un per a una sola paraula, i un altre per a vàries. Aquests dos tests són molt similars als de TernaryTree. El primer test comencem comprovant que la paraula no apareix a l’arbre abans d’inserir-la. Tot seguit la inserim i veiem que ens la retorna quan fem la consulta. L’esborrem, i no ens la retorna. Llavors la tornem a inserir i comprovem que l’ha inserit sense problemes. També comprovem que al fer consultes amb prefix, paraula buida i altres paraules no ens retorna cap paraula. Després comprovem que tornar a inserir una paraula ens actualitza el nombre d’ocurrencia d’aquesta. Finalment comprovem que la funció decrementarOcurrencia esborri la paraula si el nombre d’ocurrència d’aquesta arriba a 0. Al segon test comprovem amb múltiples paraules que aquestes s’insereixen correctament, i que al esborrar-ne alguna, l’esborrat no afecta a les altres. Tornant a inserir una paraula prèviament esborrada comprovem que no hi hagi problemes d'inserció. Al final veiem que tornar a inserir una paraula i decrementar l’ocurrencia només afecta a la paraula on s’ha aplicat, i que ha esborrat la paraula “Test” al haver arribat a 0 ocurrències. Totes les funcions de la classe han sigut comprovades.
+
+Operativa:
+1- Executar el bash script proporcionat.

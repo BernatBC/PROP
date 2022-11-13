@@ -1,0 +1,16 @@
+CONSULTA SEMBLANT
+
+Per comprovar aquesta classe s’ha realitzat un test que cobreix tots els possibles paràmetres. Recordem que la Consulta per Semblança es crida des d’un mètode estàtic de la classe, executeQuery, on li donem una Llibreria, un Document (anomenarem document de referència), una k, ens diu quin mètode de vector sparsed volem utilitzar, i retorna una llista ordenada amb els cosinus calculats a la classe Llibreria.
+
+Assumirem que els cosinus estan ben calculats doncs ja hem vist el LlibreriaTest. Per tant nosaltres comprovarem que la mida del vector final és exactament min(k, NDocs - 1) (doncs el document que agafem com a referència no hauria d’aparèixer al resultat.
+
+En el test es comença comprovant que si el document de referència no està a la llibreria, ens hauria d’aparèixer un error i el resultat hauria de ser un vector buit. Això es comprova per cada mètode de vector sparsed. Seguidament s’afegeixen dos documents a la llibreria tals que d1 i d2 són semblants recíprocament, mentre que d3 s’assembla més a d2 que a d1. Són els mateixos documents i paraules que en el LlibreriaTest.
+
+Els testos que segueixen comproven que els documents surten ordenats tal i com esperem, i també compoven que si k < nDocs - 1, llavors el tamany del vector resultant és k.
+
+
+
+S'estudien els valors i efectes de tots els mètodes de la classe.
+
+Operativa:
+1- Executar el bash script proporcionat.

@@ -1,0 +1,15 @@
+LLIBRERIA
+
+La classe llibreria, definit com un conjunt de documents, consisteix d’un test únic que comprova tots els casos extrems i convencionals de la classe. Genera inicialment sis paraules, set frases i tres continguts i documents, amb nombre de paraules i gran varietat de frases.
+
+Inicialment s’afegeix un document i es comproven els getters d’un Document. Els documents inexistents retornen un booleà Fals, mentre que si preguntem pel document existent ens retornen el Document que haviem afegit i el booleà és True. També es comprova que el getNdocs retorna correctament un document.
+Seguidament s’afegeix un segon document i es comprova la funció getIessim. L’ordre d’insersió dels documents s’hauria de respectar, i getNdocs = 2. Després es comproven les operacions de productes entre Documents amb la seva representació com a vector de paraules. Recordem que hi ha dues maneres d’assignar pesos: amb TF-IDF o amb número d’ocurrències.
+
+Els cosinus s’han calculat a mà (són poques paraules i fàcil de fer els càlculs) i hem pogut verificar que l’índex TF-IDF i els mètodes per ocurrències funcionen correctament.
+
+Seguidament hem afegit l’últim document i hem executar un parell de getDocument per a comprovar que si un títol i un autor existeixen, però no existeix un document amb aquest títol i autor, llavors no hi ha cap error i el getDocument ho identifica correctament. Finalment es comproven més productes entre Documents. Es pot veure que el l’IDF de les paraules s’actualitza correctament al afegir un document.
+
+Finalment eliminem un document i fem més proves amb TF-IDF i amb nombre d’ocurències. Comprovem amb més asserts que els vectors s’han actualitzat correctament, i que alguns resultats tornen a ser els mateixos d’abans.
+
+Operativa:
+1- Executar el bash script proporcionat.

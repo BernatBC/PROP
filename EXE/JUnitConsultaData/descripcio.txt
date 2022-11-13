@@ -1,0 +1,13 @@
+CONSULTA DATA
+
+Per comprovar aquesta classe s’han realitzat quatre tests. El primer comprova l’inserció de documents al conjunt intern on ConsultaData guarda tots els documents en ordre cronològic. Per comprovar que l’inserció manté l’ordre es compara un conjunt fet d’insercions per ordre manuals (inserint de més antic a més recent) amb el resultat de fer una consulta entre la data mínima permesa i la màxima (obtenint així tots els documents inserits).
+
+Apart de per ordre cronològic, dos documents, si comparteixen data, s’ordenen alfabèticament per el seu títol. Això també es comprova al primer test inserint tres documents amb la mateixa data i comprovant que queden ordenats alfabèticament correctament.
+
+El segón test comprova la funció per esborrar documents del conjunt. Ha de comprovar que, primer de tot, el document s’hagi esborrat correctament i, també, que la resta de documents quedin ordenats. El test consiteix a inserir 7 documents (la funció inserir sabem que funciona) i anar esborrant 1 per 1 i comparant el resulta amb un conjunt on només s’han inserit els restants després de fer el delete.
+
+
+S'estudien els valors i efectes de tots els mètodes de la classe.
+
+Operativa:
+1- Executar el bash script proporcionat.

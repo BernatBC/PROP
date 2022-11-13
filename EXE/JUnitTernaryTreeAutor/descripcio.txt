@@ -1,0 +1,7 @@
+TERNARY TREE AUTOR
+
+Per a comprovar aquesta classe hem tornat a fer dos tests, un per a un sol autor, i un altre per a varis. Al primer veiem que l’arbre no ens retorna cap autor abans d’inserir-ne. Quan inserim el primer autor, comprovem que tots els prefixos d’aquest el contenen. Després comprovem que otenirAutors no retorna cap autor quan cerquem prefixos buits i d’innexistents. En el segon test comprovem que autors amb el mateix prefix són retornats quan fem una consulta amb un prefix comú. També hem vist que l’autor buit no l’hem inserit. Tot seguit veiem que quan fem una consulta quan el prefix ja no és comú, només retorna l’autor que el conté. Llavors fem alguna consulta més amb altres prefixos d’autors. Finalment comprovem que al posar prefixos innexistents no retorna cap autor, fins i tot aquells que són extensions d’autos existents. Hem pogut comprovar la correctesa de les funcions inserirAutor, obtenirAutors i la seva constructora.
+S'estudien els valors i efectes de tots els mètodes de la classe.
+
+Operativa:
+1- Executar el bash script proporcionat.

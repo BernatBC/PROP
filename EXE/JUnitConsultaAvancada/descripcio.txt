@@ -1,0 +1,8 @@
+CONSULTA AVANÇADA
+
+Per a comprovar l’única funció d’aquesta classe hem fet un test per a comprovar les seqüències en títols, un altre en autors, un tercer pels continguts, i un últim on la seqüència pot aparèixer a qualsevol dels tres. En el primer test afegim documents a la llibreria amb títols diferents, i autors i continguts idèntics. Quan fem una consulta on la seqüència no pertany al títol, no retornem cap document, però la consulta buida ens retorna tots els documents ja que “” ho contenen tots els títols. Per a vàries seqüències ens retorna els documents que la contenen al títol. El segon test fa els mateixos casos que el primer, però els autors són diferents, i els títols i continguts són iguals. En el tercer els títols i autors són els mateixos però amb un número a darrere (per a tenir claus diferents), i ens centrem en la cerca de seqüències dins dels continguts. Creem documents amb diferent contingut, diferent nombre de frases, etc. Comprovem una altra vegada si els documents retornats són els que contenen la seqüència indicada. A l'últim test fem exactament el mateix que amb els 3 altres tests, però ara tots els documents tenen títols, autors i continguts variats.
+
+S'estudien els valors i efectes de tots els mètodes de la classe.
+
+Operativa:
+1- Executar el bash script proporcionat.

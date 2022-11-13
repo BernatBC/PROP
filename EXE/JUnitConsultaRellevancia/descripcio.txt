@@ -1,0 +1,12 @@
+CONSULTA RELLEVÀNCIA
+
+Per a comprovar aquesta classe només s’ha fet un test ja que la classe en sí es basa en una constructora, que és la que fa i prepara tot, i un getter tribial que retorna una Llibreria (creada i definida a la creadora).
+
+ConsultaRellevancia té dos mètodes per obtenir els K documents demanats. El primer consisteix en retornar els elements els quals la suma d’aparicions de les paraules de la query es major (el primer element té la suma màxima). El test consiteix a crear un repertori de 7 documents amb continguts diferents i executar la consulta amb diferents querys i valors de K. Com en els anteriors es compara el resultat de crear la consulta i fer el getter amb una llibreria on n’hi han els documents esperats en ordre. El segón mètode consisteix en crear un document amb títol, autor i contingut igual a la query i fer una cerca per Semblança agafant aquest com a referència i k=K. El test d’aquest segón mètode és, en essència, el test de la ConsultaSemblant.
+
+
+
+S'estudien els valors i efectes de tots els mètodes de la classe.
+
+Operativa:
+1- Executar el bash script proporcionat.

@@ -1,0 +1,8 @@
+CONSULTA AUTORS
+
+Per comprovar les funcionalitats de la clase ConsultaAutors només es fa una test ja que la classe només té dos funcions inserir autor i dona autors (i s’utilitza la segona per comprovar el resultat de la primera). En el test s’insereixen una serie d’autors i després es compara el resultat de fer la cerca per un prefix amb un HashSet dels autors esperats. Es repeteix diversos cops comprovant prefixos que tenen 0 autors, prefixos que estan al Nom o al Cognom d’algú, prefixos que són un cognom i el començament del seguent entre d’altres.
+
+S'estudien els valors i efectes de tots els mètodes de la classe.
+
+Operativa:
+1- Executar el bash script proporcionat.

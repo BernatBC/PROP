@@ -1,0 +1,9 @@
+CONSULTA PREFERIT
+
+Per a comprovar la correctesa de la classe ConsultaPreferit hem de fer tests de les tres funcions afegirDocument, eliminarDocument i getDocPreferit; juntament amb la constructora. Hem decidit fer un sol test per a comprovar-les totes. La constructora és vàlida ja que al fer una consulta sense haver afegit cap document preferit, ens retorna un conjunt buit de documents. A les següents línies veiem que al afegir un document, ens el retorna al fer la consulta, encara que el tornem a afegir, ens retorna el document (sense repeticions). Eliminant el document una sola vegada ja fa que no ens el retorni, i eliminant un document que no existeix no fa canviar la consulta. Tornem a afegir el mateix document per comprovar que no hi hagi cap error al afegir i eliminar un document múltiples vegades. Seguidament afegim més documents comprovant que s'afegeixen correctament.  Tot seguit eliminem algun document i en tornem a afegir per a comprovar que les funcions siguin correctes amb múltiples documents.
+
+
+S'estudien els valors i efectes de tots els mètodes de la classe.
+
+Operativa:
+1- Executar el bash script proporcionat.

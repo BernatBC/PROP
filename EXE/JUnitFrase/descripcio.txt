@@ -1,0 +1,8 @@
+FRASE
+
+Per comprovar les funcionalitats de la classe Frase s’han fet quatre tests. El primer testeja la funció contéParaula(string). Dintre del test es proven diversos casos: string empty, un espai, una paraula en majúscula i minúscula (només detectarà true a la corresponent ja que Hola i hola representen dues paraules diferents; en el cas de una fase “Hola bon dia.” només detectarà Hola i no hola). El segón testeja la funció donaWords, que retorna una ArrayList de pair on el primer element és la key d’una paraula i el value és el nombre d’ocurrències d’aquesta en la frase (tindrem tantes pairs com paraules diferents). Dintre d’aquest test es proven a obtenir els values de l’ArrayList per veure si es guarden correctament les paraules segons la key. El tercer comprova conteSequencia (en essència és una concatenació de comté Paraules). Es comprova la frase sencera, una frase parcial i casos falsos com repetir una paraula, posarla en majúscula quan no era (recordem que són dues paraules diferents).
+
+S'estudien els valors i efectes de tots els mètodes de la classe.
+
+Operativa:
+1- Executar el bash script proporcionat.

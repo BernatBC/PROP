@@ -1,0 +1,11 @@
+PARAULA
+
+Els testos en aquesta classe pot donar incorrecte si s'executen tots a la vegada. Això és degut a que JUnit no executa els testos de manera independent. La classe paraula asigna un identificador començant pel 0, i executant primer els altres testos fa que l'index assignat sigui major al esperat.
+
+Dit això, hem fet dos tests. Un per a una sola paraula, i un altra amb múltiples. En el primer comprovem si la constructora inicialitza la paraula correctament. Més endavant comprovem que incrementar ocurrencia funcioni, juntament amb decrementar ocurrencia. Tot seguit decrementem i tornem a incrementar el nombre d’ocurrència. L’últim cas decrementa més que el nombre d’ocurrencia per a comprovar que no retorna una ocurrència negativa. El segon test creem dues instàncies de paraules per a comprovar que els identificadors assignats siguin els correctes. També incrementem i decrementem el número d’ocurrència per a veure que les operacions es duguin de forma independent. Els getters els hem comprovat a mesura que feiem els tests, mirant que el resultat de les diverses operacions fossin els correctes.
+
+
+S'estudien els valors i efectes de tots els mètodes de la classe.
+
+Operativa:
+1- Executar el bash script proporcionat.
