@@ -1,9 +1,10 @@
-Alexandre Ros Roger
-Bernat Borras Civil
-Oscar Ramon Nunez
-Salvador Moya Bartolome
+Borras Civil, Bernat
+Moya Bartolome, Salvador
+Ramos Nunez, Oscar
+Ros Roger, Alexandre
 
-alexandre.ros.roger@estudiantat.upc.edu
 bernat.borras.civil@estudiantat.upc.edu
-oscar.ramos.nunez@estudiantat.upc.edu
 salvador.moya@estudiantat.upc.edu
+oscar.ramos.nunez@estudiantat.upc.edu
+alexandre.ros.roger@estudiantat.upc.edu
+
