@@ -9,16 +9,26 @@ import java.util.*;
 
 public class ExpressioBooleanaCtrl{
 
-    private Map <String, ExpressioBooleana> SetDeExpressions;
+    private Map <String, ExpressioBooleana> SetDeExpressions = new HashMap<>();
+    
+    public ExpressioBooleanaCtrl(){}
 
-    public void CreaExpressioBooleana(String nom, String cos){
+    public Set<String> GetNomExpressions(){
+        return SetDeExpressions.keySet();
+    }
 
-        SetDeExpressions.put(nom, new ExpressioBooleana(nom, cos));
+    public void ExpressioBooleanaCtrl(String nom, String cos){
+        ExpressioBooleana temp = new ExpressioBooleana(nom, cos);
+        SetDeExpressions.put(nom, temp);
     }
 
     public ExpressioBooleana GetExpressioBooleana (String nom){
-        
         return SetDeExpressions.get(nom);
+    }
+    public ExpressioBooleana ExpressioBooleanaTemporal (String cos){
+        ExpressioBooleana temp = new ExpressioBooleana();
+        temp.setCos(cos);
+        return temp;
     }
     
     public void DeleteExpressioBooleana(String nom){

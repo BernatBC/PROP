@@ -53,6 +53,15 @@ public class ExpressioBooleana{
         this.setRoot(Et.GeneraTree(cos));
     }
     
+    public  ExpressioBooleana ExpressioBooleana (String nom, String cos){
+    
+        this.setCos(cos);
+        this.setNom(nom);
+        ExpressionTree Et = new ExpressionTree();
+        this.setRoot(Et.GeneraTree(cos));
+        return this;
+    }
+    
     public   ExpressioBooleana (String cos){
         
         this.setCos(cos);

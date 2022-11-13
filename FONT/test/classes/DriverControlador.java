@@ -41,7 +41,7 @@ public class DriverControlador {
                     String expressio = read.nextLine();
                     System.out.print("Entra un nom per a l'expressió booleana: ");
                     String nom = read.nextLine();
-                    controladorb.CreaExpressioBooleana(nom, expressio);
+                    controladorb.ExpressioBooleanaCtrl(nom, expressio);
                 break;
                 case "me":
                     System.out.println("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- \n");
@@ -62,10 +62,30 @@ public class DriverControlador {
                     imprimirFrases(ca.donaAutors(author));
                 break;
                 case "cb":
-                    System.out.print("Entra un nom per a l'expressió booleana: ");
-                    String nom_consultar = read.nextLine();
-                    ExpressioBooleana exp = controladorb.GetExpressioBooleana(nom_consultar);
-                    imprimirArray(DocumentCtrl.sortDocuments(exp.getResultat(l), getCriteris(read)));
+                    System.out.println("Selecciona Mode:");
+                    System.out.println("1) Consulta directa");
+                    System.out.println("2) Expressions guardades");
+                    int mode = read.nextInt();
+                    if (mode == 1){
+                        System.out.println("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- \n");
+                        String exp = read.nextLine();
+                        ExpressioBooleana e = controladorb.ExpressioBooleanaTemporal(exp);
+                        imprimirArray(DocumentCtrl.sortDocuments(e.getResultat(l), getCriteris(read)));
+                        }
+                    else if (mode == 2){
+                        Set<String> expressions = controladorb.GetNomExpressions();
+                        if (expressions.isEmpty()){
+                            System.out.print("No hi ha expressions booleanes guardades!");
+                        }
+                        else{
+                        System.out.print("Les expressions que hi ha guardades son: ");
+                        System.out.print(expressions);
+                        String nom_consultar = read.nextLine();
+                        ExpressioBooleana e = controladorb.GetExpressioBooleana(nom_consultar);
+                        imprimirArray(DocumentCtrl.sortDocuments(e.getResultat(l), getCriteris(read)));
+                        }
+                    
+                    }
                 break;
                 case "q":
                     return;
