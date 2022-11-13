@@ -1,7 +1,7 @@
-package classes;
+package test.classes;
 import java.util.*;
 
-public class ExpressionTree2 {
+public class ExpressionTree {	
 
     public static String AND = "&";
     public static String OR = "|";
@@ -21,6 +21,12 @@ public class ExpressionTree2 {
     public Boolean isOperator(String current){
         return precedencemap.containsKey(current);
 
+    }
+    
+    public Node GeneraTree (String cos){
+        List <String> postfix = new Stack<>();
+        postfix = cos2postfix(cos);
+        return list2tree(postfix);
     }
 
    public List<String> cos2postfix (String cos){
@@ -65,11 +71,11 @@ public class ExpressionTree2 {
             else postfix.add(current);
            
     }
-    while(!Operands.empty()){
-        postfix.add(Operands.pop());
-        };
-    System.out.print(postfix);
-    return postfix;
+        while(!Operands.empty()){
+            postfix.add(Operands.pop());
+        }
+        System.out.print("postfix = " + postfix + "\n");
+        return postfix;
 
     }
     public  Node list2tree (List <String> postfix){
@@ -93,7 +99,8 @@ public class ExpressionTree2 {
             else if(current.charAt(0) == '"'){
                 
                 while (current.charAt(current.length()-1) != '"'){
-                    current+=iter.next();
+                    current+= " " + iter.next();
+                    System.out.print(current);
                 }
                 temp = new Node(current);
                 stackNodes.push(temp);

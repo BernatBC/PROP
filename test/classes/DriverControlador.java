@@ -18,6 +18,7 @@ public class DriverControlador {
         ConsultaTitol ct = new ConsultaTitol();
         ConsultaPreferit cp = new ConsultaPreferit();
         ConsultaAutors ca = new ConsultaAutors();
+        ExpressioBooleana cb = new ExpressioBooleana();
         DocumentCtrl controlador = new DocumentCtrl(v, l, cd, ct, cp, ca);
 
         imprimirComandes();
@@ -38,6 +39,20 @@ public class DriverControlador {
                     System.out.print("Enter the author's prefix: ");
 		            String author = read.nextLine();
                     imprimirFrases(ca.donaAutors(author));
+                break;
+                case "cb":
+                    System.out.print("Entra una expressió booleana valida: ");
+                    System.out.print("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- \n");
+                    String exp = read.nextLine();
+                    cb.setCos(exp);
+                    
+                    Set<Document> resultats = cb.getResultat(l);
+                    if (resultats.empty())
+                    System.out.print("Cap document compleix l'expressió\n");
+                    else
+                    System.out.print("Els documents que compleixen l'expressio son:\n " + resultats + "\n");
+                
+            
                 break;
                 case "q":
                     return;
@@ -203,6 +218,7 @@ public class DriverControlador {
         System.out.println("|  E    Eliminar Document                              |");
         System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-|");
         System.out.println("|  CA   Consulta d'Autors per prefix                   |");
+        System.out.println("|  CB   Consulta de Documents per expressio booleana   |");
         System.out.println("|  CSEQ Consulta de Documents per sequencia            |");
         System.out.println("|  CC   Consulta del Contingut d'un document           |");
         System.out.println("|  CD   Consulta de Documents per data                 |");
