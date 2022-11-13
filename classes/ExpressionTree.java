@@ -1,4 +1,4 @@
-package test.classes;
+package classes;
 import java.util.*;
 
 public class ExpressionTree {	
