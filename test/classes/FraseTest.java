@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import org.junit.*;
 import org.junit.jupiter.api.DisplayName;
 
+
+/** Test per la classe Frase.
+ * @author Oscar Ramos Nuñez (oscar.ramos.nunez@estudiantat.upc.edu)
+ */
 public class FraseTest {
     
     @Before                                         
@@ -98,6 +102,10 @@ public class FraseTest {
         /** Una paraula amb majúscula, quan no hauria. */
         String[] paraules6 = {"Fer"};
         assertEquals(false, fraseC.conteSequencia(paraules6));
+
+        /** Part de la frase. */
+        String[] paraules7 = {"fer", "testos", "a"};
+        assertEquals(true, fraseC.conteSequencia(paraules7));
 
     }
 

@@ -16,6 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.*;
 import org.junit.jupiter.api.DisplayName;
 
+
+
+/** Test per la classe ConsultaData.
+ * @author Oscar Ramos Nuñez (oscar.ramos.nunez@estudiantat.upc.edu)
+ */
 public class ConsultaDataTest {
     
     @Before                                         

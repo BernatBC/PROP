@@ -13,7 +13,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-
+/** Test per la classe ConsultaAutors.
+ * @author Oscar Ramos Nuñez (oscar.ramos.nunez@estudiantat.upc.edu)
+ */
 public class ConsultaAutorsTest {
     
     @Before                                         
@@ -24,7 +26,7 @@ public class ConsultaAutorsTest {
 
     @Test
     @DisplayName("Test Autors")   
-    public void COnsutaAutorsPerPrefix() {
+    public void ConsutaAutorsPerPrefix() {
         // Init
         ConsultaAutors autors = new ConsultaAutors();
 

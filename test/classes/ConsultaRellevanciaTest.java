@@ -17,6 +17,11 @@ import java.util.ArrayList;
 import org.junit.*;
 import org.junit.jupiter.api.DisplayName;
 
+
+
+/** Test per la classe ConsultaRellevancia.
+ * @author Oscar Ramos Nuñez (oscar.ramos.nunez@estudiantat.upc.edu)
+ */
 public class ConsultaRellevanciaTest {
     
     @Before                                         
