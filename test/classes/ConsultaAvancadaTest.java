@@ -27,7 +27,8 @@ public class ConsultaAvancadaTest {
     @Test
     @DisplayName("Seqüència al títol")   
     public void ConsultaAvancadaAlTitol() {
-        // Init
+        
+        //Creem varis documents amb títols diferents
         Frase test[] = new Frase[1];
         test[0] = new Frase("text_inutil");
         Frase autor = new Frase("autor1");
@@ -52,24 +53,29 @@ public class ConsultaAvancadaTest {
 
         Set<Document> esperat = new HashSet<>();
 
+        //No retorna cap document
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Cap Títol"));
 
+        //Retorna els docuements amb els títols: "contéConsulta", "Consulta", "Classe Consulta Autor", "Consultant", "Cons no pertany" i "Consulat dels Estats Units"
         esperat.add(d1);
         esperat.add(d2);
         esperat.add(d4);
         esperat.add(d5);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Consulta"));
 
+        //Retorna els docuements amb els títols: "contéConsulta", "Consulta", "Classe Consulta Autor" i "Consultant"
         esperat.add(d6);
         esperat.add(d7);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Cons"));
 
+        //Retorna els docuements amb els títols: "No ho conté", "Classe Consulta Autor", "Cons no pertany" i "Consulat dels Estats Units"
         esperat.remove(d1);
         esperat.remove(d2);
         esperat.remove(d5);
         esperat.add(d3);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, " "));
 
+        //Retorna tots els documents
         esperat.add(d1);
         esperat.add(d2);
         esperat.add(d5);
@@ -79,7 +85,8 @@ public class ConsultaAvancadaTest {
     @Test
     @DisplayName("Seqüència al autor")   
     public void ConsultaAlAutor() {
-        // Init
+        
+        //Creem varis documents amb autors diferents
         Frase test[] = new Frase[1];
         test[0] = new Frase("text_inutil");
         Frase titol = new Frase("titol");
@@ -104,24 +111,29 @@ public class ConsultaAvancadaTest {
 
         Set<Document> esperat = new HashSet<>();
 
-        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Cap Autor"));
+        //No retorna cap document
+        assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Cap Títol"));
 
+        //Retorna els docuements amb els títols: "contéConsulta", "Consulta", "Classe Consulta Autor", "Consultant", "Cons no pertany" i "Consulat dels Estats Units"
         esperat.add(d1);
         esperat.add(d2);
         esperat.add(d4);
         esperat.add(d5);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Consulta"));
 
+        //Retorna els docuements amb els títols: "contéConsulta", "Consulta", "Classe Consulta Autor" i "Consultant"
         esperat.add(d6);
         esperat.add(d7);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Cons"));
 
+        //Retorna els docuements amb els títols: "No ho conté", "Classe Consulta Autor", "Cons no pertany" i "Consulat dels Estats Units"
         esperat.remove(d1);
         esperat.remove(d2);
         esperat.remove(d5);
         esperat.add(d3);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, " "));
 
+        //Retorna tots els documents
         esperat.add(d1);
         esperat.add(d2);
         esperat.add(d5);
@@ -130,7 +142,8 @@ public class ConsultaAvancadaTest {
     @Test
     @DisplayName("Seqüència al contingut")   
     public void ConsultaAlContingut() {
-        // Init
+        
+        //Creem varis documents amb continguts diferents.
         Frase test1[] = new Frase[0];
         Contingut cont1 = new Contingut("", test1);
         Frase test2[] = new Frase[1];
@@ -172,42 +185,48 @@ public class ConsultaAvancadaTest {
 
         Set<Document> esperat = new HashSet<>();
 
+        //Retorna buit
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "No apareix"));
 
+        //Retorna els documents 2, 3, 4, 5
         esperat.add(d2);
         esperat.add(d3);
         esperat.add(d4);
         esperat.add(d5);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Accepta"));
 
+        //Retorna els documents 5, 6
         esperat.remove(d2);
         esperat.remove(d3);
         esperat.remove(d4);
         esperat.add(d6);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "no"));
 
+        //Retorna els documents 3, 4, 5, 6
         esperat.add(d3);
         esperat.add(d4);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, " "));
 
+        //Retorna tots els documents.
         esperat.add(d1);
         esperat.add(d2);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, ""));
 
+        //No retorna cap document
         esperat.remove(d1);
         esperat.remove(d2);
         esperat.remove(d3);
         esperat.remove(d4);
         esperat.remove(d5);
         esperat.remove(d6);
-
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Aquí tampoc"));
     }
 
     @Test
     @DisplayName("Consulta variada")
     public void ConsultaVariada() {
-        // Init
+        
+        //Creem documents amb diferents títols, autors i continguts.
         Frase test1[] = new Frase[0];
         Contingut cont1 = new Contingut("", test1);
         Frase test2[] = new Frase[1];
@@ -256,8 +275,10 @@ public class ConsultaAvancadaTest {
 
         Set<Document> esperat = new HashSet<>();
 
+        //No retorna cap document
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "No apareix"));
 
+        //Retorna els documents 1, 2, 3, 4, 5, 6
         esperat.add(d1);
         esperat.add(d2);
         esperat.add(d3);
@@ -266,6 +287,7 @@ public class ConsultaAvancadaTest {
         esperat.add(d6);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Accepta"));
 
+        //Retorna els documents 5, 6, 7
         esperat.remove(d1);
         esperat.remove(d2);
         esperat.remove(d3);
@@ -273,14 +295,17 @@ public class ConsultaAvancadaTest {
         esperat.add(d7);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "no"));
 
+        //Retorna els documents 3, 4, 5, 6
         esperat.add(d3);
         esperat.add(d4);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, " "));
 
+        //Retorna tots els documents
         esperat.add(d1);
         esperat.add(d2);
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, ""));
 
+        //No retorna cap document
         esperat.remove(d1);
         esperat.remove(d2);
         esperat.remove(d3);
@@ -288,7 +313,6 @@ public class ConsultaAvancadaTest {
         esperat.remove(d5);
         esperat.remove(d6);
         esperat.remove(d7);
-
         assertEquals(esperat, ConsultaAvancada.obtenirDocuments(l, "Aquí tampoc"));
     }
 }
