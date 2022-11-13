@@ -18,7 +18,7 @@ public class DriverControlador {
         ConsultaTitol ct = new ConsultaTitol();
         ConsultaPreferit cp = new ConsultaPreferit();
         ConsultaAutors ca = new ConsultaAutors();
-        ExpressioBooleana cb = new ExpressioBooleana();
+        ExpressioBooleanaCtrl cb = new ExpressioBooleanaCtrl();
         DocumentCtrl controlador = new DocumentCtrl(v, l, cd, ct, cp, ca);
 
         imprimirComandes();

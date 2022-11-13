@@ -13,7 +13,7 @@ public class ExpressioBooleanaCtrl{
 
     public void CreaExpressioBooleana(String nom, String cos){
 
-        SetDeExpressions.put(nom, ExpressioBooleana(nom, cos));
+        SetDeExpressions.put(nom, new ExpressioBooleana(nom, cos));
     }
 
     public ExpressioBooleana GetExpressioBooleana (String nom){
@@ -30,7 +30,7 @@ public class ExpressioBooleanaCtrl{
 
         if (SetDeExpressions.containsKey(nom)){
             SetDeExpressions.remove(nom);
-            SetDeExpressions.put(nom, ExpressioBooleana(nom, cos));
+            SetDeExpressions.put(nom, new ExpressioBooleana(nom, cos));
         }
     }
 }
