@@ -17,17 +17,31 @@ public class ParaulaTest {
 
     Executar testos de manera individual.
 
-    Els testos en aquesta classe podt donar incorrecte si s'executen tots a la vegada. Això és degut a que JUnit no executa els testos de manera independent. La classe paraula assigna un identificador començant pel 0, i executant primer els altres testos fa que l'index assignat sigui major al esperat.
+    Els testos en aquesta classe pot donar incorrecte si s'executen tots a la vegada. Això és degut a que JUnit no executa els testos de manera independent. La classe paraula asigna un identificador començant pel 0, i executant primer els altres testos fa que l'index assignat sigui major al esperat.
      */
     @Test
     @DisplayName("Test 1 paraula")   
     public void UnaParaulaTest() {
         
+        //Comprovem que la constructora inicialitza la paraula correctament.
         Paraula p1 = new Paraula("test");
         assertEquals("test", p1.getParaula());
         assertEquals(1, p1.getOcurrencia());
         assertEquals(0, p1.getId());
 
+        //Comprovem la fucnió incrementarOcurrencia
+        p1.incrementarOcurrencia();
+        assertEquals("test", p1.getParaula());
+        assertEquals(2, p1.getOcurrencia());
+        assertEquals(0, p1.getId());
+
+        //Decerementem l'ocurrència vàries vegades
+        p1.decrementarOcurrencia();
+        assertEquals("test", p1.getParaula());
+        assertEquals(1, p1.getOcurrencia());
+        assertEquals(0, p1.getId());
+
+        //Tornem a incrementar el número d'ocurrencia.
         p1.incrementarOcurrencia();
         assertEquals("test", p1.getParaula());
         assertEquals(2, p1.getOcurrencia());
@@ -43,6 +57,7 @@ public class ParaulaTest {
         assertEquals(0, p1.getOcurrencia());
         assertEquals(0, p1.getId());
 
+        //No hi poden haver una ocurrència negativa
         p1.decrementarOcurrencia();
         assertEquals("test", p1.getParaula());
         assertEquals(0, p1.getOcurrencia());
@@ -54,6 +69,7 @@ public class ParaulaTest {
     @DisplayName("Test varies paraula")   
     public void VariesParaulaTest() {
         
+        //Creem dues paraules i comprovem que l'índex assignat és l'esperat
         Paraula p1 = new Paraula("test");
         assertEquals("test", p1.getParaula());
         assertEquals(1, p1.getOcurrencia());
@@ -67,6 +83,7 @@ public class ParaulaTest {
         assertEquals(1, p2.getOcurrencia());
         assertEquals(1, p2.getId());
 
+        //Incrementem i decrementem ocurrències per a veure que no afecten a les altres paraules.
         p2.incrementarOcurrencia();
         assertEquals("test", p1.getParaula());
         assertEquals(1, p1.getOcurrencia());
