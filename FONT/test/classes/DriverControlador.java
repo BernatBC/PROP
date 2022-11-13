@@ -46,7 +46,7 @@ public class DriverControlador {
                     controladorb.ExpressioBooleanaCtrl(nom, expressio);
                 break;
                 case "me":
-                    System.out.println("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- \n");
+                    System.out.println("\nExemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- \n");
                     System.out.print("Entra una expressió booleana: ");
                     String expressio_modificada = read.nextLine();
                     System.out.print("Entra un nom per a l'expressió booleana: ");
@@ -65,13 +65,13 @@ public class DriverControlador {
                 break;
                 case "cb":
                     System.out.println("Selecciona Mode:");
-                    System.out.println("1) Consulta directa");
-                    System.out.println("2) Expressions guardades");
+                    System.out.println("[1] Consulta directa");
+                    System.out.println("[2] Expressions guardades");
                     int mode = read.nextInt();
+                    read.nextLine();
                     if (mode == 1){
                         System.out.println("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- ");
-                        System.out.print("Entra una expressió booleana:");
-                        read.nextLine();
+                        System.out.print("Entra una expressió booleana: ");
                         String consultaTemporal = read.nextLine();
                         if (consultaTemporal.isEmpty()){
                             System.out.print ("No pots entrar una expressió buida");
@@ -242,6 +242,7 @@ public class DriverControlador {
         System.out.println("[3] Per ordre alfabètic dels títols dels documents");
     
         int crit = read.nextInt();
+        read.nextLine();
 
         if (crit < 0 || crit > 4){
             System.out.println("Ho sentim, "+crit+ " no és un criteri vàlid d'ordenació");
