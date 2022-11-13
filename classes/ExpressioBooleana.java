@@ -4,7 +4,7 @@ import java.util.*;
 /** ExpressioBooleana
 * @author Salvador Moya Bartolome (salvador.moya@estudiantat.upc.edu)
 */
-class ExpressioBooleana{
+public class ExpressioBooleana{
 
     
     private String cos;

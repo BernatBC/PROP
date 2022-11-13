@@ -18,7 +18,7 @@ public class DriverControlador {
         ConsultaTitol ct = new ConsultaTitol();
         ConsultaPreferit cp = new ConsultaPreferit();
         ConsultaAutors ca = new ConsultaAutors();
-        ExpressioBooleanaCtrl cb = new ExpressioBooleanaCtrl();
+        ExpressioBooleanaCtrl controladorb = new ExpressioBooleanaCtrl();
         DocumentCtrl controlador = new DocumentCtrl(v, l, cd, ct, cp, ca);
 
         imprimirComandes();
@@ -35,24 +35,37 @@ public class DriverControlador {
                 case "e":
                     controlador.eliminarDocument();
                 break;
+                case "ne":
+                    System.out.println("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- \n");
+                    System.out.print("Entra una expressió booleana: ");
+                    String expressio = read.nextLine();
+                    System.out.print("Entra un nom per a l'expressió booleana: ");
+                    String nom = read.nextLine();
+                    controladorb.CreaExpressioBooleana(nom, expressio);
+                break;
+                case "me":
+                    System.out.println("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- \n");
+                    System.out.print("Entra una expressió booleana: ");
+                    String expressio_modificada = read.nextLine();
+                    System.out.print("Entra un nom per a l'expressió booleana: ");
+                    String nom_modificada = read.nextLine();
+                    controladorb.SetExpressioBooleana(nom_modificada, expressio_modificada);
+                break;
+                case "ee":
+                    System.out.print("Entra un nom per a l'expressió booleana: ");
+                    String nom_esborrar = read.nextLine();
+                    controladorb.DeleteExpressioBooleana(nom_esborrar);
+                break;
                 case "ca":
                     System.out.print("Enter the author's prefix: ");
 		            String author = read.nextLine();
                     imprimirFrases(ca.donaAutors(author));
                 break;
                 case "cb":
-                    System.out.print("Entra una expressió booleana valida: ");
-                    System.out.print("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- \n");
-                    String exp = read.nextLine();
-                    cb.setCos(exp);
-                    
-                    Set<Document> resultats = cb.getResultat(l);
-                    if (resultats.empty())
-                    System.out.print("Cap document compleix l'expressió\n");
-                    else
-                    System.out.print("Els documents que compleixen l'expressio son:\n " + resultats + "\n");
-                
-            
+                    System.out.print("Entra un nom per a l'expressió booleana: ");
+                    String nom_consultar = read.nextLine();
+                    ExpressioBooleana exp = controladorb.GetExpressioBooleana(nom_consultar);
+                    imprimirArray(DocumentCtrl.sortDocuments(exp.getResultat(l), getCriteris(read)));
                 break;
                 case "q":
                     return;
@@ -216,6 +229,9 @@ public class DriverControlador {
         System.out.println("|  N    Nou   Document                                 |");
         System.out.println("|  M    Modificar Document                             |");
         System.out.println("|  E    Eliminar Document                              |");
+        System.out.println("|  NE   Nova Expresió Booleana                         |");
+        System.out.println("|  ME   Modificar Expressió Booleana                   |");
+        System.out.println("|  EE   Eliminar Expresió Booleana                     |");
         System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-|");
         System.out.println("|  CA   Consulta d'Autors per prefix                   |");
         System.out.println("|  CB   Consulta de Documents per expressio booleana   |");
