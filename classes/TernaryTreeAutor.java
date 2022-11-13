@@ -32,10 +32,10 @@ public class TernaryTreeAutor {
         lletra = '*';
     }
 
-    /**Constructora per defecte de TernaryTreeAutor.
+    /**Constructora per als nodes fills.
      * @param c lletra que representa el node nou.
      */
-    public TernaryTreeAutor(char c) {
+    private TernaryTreeAutor(char c) {
         esquerra = null;
         dreta = null;
         centre = null;

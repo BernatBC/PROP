@@ -30,7 +30,7 @@ public class TernaryTree {
         lletra = ' ';
     }
 
-    /**Constructora per defecte de TernaryTree.
+    /**Constructora per als nodes fills.
      * @param c lletra que representa el node nou.
      */
     private TernaryTree(char c) {
