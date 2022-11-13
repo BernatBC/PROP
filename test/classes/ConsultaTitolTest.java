@@ -26,9 +26,10 @@ public class ConsultaTitolTest {
     @Test
     @DisplayName("Un sol autor")   
     public void ConsultaUnAutor() {
-        // Init
+        //Constructora de ConsultaTitol
         ConsultaTitol consulta = new ConsultaTitol();
 
+        //Creem documents amb el mateix autor
         Frase test[] = new Frase[1];
         test[0] = new Frase("text inutil");
         Frase autor = new Frase("autor1");
@@ -41,70 +42,112 @@ public class ConsultaTitolTest {
 
         Set<Document> esperat = new HashSet<>();
 
+        //No ens retorna cap document quan no n'hem afegit cap.
         assertEquals(null, consulta.getDocAutor(autor));
 
+        //Tampoc ens en retorna quan fem consultes amb altres autors.
+        Frase autorBuit = new Frase("");
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+
+        Frase autor2 = new Frase("autor2");
+        assertEquals(null, consulta.getDocAutor(autor2));
+
+        //Afegim un document múltiples vegades
         consulta.afegirDocument(d1);
         esperat.add(d1);
         assertEquals(esperat, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
         consulta.afegirDocument(d1);
         assertEquals(esperat, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
+        //L'elimiem múltiples vegades
         consulta.eliminarDocument(d1);
         esperat.remove(d1);
         assertEquals(null, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
         consulta.eliminarDocument(d1);
         assertEquals(null, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
+        //El torem a afegir
         consulta.afegirDocument(d1);
         esperat.add(d1);
         assertEquals(esperat, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
+        //Afegim més documents d'aquell autor
         consulta.afegirDocument(d2);
         esperat.add(d2);
         assertEquals(esperat, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
         consulta.afegirDocument(d3);
         esperat.add(d3);
         assertEquals(esperat, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
         consulta.afegirDocument(d5);
         esperat.add(d5);
         assertEquals(esperat, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
+        //Eliminem i afegim més documents.
         consulta.eliminarDocument(d3);
         esperat.remove(d3);
         assertEquals(esperat, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
         consulta.eliminarDocument(d5);
         esperat.remove(d5);
         assertEquals(esperat, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
         consulta.eliminarDocument(d2);
         esperat.remove(d2);
         assertEquals(esperat, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
         consulta.afegirDocument(d4);
         esperat.add(d4);
         assertEquals(esperat, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
         consulta.eliminarDocument(d1);
         esperat.remove(d1);
         assertEquals(esperat, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
         consulta.eliminarDocument(d4);
         esperat.remove(d4);
         assertEquals(null, consulta.getDocAutor(autor));
+        assertEquals(null, consulta.getDocAutor(autorBuit));
+        assertEquals(null, consulta.getDocAutor(autor2));
 
     }
 
     @Test
     @DisplayName("Varis autors")   
     public void ConsultaVarisAutors() {
-        // Init
+        //Constructora de ConsultaTitol
         ConsultaTitol consulta = new ConsultaTitol();
 
+        //Creem varis documents amb diferents autors.
         Frase test[] = new Frase[1];
         test[0] = new Frase("text inutil");
         Frase autor1 = new Frase("autor1");
@@ -122,10 +165,12 @@ public class ConsultaTitolTest {
         Set<Document> esperat_a2 = new HashSet<>();
         Set<Document> esperat_a3 = new HashSet<>();
 
+        //Comprovem que al inici no ens retorni cap document
         assertEquals(null, consulta.getDocAutor(autor1));
         assertEquals(null, consulta.getDocAutor(autor2));
         assertEquals(null, consulta.getDocAutor(autor3));
 
+        //Afegim i eliminem varis documents i comprovem que es comporta com esperavem. 
         consulta.afegirDocument(d1);
         esperat_a1.add(d1);
         assertEquals(esperat_a1, consulta.getDocAutor(autor1));
