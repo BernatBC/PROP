@@ -52,11 +52,29 @@ public class ContingutTest {
 
         Frase[] phraseArray = {f1, f2, f3, f4};
 
-        Contingut cont = new Contingut("plaintext :)", phraseArray);
+        Contingut cont = new Contingut("bruh hola hola\ncotxe\nbruh hola pep cotxe FIB prop\n", phraseArray);
 
         assertEquals(0.2, cont.getTFofWord(0));
         assertEquals("{0=0.2, 1=0.3, 2=0.1, 3=0.2, 4=0.1, 5=0.1}", cont.getTF().toString());
         assertEquals("{0=2, 1=3, 2=1, 3=2, 4=1, 5=1}",cont.getWords().toString());
-        assertEquals("plaintext :)", cont.toString());
+        assertEquals("bruh hola hola\ncotxe\nbruh hola pep cotxe FIB prop\n", cont.toString());
+
+        // Now checking phrases
+        assertEquals(f1, cont.getFrases()[0]);
+        assertEquals(f3, cont.getFrases()[2]);
+
+        // Conte Seqüència
+        assertEquals(true, cont.conteSequencia("bru"));
+        assertEquals(true, cont.conteSequencia("cotxe"));
+        assertEquals(true, cont.conteSequencia("hola h"));
+        assertEquals(false, cont.conteSequencia("hla"));
+        assertEquals(true, cont.conteSequencia(" "));
+        // La seqüència buida suposem sempre que no es conté enlloc i avisa d'això 
+        assertEquals(false, cont.conteSequencia(""));
+        // Les sequüéncies no són reconegudes si salten de línia sense indicar-ho
+        assertEquals(false, cont.conteSequencia("hola cotxe"));
+        assertEquals(true, cont.conteSequencia("hola\ncotxe"));
+        assertEquals(true, cont.conteSequencia("B prop"));
+
     }
 }
