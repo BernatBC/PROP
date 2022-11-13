@@ -91,6 +91,7 @@ public class ConsultaSemblantTest {
         // Now, since there is only one document and the answer cannot contain the document
         // 'results' should stay empty.
         assertEquals("[]", results.toString());
+        assertEquals("[]", results2.toString());
 
         lib.addDocument(d2); lib.addDocument(d3);
 
