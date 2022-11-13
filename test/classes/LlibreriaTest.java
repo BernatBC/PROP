@@ -94,14 +94,15 @@ public class LlibreriaTest {
         //System.out.println(lib.getSetDocuments());
 
         // Computing the cosinus on documents 1 and 2
-        // The cosinus 0.880172458846704 has been computed manually and verified that it is in fact correct.
-        assertEquals(0.880172458846704, lib.computeCosinus(d1, d2));
-        assertEquals(0.880172458846704, lib.computeCosinus(d2, d1));
+        // The cosinus 0.880172458846704 TF_IDF has been computed manually and verified that it is in fact correct.
+        // So has the cosinus 0.9438798074485389 using ocurrences of words.
+        assertEquals(0.880172458846704, lib.computeCosinus(d1, d2, 0));
+        assertEquals(0.880172458846704, lib.computeCosinus(d2, d1, 0));
+        assertEquals(0.9438798074485389, lib.computeCosinus(d1, d2,1));
+        assertEquals(0.9438798074485389, lib.computeCosinus(d2, d1,1));
 
         // Finally, we are adding our third and last document
         lib.addDocument(d3);
-
-        System.out.println(lib);
 
         assertEquals(d3, lib.getIessim(2));
         // Both the author and title exist, but the document (author, title) doesnt
@@ -114,11 +115,17 @@ public class LlibreriaTest {
         assertEquals(1, lib.getPreferits().getNdocs());
 
         // Just like before, the result has been computed beforehand by a human
-        assertEquals(0.25708724836453034, lib.computeCosinus(d3, d2));
+        assertEquals(0.25708724836453034, lib.computeCosinus(d3, d2, 0));
+
+
+        // Adding a document shouldn't change cosinus product with ocurrences
+        assertEquals(0.9438798074485389, lib.computeCosinus(d2, d1, 1));
+        assertEquals(0.36563621206356534, lib.computeCosinus(d2, d3, 1));
 
         lib.deleteDocument(d3);
 
-        assertEquals(0.880172458846704, lib.computeCosinus(d2, d1));
+        assertEquals(0.880172458846704, lib.computeCosinus(d2, d1, 0));
+        assertEquals(0.9438798074485389, lib.computeCosinus(d2, d1,1));
         // After removing d3, the cosinus product of d1 and d2 stays like before.
         // All updates are done correctly.
 

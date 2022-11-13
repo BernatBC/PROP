@@ -114,13 +114,19 @@ public class DriverControlador {
                     System.out.println(cs2.getDocs().toString());
                 break;
                 case "cs":
-                    System.out.print("Enter the title of the document: ");
+                    System.out.print("Entra el títol del document: ");
                     String t = read.nextLine();
-                    System.out.print("Enter the author of the document: ");
+                    System.out.print("Entra l'autor del document: ");
                     String a = read.nextLine();
-                    System.out.print("Enter the number of documents: ");
+                    System.out.print("Entra el nombre de documents: ");
                     int k3 = read.nextInt();
-                    imprimirSemblant(ConsultaSemblant.executeQuery(l, l.getDocument(a, t).getL(), k3));
+                    System.out.println("\nQuina assignació de pesos prefereix? ");
+                    System.out.println("[0] TF-IDF");
+                    System.out.println("[1] Per ocurrències");
+                    int k9  =read.nextInt();
+                    if (k9 != 0 && k9 != 1) System.out.println("\nElecció "+k9+ " no reconeguda.");
+                    else imprimirSemblant(ConsultaSemblant.executeQuery(l, l.getDocument(a, t).getL(), k3, k9));
+
                 break;
                 case "cseq":
                     System.out.print("Enter the sequence: ");

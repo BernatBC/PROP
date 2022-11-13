@@ -74,15 +74,19 @@ public class ConsultaSemblantTest {
 
         lib.addDocument(d1);
 
-        ArrayList<Pair<Double, Document>> results;
+        ArrayList<Pair<Double, Document>> results, results2;
 
-        results = ConsultaSemblant.executeQuery(lib, d3, 4);
+        results = ConsultaSemblant.executeQuery(lib, d3, 4, 0);
+        results2 = ConsultaSemblant.executeQuery(lib, d3, 9, 1);
 
         // An error should appear telling us that d3 is not in lib.
         // Thus results should stay empty
         assertEquals("[]", results.toString());
+        assertEquals("[]", results2.toString());
 
-        results = ConsultaSemblant.executeQuery(lib, d1, 1);
+        results = ConsultaSemblant.executeQuery(lib, d1, 1, 0);
+        results2 = ConsultaSemblant.executeQuery(lib, d1, 1,1);
+
 
         // Now, since there is only one document and the answer cannot contain the document
         // 'results' should stay empty.
@@ -90,21 +94,30 @@ public class ConsultaSemblantTest {
 
         lib.addDocument(d2); lib.addDocument(d3);
 
-        results = ConsultaSemblant.executeQuery(lib, d1, 2);
+        results = ConsultaSemblant.executeQuery(lib, d1, 2, 0);
+        results2 = ConsultaSemblant.executeQuery(lib, d1, 2, 1);
 
-        // d1 és més semblant a d2 que a d3
+        // d1 és més semblant a d2 que a d3 amb els dos mètodes.
         assertEquals(d2, results.get(0).getR());
         assertEquals(d3, results.get(1).getR());
+        assertEquals(d2, results2.get(0).getR());
+        assertEquals(d3, results2.get(1).getR());
 
-        results = ConsultaSemblant.executeQuery(lib, d2, 1);
+        results = ConsultaSemblant.executeQuery(lib, d2, 1, 0);
+        results2 = ConsultaSemblant.executeQuery(lib, d2, 1, 1);
 
         // ara, com que d1 i d2 són més semblants, hauria de ser d1 el resultat i com que k = 1 només 1 document
         assertEquals(d1, results.get(0).getR());
         assertEquals(1, results.size());
+        assertEquals(d1, results2.get(0).getR());
+        assertEquals(1, results2.size());
 
-        results = ConsultaSemblant.executeQuery(lib, d3, 10);
+        results = ConsultaSemblant.executeQuery(lib, d3, 10, 0);
+        results2 = ConsultaSemblant.executeQuery(lib, d3, 10, 1);
         assertEquals(2, results.size());
         assertEquals(d2, results.get(0).getR());
+        assertEquals(2, results2.size());
+        assertEquals(d2, results2.get(0).getR());
 
         // We conclude ConsultaSemblant works as expected.
     }

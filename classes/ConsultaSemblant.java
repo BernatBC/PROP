@@ -16,12 +16,13 @@ public class ConsultaSemblant {
      * @param lib La llibreria en la qual fem la consulta
      * @param doc El document amb el qual volem comparar i ordenar els <b>k</b> més semblants
      * @param k El número de documents a retornar. Si <i>k > |lib|</i> llavors es retornen <i>|lib|-1</i> documents
+     * @param mode El mètode amb el qual volem donar pesos a les paraules (0=tf-idf; 1=ocurrències).
      * @return Es retorna una llista de parells <cosinus, Document D> ordenats. El cosinus és el grau de semblança (entre -1 i 1) dels
      *         documents <i>doc</i> i <i>D</i>, aquest grau és el cosinus de la representació dels documents en un vector TF-IDF.
      * 
      *         Els documents s'ordenen en ordre decreiexent de semblança amb <i>doc</i>. <i>doc</i> no pot ser retornat.
      */
-    public static ArrayList<Pair<Double, Document>> executeQuery(Llibreria lib, Document doc, int k){
+    public static ArrayList<Pair<Double, Document>> executeQuery(Llibreria lib, Document doc, int k, int mode){
         Set<Document> mySet = lib.getSetDocuments();
 
         // En ordre decreixent per el cosinus (els primers k seran els q es retornen)
@@ -35,7 +36,7 @@ public class ConsultaSemblant {
         for (Document T : mySet){
             if (T == doc) continue;
 
-            double cosinus = lib.computeCosinus(T, doc);
+            double cosinus = lib.computeCosinus(T, doc, mode);
 
             boolean inserted = false;
             // Now insert document T!
