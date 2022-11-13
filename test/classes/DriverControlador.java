@@ -155,13 +155,6 @@ public class DriverControlador {
         }
     }
 
-    private static void imprimirDocuments(Set<Document> documents) {
-        if (documents == null) return;
-        for (Document d: documents) {
-            System.out.println(d.toString());
-        }
-    }
-
     private static void imprimirArray(ArrayList<Document> documents) {
         if (documents == null) return;
         for (Document d: documents) {
