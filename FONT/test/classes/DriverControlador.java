@@ -36,9 +36,11 @@ public class DriverControlador {
                     controlador.eliminarDocument();
                 break;
                 case "ne":
-                    System.out.println("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- \n");
+                    System.out.println("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- ");
                     System.out.print("Entra una expressió booleana: ");
-                    String expressio = read.nextLine();
+                    String expressio = new String();
+                    while(expressio.isEmpty()){
+                        expressio = read.nextLine();}
                     System.out.print("Entra un nom per a l'expressió booleana: ");
                     String nom = read.nextLine();
                     controladorb.ExpressioBooleanaCtrl(nom, expressio);
@@ -67,23 +69,30 @@ public class DriverControlador {
                     System.out.println("2) Expressions guardades");
                     int mode = read.nextInt();
                     if (mode == 1){
-                        System.out.println("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- \n");
-                        String exp = read.nextLine();
-                        ExpressioBooleana e = controladorb.ExpressioBooleanaTemporal(exp);
-                        imprimirArray(DocumentCtrl.sortDocuments(e.getResultat(l), getCriteris(read)));
+                        System.out.println("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- ");
+                        System.out.print("Entra una expressió booleana:");
+                        read.nextLine();
+                        String consultaTemporal = read.nextLine();
+                        if (consultaTemporal.isEmpty()){
+                            System.out.print ("No pots entrar una expressió buida");
                         }
+                        else {
+                            ExpressioBooleana e = controladorb.ExpressioBooleanaTemporal(consultaTemporal);
+                            imprimirArray(DocumentCtrl.sortDocuments(e.getResultat(l), getCriteris(read)));
+                        }
+                    }
                     else if (mode == 2){
                         
                         if (controladorb.isEmpty()){
                             System.out.print("No hi ha expressions booleanes guardades!");
                         }
                         else{
-                        Set<String> expressions = controladorb.GetNomExpressions();
-                        System.out.print("Les expressions que hi ha guardades son: ");
-                        System.out.print(expressions);
-                        String nom_consultar = read.nextLine();
-                        ExpressioBooleana e = controladorb.GetExpressioBooleana(nom_consultar);
-                        imprimirArray(DocumentCtrl.sortDocuments(e.getResultat(l), getCriteris(read)));
+                            Set<String> expressions = controladorb.GetNomExpressions();
+                            System.out.print("Les expressions que hi ha guardades son: ");
+                            System.out.print(expressions);
+                            String nom_consultar = read.nextLine();
+                            ExpressioBooleana e = controladorb.GetExpressioBooleana(nom_consultar);
+                            imprimirArray(DocumentCtrl.sortDocuments(e.getResultat(l), getCriteris(read)));
                         }
                     
                     }
