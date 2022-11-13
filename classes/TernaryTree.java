@@ -33,7 +33,7 @@ public class TernaryTree {
     /**Constructora per defecte de TernaryTree.
      * @param c lletra que representa el node nou.
      */
-    public TernaryTree(char c) {
+    private TernaryTree(char c) {
         esquerra = null;
         dreta = null;
         centre = null;
@@ -130,6 +130,7 @@ public class TernaryTree {
      * @return int : número d'ocurrències restants després de decrementar. 
      */
     public int decrementarOcurrencia(String s, int i) {
+        if (s.length() == 0) return -1;
         if (s.charAt(i) > lletra && dreta != null) return dreta.decrementarOcurrencia(s, i);
         if (s.charAt(i) < lletra && esquerra != null) return esquerra.decrementarOcurrencia(s, i);
         if (s.charAt(i) == lletra) {
