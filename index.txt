@@ -1,4 +1,5 @@
 DOCS -> Documents de l'entrega.
 EXE -> Executables de JUnit i DriverControlador juntament amb les seves disripcions.
 FONT -> Codi del projecte.
+ComExecutar.txt -> Guia bàsica per executar DriverControlador i JUnit de cada classe.
 Participants.txt -> Informació sobre l'equip.
