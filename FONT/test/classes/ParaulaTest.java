@@ -22,83 +22,87 @@ public class ParaulaTest {
     @Test
     @DisplayName("Test 1 paraula")   
     public void UnaParaulaTest() {
+
+        int index_offset = (new Paraula("")).getId() + 1;
         
         //Comprovem que la constructora inicialitza la paraula correctament.
         Paraula p1 = new Paraula("test");
         assertEquals("test", p1.getParaula());
         assertEquals(1, p1.getOcurrencia());
-        assertEquals(0, p1.getId());
+        assertEquals(index_offset + 0, p1.getId());
 
         //Comprovem la fucnió incrementarOcurrencia
         p1.incrementarOcurrencia();
         assertEquals("test", p1.getParaula());
         assertEquals(2, p1.getOcurrencia());
-        assertEquals(0, p1.getId());
+        assertEquals(index_offset + 0, p1.getId());
 
         //Decerementem l'ocurrència vàries vegades
         p1.decrementarOcurrencia();
         assertEquals("test", p1.getParaula());
         assertEquals(1, p1.getOcurrencia());
-        assertEquals(0, p1.getId());
+        assertEquals(index_offset + 0, p1.getId());
 
         //Tornem a incrementar el número d'ocurrencia.
         p1.incrementarOcurrencia();
         assertEquals("test", p1.getParaula());
         assertEquals(2, p1.getOcurrencia());
-        assertEquals(0, p1.getId());
+        assertEquals(index_offset + 0, p1.getId());
 
         p1.decrementarOcurrencia();
         assertEquals("test", p1.getParaula());
         assertEquals(1, p1.getOcurrencia());
-        assertEquals(0, p1.getId());
+        assertEquals(index_offset + 0, p1.getId());
 
         p1.decrementarOcurrencia();
         assertEquals("test", p1.getParaula());
         assertEquals(0, p1.getOcurrencia());
-        assertEquals(0, p1.getId());
+        assertEquals(index_offset + 0, p1.getId());
 
         //No hi poden haver una ocurrència negativa
         p1.decrementarOcurrencia();
         assertEquals("test", p1.getParaula());
         assertEquals(0, p1.getOcurrencia());
-        assertEquals(0, p1.getId());
+        assertEquals(index_offset + 0, p1.getId());
 
     }
 
     @Test
     @DisplayName("Test varies paraula")   
     public void VariesParaulaTest() {
+
+        int index_offset = (new Paraula("")).getId() + 1;
         
         //Creem dues paraules i comprovem que l'índex assignat és l'esperat
         Paraula p1 = new Paraula("test");
         assertEquals("test", p1.getParaula());
         assertEquals(1, p1.getOcurrencia());
-        assertEquals(0, p1.getId());
+        assertEquals(index_offset + 0, p1.getId());
 
         Paraula p2 = new Paraula("projecte");
         assertEquals("test", p1.getParaula());
         assertEquals(1, p1.getOcurrencia());
-        assertEquals(0, p1.getId());
+        assertEquals(index_offset + 0, p1.getId());
         assertEquals("projecte", p2.getParaula());
         assertEquals(1, p2.getOcurrencia());
-        assertEquals(1, p2.getId());
+        assertEquals(index_offset + 1, p2.getId());
 
         //Incrementem i decrementem ocurrències per a veure que no afecten a les altres paraules.
         p2.incrementarOcurrencia();
         assertEquals("test", p1.getParaula());
         assertEquals(1, p1.getOcurrencia());
-        assertEquals(0, p1.getId());
+        assertEquals(index_offset + 0, p1.getId());
         assertEquals("projecte", p2.getParaula());
         assertEquals(2, p2.getOcurrencia());
-        assertEquals(1, p2.getId());
+        assertEquals(index_offset + 1, p2.getId());
 
         p2.decrementarOcurrencia();
         assertEquals("test", p1.getParaula());
         assertEquals(1, p1.getOcurrencia());
-        assertEquals(0, p1.getId());
+        assertEquals(index_offset + 0, p1.getId());
         assertEquals("projecte", p2.getParaula());
         assertEquals(1, p2.getOcurrencia());
-        assertEquals(1, p2.getId());
+        assertEquals(index_offset + 1, p2.getId());
 
     }
 }
