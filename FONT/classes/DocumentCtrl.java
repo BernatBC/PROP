@@ -175,7 +175,7 @@ public class DocumentCtrl {
 	/**
 	 *  Funció que interacciona amb l'usuari i crea un document.
 	 */
-	public void crearDocument(){
+	public void crearDocument(LocalDate dia, boolean isFav){
 		Scanner in = new Scanner(System.in);
 		
 		System.out.print("Enter the title of the document: ");
@@ -246,11 +246,13 @@ public class DocumentCtrl {
 		
 		// Finalment creem el document i el guardem
 
-		Document doc = new Document(authorPhrase, titlePhrase, false, "NULL", LocalDate.now(), contentFinal);
+		Document doc = new Document(authorPhrase, titlePhrase, isFav, "NULL", dia, contentFinal);
 
 		lib.addDocument(doc);
 		CT.afegirDocument(doc);
 		CD.addDoc(doc);
+
+		if (isFav) CP.afegirDocument(doc);
 
 		System.out.println("Document added successfully!\n");
 	}
@@ -317,8 +319,10 @@ public class DocumentCtrl {
 			
 			case 3:
 
+			LocalDate dia = doc.getData();
+			boolean isFav = doc.getFavourite();
 			eliminarDocument(doc);
-			crearDocument();
+			crearDocument(dia, isFav);
 
 			break;
 

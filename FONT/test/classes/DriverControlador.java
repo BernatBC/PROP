@@ -27,7 +27,7 @@ public class DriverControlador {
         while (read.hasNextLine()) {
             switch (read.nextLine().toLowerCase()) {
                 case "n":
-                    controlador.crearDocument();
+                    controlador.crearDocument(LocalDate.now(), false);
                 break;
                 case "m":
                     controlador.modificarDocument();
