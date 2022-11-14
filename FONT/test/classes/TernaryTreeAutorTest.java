@@ -59,6 +59,10 @@ public class TernaryTreeAutorTest {
         assertEquals(resultat_esperat, autors.obtenirAutors("Aixo es un tes", 0));
         assertEquals(resultat_esperat, autors.obtenirAutors("Aixo es un test", 0));
 
+        //L'autor si el tornes a inserir et seguirà donant una sola instància
+        autors.inserirAutor(autor1, autor1.toString(), 0);
+        assertEquals(resultat_esperat, autors.obtenirAutors("Aixo es un test", 0));
+
         //Comrovem que un prefix buit, i prefixos innexistents no ens retorna cap autor.
         assertEquals(null, autors.obtenirAutors("", 0));
         assertEquals(null, autors.obtenirAutors("Resultat buit", 0));
