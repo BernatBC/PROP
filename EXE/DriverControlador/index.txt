@@ -1,0 +1,2 @@
+ DriverControlador.sh -> Executable per al Driver.
+ descripcio.txt -> Descripció del Driver.
