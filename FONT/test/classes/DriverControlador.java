@@ -160,7 +160,13 @@ public class DriverControlador {
                     String s =  read.nextLine();
                     System.out.print("Entra un número de documents: ");
                     int k = read.nextInt();
-                    ConsultaRellevancia cs = new ConsultaRellevancia(k, (new Frase(s)).getOracio(), s, 1, l);
+                    
+                    String[] str_s = s.split(" ");
+                    Paraula[] arrp = new Paraula[str_s.length];
+
+                    for (int ij = 0; ij < str_s.length; ++ij) arrp[ij] = v.inserirObtenirParaula(str_s[ij]);
+
+                    ConsultaRellevancia cs = new ConsultaRellevancia(k, arrp, s, 1, l);
                     System.out.println(cs.getDocs().toString());
                 break;
                 case "cr2":
@@ -168,7 +174,13 @@ public class DriverControlador {
                     String s2 =  read.nextLine();
                     System.out.print("Entra un número de documents: ");
                     int k2 = read.nextInt();
-                    ConsultaRellevancia cs2 = new ConsultaRellevancia(k2, (new Frase(s2)).getOracio(), s2, 2, l);
+
+                    String[] str_s2 = s2.split(" ");
+                    Paraula[] arrp2 = new Paraula[str_s2.length];
+
+                    for (int ij = 0; ij < str_s2.length; ++ij) arrp2[ij] = v.inserirObtenirParaula(str_s2[ij]);
+
+                    ConsultaRellevancia cs2 = new ConsultaRellevancia(k2, arrp2, s2, 2, l);
                     System.out.println(cs2.getDocs().toString());
                 break;
                 case "cs":
@@ -176,6 +188,7 @@ public class DriverControlador {
                     String t = read.nextLine();
                     System.out.print("Entra l'autor del document: ");
                     String a = read.nextLine();
+
                     System.out.print("Entra el nombre de documents: ");
                     int k3 = read.nextInt();
                     System.out.println("\nQuina assignació de pesos prefereix? ");
