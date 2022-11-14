@@ -1,0 +1,7 @@
+Assignació_Classes.pdf -> Assignació de classes a cada membre de l'equip.
+Diagrama_casos_us.png -> Diagrama de casos d'ús.
+Diagrama_classes.png -> Diagrama estàtic complet del model conceptual de dades en versió disseny.
+Especificacions_casos_us.pdf -> Descripció de cada cas d’ús.
+Especificacions_classes.pdf -> Especificacions de les classes juntament amb la descripció d'atributs i mètodes de cada classe.
+javadoc -> Documentació javadoc de les classes.
+JustificacióEstructuraDadesAlgorismes.pdf -> Descripció de les estructures de dades i algorismes utilitzats.
