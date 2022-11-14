@@ -47,7 +47,7 @@ public class ExpressionTree {
                 Operands.push(current);
                 
                 }
-                else if  (precedencemap.get(Operands.peek()) < precedencemap.get(current)){
+                else if  (precedencemap.get(Operands.peek()) >= precedencemap.get(current)){
 
                 Operands.push(current);
                 }
