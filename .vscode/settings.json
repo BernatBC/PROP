@@ -1,8 +1,0 @@
-{
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "FONT/lib/junit-jupiter-api-5.9.1.jar",
-        "FONT/lib/junit-platform-console-standalone-1.9.1.jar",
-        "FONT/lib/opentest4j-1.2.0.jar"
-    ]
-}
