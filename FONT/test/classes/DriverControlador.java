@@ -47,10 +47,10 @@ public class DriverControlador {
                 break;
                 case "me":
                     System.out.println("\nExemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- \n");
+                    System.out.print("Entra el nom de l'expressió que vols modificar, si no existeix es crearà: ");
+                    String nom_modificada = read.nextLine();
                     System.out.print("Entra una expressió booleana: ");
                     String expressio_modificada = read.nextLine();
-                    System.out.print("Entra un nom per a l'expressió booleana: ");
-                    String nom_modificada = read.nextLine();
                     controladorb.SetExpressioBooleana(nom_modificada, expressio_modificada);
                 break;
                 case "ee":
