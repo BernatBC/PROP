@@ -8,10 +8,10 @@ import java.util.Comparator;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
-/** Classe controladora de mètodes relacionats amb documents.
+/** Classe controladora de les classes de domini.
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
  */
-public class DocumentCtrl {
+public class CtrlDomini {
 
 	private Vocabulari vocab;
 	private Llibreria lib;
@@ -69,6 +69,10 @@ public class DocumentCtrl {
 	};
 
 
+	public boolean docExists(String title, String author){
+		return lib.getDocument(author, title).getR();
+	}
+
 	/** Mètode static per a ordenar llistes de documents segons un tipus d'ordenació.
 	 * 
 	 * Els tipus d'ordenació són per dates (0), per preferit (1), per autor alfabèticament (2) o per títol alfabèticament (3).
@@ -122,20 +126,14 @@ public class DocumentCtrl {
 
 	/** Constructora del Controlador de Document.
 	 * 
-	 * @param v El vocabulari de paraules.
-	 * @param l La llibreria (cjt de documents).
-	 * @param cd Una referència a la consultora per dates.
-	 * @param ct Una referència a la consultora de títols.
-	 * @param cp Una referència a la consultora per preferits.
-	 * @param ca Una referència a la consultora d'autors.
 	 */
-	public DocumentCtrl(Vocabulari v, Llibreria l, ConsultaData cd, ConsultaTitol ct, ConsultaPreferit cp, ConsultaAutors ca){
-		vocab = v;
-		lib = l;
-		CP = cp;
-		CT = ct;
-		CD = cd;
-		CA = ca;
+	public CtrlDomini () {
+		vocab = new Vocabulari();
+		lib = new Llibreria();
+		CD = new ConsultaData();
+		CT = new ConsultaTitol();
+		CP = new ConsultaPreferit();
+		CA = new ConsultaAutors();
 	};
 
 	/** Mètode privat que ens descomposa una String 'frase' en una llista de Strings, que són les paraules
@@ -175,40 +173,20 @@ public class DocumentCtrl {
 	/**
 	 *  Funció que interacciona amb l'usuari i crea un document.
 	 */
-	public void crearDocument(LocalDate dia, boolean isFav){
-		Scanner in = new Scanner(System.in);
+	public void crearDocument(String title, String author, ArrayList<String> content, LocalDate dia, boolean isFav){
 		
-		System.out.print("Enter the title of the document: ");
-		String title = in.nextLine();
 		ArrayList<String> titledecomp = decomposeWords(title);
 		
-		System.out.print("Enter the author's name: ");
-		String author = in.nextLine();
 		ArrayList<String> authordecomp = decomposeWords(author);
-
-		if (getDocument(author, title).getR()){
-			System.out.println("Can't create the same document twice. Either modify it or delete it.");
-			return;
-		}
 		
-		System.out.println("\nPlease write the body of the document. Separate each phrase by a new line (ENTER). When you're done, press (ENTER) twice.\n");
-		ArrayList<String> content = new ArrayList<String>();
-		while (in.hasNextLine()){
-			content.add(in.nextLine());
-			if (content.get(content.size()-1).equals("")){
-				content.remove(content.size()-1);
-				break;
-			}
-		} 
 		ArrayList<ArrayList<String>> contentdecomp = new ArrayList<ArrayList<String>>();
 
 		for (int s = 0; s < content.size(); ++s){
 			contentdecomp.add(decomposeWords(content.get(s)));
 		}
 		
-		// Now create the words read, insert them in the Vocab...
-		// Comencem per crear les paraules
 		ArrayList<Paraula> arrWords = new ArrayList<Paraula>();
+
 		for (int w = 0; w < titledecomp.size(); ++w){
 			Paraula wd = vocab.inserirObtenirParaula(titledecomp.get(w));
 			arrWords.add(wd);
@@ -216,7 +194,6 @@ public class DocumentCtrl {
 
 		Frase titlePhrase = new Frase(arrWords, title); 
 
-		// Ara per l'autor
 		arrWords.clear();
 		for (int w = 0; w < authordecomp.size(); ++w){
 			Paraula wd = vocab.inserirObtenirParaula(authordecomp.get(w));
@@ -226,9 +203,7 @@ public class DocumentCtrl {
 		Frase authorPhrase = new Frase(arrWords, author);
 
 		CA.addAutor(authorPhrase);
-		
-		// Finalment pel contingut
-		 
+				 
 		Frase[] cont = new Frase[contentdecomp.size()];
 
 		for (int w = 0; w < contentdecomp.size(); ++w){
@@ -242,10 +217,9 @@ public class DocumentCtrl {
 
 			cont[w] = new Frase(arrWords, content.get(w));
 		}
+
 		Contingut contentFinal = new Contingut(String.join("\n", content), cont);
 		
-		// Finalment creem el document i el guardem
-
 		Document doc = new Document(authorPhrase, titlePhrase, isFav, "NULL", dia, contentFinal);
 
 		lib.addDocument(doc);
@@ -253,8 +227,6 @@ public class DocumentCtrl {
 		CD.addDoc(doc);
 
 		if (isFav) CP.afegirDocument(doc);
-
-		System.out.println("Document added successfully!\n");
 	}
 	
 	/**
@@ -263,11 +235,6 @@ public class DocumentCtrl {
 	public void modificarDocument(){
 		Scanner in = new Scanner(System.in);
 
-		System.out.print("\nEnter the name of the title: ");
-		String title = in.nextLine();
-
-		System.out.print("Enter the author's name: ");
-		String author = in.nextLine();
 		
 		Pair<Document, Boolean> docboolean = lib.getDocument(author, title);
 
@@ -334,6 +301,19 @@ public class DocumentCtrl {
 		
 	}
 
+	// PRECONDICIÓ: Existeix (title, author).
+	public String preview(String title, String author){
+		return getDocument(author, title).getL().toString();
+	}
+
+	public void modificarData(String title, String author, LocalDate dat){
+		Document d = getDocument(author, title).getL();
+		
+		d.setData(dat);
+
+		CD.deleteDoc(d);
+		CD.addDoc(d);
+	}
 
 	/** Funció que elimina un document donada la seva referència
 	 * 

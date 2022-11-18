@@ -12,14 +12,9 @@ import java.time.DateTimeException;
 public class DriverControlador {
 
     public static void main(String[] args) {
-        Vocabulari v = new Vocabulari();
-        Llibreria l = new Llibreria();
-        ConsultaData cd = new ConsultaData();
-        ConsultaTitol ct = new ConsultaTitol();
-        ConsultaPreferit cp = new ConsultaPreferit();
-        ConsultaAutors ca = new ConsultaAutors();
-        ExpressioBooleanaCtrl controladorb = new ExpressioBooleanaCtrl();
-        DocumentCtrl controlador = new DocumentCtrl(v, l, cd, ct, cp, ca);
+        String title, author;
+
+        CtrlDomini controlador = new CtrlDomini();
 
         imprimirComandes();
         Scanner read = new Scanner(System.in);
@@ -27,9 +22,102 @@ public class DriverControlador {
         while (read.hasNextLine()) {
             switch (read.nextLine().toLowerCase()) {
                 case "n":
-                    controlador.crearDocument(LocalDate.now(), false);
+                    System.out.print("Enter the title of the document: ");
+                    title = read.nextLine();
+                    System.out.print("Enter the author of the document: ");
+                    author = read.nextLine();
+
+                    if (controlador.docExists(title, author)){
+                        System.out.println("Document already exists!");
+                        break;
+                    }
+
+                    System.out.println("\nPlease write the body of the document. Separate each phrase by a new line (ENTER). When you're done, press (ENTER) twice.\n");
+                    ArrayList<String> content = new ArrayList<String>();
+            
+                    while (read.hasNextLine()){
+                        content.add(read.nextLine());
+                        if (content.get(content.size()-1).equals("")){
+                            content.remove(content.size()-1);
+                            break;
+                        }
+                    }
+            
+                    controlador.crearDocument(title, author, content, LocalDate.now(), false);
+
+                    System.out.println("\nDocument successfully added!");
+
                 break;
                 case "m":
+
+                    System.out.print("\nEnter the title of the document: ");
+                    title = read.nextLine();
+            
+                    System.out.print("Enter the author of the document: ");
+                    author = read.nextLine();
+        
+                    if (!controlador.docExists(title, author)){
+                        System.out.println("The document does not exist.");
+                        break;
+                    }
+
+                    System.out.println("\nPreview of the document: \n\n"+controlador.preview(title, author));
+
+                    System.out.println("What do you wish to modify from the document (1..3)?\n");
+                    System.out.println("1) The date of creation");
+                    System.out.println("2) I want to toggle the document's favourite status");
+                    System.out.println("3) I want to modify the document itself\n");
+
+                    int choice = read.nextInt();
+
+                    switch(choice){
+                        
+                        case 1:
+                        System.out.print("New date (YYYY MM DD): ");
+                        int year = read.nextInt(); int month = read.nextInt(); int day = read.nextInt();
+            
+                        try {
+
+                            LocalDate newDate = LocalDate.of(year, month, day);
+
+                            controlador.modificarData(title, author, newDate);
+
+                            break;
+            
+                        } catch (DateTimeException e){
+                            System.out.println("\nPlease enter a valid date in the format YYYY MM DD next time.");
+                            
+                            break;
+                        }
+            
+                        case 2:
+            
+                        System.out.print("Do you want to toggle the favourite status (Y/N)? ");
+                        String yn = read.nextLine();
+
+                        /// CONTINUAR A PARTIR D'AQUI
+                        togglePreferit(doc);
+            
+                        System.out.println("New favourite status is "+doc.getFavourite());
+                        return;
+                        
+                        case 3:
+            
+                        LocalDate dia = doc.getData();
+                        boolean isFav = doc.getFavourite();
+                        eliminarDocument(doc);
+                        crearDocument(dia, isFav);
+            
+                        break;
+            
+                        default:
+            
+                        System.out.println("Didn't recognize "+choice);
+                         return;
+                    }
+            
+            
+
                     controlador.modificarDocument();
                 break;
                 case "e":

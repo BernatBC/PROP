@@ -1,3 +1,5 @@
+## 🎉 A MILLORAR 🎉
+
 diagrama de classes (millorar)
 controladors: eliminar classes de domini i atributs a la constructora
 consultes: lien
