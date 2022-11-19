@@ -23,7 +23,7 @@ public class Paraula {
     */
     public Paraula(String p) {
         mot = p;
-        ocurrencia = 1;
+        ocurrencia = 0;
         index = proxim_index;
         ++proxim_index;
     }
