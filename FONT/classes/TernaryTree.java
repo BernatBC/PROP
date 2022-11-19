@@ -1,4 +1,6 @@
 package classes;
+import java.util.Set;
+import java.util.HashSet;
 
 
 /** Estructura de dades per contenir el diccionari de paraules.
@@ -42,7 +44,7 @@ public class TernaryTree<T> {
     }
 
     /**Obtenir el contingut que correspon a la seqüència s.
-     * @param s seqüencia de caràcters que forma la paraula.
+     * @param s seqüencia de caràcters que forma la clau.
      * @param i index de la paraula des d'on falta fer la cerca.
      * @return T : Contingut.
      */
@@ -57,8 +59,43 @@ public class TernaryTree<T> {
         return null;
     }
 
+    /**Obtenir tots els valors que conté el subarbre.
+     * @param resultat valors de l'arbre que contenen el prefix s.
+     */
+    private void recorreArbre(Set<T> resultat) {
+        if (contingut != null) resultat.add(contingut);
+        if (dreta != null) dreta.recorreArbre(resultat);
+        if (centre != null) centre.recorreArbre(resultat);
+        if (esquerra != null) esquerra.recorreArbre(resultat);
+    }
+
+    /**Obtenir el contingut que correspon conté el prefix s.
+     * @param s seqüencia de caràcters que forma el prefix.
+     * @param i index del prefix des d'on falta fer la cerca.
+     * @param resultat valors de l'arbre que contenen el prefix s.
+     */
+    private void obtenirValors(Set<T> resultat, String s, int i) {
+        if (s == "") return;
+        if (s.charAt(i) > lletra && dreta != null) dreta.obtenirValors(resultat, s, i);
+        if (s.charAt(i) < lletra && esquerra != null) esquerra.obtenirValors(resultat, s, i);
+        if (s.charAt(i) == lletra) {
+            if (i < s.length() - 1 && centre != null) centre.obtenirValors(resultat, s, i + 1);
+            if (i == s.length() - 1) recorreArbre(resultat);
+        }
+    }
+
+    /**Obtenir el contingut que correspon conté el prefix s.
+     * @param s seqüencia de caràcters que forma el prefix.
+     * @return Set<T> : Valors de l'arbre que contenen el prefix s.
+     */
+    public Set<T> obtenirPerPrefix(String s) {
+        Set<T> resultat = new HashSet<>();
+        obtenirValors(resultat, s, 0);
+        return resultat;
+    }
+
     /**Obtenir el contingut que correspon a la seqüència s, el crea si no existeix aquest.
-     * @param s seqüencia de caràcters que forma la paraula.
+     * @param s seqüencia de caràcters que forma la clau.
      * @param i index de la paraula des d'on falta fer la cerca.
      * @return T : Contingut.
      */
@@ -84,7 +121,7 @@ public class TernaryTree<T> {
     }
 
         /**Esborra el corresponent a s juntament amb els nodes innecessaris.
-     * @param s seqüencia de caràcters que forma la paraula.
+     * @param s seqüencia de caràcters que forma la clau.
      * @param i index de la paraula des d'on falta fer la cerca.
      * @param esborrable node pare des d'on es pot esborrar l'arbre.
      * @param dir direcció del node fill que es pot esborrar.
