@@ -120,11 +120,26 @@ public class ConsultaData {
     public ArrayList<Document> consulta() {
         ArrayList<Document> interval = new ArrayList<>();
         Integer idxini = 0, idxfin = n_docs-1;
-
+        boolean chan1 = false, chan2 = false;
+        for (int i = 0; i < n_docs; ++i) {
+            LocalDate data = docs.get(i).getData();
+            //primer element a dintre l'interval
+            if (!chan1 && (data.isAfter(anterior) || data.isEqual(anterior))) {
+                idxini = i;
+                chan1 = true;
+            }
+            //primer element mes gran que la data de l'interval
+            if (!chan2 && data.isAfter(posterior)) {
+                if (i != 0) idxfin = i-1;
+                chan2 = true;
+            }
+            if (chan1 && chan2) break;
+        }
+/* 
         while(idxini < n_docs && docs.get(idxini).getData().isBefore(anterior)) ++idxini;
 
         while(idxfin >= 0 && docs.get(idxfin).getData().isAfter(posterior)) --idxfin;
-
+*/
         for (int q = idxini; q <= idxfin; ++q) interval.add(docs.get(q));
 
         return interval;
