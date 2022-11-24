@@ -50,6 +50,22 @@ public class Document {
 		return author;
 	}
 
+	/** Setter de la Frase Autor del document.
+	 * 
+	 * @param newAutor Frase que representa el nou autor del document.
+	 */
+	public void setAutor(Frase newAutor){
+		author = newAutor;
+	}
+
+	/** Setter de la Frase Titol del document.
+	 * 
+	 * @param newTitol Frase que representa el nou títol del document.
+	 */
+	public void setTitol(Frase newTitol){
+		title = newTitol;
+	}
+
 	/** Getter del Contingut del document.
 	 * 
 	 * @return Contingut del document.

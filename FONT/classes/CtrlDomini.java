@@ -228,82 +228,28 @@ public class CtrlDomini {
 
 		if (isFav) CP.afegirDocument(doc);
 	}
-	
-	/**
-	 *  Funció que interacciona amb l'usuari i modifica un document existent.
+
+	/** Funció que retorna el booleà de preferit d'un document
+	 * 
+	 * @param title Títol del document a consultar.
+	 * @param author Autor del docuemnt a consultar.
+	 * @return Booleà <i>isFav</i>. Si el document no existeix retorna fals.
 	 */
-	public void modificarDocument(){
-		Scanner in = new Scanner(System.in);
+	public boolean getFavourite(String title, String author)
+	{
+		Pair<Document, Boolean> doc = getDocument(author, title);
+		if (!doc.getR()) return false;
 
-		
-		Pair<Document, Boolean> docboolean = lib.getDocument(author, title);
-
-		Document doc = docboolean.getL();
-
-		if (!docboolean.getR()){
-			System.out.println("Document with such author and title not found!");
-			 return;
-		}
-
-		System.out.println("\nPreview of the document: \n\n"+doc);
-
-		System.out.println("What do you wish to modify from the document (1..3)?\n");
-		System.out.println("1) The date of creation");
-		System.out.println("2) I want to toggle the document's favourite status");
-		System.out.println("3) I want to modify the document itself\n");
-		
-		int choice = in.nextInt();
-
-		switch(choice){
-			case 1:
-			System.out.println("\nCurrent date: "+doc.getData());
-			System.out.print("New date (YYYY MM DD): ");
-			int year = in.nextInt(); int month = in.nextInt(); int day = in.nextInt();
-
-			try {
-				LocalDate newDate = LocalDate.of(year, month, day);
-
-				doc.setData(newDate);
-
-				CD.deleteDoc(doc);
-				CD.addDoc(doc);
-				 return;
-
-			} catch (DateTimeException e){
-				System.out.println("\nPlease enter a valid date in the format YYYY MM DD next time.");
-				 return;
-			}
-
-			case 2:
-
-			System.out.print("Current favourite status is ");
-			System.out.println(doc.getFavourite());
-
-			togglePreferit(doc);
-
-			System.out.println("New favourite status is "+doc.getFavourite());
-			return;
-			
-			case 3:
-
-			LocalDate dia = doc.getData();
-			boolean isFav = doc.getFavourite();
-			eliminarDocument(doc);
-			crearDocument(dia, isFav);
-
-			break;
-
-			default:
-
-			System.out.println("Didn't recognize "+choice);
-			 return;
-		}
-		
-	}
+		return doc.getL().getFavourite();
+	}	
 
 	// PRECONDICIÓ: Existeix (title, author).
 	public String preview(String title, String author){
 		return getDocument(author, title).getL().toString();
+	}
+
+	public Set<String> donaAutors(String prefix){
+		return CA.donaAutors(prefix);
 	}
 
 	public void modificarData(String title, String author, LocalDate dat){
@@ -315,78 +261,68 @@ public class CtrlDomini {
 		CD.addDoc(d);
 	}
 
-	/** Funció que elimina un document donada la seva referència
-	 * 
-	 * @param d El Document que volem eliminar de la llibreria.
-	 */
-	public void eliminarDocument(Document d){
-
-		// Rebaixar per 1 les ocurrències de cada paraula
-		Frase authorFrase = d.getAutor();
-		Frase titleFrase  =d.getTitol();
-		Contingut content = d.getContingut();
-
-		Frase[] frasesContingut = content.getFrases();
-		ArrayList<Paraula[]> wordsContingut = new ArrayList<>();
-
-		for (int i = 0; i < frasesContingut.length; ++i){
-			wordsContingut.add(frasesContingut[i].getOracio());
-		}
-
-		Paraula[] wordsAutor = authorFrase.getOracio();
-		Paraula[] wordsTitol = titleFrase.getOracio();
-
-		// Eliminem el document, paraules i frases eliminant les referències (després es crida al GC de Java)
-		if (d.getFavourite()) CP.eliminarDocument(d);
-		CT.eliminarDocument(d);
-		CD.deleteDoc(d);
-		lib.deleteDocument(d);
-
-
-		for (int i = 0; i < wordsAutor.length; ++i){
-			vocab.decrementarOcurrencia(wordsAutor[i]);
-			
-		}
-
-		for (int i = 0; i < wordsTitol.length; ++i){
-			vocab.decrementarOcurrencia(wordsTitol[i]);
-		}
-
-
-		for (int i = 0; i < wordsContingut.size(); ++i){
-			for (int j = 0; j < wordsContingut.get(i).length; ++j){
-				vocab.decrementarOcurrencia(wordsContingut.get(i)[j]);
-			}
-		}
+	public void modificarAutor(String title, String oldAuth, String newAuth){
+		Document d = getDocument(oldAuth, title).getL();
 		
-		System.gc();
+		ArrayList<String> authordecomp = decomposeWords(newAuth);
+		ArrayList<Paraula> arrWords = new ArrayList<Paraula>();
 
+		for (int w = 0; w < authordecomp.size(); ++w){
+			Paraula wd = vocab.inserirObtenirParaula(authordecomp.get(w));
+			arrWords.add(wd);
+		}
+
+		Frase authorPhrase = new Frase(arrWords, newAuth);
+
+		d.setAutor(authorPhrase);
+
+		CA.addAutor(authorPhrase);
+		
+		// Potser es podria fer només en una instrucció
+		CT.eliminarDocument(d);
+		CT.afegirDocument(d);
 	}
+
+	public void modificarContingut(String title, String author, ArrayList<String> content){
+
+		// Suposarem que d existeix.
+		Document d = getDocument(author, title).getL();
+
+		boolean isFav = d.getFavourite();
+		LocalDate dat = d.getData();
+
+		eliminarDocument(title, author);
+		crearDocument(title, author, content, dat, isFav);
+	}
+
+	public void modificarTitol(String oldTitle, String author, String newTitle){
+		Document d = getDocument(author, oldTitle).getL();
+		
+		ArrayList<String> titledecomp = decomposeWords(newTitle);
+		ArrayList<Paraula> arrWords = new ArrayList<Paraula>();
+
+		for (int w = 0; w < titledecomp.size(); ++w){
+			Paraula wd = vocab.inserirObtenirParaula(titledecomp.get(w));
+			arrWords.add(wd);
+		}
+
+		Frase titolFrase = new Frase(arrWords, newTitle);
+
+		d.setTitol(titolFrase);
+	}
+
+
 
 	/**
 	 * Mètode que interacciona amb l'usuari amb l'objectiu d'eliminar un document.
 	 */
-	public void eliminarDocument(){
-		Scanner in = new Scanner(System.in);
-
-		System.out.print("\nEnter the name of the title: ");
-		String title = in.nextLine();
-
-		System.out.print("Enter the author's name: ");
-		String author = in.nextLine();
+	public void eliminarDocument(String title, String author){
+		Document doc = getDocument(author, title).getL();;
 		
-
-		Pair<Document, Boolean> docboolean = lib.getDocument(author, title);
-		
-		if (!docboolean.getR()){
-			System.out.println("Document with such author and title not found!");
-			return;
-		}
-
 		// Rebaixar per 1 les ocurrències de cada paraula
-		Frase authorFrase = docboolean.getL().getAutor();
-		Frase titleFrase  =docboolean.getL().getTitol();
-		Contingut content = docboolean.getL().getContingut();
+		Frase authorFrase = doc.getAutor();
+		Frase titleFrase  =doc.getTitol();
+		Contingut content = doc.getContingut();
 
 		Frase[] frasesContingut = content.getFrases();
 		ArrayList<Paraula[]> wordsContingut = new ArrayList<>();
@@ -399,17 +335,19 @@ public class CtrlDomini {
 		Paraula[] wordsTitol = titleFrase.getOracio();
 
 		// Eliminem el document, paraules i frases eliminant les referències (després es crida al GC de Java)
-		if (docboolean.getL().getFavourite()) CP.eliminarDocument(docboolean.getL());
-		CT.eliminarDocument(docboolean.getL());
-		CD.deleteDoc(docboolean.getL());
-		lib.deleteDocument(docboolean.getL());
+		if (doc.getFavourite()) CP.eliminarDocument(doc);
+		
+		CT.eliminarDocument(doc);
+		CD.deleteDoc(doc);
+		lib.deleteDocument(doc);
 
-
+		//// CONTEM AIXO?
 		for (int i = 0; i < wordsAutor.length; ++i){
 			vocab.decrementarOcurrencia(wordsAutor[i]);
 			
 		}
 
+		// CONTEM AIXÒ?
 		for (int i = 0; i < wordsTitol.length; ++i){
 			vocab.decrementarOcurrencia(wordsTitol[i]);
 		}
@@ -422,17 +360,47 @@ public class CtrlDomini {
 		}
 		
 		System.gc();
-		System.out.println("Document removed successfully!");
 
 	}
 
-	/** Mètode que canvia l'estat del booleà preferit d'un document donada una referència a aquest.
+	public ArrayList<String> consultaData(LocalDate ant, LocalDate post, int criteria)
+	{
+		ArrayList<Document> docs = CD.consulta(ant, post);
+		docs = sortDocuments(docs, criteria);
+
+		ArrayList<String> myList = new ArrayList<String>();
+
+		for (Document d : docs){
+			myList.add(d.toString());
+		}
+
+		return myList;
+	}
+
+	public ArrayList<String> consultaPreferit(int criteria){
+		Set<Document> docSet = CP.getDocPreferit();
+		ArrayList<Document> docs = sortDocuments(docSet, criteria);
+
+		ArrayList<String> myList = new ArrayList<String>();
+
+		for (Document d : docs){
+			myList.add(d.toString());
+		}
+
+		return myList;
+
+	}
+
+	/** Mètode que canvia l'estat del booleà preferit d'un document.
 	 * 
-	 * @param d Document en el qual volem fer toggle del booleà <i>isFav</i>.
+	 * @param title Títol en String del document en el qual volem fer toggle del booleà <i>isFav</i>.
+	 * @param author Autor en String del document en el qual volem fer toggle del booleà <i>isFav</i>.
 	 */
-	public void togglePreferit(Document d){
+	public void togglePreferit(String title, String author){
 
 		// Fem el toggle
+		Document d = getDocument(author, title).getL();
+
 		d.setFavourite(!d.getFavourite());
 
 		if (d.getFavourite()){

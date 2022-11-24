@@ -13,6 +13,7 @@ public class DriverControlador {
 
     public static void main(String[] args) {
         String title, author;
+        ArrayList<String> content;
 
         CtrlDomini controlador = new CtrlDomini();
 
@@ -33,7 +34,7 @@ public class DriverControlador {
                     }
 
                     System.out.println("\nPlease write the body of the document. Separate each phrase by a new line (ENTER). When you're done, press (ENTER) twice.\n");
-                    ArrayList<String> content = new ArrayList<String>();
+                    content = new ArrayList<String>();
             
                     while (read.hasNextLine()){
                         content.add(read.nextLine());
@@ -64,9 +65,11 @@ public class DriverControlador {
                     System.out.println("\nPreview of the document: \n\n"+controlador.preview(title, author));
 
                     System.out.println("What do you wish to modify from the document (1..3)?\n");
-                    System.out.println("1) The date of creation");
-                    System.out.println("2) I want to toggle the document's favourite status");
-                    System.out.println("3) I want to modify the document itself\n");
+                    System.out.println("[1] The date of creation");
+                    System.out.println("[2] I want to toggle the document's favourite status");
+                    System.out.println("[3] I want to modify the name of the author");
+                    System.out.println("[4] I want to modify the title of the document");
+                    System.out.println("[5] I want to modify the content of the document\n");
 
                     int choice = read.nextInt();
 
@@ -92,47 +95,113 @@ public class DriverControlador {
             
                         case 2:
             
-                        System.out.print("Do you want to toggle the favourite status (Y/N)? ");
-                        String yn = read.nextLine();
-
-                        /// CONTINUAR A PARTIR D'AQUI
-                        togglePreferit(doc);
+                        while (true){
+                            System.out.print("Do you want to toggle the favourite status (Y/N)? ");
+                            String yn = read.nextLine();
+    
+                            if (yn.toLowerCase().equals("y")){
+                                controlador.togglePreferit(title, author);
+                                System.out.println("New favourite status is "+controlador.getFavourite(title, author));
+                                break;
+                            } 
+                            else if (yn.toLowerCase().equals("n")) break;
+                            else System.out.println("Sorry, "+yn+" not understood. Please answer with Y or N.");
+    
+                        }
             
-                        System.out.println("New favourite status is "+doc.getFavourite());
                         return;
                         
                         case 3:
-            
-                        LocalDate dia = doc.getData();
-                        boolean isFav = doc.getFavourite();
-                        eliminarDocument(doc);
-                        crearDocument(dia, isFav);
-            
+
+                        // Modificació autor
+                        System.out.print("Please enter the new author for the document: ");
+                        String newAuthor = read.nextLine();
+
+                        controlador.modificarAutor(title, author, newAuthor);
+
+                        System.out.println("Author modified correctly. ");
+                        
                         break;
+
+                        case 4:
+
+                        // Modificació títol
+                        System.out.print("Please enter the new title for the document: ");
+                        String newTitle = read.nextLine();
+
+                        controlador.modificarTitol(title, author, newTitle);
             
+                        System.out.println("Title modified correctly. ");
+
+                        case 5:
+
+                        // Modificació del contingut
+                        System.out.println("\nPlease write the body of the document. Separate each phrase by a new line (ENTER). When you're done, press (ENTER) twice.\n");
+                        content = new ArrayList<String>();
+                
+                        while (read.hasNextLine()){
+                            content.add(read.nextLine());
+                            if (content.get(content.size()-1).equals("")){
+                                content.remove(content.size()-1);
+                                break;
+                            }
+                        }
+                
+                        controlador.modificarContingut(title, author, content);
+
+                        System.out.println("Content modified correctly. ");
+
                         default:
             
                         System.out.println("Didn't recognize "+choice);
-                         return;
-                    }
+                   
+                    } // Final del switch(choice)
             
-            
-
-                    controlador.modificarDocument();
                 break;
                 case "e":
-                    controlador.eliminarDocument();
+
+                    System.out.print("\nEnter the title of the document: ");
+                    title = read.nextLine();
+            
+                    System.out.print("Enter the author of the document: ");
+                    author = read.nextLine();
+        
+                    if (!controlador.docExists(title, author)){
+                        System.out.println("The document does not exist.");
+                        break;
+                    }
+                    
+                    System.out.println("\nPreview of the document: \n\n"+controlador.preview(title, author));
+
+                    while (true){
+                        System.out.print("Are you sure you want to delete the document (Y/N)? ");
+                        String yn = read.nextLine();
+
+                        if (yn.toLowerCase().equals("y")){
+                            controlador.eliminarDocument(title, author);
+                            System.out.println("Document successfully deleted.");
+                            break;
+                        } 
+                        else if (yn.toLowerCase().equals("n")) break;
+                        else System.out.println("Sorry, "+yn+" not understood. Please answer with Y or N.");
+
+                    }
+                
                 break;
+                // No ho toco de moment
                 case "ne":
                     System.out.println("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- ");
                     System.out.print("Entra una expressió booleana: ");
                     String expressio = new String();
+                    
                     while(expressio.isEmpty()){
                         expressio = read.nextLine();}
+                    
                     System.out.print("Entra un nom per a l'expressió booleana: ");
                     String nom = read.nextLine();
                     controladorb.ExpressioBooleanaCtrl(nom, expressio);
                 break;
+                // No ho toco de moment
                 case "me":
                     System.out.println("\nExemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- \n");
                     System.out.print("Entra el nom de l'expressió que vols modificar, si no existeix es crearà: ");
@@ -141,16 +210,21 @@ public class DriverControlador {
                     String expressio_modificada = read.nextLine();
                     controladorb.SetExpressioBooleana(nom_modificada, expressio_modificada);
                 break;
+                // No ho toco de moment
                 case "ee":
                     System.out.print("Entra un nom per a l'expressió booleana: ");
                     String nom_esborrar = read.nextLine();
                     controladorb.DeleteExpressioBooleana(nom_esborrar);
                 break;
                 case "ca":
+
                     System.out.print("Enter the author's prefix: ");
-		            String author = read.nextLine();
-                    imprimirFrases(ca.donaAutors(author));
+		            author = read.nextLine();
+
+                    printSet(controlador.donaAutors(author));
+
                 break;
+                // No ho toco de moment
                 case "cb":
                     System.out.println("Selecciona Mode:");
                     System.out.println("[1] Consulta directa");
@@ -188,61 +262,95 @@ public class DriverControlador {
                 case "q":
                     return;
                 case "cd":
+                    int year, month, day;
+
                     System.out.println("Selecciona Mode:");
-                    System.out.println("1) Documents entre dues dates");
-                    System.out.println("2) Documents anteriors a una data");
-                    System.out.println("3) Documents posteriors a una data");
+                    System.out.println("[1] Documents entre dues dates");
+                    System.out.println("[2] Documents anteriors a una data");
+                    System.out.println("[3] Documents posteriors a una data");
+
                     int tria = read.nextInt();
-                    if (tria == 1) {
+
+                    switch (tria){
+
+                        case 1:
+                        
                         System.out.println("Enter de lower bound (YYYY MM DD): ");
-                        int year = read.nextInt(); int month = read.nextInt(); int day = read.nextInt();
+                        year = read.nextInt(); month = read.nextInt(); day = read.nextInt();
                         System.out.println("Enter the higher bound (YYYY MM DD): ");
                         int year2 = read.nextInt(); int month2 = read.nextInt(); int day2 = read.nextInt();
-                        try {
+
+                        try { 
                             LocalDate ant = LocalDate.of(year, month, day);
                             LocalDate post = LocalDate.of(year2, month2, day2);
-                            imprimirArray(DocumentCtrl.sortDocuments(cd.consulta(ant, post), getCriteris(read)));
+
+                            ArrayList<String> listOfDocs = controlador.consultaData(ant, post, getCriteris(read));
+
+                            for (String s : listOfDocs) System.out.println(s);
+
                         } catch (DateTimeException e){
                             System.out.println("\nPlease enter a valid date in the format YYYY MM DD next time :)");
                         }
-                    }
-                    else if (tria == 2) {
+
+                        break;
+
+                        case 2:
+
                         System.out.println("Enter the higher bound (YYYY MM DD): ");
-                        int year = read.nextInt(); int month = read.nextInt(); int day = read.nextInt();
+                        year = read.nextInt(); month = read.nextInt(); day = read.nextInt();
+
                         try {
-                            LocalDate d = LocalDate.of(year, month, day);
-                            imprimirArray(DocumentCtrl.sortDocuments(cd.consultaAnterior(d), getCriteris(read)));
+                            LocalDate dat = LocalDate.of(year, month, day);
+
+                            ArrayList<String> listOfDocs = controlador.consultaData(LocalDate.MIN, dat, getCriteris(read));
+
+                            for (String s : listOfDocs) System.out.println(s);
                         } catch (DateTimeException e){
                             System.out.println("\nPlease enter a valid date in the format YYYY MM DD next time :)");
                         }
-                    }
-                    else if (tria == 3) {
+                        break;
+                        case 3:
+
                         System.out.println("Enter the lower bound (YYYY MM DD): ");
-                        int year = read.nextInt(); int month = read.nextInt(); int day = read.nextInt();
+                        year = read.nextInt(); month = read.nextInt(); day = read.nextInt();
+
                         try {
-                            LocalDate d = LocalDate.of(year, month, day);
-                            imprimirArray(DocumentCtrl.sortDocuments(cd.consultaPosterior(d), getCriteris(read)));
+                            LocalDate dat = LocalDate.of(year, month, day);
+
+                            ArrayList<String> listOfDocs = controlador.consultaData(dat, LocalDate.MAX, getCriteris(read));
+
+                            for (String s : listOfDocs) System.out.println(s);
                         } catch (DateTimeException e){
                             System.out.println("\nPlease enter a valid date in the format YYYY MM DD next time :)");
                         }
+                        break;
+
                     }
+
                     
                 break;
                 case "cc":
-                    // Consulta contingut
-                    System.out.print("Entra el títol del document: ");
-                    String tit = read.nextLine();
-                    System.out.print("Entra l'autor del document: ");
-                    String auth = read.nextLine();
-                    Pair<Document, Boolean> p = controlador.getDocument(auth, tit);
+                    System.out.print("\nEnter the title of the document: ");
+                    title = read.nextLine();
+            
+                    System.out.print("Enter the author of the document: ");
+                    author = read.nextLine();
+        
+                    if (!controlador.docExists(title, author)){
+                        System.out.println("The document does not exist.");
+                        break;
+                    }
                     
-                    if (!p.getR()) System.out.println("\nNo s'ha trobat un document amb aquest títol i autor");
-                    else System.out.println(p.getL());
+                    System.out.println("\nPreview of the document: \n\n"+controlador.preview(title, author));
+
 
                 break;
                 case "cp":
-                    imprimirArray(DocumentCtrl.sortDocuments(cp.getDocPreferit(), getCriteris(read)));
-                break;
+                    ArrayList<String> listOfDocs = controlador.consultaPreferit(getCriteris(read));
+
+                    for (String s : listOfDocs) System.out.println(s);
+
+                    break;
                 case "cr1":
                     System.out.print("Entra un conjunt de paraules seperades per espais: ");
                     String s =  read.nextLine();
@@ -310,21 +418,11 @@ public class DriverControlador {
         
     }
 
-    private static void imprimirFrases(Set<Frase> frases) {
-        if (frases == null) {
-            System.out.println("\nNo s'ha trobat cap autor.");
-            return;
+    private static void printSet(Set<String> mySet){
+        for (String s : mySet){
+            System.out.println("- "+s);
         }
-        for (Frase f: frases) {
-            System.out.println(f.toString());
-        }
-    }
-
-    private static void imprimirArray(ArrayList<Document> documents) {
-        if (documents == null) return;
-        for (Document d: documents) {
-            System.out.println(d.toString());
-        }
+        System.out.println();
     }
 
     private static void imprimirSemblant(ArrayList<Pair<Double,Document>> documents) {

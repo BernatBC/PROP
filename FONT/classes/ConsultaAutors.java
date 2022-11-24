@@ -1,5 +1,6 @@
 package classes;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /** Consulta utilitzada per obtenir els noms dels Autors que començen per un prefix (ja sigui el nom o un cognom).
@@ -44,9 +45,13 @@ public class ConsultaAutors {
      * @return Set de Frases on cada frase és un autor.
      * @param prefix
      */
-    public Set<Frase> donaAutors(String prefix) {
+    public Set<String> donaAutors(String prefix) {
         //retorna el Set d'autors que compleixen el prefix
-        Set<Frase> result = autors.obtenirAutors(prefix, 0);
-        return result;
+        Set<Frase> frasesSet = autors.obtenirAutors(prefix, 0);
+        Set<String> ret = new HashSet<String>();
+
+        for (Frase f : frasesSet) ret.add(f.toString());
+
+        return ret;
     }
 }
