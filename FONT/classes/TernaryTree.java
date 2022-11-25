@@ -80,7 +80,7 @@ public class TernaryTree<T> {
         if (s.charAt(i) < lletra && esquerra != null) esquerra.obtenirValors(resultat, s, i);
         if (s.charAt(i) == lletra) {
             if (i < s.length() - 1 && centre != null) centre.obtenirValors(resultat, s, i + 1);
-            if (i == s.length() - 1) recorreArbre(resultat);
+            if (i == s.length() - 1) centre.recorreArbre(resultat);
         }
     }
 
