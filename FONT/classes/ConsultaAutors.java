@@ -9,13 +9,13 @@ import java.util.Set;
 public class ConsultaAutors {
     
     /** Arbre de cerca que emmagatzema els autors. */
-    private TernaryTree<Frase> autors;
+    private TernaryTree<Set<Frase>> autors;
 
     /** COnstructora per defecte.
      * @return Consultora Autors empty
      */
     public ConsultaAutors() {
-        autors = new TernaryTree<Frase>();
+        autors = new TernaryTree<Set<Frase>>();
     }
 
     /** Insereix l'autor en l'arbre de cerca per prefix. Per cada autor insereix el nom i cada cognom (per tal de poder fer també la cerca per un prefix d'un cognom).
@@ -23,10 +23,21 @@ public class ConsultaAutors {
      */
     public void addAutor(Frase autor) {
         String nom_cognom = autor.toString();
-
+        
         while (nom_cognom.length() > 0) {
             //inserim l'autor
-            autors.inserirObtenir(nom_cognom, 0, new Frase(nom_cognom));
+            
+            Set<Frase> conjunt = autors.obtenir(nom_cognom, 0);
+            if (conjunt == null) {
+                Set<Frase> aux = new HashSet<Frase>();
+                aux.add(autor);
+                autors.inserirObtenir(nom_cognom, 0,aux);
+            }
+            else {
+                conjunt.add(autor);
+                //autors.inserirObtenir(nom_cognom, 0,conjunt);
+            }
+            
             
             //esborrem la primera paraula de el String
             int ini = 0;
@@ -47,10 +58,11 @@ public class ConsultaAutors {
      */
     public Set<String> donaAutors(String prefix) {
         //retorna el Set d'autors que compleixen el prefix
-        Set<Frase> frasesSet = autors.obtenirPerPrefix(prefix);
+        Set<Set<Frase>> frasesSetSet = autors.obtenirPerPrefix(prefix);
         Set<String> ret = new HashSet<String>();
-
-        for (Frase f : frasesSet) ret.add(f.toString());
+        for (Set<Frase> s: frasesSetSet ) {
+            for (Frase f : s) ret.add(f.toString());
+        }
 
         return ret;
     }
