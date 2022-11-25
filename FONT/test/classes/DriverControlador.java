@@ -346,7 +346,7 @@ public class DriverControlador {
 
                 break;
                 case "cp":
-                    ArrayList<String> listOfDocs = controlador.consultaPreferit(getCriteris(read));
+                    ArrayList<String> listOfDocs = controlador.consultaPref(getCriteris(read));
 
                     for (String s : listOfDocs) System.out.println(s);
 
@@ -357,57 +357,56 @@ public class DriverControlador {
                     System.out.print("Entra un número de documents: ");
                     int k = read.nextInt();
                     
-                    String[] str_s = s.split(" ");
-                    Paraula[] arrp = new Paraula[str_s.length];
+                    System.out.println(controlador.consultaRell(s, k, 1));
 
-                    for (int ij = 0; ij < str_s.length; ++ij) arrp[ij] = v.inserirObtenirParaula(str_s[ij]);
-
-                    ConsultaRellevancia cs = new ConsultaRellevancia(k, arrp, s, 1, l);
-                    System.out.println(cs.getDocs().toString());
                 break;
                 case "cr2":
                     System.out.print("Entra un conjunt de paraules seperades per espais: ");
                     String s2 =  read.nextLine();
                     System.out.print("Entra un número de documents: ");
                     int k2 = read.nextInt();
-
-                    String[] str_s2 = s2.split(" ");
-                    Paraula[] arrp2 = new Paraula[str_s2.length];
-
-                    for (int ij = 0; ij < str_s2.length; ++ij) arrp2[ij] = v.inserirObtenirParaula(str_s2[ij]);
-
-                    ConsultaRellevancia cs2 = new ConsultaRellevancia(k2, arrp2, s2, 2, l);
-                    System.out.println(cs2.getDocs().toString());
-                break;
+                    
+                    System.out.println(controlador.consultaRell(s2, k2, 2));
+                
+                    break;
                 case "cs":
-                    System.out.print("Entra el títol del document: ");
-                    String t = read.nextLine();
-                    System.out.print("Entra l'autor del document: ");
-                    String a = read.nextLine();
+                    System.out.print("\nEnter the title of the document: ");
+                    title = read.nextLine();
+            
+                    System.out.print("Enter the author of the document: ");
+                    author = read.nextLine();
+        
+                    if (!controlador.docExists(title, author)){
+                        System.out.println("The document does not exist.");
+                        break;
+                    }
 
-                    System.out.print("Entra el nombre de documents: ");
+                    System.out.print("Enter the number of documents: ");
                     int k3 = read.nextInt();
-                    System.out.println("\nQuina assignació de pesos prefereix? ");
+                    System.out.println("\nWhich weight assignment do you wish for words? ");
                     System.out.println("[0] TF-IDF");
-                    System.out.println("[1] Per ocurrències");
+                    System.out.println("[1] By ocurrences");
                     int k9  =read.nextInt();
-                    if (k9 != 0 && k9 != 1) System.out.println("\nElecció "+k9+ " no reconeguda.");
-                    else imprimirSemblant(ConsultaSemblant.executeQuery(l, l.getDocument(a, t).getL(), k3, k9));
+                    
+                    if (k9 != 0 && k9 != 1) System.out.println("\nOption "+k9+ " not found.");
+                    else System.out.println(controlador.consultaSemb(title, author, k3, k9));
+                    //else imprimirSemblant(ConsultaSemblant.executeQuery(l, l.getDocument(a, t).getL(), k3, k9));
 
                 break;
                 case "cseq":
-                    System.out.print("Enter the sequence: ");
-                    String s3 = read.nextLine();
-                    Set<Document> results = ConsultaAvancada.obtenirDocuments(l, s3);
+                    System.out.print("Enter the sequence to search for: ");
+                    String myseq = read.nextLine();
 
-                    imprimirArray(DocumentCtrl.sortDocuments(results, getCriteris(read)));
+                    ArrayList<String> listOfDoc = controlador.consultaSeq(myseq, getCriteris(read)));
+                    for (String qp : listOfDocs) System.out.println(qp);
 
                 break;
                 case "ct":
                     System.out.print("Enter the author of the document: ");
                     String aut = read.nextLine();
 
-                    imprimirArray(DocumentCtrl.sortDocuments(ct.getDocAutor(new Frase(aut)), getCriteris(read)));
+                    ArrayList<String> myList = controlador.consultaTit(aut, getCriteris(read));
+                    for (String qp : myList) System.out.println(qp);
 
                 break;
             }
@@ -423,14 +422,6 @@ public class DriverControlador {
             System.out.println("- "+s);
         }
         System.out.println();
-    }
-
-    private static void imprimirSemblant(ArrayList<Pair<Double,Document>> documents) {
-        if (documents == null) return;
-        for (Pair<Double, Document> d: documents) {
-            System.out.println("GRAU DE SEMBLANÇA: " + d.getL());
-            System.out.println(d.getR().toString());
-        }
     }
 
     private static int getCriteris(Scanner read){

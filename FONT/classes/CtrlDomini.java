@@ -377,7 +377,64 @@ public class CtrlDomini {
 		return myList;
 	}
 
-	public ArrayList<String> consultaPreferit(int criteria){
+	public ArrayList<String> consultaSeq(String seq, int criteria){
+		Set<Document> setdocs = ConsultaAvancada.obtenirDocuments(lib, seq);
+		ArrayList<Document> result = sortDocuments(setdocs, criteria);
+
+		ArrayList<String> myList = new ArrayList<>();
+
+		for (Document d : result){
+			myList.add(d.toString());
+		}
+
+		return myList;
+	}
+
+	public ArrayList<String> consultaTit(String autor, int criteria){
+		Set<Document> setdocs = CT.getDocAutor(new Frase(autor));
+		ArrayList<Document> result = sortDocuments(setdocs, criteria);
+
+		ArrayList<String> myList = new ArrayList<>();
+
+		for (Document d : result){
+			myList.add(d.toString());
+		}
+
+		return myList;
+
+	}
+
+	public String consultaSemb(String titol, String autor, int n, int mode){
+		Document doc = getDocument(autor, titol).getL();
+
+		ArrayList<Pair<Double, Document>> result = ConsultaSemblant.executeQuery(lib, doc, n, mode);
+
+		StringBuilder strbld = new StringBuilder();
+		
+		for (Pair<Double, Document> d: result) {
+            strbld.append("GRAU DE SEMBLANÇA: " + d.getL() + "\n");
+            strbld.append(d.getR().toString() + "\n");
+        }
+
+		return strbld.toString();
+
+	}
+
+	public String consultaRell(String wordsSepBlank, int k, int modeConsulta)
+	{
+		String[] words = wordsSepBlank.split(" ");
+
+		Paraula[] arrWords = new Paraula[words.length];
+		for (int i = 0; i < words.length; ++i) arrWords[i] = vocab.inserirObtenirParaula(words[i]);
+
+		ConsultaRellevancia CR;
+		if (modeConsulta == 1) CR = new ConsultaRellevancia(k, arrWords, wordsSepBlank, 1, lib);
+		else CR = new ConsultaRellevancia(k, arrWords, wordsSepBlank, 2, lib);
+
+		return CR.getDocs().toString();
+	}
+
+	public ArrayList<String> consultaPref(int criteria){
 		Set<Document> docSet = CP.getDocPreferit();
 		ArrayList<Document> docs = sortDocuments(docSet, criteria);
 
