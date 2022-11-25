@@ -17,15 +17,15 @@
 - especificar set al uml **[DONE]**
 - consultes -> afegir element moure cap a altres classes
 - (??) casus d'us opcionals -> posar a l'uml **[DONE]**
-- explicar disseny ternarytree, com es composa, com funciona, de què tracta  [ARBRE][ARBRE]
+- explicar disseny ternarytree, com es composa, com funciona, de què tracta  **[ARBRE][ARBRE]**
 - comparar varies estructures
-- eliminar/justificar conjunt autors a cada node  [ARBRE][ARBRE]
-- ternarytree afegir conjunt de titols en el ternarytree autors  [ARBRE][ARBRE]
+- eliminar/justificar conjunt autors a cada node  **[ARBRE][ARBRE]**
+- ternarytree afegir conjunt de titols en el ternarytree autors  **[ARBRE][ARBRE]**
 - consultadata -> 1 cerca per als dos intervals o bé cerca dicotòmica afegir justificació **[DONE]**
-- expression tree -> està a justificació però no a les classes  [ARBRE][ARBRE]
+- expression tree -> està a justificació però no a les classes  **[ARBRE][ARBRE]**
 - set document -> no cal dir quines consultes
 - justificar algorismes de funcionalitats demanades
-- llibreria -> consulta titolautor es fa directa -> cercar-ho al ternarytree  [ARBRE][ARBRE]
+- llibreria -> consulta titolautor es fa directa -> cercar-ho al ternarytree  **[ARBRE][ARBRE]**
 - matriu distàncies -> precalcular-la
 - comentar capçaleres
 - eliminar println() de les classes **[DONE]**
