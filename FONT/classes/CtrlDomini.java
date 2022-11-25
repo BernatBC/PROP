@@ -512,4 +512,8 @@ public class CtrlDomini {
 		return myList;
 
 	}
+
+	public void exportarDocument(String titol, String autor, int ext, String fname){
+		
+	}
 }

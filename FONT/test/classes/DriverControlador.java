@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.DateTimeException;
 
@@ -420,6 +421,85 @@ public class DriverControlador {
                     for (String qp : myList) System.out.println(qp);
 
                 break;
+
+                case "i":
+                    System.out.println("Enter the path of the document: ");
+                    String path = read.nextLine();
+                    System.out.println("Choose the format of the document: ");
+                    System.out.println("[1] TXT");
+                    System.out.println("[2] XML");
+                    System.out.println("[3] YAY");
+
+                    int typefile = read.nextInt(); read.nextLine();
+                    Scanner readfile;
+
+                    try {
+                        File file = new File(path);
+                        readfile = new Scanner(file);
+    
+                    } catch (FileNotFoundException e){
+                        System.out.println("Sorry, file not found.");
+                        break;
+                    }
+
+                    switch (typefile){
+                        case 1:
+
+                        title = readfile.nextLine();
+                        author = readfile.nextLine();
+    
+                        if (controlador.docExists(title, author)){
+                            System.out.println("Document already exists!");
+                            break;
+                        }
+    
+                        String date = readfile.nextLine();
+                        boolean isFav = readfile.nextBoolean(); readfile.nextLine();
+
+                        content = new ArrayList<String>();
+                
+                        while (readfile.hasNextLine()){
+                            content.add(readfile.nextLine());
+                            if (content.get(content.size()-1).equals("")){
+                                content.remove(content.size()-1);
+                                break;
+                            }
+                        }
+
+                        controlador.crearDocument(title, author, content, LocalDate.parse(date), isFav);
+    
+                        System.out.println("\nDocument successfully added!");
+    
+                        break;
+                    }
+
+                break;
+                case "x":
+                    System.out.print("\nEnter the title of the document: ");
+                    title = read.nextLine();
+            
+                    System.out.print("Enter the author of the document: ");
+                    author = read.nextLine();
+        
+                    if (!controlador.docExists(title, author)){
+                        System.out.println("The document does not exist.");
+                        break;
+                    }
+
+
+                    System.out.println("Choose the format of the document: ");
+                    System.out.println("[1] TXT");
+                    System.out.println("[2] XML");
+                    System.out.println("[3] YAY");
+
+                    int extension = read.nextInt(); read.nextLine();
+
+                    System.out.print("Name of the file: ");
+                    String filename = read.nextLine();
+
+
+                    controlador.exportarDocument(title, author, extension, filename);
+
 
             }
             imprimirComandes();
