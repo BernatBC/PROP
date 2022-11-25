@@ -3,6 +3,7 @@ import classes.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
+import java.io.File;
 import java.time.LocalDate;
 import java.time.DateTimeException;
 
@@ -71,7 +72,7 @@ public class DriverControlador {
                     System.out.println("[4] I want to modify the title of the document");
                     System.out.println("[5] I want to modify the content of the document\n");
 
-                    int choice = read.nextInt();
+                    int choice = read.nextInt(); read.nextLine();
 
                     switch(choice){
                         
@@ -133,6 +134,8 @@ public class DriverControlador {
             
                         System.out.println("Title modified correctly. ");
 
+                        break;
+
                         case 5:
 
                         // Modificació del contingut
@@ -150,6 +153,8 @@ public class DriverControlador {
                         controlador.modificarContingut(title, author, content);
 
                         System.out.println("Content modified correctly. ");
+
+                        break;
 
                         default:
             
@@ -415,6 +420,7 @@ public class DriverControlador {
                     for (String qp : myList) System.out.println(qp);
 
                 break;
+
             }
             imprimirComandes();
         }
@@ -470,6 +476,9 @@ public class DriverControlador {
         System.out.println("|  CR2  Consulta de Documents per rellevancia mètode 2 |");
         System.out.println("|  CS   Consulta de Documents per semblança            |");
         System.out.println("|  CT   Consulta de Documents per autors               |");
+        System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+");
+        System.out.println("|  I    Importar Document                              |");
+        System.out.println("|  X    Exportar Document                              |");
         System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+");
         System.out.println("|  Q    Sortir de l'aplicació                          |");
         System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+\n");
