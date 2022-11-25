@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.security.GeneralSecurityException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
@@ -19,6 +20,7 @@ public class CtrlDomini {
 	private ConsultaTitol CT;
 	private ConsultaPreferit CP;
 	private ConsultaAutors CA;
+	private ExpressioBooleanaCtrl EBC;
 
 	static private 
 	Comparator<Document> documentDataComparator = new Comparator<Document>(){
@@ -134,6 +136,7 @@ public class CtrlDomini {
 		CT = new ConsultaTitol();
 		CP = new ConsultaPreferit();
 		CA = new ConsultaAutors();
+		EBC = new ExpressioBooleanaCtrl();
 	};
 
 	/** Mètode privat que ens descomposa una String 'frase' en una llista de Strings, que són les paraules
@@ -466,5 +469,47 @@ public class CtrlDomini {
 		} else CP.eliminarDocument(d);
 
 		return;
+	}
+
+	public void novaEB(String nom, String cos){
+		EBC.AddExpressioBooleana(nom, cos);
+	}
+
+	public void canviarEB(String nom, String noucos){
+		EBC.SetExpressioBooleana(nom, noucos);
+	}
+
+	public void eliminarEB(String nom){
+		EBC.DeleteExpressioBooleana(nom);
+	}
+
+	public int numberOfEBS(){
+		return EBC.getNEBS();
+	}
+
+	public boolean existsEB(String name){
+		return EBC.existsEB(name);
+	}
+
+	public ArrayList<String> consultaEB(String cos, String nom, int mode, int criteria)
+	{
+		Set<Document> setdoc;
+		ExpressioBooleana eb;
+		
+		if (mode == 1) eb = EBC.ExpressioBooleanaTemporal(cos);
+		else eb = EBC.GetExpressioBooleana(nom);
+
+		setdoc = eb.getResultat(lib);
+
+		ArrayList<Document> docs = sortDocuments(setdoc, criteria);
+
+		ArrayList<String> myList = new ArrayList<String>();
+
+		for (Document d : docs){
+			myList.add(d.toString());
+		}
+
+		return myList;
+
 	}
 }

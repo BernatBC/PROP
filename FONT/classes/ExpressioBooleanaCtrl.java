@@ -17,11 +17,15 @@ public class ExpressioBooleanaCtrl{
         return SetDeExpressions.keySet();
     }
 
-    public Boolean isEmpty(){
-    return SetDeExpressions.isEmpty();
+    public int getNEBS(){
+        return SetDeExpressions.size();
     }
 
-    public void ExpressioBooleanaCtrl(String nom, String cos){
+    public boolean existsEB(String nom){
+        return SetDeExpressions.containsKey(nom);
+    }
+
+    public void AddExpressioBooleana(String nom, String cos){
         ExpressioBooleana temp = new ExpressioBooleana(nom, cos);
         SetDeExpressions.put(nom, temp);
     }
@@ -29,6 +33,7 @@ public class ExpressioBooleanaCtrl{
     public ExpressioBooleana GetExpressioBooleana (String nom){
         return SetDeExpressions.get(nom);
     }
+    
     public ExpressioBooleana ExpressioBooleanaTemporal (String cos){
         ExpressioBooleana temp = new ExpressioBooleana();
         temp.setCos(cos);

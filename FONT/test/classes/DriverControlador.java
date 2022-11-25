@@ -188,33 +188,31 @@ public class DriverControlador {
                     }
                 
                 break;
-                // No ho toco de moment
                 case "ne":
                     System.out.println("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- ");
                     System.out.print("Entra una expressió booleana: ");
                     String expressio = new String();
                     
-                    while(expressio.isEmpty()){
-                        expressio = read.nextLine();}
+                    while(expressio.isEmpty()) expressio = read.nextLine();
                     
                     System.out.print("Entra un nom per a l'expressió booleana: ");
                     String nom = read.nextLine();
-                    controladorb.ExpressioBooleanaCtrl(nom, expressio);
+
+                    controlador.novaEB(nom, expressio);
                 break;
-                // No ho toco de moment
                 case "me":
                     System.out.println("\nExemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- \n");
                     System.out.print("Entra el nom de l'expressió que vols modificar, si no existeix es crearà: ");
                     String nom_modificada = read.nextLine();
                     System.out.print("Entra una expressió booleana: ");
                     String expressio_modificada = read.nextLine();
-                    controladorb.SetExpressioBooleana(nom_modificada, expressio_modificada);
+
+                    controlador.canviarEB(nom_modificada, expressio_modificada);
                 break;
-                // No ho toco de moment
                 case "ee":
                     System.out.print("Entra un nom per a l'expressió booleana: ");
                     String nom_esborrar = read.nextLine();
-                    controladorb.DeleteExpressioBooleana(nom_esborrar);
+                    controlador.eliminarEB(nom_esborrar);
                 break;
                 case "ca":
 
@@ -235,26 +233,34 @@ public class DriverControlador {
                         System.out.println("Exemple d'expressió: ---  ( \"bon dia\" | p2 ) & ( p3 & ! { p4 p5 p6 } ) --- ");
                         System.out.print("Entra una expressió booleana: ");
                         String consultaTemporal = read.nextLine();
+
                         if (consultaTemporal.isEmpty()){
                             System.out.print ("No pots entrar una expressió buida");
+                            break;
                         }
                         else {
-                            ExpressioBooleana e = controladorb.ExpressioBooleanaTemporal(consultaTemporal);
-                            imprimirArray(DocumentCtrl.sortDocuments(e.getResultat(l), getCriteris(read)));
+                            ArrayList<String> listDocs = controlador.consultaEB(consultaTemporal, null, 1, getCriteris(read));
+                            for (String s : listDocs) System.out.println(s);
+
                         }
                     }
                     else if (mode == 2){
-                        
-                        if (controladorb.isEmpty()){
-                            System.out.print("No hi ha expressions booleanes guardades!");
+        
+                        if (controlador.numberOfEBS() <= 0){
+                            System.out.println("No hi ha expressions booleanes guardades!");
                         }
                         else{
-                            Set<String> expressions = controladorb.GetNomExpressions();
-                            System.out.print("Les expressions que hi ha guardades son: ");
-                            System.out.print(expressions);
+                            System.out.print("Entra el nom d'una expressió booleana: ");
                             String nom_consultar = read.nextLine();
-                            ExpressioBooleana e = controladorb.GetExpressioBooleana(nom_consultar);
-                            imprimirArray(DocumentCtrl.sortDocuments(e.getResultat(l), getCriteris(read)));
+
+                            if (!controlador.existsEB(nom_consultar)){
+                                System.out.println("Error. L'expressió booleana "+nom_consultar+" no existeix.");
+                                break;
+                            }
+
+                            ArrayList<String> listDocss = controlador.consultaEB(null, nom_consultar, 2, getCriteris(read));
+                            for (String s : listDocss) System.out.println(s);
+
                         }
                     
                     }
@@ -397,8 +403,8 @@ public class DriverControlador {
                     System.out.print("Enter the sequence to search for: ");
                     String myseq = read.nextLine();
 
-                    ArrayList<String> listOfDoc = controlador.consultaSeq(myseq, getCriteris(read)));
-                    for (String qp : listOfDocs) System.out.println(qp);
+                    ArrayList<String> listOfDoc = controlador.consultaSeq(myseq, getCriteris(read));
+                    for (String qp : listOfDoc) System.out.println(qp);
 
                 break;
                 case "ct":
