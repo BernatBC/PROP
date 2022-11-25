@@ -37,4 +37,4 @@
 - drivers -> falta documentació + posar més casos  **[DONE]** //no fa falta per l'entrega
 - junit -> molts tests curts + extensos  **[DONE]** //no fa falta per l'entrega
 
-doucmentació diagrama domini diagrama persistencia diagrama presentació document estructura de dades i algorismes + especificació a tot
+doucmentació diagrama domini diagrama persistencia diagrama presentació document estructura de dades i algorismes + especificació a tot + especificacions (**Cada vista ha de tenir la seva especificacio**)
