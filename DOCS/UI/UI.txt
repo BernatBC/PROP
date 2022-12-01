@@ -1,0 +1,21 @@
+Casos d'us
+
+Crear Document -> Botó global, caselles buides/perdefecte
+MODIFICAR DOCUMENT -> caselles emplenades
+TANCAR DOCUMENT -> Creu
+MARCAR PREFERIT (extra) -> Botó del docuent (Estrella)
+INCLOURE DOCUMENT -> Botó global + popup sistema
+ELIMINAR DOCUMENT -> Botó del document (Escombraries)
+SORTIR -> Creu Global
+IMPORTAR DOCUMENTS -> Botó global + popup sistema
+EXPORTAR DOCUMENT -> Botó global + popup sistema
+CONSULTES -> Cerca al lateral + Nova pantalla
+
+NOU BOOLEÀ -> Panell lateral
+MODIFICAR BOOLEÀ -> Panell lateral + popup
+ELIMINAR BOOLEÀ -> Creu en un booleà
+
+
+*1 -> Pestanyes en contres d'expand?
+*2 -> Nova expressió global menu o mini finestra?
+*3 -> Com posar els 3 botons d'expressió booleana?
