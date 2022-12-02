@@ -71,6 +71,7 @@ public class CtrlPersistencia {
      */
     public void export(String title, String author, ArrayList<String> content, String path) {
         if (getExtension(path).equals("txt")) exportTXT(title, author, content, path);
+        else if (getExtension(path).equals("xml")) exportXML(title, author, content, path);
     }
 
     /**
@@ -86,6 +87,28 @@ public class CtrlPersistencia {
             f.write(title + "\n");
             f.write(author + "\n");
             for (String s : content) f.write(s + "\n");
+            f.close();
+        }
+        catch(Exception e) {
+            System.out.println("Error while exporting a txt file.");
+        }
+    }
+
+    /**
+     * Exporta un document xml.
+     * @param title Títol a imprimir.
+     * @param author Autor a imprimir.
+     * @param content Contingut a imprimir.
+     * @param path path del document.
+     */
+    private void exportXML(String title, String author, ArrayList<String> content, String path) {
+        try {
+            FileWriter f = new FileWriter(path);
+            f.write("<title>" + title + "</title>\n");
+            f.write("<author>" + author + "</author>\n");
+            f.write("<content>\n");
+            for (String s : content) f.write(s + "\n");
+            f.write("</content>\n");
             f.close();
         }
         catch(Exception e) {
