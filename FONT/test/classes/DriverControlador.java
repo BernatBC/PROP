@@ -18,6 +18,7 @@ public class DriverControlador {
         ArrayList<String> content;
 
         CtrlDomini controlador = new CtrlDomini();
+        CtrlPersistencia persistencia = new CtrlPersistencia(controlador);
 
         imprimirComandes();
         Scanner read = new Scanner(System.in);
@@ -425,54 +426,7 @@ public class DriverControlador {
                 case "i":
                     System.out.println("Enter the path of the document: ");
                     String path = read.nextLine();
-                    System.out.println("Choose the format of the document: ");
-                    System.out.println("[1] TXT");
-                    System.out.println("[2] XML");
-                    System.out.println("[3] YAY");
-
-                    int typefile = read.nextInt(); read.nextLine();
-                    Scanner readfile;
-
-                    try {
-                        File file = new File(path);
-                        readfile = new Scanner(file);
-    
-                    } catch (FileNotFoundException e){
-                        System.out.println("Sorry, file not found.");
-                        break;
-                    }
-
-                    switch (typefile){
-                        case 1:
-
-                        title = readfile.nextLine();
-                        author = readfile.nextLine();
-    
-                        if (controlador.docExists(title, author)){
-                            System.out.println("Document already exists!");
-                            break;
-                        }
-    
-                        String date = readfile.nextLine();
-                        boolean isFav = readfile.nextBoolean(); readfile.nextLine();
-
-                        content = new ArrayList<String>();
-                
-                        while (readfile.hasNextLine()){
-                            content.add(readfile.nextLine());
-                            if (content.get(content.size()-1).equals("")){
-                                content.remove(content.size()-1);
-                                break;
-                            }
-                        }
-
-                        controlador.crearDocument(title, author, content, LocalDate.parse(date), isFav);
-    
-                        System.out.println("\nDocument successfully added!");
-    
-                        break;
-                    }
-
+                    persistencia.importFile(path);
                 break;
                 case "x":
                     System.out.print("\nEnter the title of the document: ");
