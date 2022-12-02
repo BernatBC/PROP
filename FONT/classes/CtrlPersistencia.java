@@ -127,9 +127,9 @@ public class CtrlPersistencia {
     private void exportYAY(String title, String author, ArrayList<String> content, String path) {
         try {
             FileWriter f = new FileWriter(path);
-            f.write("#Title:" + title + "\n");
-            f.write("#Author:" + author + "\n");
-            f.write("#Content:\n");
+            f.write("#TITLE:" + title + "\n");
+            f.write("#AUTHOR:" + author + "\n");
+            f.write("#CONTENT:\n");
             for (String s : content) f.write(s + "\n");
             f.close();
         }
