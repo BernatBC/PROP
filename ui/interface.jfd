@@ -1,0 +1,205 @@
+JFDML JFormDesigner: "8.0.0.0.194" Java: "17.0.3" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+			"$layoutConstraints": "fill,insets 0,hidemode 3,gap 5 5"
+			"$columnConstraints": "[fill][fill][fill][fill][fill][10:n:10,fill]"
+			"$rowConstraints": "[50:n:50][50:n:50][][10:n:10]"
+		} ) {
+			name: "frame1"
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "tabbedPane1"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.GenericIndexLayout ) ) {
+					name: "panel1"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "Importar Documents"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "text"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.GenericIndexLayout ) ) {
+					name: "panel2"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label5"
+						"text": "Exportar Document"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "text"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.GenericIndexLayout ) ) {
+					name: "panel3"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label6"
+						"text": "Obrir Document"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "text"
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 0 1 4,aligny top,growy 0"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Autor"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 0,hmax 50"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField3"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 0,hmax 50"
+			} )
+			add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
+				name: "hSpacer5"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 0"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "checkBox1"
+				"text": "Preferit"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 0,hmax 50"
+			} )
+			add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
+				name: "hSpacer2"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 0"
+			} )
+			add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
+				name: "hSpacer1"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Títol"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 1,hmax 50"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField2"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 1,hmax 50"
+			} )
+			add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
+				name: "hSpacer4"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Data"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 1,hmax 50"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField4"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 1,hmax 50"
+			} )
+			add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
+				name: "hSpacer3"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 1"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 2 3 1,grow,wmin 200,hmin 200"
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
+					"text": "Document"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem4"
+						"text": "Importar Documents"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem5"
+						"text": "Exportar Document"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem14"
+						"text": "Crear Nou Document"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem15"
+						"text": "Obrir Document"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem16"
+						"text": "Tancar Document"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem17"
+						"text": "Modificar Document"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem18"
+						"text": "Eliminar Document"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu2"
+					"text": "Consulta"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem6"
+						"text": "Consulta Títols d'un Autor"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem7"
+						"text": "Consulta Autors per Prefix"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem8"
+						"text": "Consulta Document"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem9"
+						"text": "Consulta per Semblança"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem10"
+						"text": "Consulta per Rellevancia"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem11"
+						"text": "Consulta Avançada"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem12"
+						"text": "Consulta Preferits"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem13"
+						"text": "Consulta per Data"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu3"
+					"text": "Expressió  Booleana"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem1"
+						"text": "Alta Expressió"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem2"
+						"text": "Gestió Expressions Guardades"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem3"
+						"text": "Consulta Expressió"
+					} )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 105, 5 )
+			"size": new java.awt.Dimension( 1035, 680 )
+		} )
+	}
+}
