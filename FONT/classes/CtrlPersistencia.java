@@ -24,15 +24,22 @@ public class CtrlPersistencia {
      * @param path path del document.
      */
     public void importFile(String path) {
+        if (getExtension(path).equals("txt")) importTXT(path);
+    }
 
+    /**
+     * Retorna l'extensió d'un fitxer.
+     * @param path path del document.
+     * @return extensió del document.
+     */
+    private String getExtension(String path) {
         String extension = new String("");
         for (int i = path.length() - 1; i >= 0; --i) {
             char c = path.charAt(i);
             if (c == '.') break;
             extension = c + extension;
         }
-
-        if (extension.equals("txt")) importTXT(path);
+        return extension;
     }
 
     /**
@@ -52,6 +59,37 @@ public class CtrlPersistencia {
         }
         catch(Exception e) {
             System.out.println("File not found!");
+        }
+    }
+
+    /**
+     * Exporta un document.
+     * @param title Títol a imprimir.
+     * @param author Autor a imprimir.
+     * @param content Contingut a imprimir.
+     * @param path path del document.
+     */
+    public void export(String title, String author, ArrayList<String> content, String path) {
+        if (getExtension(path).equals("txt")) exportTXT(title, author, content, path);
+    }
+
+    /**
+     * Exporta un document txt.
+     * @param title Títol a imprimir.
+     * @param author Autor a imprimir.
+     * @param content Contingut a imprimir.
+     * @param path path del document.
+     */
+    private void exportTXT(String title, String author, ArrayList<String> content, String path) {
+        try {
+            FileWriter f = new FileWriter(path);
+            f.write(title + "\n");
+            f.write(author + "\n");
+            for (String s : content) f.write(s + "\n");
+            f.close();
+        }
+        catch(Exception e) {
+            System.out.println("Error while exporting a txt file.");
         }
     }
 }

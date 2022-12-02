@@ -440,19 +440,13 @@ public class DriverControlador {
                         break;
                     }
 
+                    System.out.println("Enter the path followed by the name and extension of the document: ");
+                    path = read.nextLine();
 
-                    System.out.println("Choose the format of the document: ");
-                    System.out.println("[1] TXT");
-                    System.out.println("[2] XML");
-                    System.out.println("[3] YAY");
-
-                    int extension = read.nextInt(); read.nextLine();
-
-                    System.out.print("Name of the file: ");
-                    String filename = read.nextLine();
-
-
-                    controlador.exportarDocument(title, author, extension, filename);
+                    ArrayList<String> a = new ArrayList<>();
+                    a.add("Linia 1");
+                    a.add("Línia 2");
+                    persistencia.export(title, author, a, path);
 
 
             }
