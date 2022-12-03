@@ -26,6 +26,7 @@ public class CtrlPersistencia {
     public void importFile(String path) {
         if (getExtension(path).equals("txt")) importTXT(path);
         else if (getExtension(path).equals("xml")) importXML(path);
+        else if (getExtension(path).equals("yay")) importYAY(path);
     }
 
     /**
@@ -63,7 +64,7 @@ public class CtrlPersistencia {
         }
     }
 
-        /**
+    /**
      * Importa un fitxer XML a l'aplicació.
      * @param path path del document.
      */
@@ -109,6 +110,57 @@ public class CtrlPersistencia {
         }
         catch(Exception e) {
             System.out.println("An error has ocurred while reading the xml file");
+        }
+    }
+
+    /**
+     * Importa un fitxer XML a l'aplicació.
+     * @param path path del document.
+     */
+    private void importYAY(String path) {
+        try {
+            File f = new File(path);
+            Scanner s = new Scanner(f);
+            String file = new String("");
+            while (s.hasNextLine()) file += s.nextLine();
+            s.close();
+            
+            String author = new String("");
+            String title = new String("");
+            ArrayList<String> content = new ArrayList<>();
+            int i = 0;
+            while (i < file.length()) {
+                System.out.println(file.charAt(i));
+                if (file.charAt(i) != '#') {
+                    ++i;
+                    continue;
+                }
+                //Llegir tag
+                String tag = new String("");
+                ++i;
+                while (file.charAt(i) != ':') {
+                    tag += file.charAt(i);
+                    ++i;
+                }
+                ++i;
+                //Llegir string contingut
+                String contingut = new String("");
+                while (file.charAt(i) != '#') {
+                    contingut += file.charAt(i);
+                    ++i;
+                }
+                ++i;
+                if (tag.equals("TITLE")) title = contingut;
+                else if (tag.equals("AUTHOR")) author = contingut;
+                else if (tag.equals("CONTENT")) content.add(contingut);
+            }
+            System.out.println(title);
+            System.out.println(author);
+            System.out.println(content);
+            domini.crearDocument(title, author, content, LocalDate.now(), false);
+        }
+        catch(Exception e) {
+            System.out.println("An error has ocurred while reading the yay file");
         }
     }
 
@@ -177,10 +229,11 @@ public class CtrlPersistencia {
     private void exportYAY(String title, String author, ArrayList<String> content, String path) {
         try {
             FileWriter f = new FileWriter(path);
-            f.write("#TITLE:" + title + "\n");
-            f.write("#AUTHOR:" + author + "\n");
+            f.write("#TITLE:" + title + "#\n");
+            f.write("#AUTHOR:" + author + "#\n");
             f.write("#CONTENT:\n");
             for (String s : content) f.write(s + "\n");
+            f.write("#\n");
             f.close();
         }
         catch(Exception e) {
