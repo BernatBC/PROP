@@ -56,8 +56,8 @@ public class interface  {
 		panel1 = new JPanel();
 		label4 = new JLabel();
 		textField5 = new JTextField();
-		list4 = new JList();
 		label13 = new JLabel();
+		list4 = new JList();
 		button3 = new JButton();
 		panel2 = new JPanel();
 		label5 = new JLabel();
@@ -336,18 +336,19 @@ public class interface  {
 
 				//======== panel1 ========
 				{
-					panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-					javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax
-					. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-					.awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-					. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans.
-					PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .
-					equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+					panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
+					swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border
+					. TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog"
+					, java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,panel1. getBorder
+					() ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
+					. beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException
+					( ) ;} } );
 					panel1.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
 						"[fill]",
 						// rows
+						"[]" +
 						"[]" +
 						"[]" +
 						"[]" +
@@ -361,15 +362,15 @@ public class interface  {
 					//---- textField5 ----
 					textField5.setText("//browser d'arxius");
 					panel1.add(textField5, "cell 0 1");
-					panel1.add(list4, "cell 0 2,width 300::300,height 150::150");
 
 					//---- label13 ----
 					label13.setText("Documents sleccionats");
-					panel1.add(label13, "cell 0 3");
+					panel1.add(label13, "cell 0 2");
+					panel1.add(list4, "cell 0 3,width 300::300,height 150::150");
 
 					//---- button3 ----
 					button3.setText("Importa");
-					panel1.add(button3, "cell 0 4");
+					panel1.add(button3, "cell 0 5");
 				}
 				tabbedPane1.addTab("ID", panel1);
 
@@ -1104,8 +1105,8 @@ public class interface  {
 	private JPanel panel1;
 	private JLabel label4;
 	private JTextField textField5;
-	private JList list4;
 	private JLabel label13;
+	private JList list4;
 	private JButton button3;
 	private JPanel panel2;
 	private JLabel label5;

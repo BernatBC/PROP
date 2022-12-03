@@ -73,7 +73,7 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3"
 					"$columnConstraints": "[fill]"
-					"$rowConstraints": "[][][][][]"
+					"$rowConstraints": "[][][][][][]"
 				} ) {
 					name: "panel1"
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -88,22 +88,22 @@ new FormModel {
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 1"
 					} )
-					add( new FormComponent( "javax.swing.JList" ) {
-						name: "list4"
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 2,width 300::300,height 150::150"
-					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label13"
 						"text": "Documents sleccionats"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 3"
+						"value": "cell 0 2"
+					} )
+					add( new FormComponent( "javax.swing.JList" ) {
+						name: "list4"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 3,width 300::300,height 150::150"
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button3"
 						"text": "Importa"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 4"
+						"value": "cell 0 5"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "ID"
