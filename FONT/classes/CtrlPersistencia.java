@@ -25,6 +25,7 @@ public class CtrlPersistencia {
      */
     public void importFile(String path) {
         if (getExtension(path).equals("txt")) importTXT(path);
+        else if (getExtension(path).equals("xml")) importXML(path);
     }
 
     /**
@@ -59,6 +60,55 @@ public class CtrlPersistencia {
         }
         catch(Exception e) {
             System.out.println("File not found!");
+        }
+    }
+
+        /**
+     * Importa un fitxer TXT a l'aplicació.
+     * @param path path del document.
+     */
+    private void importXML(String path) {
+        try {
+            File f = new File(path);
+            Scanner s = new Scanner(f);
+            String file = new String("");
+            while (s.hasNextLine()) file += s.nextLine();
+            s.close();
+
+            String author = new String("");
+            String title = new String("");
+            ArrayList<String> content = new ArrayList<>();
+            int i = 0;
+            while (i < file.length()) {
+                if (file.charAt(i) != '<') {
+                    ++i;
+                    continue;
+                }
+                //Llegir tag
+                String tag = new String("");
+                ++i;
+                while (file.charAt(i) != '>') {
+                    tag += file.charAt(i);
+                    ++i;
+                }
+                ++i;
+                //Llegir string contingut
+                String contingut = new String("");
+                while (file.charAt(i) != '<') {
+                    contingut += file.charAt(i);
+                    ++i;
+                }
+
+                while (file.charAt(i) != '>') ++i;
+                
+                if (tag.equals("title")) title = contingut;
+                else if (tag.equals("author")) author = contingut;
+                else if (tag.equals("content")) content.add(contingut);
+            }
+            domini.crearDocument(title, author, content, LocalDate.now(), false);
+        }
+        catch(Exception e) {
+            System.out.println("An error has ocurred while reading the xml file");
         }
     }
 
