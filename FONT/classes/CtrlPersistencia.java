@@ -64,7 +64,7 @@ public class CtrlPersistencia {
     }
 
         /**
-     * Importa un fitxer TXT a l'aplicació.
+     * Importa un fitxer XML a l'aplicació.
      * @param path path del document.
      */
     private void importXML(String path) {
