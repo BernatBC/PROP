@@ -114,7 +114,7 @@ public class CtrlPersistencia {
     }
 
     /**
-     * Importa un fitxer XML a l'aplicació.
+     * Importa un fitxer YAY a l'aplicació.
      * @param path path del document.
      */
     private void importYAY(String path) {
