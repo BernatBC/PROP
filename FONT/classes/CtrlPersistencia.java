@@ -119,10 +119,11 @@ public class CtrlPersistencia {
     }
 
     private LocalDate stringToDate(String date) {
-        int year = Integer.parseInt(date.substring(0, 3));
-        int month = Integer.parseInt(date.substring(5, 6));
-        int day = Integer.parseInt(date.substring(8, 9));
+        int year = Integer.parseInt(date.substring(0, 4));
+        int month = Integer.parseInt(date.substring(5, 7));
+        int day = Integer.parseInt(date.substring(8, 10));
         try {
+            System.out.println(year + ", " + month + ", " + day);
             return LocalDate.of(year, month, day);
         } catch (DateTimeException e){
             System.out.println("\nError when reading date");
@@ -255,7 +256,7 @@ public class CtrlPersistencia {
             FileWriter f = new FileWriter(path);
             f.write("#TITLE:" + title + "#\n");
             f.write("#AUTHOR:" + author + "#\n");
-            f.write("#DATE:" + data + "#\n")
+            f.write("#DATE:" + data + "#\n");
             if (preferit) f.write("#DATE:True#\n");
             else f.write("#FAVOURITE:False#\n");
             f.write("#CONTENT:\n");
