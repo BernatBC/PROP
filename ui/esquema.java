@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
+
 import net.miginfocom.swing.*;
 /*
  * Created by JFormDesigner on Mon Dec 05 12:19:09 CET 2022
@@ -13,24 +15,28 @@ import net.miginfocom.swing.*;
  */
 public class esquema  {
 
+	public JFrame retorna() {
+		return frame1;
+	}
+
 	private void menuItem4MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(1);
+		tabbedPane1.setSelectedIndex(0);
 	}
 
 	private void menuItem5MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(2);
+		tabbedPane1.setSelectedIndex(1);
 	}
 
 	private void menuItem14MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(3);
+		tabbedPane1.setSelectedIndex(2);
 	}
 
 	private void menuItem15MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(4);
+		tabbedPane1.setSelectedIndex(3);
 	}
 
 	private void menuItem16MouseReleased(MouseEvent e) {
@@ -40,65 +46,65 @@ public class esquema  {
 
 	private void menuItem18MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(6);
+		tabbedPane1.setSelectedIndex(4);
 	}
 
 	private void menuItem6MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(7);
+		tabbedPane1.setSelectedIndex(5);
 	}
 
 	private void menuItem7MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(8);
+		tabbedPane1.setSelectedIndex(6);
 	}
 
 	private void menuItem8MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(9);
+		tabbedPane1.setSelectedIndex(7);
 	}
 
 	private void menuItem9MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(10);
+		tabbedPane1.setSelectedIndex(8);
 	}
 
 	private void menuItem10MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(11);
+		tabbedPane1.setSelectedIndex(9);
 	}
 
 	private void menuItem11MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(12);
+		tabbedPane1.setSelectedIndex(10);
 	}
 
 	private void menuItem12MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(13);
+		tabbedPane1.setSelectedIndex(11);
 	}
 
 	private void menuItem13MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(14);
+		tabbedPane1.setSelectedIndex(12);
 	}
 
 	private void menuItem1MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(15);
+		tabbedPane1.setSelectedIndex(13);
 	}
 
 	private void menuItem2MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(16);
+		tabbedPane1.setSelectedIndex(14);
 	}
 
 	private void menuItem3MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(17);
+		tabbedPane1.setSelectedIndex(15);
 	}
 
-	private void initComponents() {
+	public void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
 		// Generated using JFormDesigner Evaluation license - Oscar Ramos
 		frame1 = new JFrame();
@@ -510,6 +516,12 @@ public class esquema  {
 			//======== tabbedPane1 ========
 			{
 				tabbedPane1.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+				tabbedPane1.setUI(new BasicTabbedPaneUI() {
+					@Override
+					protected int calculateTabAreaHeight(int tab_placement, int run_count, int max_tab_height) {
+						return 0;
+					}
+				});
 
 				//======== panel1 ========
 				{

@@ -1,0 +1,5 @@
+javac -cp miglayout-core-4.3-20121116.151612-3.jar:miglayout-swing-4.3-20121116.151626-3.jar:. Main.java
+
+java -cp miglayout-core-4.3-20121116.151612-3.jar:miglayout-swing-4.3-20121116.151626-3.jar:. Main
+
+rm *.class
