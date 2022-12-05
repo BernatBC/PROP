@@ -2,7 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
 /*
- * Created by JFormDesigner on Mon Dec 05 10:55:39 CET 2022
+ * Created by JFormDesigner on Mon Dec 05 11:13:32 CET 2022
  */
 
 
@@ -10,7 +10,7 @@ import net.miginfocom.swing.*;
 /**
  * @author Oscar Ramos
  */
-public class interface  {
+public class esquema  {
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -190,7 +190,8 @@ public class interface  {
 		label45 = new JLabel();
 		scrollPane21 = new JScrollPane();
 		list17 = new JList();
-		textField1 = new JTextField();
+		scrollPane22 = new JScrollPane();
+		textField1 = new JTextPane();
 
 		//======== frame1 ========
 		{
@@ -333,13 +334,12 @@ public class interface  {
 
 				//======== panel1 ========
 				{
-					panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-					javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax
-					. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-					.awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-					. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans.
-					PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .
-					equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+					panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder
+					( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border
+					.TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
+					. Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void
+					propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
+					;} } );
 					panel1.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
@@ -1040,7 +1040,12 @@ public class interface  {
 				tabbedPane1.addTab("CB", panel17);
 			}
 			frame1ContentPane.add(tabbedPane1, "cell 0 0 1 3,growy");
-			frame1ContentPane.add(textField1, "cell 2 2 3 1,grow,wmin 200,hmin 200");
+
+			//======== scrollPane22 ========
+			{
+				scrollPane22.setViewportView(textField1);
+			}
+			frame1ContentPane.add(scrollPane22, "cell 2 2 3 1,grow,wmin 200,hmin 200");
 			frame1.pack();
 			frame1.setLocationRelativeTo(frame1.getOwner());
 		}
@@ -1235,6 +1240,7 @@ public class interface  {
 	private JLabel label45;
 	private JScrollPane scrollPane21;
 	private JList list17;
-	private JTextField textField1;
+	private JScrollPane scrollPane22;
+	private JTextPane textField1;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
