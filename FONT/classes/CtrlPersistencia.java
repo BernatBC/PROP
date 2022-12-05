@@ -24,9 +24,9 @@ public class CtrlPersistencia {
      * @param path path del document.
      */
     public void importFile(String path) {
-        if (getExtension(path).equals("txt")) importTXT(path);
-        else if (getExtension(path).equals("xml")) importXML(path);
+        if (getExtension(path).equals("xml")) importXML(path);
         else if (getExtension(path).equals("yay")) importYAY(path);
+        else importTXT(path);
     }
 
     /**
@@ -171,10 +171,10 @@ public class CtrlPersistencia {
      * @param content Contingut a imprimir.
      * @param path path del document.
      */
-    public void export(String title, String author, ArrayList<String> content, String path) {
-        if (getExtension(path).equals("txt")) exportTXT(title, author, content, path);
-        else if (getExtension(path).equals("xml")) exportXML(title, author, content, path);
+    public void export(String title, String author, String content, String path) {
+        if (getExtension(path).equals("xml")) exportXML(title, author, content, path);
         else if (getExtension(path).equals("yay")) exportYAY(title, author, content, path);
+        else exportTXT(title, author, content, path);
     }
 
     /**
@@ -184,12 +184,12 @@ public class CtrlPersistencia {
      * @param content Contingut a imprimir.
      * @param path path del document.
      */
-    private void exportTXT(String title, String author, ArrayList<String> content, String path) {
+    private void exportTXT(String title, String author, String content, String path) {
         try {
             FileWriter f = new FileWriter(path);
             f.write(title + "\n");
             f.write(author + "\n");
-            for (String s : content) f.write(s + "\n");
+            f.write(content + "\n");
             f.close();
         }
         catch(Exception e) {
@@ -204,13 +204,13 @@ public class CtrlPersistencia {
      * @param content Contingut a imprimir.
      * @param path path del document.
      */
-    private void exportXML(String title, String author, ArrayList<String> content, String path) {
+    private void exportXML(String title, String author, String content, String path) {
         try {
             FileWriter f = new FileWriter(path);
             f.write("<title>" + title + "</title>\n");
             f.write("<author>" + author + "</author>\n");
             f.write("<content>\n");
-            for (String s : content) f.write(s + "\n");
+            f.write(content + "\n");
             f.write("</content>\n");
             f.close();
         }
@@ -226,13 +226,13 @@ public class CtrlPersistencia {
      * @param content Contingut a imprimir.
      * @param path path del document.
      */
-    private void exportYAY(String title, String author, ArrayList<String> content, String path) {
+    private void exportYAY(String title, String author, String content, String path) {
         try {
             FileWriter f = new FileWriter(path);
             f.write("#TITLE:" + title + "#\n");
             f.write("#AUTHOR:" + author + "#\n");
             f.write("#CONTENT:\n");
-            for (String s : content) f.write(s + "\n");
+            f.write(content + "\n");
             f.write("#\n");
             f.close();
         }

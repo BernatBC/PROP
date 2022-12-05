@@ -443,10 +443,7 @@ public class DriverControlador {
                     System.out.println("Enter the path followed by the name and extension of the document: ");
                     path = read.nextLine();
 
-                    ArrayList<String> a = new ArrayList<>();
-                    a.add("Linia 1");
-                    a.add("Línia 2");
-                    persistencia.export(title, author, a, path);
+                    persistencia.export(title, author, controlador.preview(title, author), path);
 
 
             }
