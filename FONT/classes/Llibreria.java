@@ -22,6 +22,14 @@ public class Llibreria {
 	// HashMap that maps all words in the library to the number of documents it appears in.
 	private HashMap<Integer, Integer> word_ocurrences;
 
+	// Matriu de TF-IDF precalculats. El booleà significa si el contingut està calculat o no.
+	private HashMap<Document, HashMap<Document, Double>> precalculat0;
+	private HashMap<Document, HashMap<Document, Double>> precalculat1;
+
+
+	// Mapa que ens mapeja cada document amb el seu índex als vectors tfidf / ocurrències.
+	private HashMap<Document, Integer> docMapper;
+
 	private int nDocs;
 	
 	/**
@@ -32,6 +40,10 @@ public class Llibreria {
 		docs1 = new ArrayList<Pair<Document, HashMap<Integer, Double>>>();
 		nDocs = 0;
 		word_ocurrences = new HashMap<>();
+		precalculat0 = new HashMap<>();
+		precalculat1 = new HashMap<>();
+
+		docMapper = new HashMap<>();
 	}
 	
 	/** Mètode que ens calcula el cosinus entre dos documents existents en la llibreria.
@@ -41,16 +53,31 @@ public class Llibreria {
 	 * @return El cosinus entre els vectors tf-idf que representen d1 i d2.
 	 */
 	public Double computeCosinus(Document d1, Document d2, int mode){
+
+		//int i = docMapper.get(d1);
+		//int j = docMapper.get(d2);
+
+		int i = 0; int j = 0;
+		while (docs0.get(i).getL() != d1) ++i;
+		while (docs0.get(j).getL() != d2) ++j; 
+
+		HashMap<Document, HashMap<Document, Double>> precalculat;
+		if (mode == 0) precalculat = precalculat0;
+		else precalculat = precalculat1;
+
+
+		if (precalculat.containsKey(d1) && precalculat.get(d1).containsKey(d2)){
+			return precalculat.get(d1).get(d2);
+		}
+		else if (precalculat.containsKey(d2) && precalculat.get(d2).containsKey(d1)){
+			return precalculat.get(d2).get(d1);
+		}
+
 		ArrayList<Pair<Document, HashMap<Integer, Double>>> docs;
 
 		if (mode == 0) docs = docs0;
 		else docs = docs1;
 		
-		int i = 0;
-		int j = 0;
-
-		while (docs.get(i).getL() != d1) ++i;
-		while (docs.get(j).getL() != d2) ++j;
 
 		double len1 = 0;
 		double len2 = 0;
@@ -74,6 +101,14 @@ public class Llibreria {
 			if (!docs.get(j).getR().containsKey(w)) continue;
 
 			dotproduct += docs.get(i).getR().get(w) * docs.get(j).getR().get(w);
+		}
+
+
+		if (precalculat.containsKey(d1)){
+			precalculat.get(d1).put(d2, dotproduct / (len1*len2));
+		} else {
+			precalculat.put(d1, new HashMap<>());
+			precalculat.get(d1).put(d2, dotproduct / (len1*len2));
 		}
 
 		return (Double) dotproduct / (len1 * len2);
@@ -115,6 +150,8 @@ public class Llibreria {
 
 		docs0.add(new Pair<>(d, TFIDF));
 		docs1.add(new Pair<>(d, OCURR));
+
+		docMapper.put(d, docs0.size()-1);
 	} 
 	
 	/** Mètode per a eliminar un document de la llibreria.
@@ -122,6 +159,8 @@ public class Llibreria {
 	 * @param d Document a eliminar.
 	 */
 	public void deleteDocument(Document d){
+		docMapper.remove(d);
+
 		for (int i = 0; i < docs0.size(); ++i){
 			if (d == docs0.get(i).getL()){
 
