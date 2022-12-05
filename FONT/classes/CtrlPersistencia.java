@@ -192,9 +192,9 @@ public class CtrlPersistencia {
      * @param content Contingut a imprimir.
      * @param path path del document.
      */
-    public void export(String title, String author, String content, String path) {
-        if (getExtension(path).equals("xml")) exportXML(title, author, content, path);
-        else if (getExtension(path).equals("yay")) exportYAY(title, author, content, path);
+    public void export(String title, String author, String content, String data, Boolean preferit, String path) {
+        if (getExtension(path).equals("xml")) exportXML(title, author, content, data, preferit, path);
+        else if (getExtension(path).equals("yay")) exportYAY(title, author, content, data, preferit, path);
         else exportTXT(title, author, content, path);
     }
 
@@ -225,11 +225,14 @@ public class CtrlPersistencia {
      * @param content Contingut a imprimir.
      * @param path path del document.
      */
-    private void exportXML(String title, String author, String content, String path) {
+    private void exportXML(String title, String author, String content, String data, Boolean preferit, String path) {
         try {
             FileWriter f = new FileWriter(path);
             f.write("<title>" + title + "</title>\n");
             f.write("<author>" + author + "</author>\n");
+            f.write("<date>" + data + "<date>");
+            if (preferit) f.write("<bool name=\"favourite\">true</bool>");
+            else f.write("<bool name=\"favourite\">true</bool>");
             f.write("<content>\n");
             f.write(content + "\n");
             f.write("</content>\n");
@@ -247,11 +250,14 @@ public class CtrlPersistencia {
      * @param content Contingut a imprimir.
      * @param path path del document.
      */
-    private void exportYAY(String title, String author, String content, String path) {
+    private void exportYAY(String title, String author, String content, String data, Boolean preferit, String path) {
         try {
             FileWriter f = new FileWriter(path);
             f.write("#TITLE:" + title + "#\n");
             f.write("#AUTHOR:" + author + "#\n");
+            f.write("#DATE:" + data + "#\n")
+            if (preferit) f.write("#DATE:True#\n");
+            else f.write("#FAVOURITE:False#\n");
             f.write("#CONTENT:\n");
             f.write(content + "\n");
             f.write("#\n");
