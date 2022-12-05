@@ -70,6 +70,8 @@ new FormModel {
 			} )
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "tabbedPane1"
+				"selectedIndex": 0
+				"tabLayoutPolicy": 1
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3"
 					"$columnConstraints": "[fill]"
@@ -241,35 +243,6 @@ new FormModel {
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "Obr"
-				} )
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
-					"$layoutConstraints": "hidemode 3"
-					"$columnConstraints": "[fill]"
-					"$rowConstraints": "[][][]"
-				} ) {
-					name: "panel5"
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label15"
-						"text": "Seleccioni el document que vol modificar"
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 0"
-					} )
-					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-						name: "scrollPane3"
-						add( new FormComponent( "javax.swing.JList" ) {
-							name: "list6"
-						} )
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 1,growx,width 300::300"
-					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button5"
-						"text": "Edita"
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 2"
-					} )
-				}, new FormLayoutConstraints( null ) {
-					"title": "Mod"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3"
@@ -869,7 +842,7 @@ new FormModel {
 					"title": "CB"
 				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 0 0 1 3,growy"
+				"value": "cell 0 0 1 3,grow"
 			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane22"
@@ -903,10 +876,6 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem16"
 						"text": "Tancar Document"
-					} )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem17"
-						"text": "Modificar Document"
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem18"
