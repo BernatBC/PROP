@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.DateTimeException;
 
 /** Classe controladora de la capa de persistencia.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
@@ -78,7 +79,9 @@ public class CtrlPersistencia {
 
             String author = new String("");
             String title = new String("");
+            LocalDate date = LocalDate.now();
             ArrayList<String> content = new ArrayList<>();
+            Boolean favourite = false;
             int i = 0;
             while (i < file.length()) {
                 if (file.charAt(i) != '<') {
@@ -105,12 +108,26 @@ public class CtrlPersistencia {
                 if (tag.equals("title")) title = contingut;
                 else if (tag.equals("author")) author = contingut;
                 else if (tag.equals("content")) content.add(contingut);
+                else if (tag.equals("date")) date = stringToDate(contingut);
+                else if (tag.equals("bool name=\"favourite\"") && contingut == "true") favourite = true;
             }
-            domini.crearDocument(title, author, content, LocalDate.now(), false);
+            domini.crearDocument(title, author, content, date, favourite);
         }
         catch(Exception e) {
             System.out.println("An error has ocurred while reading the xml file");
         }
+    }
+
+    private LocalDate stringToDate(String date) {
+        int year = Integer.parseInt(date.substring(0, 3));
+        int month = Integer.parseInt(date.substring(5, 6));
+        int day = Integer.parseInt(date.substring(8, 9));
+        try {
+            return LocalDate.of(year, month, day);
+        } catch (DateTimeException e){
+            System.out.println("\nError when reading date");
+        }
+        return null;
     }
 
     /**
@@ -128,6 +145,8 @@ public class CtrlPersistencia {
             String author = new String("");
             String title = new String("");
             ArrayList<String> content = new ArrayList<>();
+            LocalDate date = LocalDate.now();
+            Boolean favourite = false;
             int i = 0;
             while (i < file.length()) {
                 System.out.println(file.charAt(i));
@@ -153,11 +172,13 @@ public class CtrlPersistencia {
                 if (tag.equals("TITLE")) title = contingut;
                 else if (tag.equals("AUTHOR")) author = contingut;
                 else if (tag.equals("CONTENT")) content.add(contingut);
+                else if (tag.equals("DATE")) date = stringToDate(contingut);
+                else if (tag.equals("FAVOURITE") && contingut == "True") favourite = true;
             }
             System.out.println(title);
             System.out.println(author);
             System.out.println(content);
-            domini.crearDocument(title, author, content, LocalDate.now(), false);
+            domini.crearDocument(title, author, content, date, favourite);
         }
         catch(Exception e) {
             System.out.println("An error has ocurred while reading the yay file");
