@@ -12,6 +12,7 @@ public class CtrlPersistencia {
 
     /**Controlador de domini */
     CtrlDomini domini;
+
     /**
      * Contructora per defecte
      * @param controlador controlador de domini.
@@ -58,6 +59,10 @@ public class CtrlPersistencia {
             ArrayList<String> content = new ArrayList<>();
             while (s.hasNextLine()) content.add(s.nextLine());
             s.close();
+            if(domini.getDocument(author, title).getR()) {
+                System.out.println("A document with this title and author already exists!");
+                return;
+            }
             domini.crearDocument(title, author, content, LocalDate.now(), false);
         }
         catch(Exception e) {
@@ -111,6 +116,10 @@ public class CtrlPersistencia {
                 else if (tag.equals("date")) date = stringToDate(contingut);
                 else if (tag.equals("bool name=\"favourite\"") && contingut == "true") favourite = true;
             }
+            if(domini.getDocument(author, title).getR()) {
+                System.out.println("A document with this title and author already exists!");
+                return;
+            }
             domini.crearDocument(title, author, content, date, favourite);
         }
         catch(Exception e) {
@@ -123,7 +132,6 @@ public class CtrlPersistencia {
         int month = Integer.parseInt(date.substring(5, 7));
         int day = Integer.parseInt(date.substring(8, 10));
         try {
-            System.out.println(year + ", " + month + ", " + day);
             return LocalDate.of(year, month, day);
         } catch (DateTimeException e){
             System.out.println("\nError when reading date");
@@ -176,9 +184,10 @@ public class CtrlPersistencia {
                 else if (tag.equals("DATE")) date = stringToDate(contingut);
                 else if (tag.equals("FAVOURITE") && contingut == "True") favourite = true;
             }
-            System.out.println(title);
-            System.out.println(author);
-            System.out.println(content);
+            if(domini.getDocument(author, title).getR()) {
+                System.out.println("A document with this title and author already exists!");
+                return;
+            }
             domini.crearDocument(title, author, content, date, favourite);
         }
         catch(Exception e) {
@@ -257,7 +266,7 @@ public class CtrlPersistencia {
             f.write("#TITLE:" + title + "#\n");
             f.write("#AUTHOR:" + author + "#\n");
             f.write("#DATE:" + data + "#\n");
-            if (preferit) f.write("#DATE:True#\n");
+            if (preferit) f.write("#FAVOURITE:True#\n");
             else f.write("#FAVOURITE:False#\n");
             f.write("#CONTENT:\n");
             f.write(content + "\n");
@@ -267,5 +276,12 @@ public class CtrlPersistencia {
         catch(Exception e) {
             System.out.println("Error while exporting a txt file.");
         }
+    }
+
+    /**
+     * Importa tots els documents i expressions booleanes desades a l'applicació.
+     */
+    public void importarDades() {
+
     }
 }
