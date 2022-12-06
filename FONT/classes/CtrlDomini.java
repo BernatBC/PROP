@@ -240,7 +240,21 @@ public class CtrlDomini {
 		if (!doc.getR()) return false;
 
 		return doc.getL().getFavourite();
-	}	
+	}
+
+	/** Funció que retorna la Data d'un document
+	 *
+	 * @param title Títol del document a consultar
+	 * @param author Autor del document a consultar
+	 * @return LocalDate de creació del document.
+	 */
+	 public LocalDate getData(String title, String author)
+	 {
+		Pair<Document, Boolean> doc = getDocument(author, title);
+		if (!doc.getR()) return LocalDate.MIN;
+
+		return doc.getL().getData();
+	 }	
 
 	// PRECONDICIÓ: Existeix (title, author).
 	public String preview(String title, String author){
