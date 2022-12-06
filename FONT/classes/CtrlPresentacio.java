@@ -3,6 +3,8 @@ package classes;
 import javax.swing.JFrame;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Set;
 
 /**
  * Classe que inicialitza i controla la capa de presentació.
@@ -25,10 +27,13 @@ public class CtrlPresentacio {
             return;
         }
 
-        ArrayList<String> content = new ArrayList<String>();
 
-        // Només de moment
-        content.add(contingut);
+        String[] contarray = contingut.split("\\p{Punct}");
+        ArrayList<String> content = new ArrayList<String>(Arrays.asList(contarray));
+
+        //for (int i = 0; i < content.size(); ++i){
+        //    System.out.println(content.get(i));
+        //}
 
         CD.crearDocument(title, author, content, LocalDate.now(), false);
 
@@ -36,11 +41,27 @@ public class CtrlPresentacio {
 
     }
 
+    public ArrayList<String> consultaAutor(String consulta){
+        Set<String> mySet = CD.donaAutors(consulta);
+        ArrayList<String> listauthors = new ArrayList<String>();
+        for (String s : mySet) listauthors.add(s);
+
+        return listauthors;
+    }
+
+    public ArrayList<String> consultaTit(String autor, int criteri){
+        return CD.consultaTit(autor, criteri);
+    }
+
+    public ArrayList<String> consultaPref(int criteri){
+        return CD.consultaPref(criteri);
+    }
+
     private void run(){
         ESQ.initComponents();
         ESQ.sendCP(this); // to be used with signals and slots
         JFrame mainframe = ESQ.retorna();
-        mainframe.setSize(500,500);
+        mainframe.setSize(700,600);
         mainframe.show();
     
     }

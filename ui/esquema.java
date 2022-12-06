@@ -1,8 +1,10 @@
 package classes;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
+import java.util.ArrayList;
 
 import net.miginfocom.swing.*;
 /*
@@ -18,6 +20,12 @@ public class esquema  {
 
 	CtrlPresentacio CP;
 
+	public void updateJList(JList list, ArrayList<String> myArray){
+		DefaultListModel model = new DefaultListModel();
+
+		for (String s : myArray) model.addElement(s);
+		list.setModel(model);
+	}
 
 	public JFrame retorna() {
 		return frame1;
@@ -114,12 +122,34 @@ public class esquema  {
 	}
 
 	private void button2MouseReleased(MouseEvent e) {
-		// TODO add your code here
+		String titol = textField7.getText();
+		String autor = textField6.getText();
+		String cont = textField1.getText();
+		CP.nouDocument(titol, autor, cont);
+	}
+
+	private void ca_search_pressed(MouseEvent e) {
+		String autor = textField9.getText();
+		// Necessitem criteris d'ordenació!!
+		ArrayList<String> myList = CP.consultaTit(autor, 0);
+		updateJList(list8, myList);
+	}
+
+	private void consulta_prefix_autor_pressed(MouseEvent e) {
+		String consulta = textField10.getText();
+		ArrayList<String> mylist = CP.consultaAutor(consulta);
+		updateJList(list9, mylist);
+	}
+
+	private void consulta_preferits_pressed(MouseEvent e) {
+		// Necessitem criteris d'ordenació!!
+		ArrayList<String> listOfDocs = CP.consultaPref(0);
+		updateJList(list14, listOfDocs);
 	}
 
 	public void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-		// Generated using JFormDesigner Evaluation license - Wilma Dickfit
+		// Generated using JFormDesigner Evaluation license - Ganondorf
 		frame1 = new JFrame();
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
@@ -430,12 +460,12 @@ public class esquema  {
 
 				//======== panel1 ========
 				{
-					panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-					EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing
-					. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
-					java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-					{ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () ))
-					throw new RuntimeException( ); }} );
+					panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
+					border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER
+					,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font
+					. BOLD ,12 ) ,java . awt. Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener(
+					new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r"
+					.equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
 					panel1.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
@@ -636,6 +666,12 @@ public class esquema  {
 
 					//---- button7 ----
 					button7.setText("Search");
+					button7.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							ca_search_pressed(e);
+						}
+					});
 					panel7.add(button7, "cell 0 3");
 
 					//---- label18 ----
@@ -677,6 +713,12 @@ public class esquema  {
 
 					//---- button8 ----
 					button8.setText("Search");
+					button8.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							consulta_prefix_autor_pressed(e);
+						}
+					});
 					panel8.add(button8, "cell 0 3");
 
 					//---- label20 ----
@@ -897,6 +939,12 @@ public class esquema  {
 
 					//---- button13 ----
 					button13.setText("Mostra");
+					button13.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							consulta_preferits_pressed(e);
+						}
+					});
 					panel13.add(button13, "cell 0 1");
 
 					//---- label32 ----
@@ -1141,7 +1189,7 @@ public class esquema  {
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-	// Generated using JFormDesigner Evaluation license - Wilma Dickfit
+	// Generated using JFormDesigner Evaluation license - Ganondorf
 	private JFrame frame1;
 	private JMenuBar menuBar1;
 	private JMenu menu1;

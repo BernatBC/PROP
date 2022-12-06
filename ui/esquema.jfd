@@ -204,6 +204,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button2"
 						"text": "Crea"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button2MouseReleased", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 1 9"
 					} )
@@ -296,6 +297,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button7"
 						"text": "Search"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "ca_search_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 3"
 					} )
@@ -339,6 +341,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button8"
 						"text": "Search"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "consulta_prefix_autor_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 3"
 					} )
@@ -582,6 +585,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button13"
 						"text": "Mostra"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "consulta_preferits_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 1"
 					} )
