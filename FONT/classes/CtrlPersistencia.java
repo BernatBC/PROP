@@ -13,12 +13,16 @@ public class CtrlPersistencia {
     /**Controlador de domini */
     CtrlDomini domini;
 
+    /**Path on es desen els documents entre sessions */
+    final String PATH;
+
     /**
      * Contructora per defecte
      * @param controlador controlador de domini.
      */
     public CtrlPersistencia(CtrlDomini controlador) {
         domini = controlador;
+        PATH = new String("../DATA/Documents/");
     }
     
     /**
@@ -26,9 +30,10 @@ public class CtrlPersistencia {
      * @param path path del document.
      */
     public void importFile(String path) {
-        if (getExtension(path).equals("xml")) importXML(path);
-        else if (getExtension(path).equals("yay")) importYAY(path);
-        else importTXT(path);
+        File f = new File(path);
+        if (getExtension(path).equals("xml")) importXML(f);
+        else if (getExtension(path).equals("yay")) importYAY(f);
+        else importTXT(f);
     }
 
     /**
@@ -48,11 +53,10 @@ public class CtrlPersistencia {
 
     /**
      * Importa un fitxer TXT a l'aplicació.
-     * @param path path del document.
+     * @param f document.
      */
-    private void importTXT(String path) {
+    private void importTXT(File f) {
         try {
-            File f = new File(path);
             Scanner s = new Scanner(f);
             String title = s.nextLine();
             String author = s.nextLine();
@@ -72,11 +76,10 @@ public class CtrlPersistencia {
 
     /**
      * Importa un fitxer XML a l'aplicació.
-     * @param path path del document.
+     * @param f document.
      */
-    private void importXML(String path) {
+    private void importXML(File f) {
         try {
-            File f = new File(path);
             Scanner s = new Scanner(f);
             String file = new String("");
             while (s.hasNextLine()) file += s.nextLine();
@@ -141,11 +144,10 @@ public class CtrlPersistencia {
 
     /**
      * Importa un fitxer YAY a l'aplicació.
-     * @param path path del document.
+     * @param f document.
      */
-    private void importYAY(String path) {
+    private void importYAY(File f) {
         try {
-            File f = new File(path);
             Scanner s = new Scanner(f);
             String file = new String("");
             while (s.hasNextLine()) file += s.nextLine();
@@ -158,7 +160,6 @@ public class CtrlPersistencia {
             Boolean favourite = false;
             int i = 0;
             while (i < file.length()) {
-                System.out.println(file.charAt(i));
                 if (file.charAt(i) != '#') {
                     ++i;
                     continue;
@@ -282,6 +283,10 @@ public class CtrlPersistencia {
      * Importa tots els documents i expressions booleanes desades a l'applicació.
      */
     public void importarDades() {
-
+        File data = new File(PATH);
+        File[] documents = data.listFiles();
+        for (File d : documents) {
+            importYAY(d);
+        }
     }
 }
