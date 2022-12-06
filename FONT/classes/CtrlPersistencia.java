@@ -303,7 +303,7 @@ public class CtrlPersistencia {
     }
 
     private String getPath(String title, String author) {
-        return new String(PATH + title + "-" + author);
+        return new String(PATH + title + "_" + author);
     }
 
     /**
