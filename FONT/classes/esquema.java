@@ -1,4 +1,5 @@
 package classes;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -114,7 +115,10 @@ public class esquema  {
 	}
 
 	private void button2MouseReleased(MouseEvent e) {
-		// TODO add your code here
+		String titol = textField7.getText();
+		String autor = textField6.getText();
+		String cont = textField1.getText();
+		CP.nouDocument(titol, autor, cont);
 	}
 
 	public void initComponents() {
@@ -430,12 +434,14 @@ public class esquema  {
 
 				//======== panel1 ========
 				{
-					panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-					EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing
-					. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
-					java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-					{ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () ))
-					throw new RuntimeException( ); }} );
+					panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
+					new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
+					, javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+					, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 )
+					, java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
+					new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+					) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
+					; }} );
 					panel1.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns

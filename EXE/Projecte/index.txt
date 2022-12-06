@@ -1,0 +1,2 @@
+projecte.sh -> Executable per al Projecte.
+descripcio.txt -> Descripció d'aquest directori.
