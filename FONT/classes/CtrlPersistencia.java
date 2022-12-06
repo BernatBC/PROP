@@ -104,6 +104,8 @@ public class CtrlPersistencia {
                     ++i;
                 }
                 ++i;
+                if (tag.equals("document") || tag.equals("/document")) continue;
+                
                 //Llegir string contingut
                 String contingut = new String("");
                 while (file.charAt(i) != '<') {
@@ -119,6 +121,7 @@ public class CtrlPersistencia {
                 else if (tag.equals("date")) date = stringToDate(contingut);
                 else if (tag.equals("bool name=\"favourite\"") && contingut == "true") favourite = true;
             }
+            System.out.println(title + ", " + author + ", " + date + ", " + content);
             if(domini.getDocument(author, title).getR()) {
                 System.out.println("A document with this title and author already exists!");
                 return;
@@ -206,6 +209,8 @@ public class CtrlPersistencia {
      * @param path path del document.
      */
     public void export(String title, String author, String content, String date, Boolean preferit, String path) {
+        Thread thread1 = new Thread();
+        thread1.start();
         if (getExtension(path).equals("xml")) exportXML(title, author, content, date, preferit, path);
         else if (getExtension(path).equals("yay")) exportYAY(title, author, content, date, preferit, path);
         else exportTXT(title, author, content, path);
@@ -243,14 +248,16 @@ public class CtrlPersistencia {
     private void exportXML(String title, String author, String content, String date, Boolean preferit, String path) {
         try {
             FileWriter f = new FileWriter(path);
+            f.write("<document>\n");
             f.write("<title>" + title + "</title>\n");
             f.write("<author>" + author + "</author>\n");
-            f.write("<date>" + date + "<date>");
+            f.write("<date>" + date + "</date>\n");
             if (preferit) f.write("<bool name=\"favourite\">true</bool>");
             else f.write("<bool name=\"favourite\">true</bool>");
             f.write("<content>\n");
             f.write(content + "\n");
             f.write("</content>\n");
+            f.write("</document>\n");
             f.close();
         }
         catch(Exception e) {

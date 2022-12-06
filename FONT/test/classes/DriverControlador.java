@@ -20,6 +20,8 @@ public class DriverControlador {
         CtrlDomini controlador = new CtrlDomini();
         CtrlPersistencia persistencia = new CtrlPersistencia(controlador);
 
+        persistencia.importarDades();
+
         imprimirComandes();
         Scanner read = new Scanner(System.in);
 
