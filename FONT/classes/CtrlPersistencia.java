@@ -201,11 +201,13 @@ public class CtrlPersistencia {
      * @param title Títol a imprimir.
      * @param author Autor a imprimir.
      * @param content Contingut a imprimir.
+     * @param date Data a imprimir.
+     * @param preferit Marcat com a preferit.
      * @param path path del document.
      */
-    public void export(String title, String author, String content, String data, Boolean preferit, String path) {
-        if (getExtension(path).equals("xml")) exportXML(title, author, content, data, preferit, path);
-        else if (getExtension(path).equals("yay")) exportYAY(title, author, content, data, preferit, path);
+    public void export(String title, String author, String content, String date, Boolean preferit, String path) {
+        if (getExtension(path).equals("xml")) exportXML(title, author, content, date, preferit, path);
+        else if (getExtension(path).equals("yay")) exportYAY(title, author, content, date, preferit, path);
         else exportTXT(title, author, content, path);
     }
 
@@ -234,14 +236,16 @@ public class CtrlPersistencia {
      * @param title Títol a imprimir.
      * @param author Autor a imprimir.
      * @param content Contingut a imprimir.
+     * @param date Data a imprimir.
+     * @param preferit Marcat com a preferit.
      * @param path path del document.
      */
-    private void exportXML(String title, String author, String content, String data, Boolean preferit, String path) {
+    private void exportXML(String title, String author, String content, String date, Boolean preferit, String path) {
         try {
             FileWriter f = new FileWriter(path);
             f.write("<title>" + title + "</title>\n");
             f.write("<author>" + author + "</author>\n");
-            f.write("<date>" + data + "<date>");
+            f.write("<date>" + date + "<date>");
             if (preferit) f.write("<bool name=\"favourite\">true</bool>");
             else f.write("<bool name=\"favourite\">true</bool>");
             f.write("<content>\n");
@@ -259,14 +263,16 @@ public class CtrlPersistencia {
      * @param title Títol a imprimir.
      * @param author Autor a imprimir.
      * @param content Contingut a imprimir.
+     * @param date Data a imprimir.
+     * @param preferit Marcat com a preferit.
      * @param path path del document.
      */
-    private void exportYAY(String title, String author, String content, String data, Boolean preferit, String path) {
+    private void exportYAY(String title, String author, String content, String date, Boolean preferit, String path) {
         try {
             FileWriter f = new FileWriter(path);
             f.write("#TITLE:" + title + "#\n");
             f.write("#AUTHOR:" + author + "#\n");
-            f.write("#DATE:" + data + "#\n");
+            f.write("#DATE:" + date + "#\n");
             if (preferit) f.write("#FAVOURITE:True#\n");
             else f.write("#FAVOURITE:False#\n");
             f.write("#CONTENT:\n");
@@ -288,5 +294,81 @@ public class CtrlPersistencia {
         for (File d : documents) {
             importYAY(d);
         }
+    }
+
+    private String getPath(String title, String author) {
+        return new String(PATH + title + "-" + author);
+    }
+
+    /**
+     * Crea un fitxer nou per al document creeat.
+     * @param title Títol.
+     * @param author Autor.
+     * @param content Contingut.
+     * @param date Data.
+     * @param preferit Marcat com a preferit.
+     */
+    public void crearDocument(String title, String author, String content, String date, Boolean preferit) {
+        exportYAY(title, author, content, date, preferit, getPath(title, author));
+    }
+
+    /**
+     * Esborra el document.
+     * @param title Títol.
+     * @param author Autor.
+     */
+    public void esborrarDocument(String title, String author) {
+        File f = new File(getPath(title, author));
+        f.delete();
+    }
+
+    /**
+     * Modifica el títol d'un document.
+     * @param oldTitle Títol a modificar.
+     * @param author Autor.
+     * @param newTitle Títol nou.
+     */
+    public void modificarTitol(String oldTitle, String author, String newTitle) {
+
+    }
+
+    /**
+     * Modifica l'autor d'un document.
+     * @param title Títol.
+     * @param oldAuthor Autor a modificar.
+     * @param newAuthor Autor nou.
+     */
+    public void modificarAutor(String title, String oldAuthor, String newAuthor) {
+
+    }
+    
+    /**
+     * Modifica la data d'un document.
+     * @param title Títol.
+     * @param author Autor.
+     * @param date Data.
+     */
+    public void modificarData(String title, String author, String date) {
+
+    }
+
+    /**
+     * Modifica el contingut d'un document.
+     * @param title Títol.
+     * @param author Autor.
+     * @param content Contingut.
+     */
+    public void modificarContingut(String title, String author, String content) {
+
+    }
+
+    /**
+     * Modifica el ser preferit d'un document.
+     * @param title Títol.
+     * @param author Autor.
+     * @param preferit Marcat com a preferit.
+     */
+    public void marcarPreferit(String title, String author, Boolean preferit) {
+
     }
 }
