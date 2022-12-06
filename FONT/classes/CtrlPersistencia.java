@@ -105,7 +105,7 @@ public class CtrlPersistencia {
                 }
                 ++i;
                 if (tag.equals("document") || tag.equals("/document")) continue;
-                
+
                 //Llegir string contingut
                 String contingut = new String("");
                 while (file.charAt(i) != '<') {
@@ -121,7 +121,6 @@ public class CtrlPersistencia {
                 else if (tag.equals("date")) date = stringToDate(contingut);
                 else if (tag.equals("bool name=\"favourite\"") && contingut == "true") favourite = true;
             }
-            System.out.println(title + ", " + author + ", " + date + ", " + content);
             if(domini.getDocument(author, title).getR()) {
                 System.out.println("A document with this title and author already exists!");
                 return;
