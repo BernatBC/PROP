@@ -3,8 +3,6 @@ import classes.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.DateTimeException;
 

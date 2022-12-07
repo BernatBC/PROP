@@ -10,19 +10,19 @@ import java.time.DateTimeException;
  */
 public class CtrlPersistencia {
 
-    /**Controlador de domini */
+    /**Controlador de domini. */
     CtrlDomini domini;
 
-    /**Path on es desen els documents entre sessions */
+    /**Path del directori DATA. */
     final String PATH;
 
     /**
-     * Contructora per defecte
-     * @param controlador controlador de domini.
+     * Constructora per defecte.
+     * @param controladorDomini Controlador de domini.
      */
-    public CtrlPersistencia(CtrlDomini controlador) {
-        domini = controlador;
-        PATH = new String("../DATA/Documents/");
+    public CtrlPersistencia(CtrlDomini controladorDomini) {
+        domini = controladorDomini;
+        PATH = new String("../DATA/");
     }
     
     /**
@@ -260,7 +260,7 @@ public class CtrlPersistencia {
             f.close();
         }
         catch(Exception e) {
-            System.out.println("Error while exporting a txt file.");
+            System.out.println("Error while exporting a xml file.");
         }
     }
 
@@ -287,7 +287,51 @@ public class CtrlPersistencia {
             f.close();
         }
         catch(Exception e) {
-            System.out.println("Error while exporting a txt file.");
+            System.out.println("Error while exporting a yay file.");
+        }
+    }
+
+    /**
+     * Importa una expressió booleana a l'applicació.
+     * @param f
+     */
+    private void importarExpressio(File f) {
+        try {
+            Scanner s = new Scanner(f);
+            String file = new String("");
+            while (s.hasNextLine()) file += s.nextLine();
+            s.close();
+            
+            String name = new String("");
+            String expression = new String("");
+            int i = 0;
+            while (i < file.length()) {
+                if (file.charAt(i) != '#') {
+                    ++i;
+                    continue;
+                }
+                //Llegir tag
+                String tag = new String("");
+                ++i;
+                while (file.charAt(i) != ':') {
+                    tag += file.charAt(i);
+                    ++i;
+                }
+                ++i;
+                //Llegir string contingut
+                String contingut = new String("");
+                while (file.charAt(i) != '#') {
+                    contingut += file.charAt(i);
+                    ++i;
+                }
+                ++i;
+                if (tag.equals("NAME")) name = contingut;
+                else if (tag.equals("EXPRESSION")) expression = contingut;
+            }
+            domini.novaEB(name, expression);
+        }
+        catch(Exception e) {
+            System.out.println("An error has ocurred while reading the boolean expression file");
         }
     }
 
@@ -295,15 +339,35 @@ public class CtrlPersistencia {
      * Importa tots els documents i expressions booleanes desades a l'applicació.
      */
     public void importarDades() {
-        File data = new File(PATH);
-        File[] documents = data.listFiles();
+        File doc_folder = new File(PATH + "Documents/");
+        File[] documents = doc_folder.listFiles();
         for (File d : documents) {
             importYAY(d);
         }
+
+        File exp_folder = new File(PATH + "Expressions/");
+        File[] expressions = exp_folder.listFiles();
+        for (File e : expressions) {
+            importarExpressio(e);
+        }
+    }
+    /**
+     * Retorna el path del document.
+     * @param title Titol del document.
+     * @param author Autor del document
+     * @return String : Path del document.
+     */
+    private String getPathDoc(String title, String author) {
+        return new String(PATH + "Documents/" + title + "_" + author + ".yay");
     }
 
-    private String getPath(String title, String author) {
-        return new String(PATH + title + "_" + author);
+    /**
+     * Retorna el path de l'expressio booleana.
+     * @param nom_expressio Nom de l'expressió boobleana.
+     * @return String : Path de l'expressió.
+     */
+    private String getPathExp(String nom_expressio) {
+        return new String(PATH + "Expressions/" + nom_expressio + ".yae");
     }
 
     /**
@@ -315,7 +379,7 @@ public class CtrlPersistencia {
      * @param preferit Marcat com a preferit.
      */
     public void crearDocument(String title, String author, String content, String date, Boolean preferit) {
-        exportYAY(title, author, content, date, preferit, getPath(title, author));
+        exportYAY(title, author, content, date, preferit, getPathDoc(title, author));
     }
 
     /**
@@ -324,57 +388,33 @@ public class CtrlPersistencia {
      * @param author Autor.
      */
     public void esborrarDocument(String title, String author) {
-        File f = new File(getPath(title, author));
+        File f = new File(getPathDoc(title, author));
         f.delete();
     }
 
     /**
-     * Modifica el títol d'un document.
-     * @param oldTitle Títol a modificar.
-     * @param author Autor.
-     * @param newTitle Títol nou.
+     * Crea un fitxer nou per a l'expressió creada.
+     * @param nom Nom de l'expressió boobleana.
+     * @param expressio Expressió booleana
      */
-    public void modificarTitol(String oldTitle, String author, String newTitle) {
-
+    public void crearExpressio(String nom, String expressio) {
+        try {
+            FileWriter f = new FileWriter(getPathExp(expressio));
+            f.write("#NAME:" + nom + "#\n");
+            f.write("#EXPRESSION:" + expressio + "#\n");
+            f.close();
+        }
+        catch(Exception e) {
+            System.out.println("Error while exporting a yap file.");
+        }
     }
 
     /**
-     * Modifica l'autor d'un document.
-     * @param title Títol.
-     * @param oldAuthor Autor a modificar.
-     * @param newAuthor Autor nou.
+     * Esborra el fitxer de l'expressió creada.
+     * @param nom Nom de l'expressió boobleana.
      */
-    public void modificarAutor(String title, String oldAuthor, String newAuthor) {
-
-    }
-    
-    /**
-     * Modifica la data d'un document.
-     * @param title Títol.
-     * @param author Autor.
-     * @param date Data.
-     */
-    public void modificarData(String title, String author, String date) {
-
-    }
-
-    /**
-     * Modifica el contingut d'un document.
-     * @param title Títol.
-     * @param author Autor.
-     * @param content Contingut.
-     */
-    public void modificarContingut(String title, String author, String content) {
-
-    }
-
-    /**
-     * Modifica el ser preferit d'un document.
-     * @param title Títol.
-     * @param author Autor.
-     * @param preferit Marcat com a preferit.
-     */
-    public void marcarPreferit(String title, String author, Boolean preferit) {
-
+    public void esborrarExpressio(String nom) {
+        File f = new File(getPathExp(nom));
+        f.delete();
     }
 }
