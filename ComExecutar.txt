@@ -1,3 +1,2 @@
-Per a executar el driver cal anar al directori EXE/DriverControlador, i executar l'arxiu DriverControlador.sh
-
-Per a executar els JUnit de cada classe cal anar al directori EXE, entrar al directori de cada classe i executar l'arxiu *Test.sh.
+Per a executar el projecte cal anar al directori EXE/Projecte, i executar
+l'arxiu Projecte.sh
