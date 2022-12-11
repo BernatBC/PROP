@@ -6,7 +6,7 @@ new FormModel {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 			"$layoutConstraints": "fill,insets 0,hidemode 3,gap 5 5"
 			"$columnConstraints": "[300:n:300,fill][50:n:50,fill][fill][fill][fill][10:n:10,fill]"
-			"$rowConstraints": "[50:n:50][50:n:50][][10:n:10]"
+			"$rowConstraints": "[50:n:50][50:n:50][][][10:n:10]"
 		} ) {
 			name: "frame1"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -179,34 +179,17 @@ new FormModel {
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 1 4"
 					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label10"
-						"text": "Data del document (dd-mm-yyyy)"
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 6"
-					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField8"
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 7"
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label11"
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 1 7"
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label12"
-						"text": "(per defecte la data actual)"
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 8"
-					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button2"
 						"text": "Crea"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button2MouseReleased", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 1 9"
+						"value": "cell 1 6"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label11"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 7"
 					} )
 					add( new FormComponent( "com.jformdesigner.designer.wrapper.VSpacer" ) {
 						name: "vSpacer4"
@@ -396,6 +379,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button9"
 						"text": "Mostra"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "consulta_document_released", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 5"
 					} )
@@ -500,6 +484,7 @@ new FormModel {
 						name: "radioButton1"
 						"text": "Número d'aparicions de les paraules"
 						"$buttonGroup": new FormReference( "buttonGroup1" )
+						"selected": true
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 5"
 					} )
@@ -513,6 +498,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button11"
 						"text": "Obtenir Documents"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "consulta_rellevancia_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 7"
 					} )
@@ -622,6 +608,7 @@ new FormModel {
 						name: "radioButton3"
 						"text": "Anteriors a una Data"
 						"$buttonGroup": new FormReference( "buttonGroup2" )
+						"selected": true
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 1"
 					} )
@@ -641,7 +628,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label37"
-						"text": "Data anterior: (dd-mm-yyyy)"
+						"text": "Data anterior: (yyyy-mm-dd)"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 5"
 					} )
@@ -652,7 +639,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label35"
-						"text": "Data posterior: (dd-mm-yyyy)"
+						"text": "Data posterior: (yyyy-mm-dd)"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 7"
 					} )
@@ -664,6 +651,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button14"
 						"text": "Cerca"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "consulta_data_presionat", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 9"
 					} )
@@ -852,9 +840,17 @@ new FormModel {
 				name: "scrollPane22"
 				add( new FormComponent( "javax.swing.JTextPane" ) {
 					name: "textField1"
+					"text": "Una vegada creat un document, escriu el contingut aquí!"
 				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 2 2 3 1,grow,wmin 200,hmin 200"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button5"
+				"text": "Modifica"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "modifica_pressed", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 3"
 			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar1"

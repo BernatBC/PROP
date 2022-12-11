@@ -260,6 +260,20 @@ public class Llibreria {
 		return mySet;
 	}
 
+	/** Mètode que retorna la Llibreria representada con una arrayList de Documents (en String)
+	 * 
+	 * @return La llista de Strings que representa la llibreria.
+	 */
+	public ArrayList<String> toStringArray(){
+		ArrayList<String> list = new ArrayList<>();
+
+		for (int i = 0; i < docs0.size(); ++i){
+			list.add(docs0.get(i).getL().toString());
+		}
+
+		return list;
+	}
+
 	public String toString(){
 		StringBuilder str = new StringBuilder("");
 

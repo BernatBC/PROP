@@ -169,10 +169,7 @@ public class CtrlDomini {
 		return lib.getDocument(nomAutor, nomTitol);
 	}
 	
-	/**
-	 *  Funció que interacciona amb l'usuari i crea un document.
-	 */
-	public void crearDocument(String title, String author, ArrayList<String> content, LocalDate dia, boolean isFav){
+	public void crearDocument(String title, String author, ArrayList<String> content, String plaintext_cont, LocalDate dia, boolean isFav){
 		
 		ArrayList<String> titledecomp = decomposeWords(title);
 		
@@ -217,7 +214,7 @@ public class CtrlDomini {
 			cont[w] = new Frase(arrWords, content.get(w));
 		}
 
-		Contingut contentFinal = new Contingut(String.join("\n", content), cont);
+		Contingut contentFinal = new Contingut(plaintext_cont, cont);
 		
 		Document doc = new Document(authorPhrase, titlePhrase, isFav, "NULL", dia, contentFinal);
 
@@ -255,6 +252,20 @@ public class CtrlDomini {
 
 		return doc.getL().getData();
 	 }	
+
+    /** Funció que retorna el contingut d'un document
+	 *
+	 * @param title Títol del document a consultar
+	 * @param author Autor del document a consultar
+	 * @return String que representa el contingut del document.
+	 */
+
+	public String getContingut(String title, String author){
+		Pair<Document, Boolean> doc = getDocument(author, title);
+		if (!doc.getR()) return "";
+
+		return doc.getL().getContingut().toString();
+	}
 
 	// PRECONDICIÓ: Existeix (title, author).
 	public String preview(String title, String author){
@@ -296,7 +307,7 @@ public class CtrlDomini {
 		CT.afegirDocument(d);
 	}
 
-	public void modificarContingut(String title, String author, ArrayList<String> content){
+	public void modificarContingut(String title, String author, ArrayList<String> content, String plaintext_content){
 
 		// Suposarem que d existeix.
 		Document d = getDocument(author, title).getL();
@@ -305,7 +316,7 @@ public class CtrlDomini {
 		LocalDate dat = d.getData();
 
 		eliminarDocument(title, author);
-		crearDocument(title, author, content, dat, isFav);
+		crearDocument(title, author, content, plaintext_content, dat, isFav);
 	}
 
 	public void modificarTitol(String oldTitle, String author, String newTitle){
@@ -433,7 +444,7 @@ public class CtrlDomini {
 
 	}
 
-	public String consultaRell(String wordsSepBlank, int k, int modeConsulta)
+	public ArrayList<String> consultaRell(String wordsSepBlank, int k, int modeConsulta)
 	{
 		String[] words = wordsSepBlank.split(" ");
 
@@ -444,7 +455,7 @@ public class CtrlDomini {
 		if (modeConsulta == 1) CR = new ConsultaRellevancia(k, arrWords, wordsSepBlank, 1, lib);
 		else CR = new ConsultaRellevancia(k, arrWords, wordsSepBlank, 2, lib);
 
-		return CR.getDocs().toString();
+		return CR.getDocs().toStringArray();
 	}
 
 	public ArrayList<String> consultaPref(int criteria){

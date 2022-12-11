@@ -133,6 +133,7 @@ public class Document {
 		return (author.conteCaracters(seq) || title.conteCaracters(seq) || cont.conteSequencia(seq));
 	}
 
+	/* 
 	public String toString(){
 		StringBuilder str = new StringBuilder("\n");
 		
@@ -147,6 +148,10 @@ public class Document {
 		str.append("\n");
 
 		return str.toString();
+	}*/
+
+	public String toString(){
+		return title + " ~ " + author;
 	}
 
 }

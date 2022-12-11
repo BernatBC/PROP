@@ -47,7 +47,7 @@ public class DriverControlador {
                         }
                     }
             
-                    controlador.crearDocument(title, author, content, LocalDate.now(), false);
+                    controlador.crearDocument(title, author, content, String.join("\n", content), LocalDate.now(), false);
 
                     System.out.println("\nDocument successfully added!");
 
@@ -152,7 +152,7 @@ public class DriverControlador {
                             }
                         }
                 
-                        controlador.modificarContingut(title, author, content);
+                        controlador.modificarContingut(title, author, content, String.join("\n", content));
 
                         System.out.println("Content modified correctly. ");
 
