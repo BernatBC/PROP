@@ -32,8 +32,8 @@ public class Llibreria {
 
 	private int nDocs;
 
-	//Arbre d'autors i de documents. Cada autor té el seu conjunt de documents
-	private TernaryTree<Pair<Frase, Set<Document>>> autor_documents;
+	//Arbre d'autors i de documents. Cada autor té el seu conjunt de documents, amb el títol com a clau.
+	private TernaryTree<Pair<Frase, HashMap<Frase, Document>>> autor_documents;
 	
 	/**
 	 * Constructora d'una Llibreria per defecte.
@@ -157,8 +157,8 @@ public class Llibreria {
 
 		docMapper.put(d, docs0.size()-1);
 
-		Pair<Frase,Set<Document>> node = autor_documents.inserirObtenir(d.getAutor().toString() ,0, new Pair<Frase, Set<Document>>(d.getAutor(), new HashSet<>()));
-		node.getR().add(d);
+		Pair<Frase,HashMap<Frase, Document>> node = autor_documents.inserirObtenir(d.getAutor().toString() ,0, new Pair<Frase, HashMap<Frase, Document>>(d.getAutor(), new HashMap<>()));
+		node.getR().put(d.getTitol(), d);
 	} 
 	
 	/** Mètode per a eliminar un document de la llibreria.
@@ -167,8 +167,8 @@ public class Llibreria {
 	 */
 	public void deleteDocument(Document d){
 		docMapper.remove(d);
-		Pair<Frase,Set<Document>> node = autor_documents.obtenir(d.getAutor().toString() ,0);
-		node.getR().remove(d);
+		Pair<Frase,HashMap<Frase, Document>> node = autor_documents.obtenir(d.getAutor().toString() ,0);
+		node.getR().remove(d.getTitol());
 
 		for (int i = 0; i < docs0.size(); ++i){
 			if (d == docs0.get(i).getL()){
@@ -209,15 +209,20 @@ public class Llibreria {
 	 */
 	public Pair<Document, Boolean> getDocument(String author, String title){
 		// Donat un autor i títol, ens retorna el document
-		for (int i = 0; i < docs0.size(); ++i){
+		/*for (int i = 0; i < docs0.size(); ++i){
 			if (docs0.get(i).getL().getAutor().toString().equals(author) && docs0.get(i).getL().getTitol().toString().equals(title)){
 				return new Pair<>(docs0.get(i).getL(), true);
 			}
 		}
 
 		// Nothing found
-		return new Pair<>(null, false);
+		return new Pair<>(null, false);*/
 
+		Pair<Frase, HashMap<Frase, Document>> documentsAutor = autor_documents.obtenir(author, 0);
+		if (documentsAutor == null) return new Pair<Document,Boolean>(null, false);
+		Document d = documentsAutor.getR().get(new Frase(title));
+		if (d == null) return new Pair<Document,Boolean>(null, false);
+		return new Pair<Document,Boolean>(d, true);
 	}
 	
 	/** Mètode que retorna una nova llibreria amb tots els documents marcats com a preferits.
