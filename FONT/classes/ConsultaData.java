@@ -1,6 +1,7 @@
 package classes;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /** Consulta utilitzada per obtenir els documents que es troben "dintre" d'un interval de dues dates, segons el seu atribut data.
@@ -118,29 +119,17 @@ public class ConsultaData {
      * @return ArrayList de documents els quals la seva data és igual o posterior a "anterior" i igual o anterior a "posterior".
      */
     public ArrayList<Document> consulta() {
-        ArrayList<Document> interval = new ArrayList<>();
-        Integer idxini = 0, idxfin = n_docs-1;
-        boolean chan1 = false, chan2 = false;
-        for (int i = 0; i < n_docs; ++i) {
-            LocalDate data = docs.get(i).getData();
-            //primer element a dintre l'interval
-            if (!chan1 && (data.isAfter(anterior) || data.isEqual(anterior))) {
-                idxini = i;
-                chan1 = true;
-            }
-            //primer element mes gran que la data de l'interval
-            if (!chan2 && data.isAfter(posterior)) {
-                if (i != 0) idxfin = i-1;
-                chan2 = true;
-            }
-            if (chan1 && chan2) break;
-        }
-/* 
-        while(idxini < n_docs && docs.get(idxini).getData().isBefore(anterior)) ++idxini;
+        int i = 0;
+        int j = n_docs - 1;
 
-        while(idxfin >= 0 && docs.get(idxfin).getData().isAfter(posterior)) --idxfin;
-*/
-        for (int q = idxini; q <= idxfin; ++q) interval.add(docs.get(q));
+        while (i < n_docs && docs.get(i).getData().isBefore(anterior)) ++i;
+        while (j >= 0 && docs.get(j).getData().isAfter(posterior)) --j;
+
+        ArrayList<Document> interval = new ArrayList<>();
+
+        for (int k = i; k <= j; ++k){
+            interval.add(docs.get(k));
+        }
 
         return interval;
     }

@@ -42,6 +42,10 @@ public class CtrlPresentacio {
 
     }
 
+    public void eliminarDoc(String titol, String autor){
+        CD.eliminarDocument(titol, autor);
+    }
+
     public ArrayList<String> consultaDocument(String autor, String titol){
         // La "consultaDocument" retornarà:
         // Autor + Titol + Booleà ("Y"/"N") preferit + data en ISO + Contingut en string
@@ -73,6 +77,10 @@ public class CtrlPresentacio {
         return listauthors;
     }
 
+    public ArrayList<String> consultaAvancada(String query){
+        return CD.consultaSeq(query, 0);
+    }
+
     public ArrayList<String> consultaTit(String autor, int criteri){
         return CD.consultaTit(autor, criteri);
     }
@@ -89,6 +97,10 @@ public class CtrlPresentacio {
 
         if (firstMode) return CD.consultaRell(query, N, 1);
         else return CD.consultaRell(query, N, 2);
+    }
+
+    public ArrayList<String> getAllDocs(){
+        return CD.getAllDocs();
     }
 
     public ArrayList<String> consultaData(String ant, String post, String option){

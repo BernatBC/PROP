@@ -138,6 +138,9 @@ public class esquema  {
 		textField4.setText(doc.get(3));
 		textField1.setText(doc.get(4));
 
+		doc = CP.getAllDocs();
+		updateJList(list7, doc);
+
 	}
 
 	private void ca_search_pressed(MouseEvent e) {
@@ -204,7 +207,24 @@ public class esquema  {
 		else select = "E";
 
 		ArrayList<String> listOfDocs = CP.consultaData(dataAntStr, dataPostStr, select);
+		if (listOfDocs.isEmpty()) listOfDocs.add("");
 		updateJList(list15, listOfDocs);
+	}
+
+	private void consulta_avancada_pressed(MouseEvent e) {
+		String query = textField16.getText();
+		ArrayList<String> listOfDocs = CP.consultaAvancada(query);
+
+		updateJList(list12, listOfDocs);
+	}
+
+	private void delete_pressed(MouseEvent e) {
+		String doc = (String) list7.getSelectedValue();
+		String[] titleautor = doc.split(" ~ ");
+
+		CP.eliminarDoc(titleautor[0], titleautor[1]);
+
+		updateJList(list7, CP.getAllDocs());
 	}
 
 	public void initComponents() {
@@ -519,12 +539,13 @@ public class esquema  {
 
 				//======== panel1 ========
 				{
-					panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-					border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER
-					, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font
-					.BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
-					new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r"
-					.equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+					panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+					. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder
+					. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
+					awt .Font .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) )
+					; panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+					) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+					;
 					panel1.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
@@ -685,6 +706,12 @@ public class esquema  {
 
 					//---- button6 ----
 					button6.setText("Delete");
+					button6.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							delete_pressed(e);
+						}
+					});
 					panel6.add(button6, "cell 0 2");
 				}
 				tabbedPane1.addTab("ED", panel6);
@@ -973,6 +1000,12 @@ public class esquema  {
 
 					//---- button12 ----
 					button12.setText("Search");
+					button12.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							consulta_avancada_pressed(e);
+						}
+					});
 					panel12.add(button12, "cell 0 3");
 
 					//---- label31 ----

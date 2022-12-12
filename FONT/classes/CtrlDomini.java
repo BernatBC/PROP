@@ -415,6 +415,10 @@ public class CtrlDomini {
 		return myList;
 	}
 
+	public ArrayList<String> getAllDocs(){
+		return lib.toStringArray();
+	}
+
 	public ArrayList<String> consultaTit(String autor, int criteria){
 		Set<Document> setdocs = CT.getDocAutor(new Frase(autor));
 		if (setdocs == null) return new ArrayList<>();
