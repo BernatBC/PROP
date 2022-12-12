@@ -31,6 +31,9 @@ public class Llibreria {
 	private HashMap<Document, Integer> docMapper;
 
 	private int nDocs;
+
+	//Arbre d'autors i de documents. Cada autor té el seu conjunt de documents
+	private TernaryTree<Pair<Frase, Set<Document>>> autor_documents;
 	
 	/**
 	 * Constructora d'una Llibreria per defecte.
@@ -44,6 +47,7 @@ public class Llibreria {
 		precalculat1 = new HashMap<>();
 
 		docMapper = new HashMap<>();
+		autor_documents = new TernaryTree<>();
 	}
 	
 	/** Mètode que ens calcula el cosinus entre dos documents existents en la llibreria.
@@ -152,6 +156,9 @@ public class Llibreria {
 		docs1.add(new Pair<>(d, OCURR));
 
 		docMapper.put(d, docs0.size()-1);
+
+		Pair<Frase,Set<Document>> node = autor_documents.inserirObtenir(d.getAutor().toString() ,0, new Pair<Frase, Set<Document>>(d.getAutor(), new HashSet<>()));
+		node.getR().add(d);
 	} 
 	
 	/** Mètode per a eliminar un document de la llibreria.
@@ -160,6 +167,8 @@ public class Llibreria {
 	 */
 	public void deleteDocument(Document d){
 		docMapper.remove(d);
+		Pair<Frase,Set<Document>> node = autor_documents.obtenir(d.getAutor().toString() ,0);
+		node.getR().remove(d);
 
 		for (int i = 0; i < docs0.size(); ++i){
 			if (d == docs0.get(i).getL()){
