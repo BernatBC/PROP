@@ -405,7 +405,7 @@ public class CtrlPersistencia {
             f.close();
         }
         catch(Exception e) {
-            System.out.println("Error while exporting a yap file.");
+            System.out.println("Error while exporting a yae file.");
         }
     }
 
