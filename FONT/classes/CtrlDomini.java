@@ -403,6 +403,7 @@ public class CtrlDomini {
 
 	public ArrayList<String> consultaSeq(String seq, int criteria){
 		Set<Document> setdocs = ConsultaAvancada.obtenirDocuments(lib, seq);
+		if (setdocs == null) return new ArrayList<>();
 		ArrayList<Document> result = sortDocuments(setdocs, criteria);
 
 		ArrayList<String> myList = new ArrayList<>();
@@ -416,6 +417,7 @@ public class CtrlDomini {
 
 	public ArrayList<String> consultaTit(String autor, int criteria){
 		Set<Document> setdocs = CT.getDocAutor(new Frase(autor));
+		if (setdocs == null) return new ArrayList<>();
 		ArrayList<Document> result = sortDocuments(setdocs, criteria);
 
 		ArrayList<String> myList = new ArrayList<>();
