@@ -1,9 +1,11 @@
 package classes;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.DateTimeException;
+import java.util.List;
 
 /** Classe controladora de la capa de persistencia.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
@@ -80,6 +82,20 @@ public class CtrlPersistencia {
     }
 
     /**
+     * Transforma una string a un arraylist delimitats per salts de línia.
+     * @param s contingut a separar.
+     * @return : ArrayList<String> contingut separat per salts de línia
+     */
+    private ArrayList<String> stringToArrayList(String s) {
+        List<String> splited_content = Arrays.asList(s.split("\n"));
+        ArrayList<String> content = new ArrayList<>();
+        for (String line : splited_content) {
+            content.add(line);
+        }
+        return content;
+    }
+
+    /**
      * Importa un fitxer XML a l'aplicació.
      * @param f document.
      */
@@ -93,7 +109,6 @@ public class CtrlPersistencia {
             String author = new String("");
             String title = new String("");
             LocalDate date = LocalDate.now();
-            ArrayList<String> content = new ArrayList<>();
             String plain_content = new String();
             Boolean favourite = false;
             int i = 0;
@@ -123,10 +138,7 @@ public class CtrlPersistencia {
                 
                 if (tag.equals("title")) title = contingut;
                 else if (tag.equals("author")) author = contingut;
-                else if (tag.equals("content")) {
-                    content.add(contingut);
-                    plain_content = new String(contingut);
-                }
+                else if (tag.equals("content")) plain_content = new String(contingut);
                 else if (tag.equals("date")) date = stringToDate(contingut);
                 else if (tag.equals("bool name=\"favourite\"") && contingut == "true") favourite = true;
             }
@@ -134,7 +146,7 @@ public class CtrlPersistencia {
                 System.out.println("A document with this title and author already exists!");
                 return;
             }
-            domini.crearDocument(title, author, content, plain_content, date, favourite);
+            domini.crearDocument(title, author, stringToArrayList(plain_content), plain_content, date, favourite);
         }
         catch(Exception e) {
             System.out.println("An error has ocurred while reading the xml file");
@@ -166,7 +178,6 @@ public class CtrlPersistencia {
             
             String author = new String("");
             String title = new String("");
-            ArrayList<String> content = new ArrayList<>();
             String plain_content = new String();
             LocalDate date = LocalDate.now();
             Boolean favourite = false;
@@ -193,10 +204,7 @@ public class CtrlPersistencia {
                 ++i;
                 if (tag.equals("TITLE")) title = contingut;
                 else if (tag.equals("AUTHOR")) author = contingut;
-                else if (tag.equals("CONTENT")) {
-                    content.add(contingut);
-                    plain_content = new String(contingut);
-                }
+                else if (tag.equals("CONTENT")) plain_content = new String(contingut);
                 else if (tag.equals("DATE")) date = stringToDate(contingut);
                 else if (tag.equals("FAVOURITE") && contingut == "True") favourite = true;
             }
@@ -204,7 +212,7 @@ public class CtrlPersistencia {
                 System.out.println("A document with this title and author already exists!");
                 return;
             }
-            domini.crearDocument(title, author, content, plain_content, date, favourite);
+            domini.crearDocument(title, author, stringToArrayList(plain_content), plain_content, date, favourite);
         }
         catch(Exception e) {
             System.out.println("An error has ocurred while reading the yay file");
