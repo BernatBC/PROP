@@ -67,7 +67,7 @@ public class CtrlPersistencia {
                 System.out.println("A document with this title and author already exists!");
                 return;
             }
-            domini.crearDocument(title, author, content, LocalDate.now(), false);
+            domini.crearDocument(title, author, content, content.toString(), LocalDate.now(), false);
         }
         catch(Exception e) {
             System.out.println("File not found!");
@@ -89,6 +89,7 @@ public class CtrlPersistencia {
             String title = new String("");
             LocalDate date = LocalDate.now();
             ArrayList<String> content = new ArrayList<>();
+            String plain_content = new String();
             Boolean favourite = false;
             int i = 0;
             while (i < file.length()) {
@@ -117,7 +118,10 @@ public class CtrlPersistencia {
                 
                 if (tag.equals("title")) title = contingut;
                 else if (tag.equals("author")) author = contingut;
-                else if (tag.equals("content")) content.add(contingut);
+                else if (tag.equals("content")) {
+                    content.add(contingut);
+                    plain_content = new String(contingut);
+                }
                 else if (tag.equals("date")) date = stringToDate(contingut);
                 else if (tag.equals("bool name=\"favourite\"") && contingut == "true") favourite = true;
             }
@@ -125,7 +129,7 @@ public class CtrlPersistencia {
                 System.out.println("A document with this title and author already exists!");
                 return;
             }
-            domini.crearDocument(title, author, content, date, favourite);
+            domini.crearDocument(title, author, content, plain_content, date, favourite);
         }
         catch(Exception e) {
             System.out.println("An error has ocurred while reading the xml file");
@@ -158,6 +162,7 @@ public class CtrlPersistencia {
             String author = new String("");
             String title = new String("");
             ArrayList<String> content = new ArrayList<>();
+            String plain_content = new String();
             LocalDate date = LocalDate.now();
             Boolean favourite = false;
             int i = 0;
@@ -183,7 +188,10 @@ public class CtrlPersistencia {
                 ++i;
                 if (tag.equals("TITLE")) title = contingut;
                 else if (tag.equals("AUTHOR")) author = contingut;
-                else if (tag.equals("CONTENT")) content.add(contingut);
+                else if (tag.equals("CONTENT")) {
+                    content.add(contingut);
+                    plain_content = new String(contingut);
+                }
                 else if (tag.equals("DATE")) date = stringToDate(contingut);
                 else if (tag.equals("FAVOURITE") && contingut == "True") favourite = true;
             }
@@ -191,7 +199,7 @@ public class CtrlPersistencia {
                 System.out.println("A document with this title and author already exists!");
                 return;
             }
-            domini.crearDocument(title, author, content, date, favourite);
+            domini.crearDocument(title, author, content, plain_content, date, favourite);
         }
         catch(Exception e) {
             System.out.println("An error has ocurred while reading the yay file");
@@ -207,7 +215,7 @@ public class CtrlPersistencia {
      * @param preferit Marcat com a preferit.
      * @param path path del document.
      */
-    public void export(String title, String author, String content, String date, Boolean preferit, String path) {
+    public void export(String title, String author, String content, LocalDate date, boolean preferit, String path) {
         Thread thread1 = new Thread();
         thread1.start();
         if (getExtension(path).equals("xml")) exportXML(title, author, content, date, preferit, path);
@@ -244,7 +252,7 @@ public class CtrlPersistencia {
      * @param preferit Marcat com a preferit.
      * @param path path del document.
      */
-    private void exportXML(String title, String author, String content, String date, Boolean preferit, String path) {
+    private void exportXML(String title, String author, String content, LocalDate date, Boolean preferit, String path) {
         try {
             FileWriter f = new FileWriter(path);
             f.write("<document>\n");
@@ -273,7 +281,7 @@ public class CtrlPersistencia {
      * @param preferit Marcat com a preferit.
      * @param path path del document.
      */
-    private void exportYAY(String title, String author, String content, String date, Boolean preferit, String path) {
+    private void exportYAY(String title, String author, String content, LocalDate date, Boolean preferit, String path) {
         try {
             FileWriter f = new FileWriter(path);
             f.write("#TITLE:" + title + "#\n");
@@ -378,7 +386,7 @@ public class CtrlPersistencia {
      * @param date Data.
      * @param preferit Marcat com a preferit.
      */
-    public void crearDocument(String title, String author, String content, String date, Boolean preferit) {
+    public void crearDocument(String title, String author, String content, LocalDate date, Boolean preferit) {
         exportYAY(title, author, content, date, preferit, getPathDoc(title, author));
     }
 

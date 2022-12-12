@@ -443,7 +443,7 @@ public class DriverControlador {
                     System.out.println("Enter the path followed by the name and extension of the document: ");
                     path = read.nextLine();
 
-                    persistencia.export(title, author, controlador.preview(title, author), "1999-04-12", true, path);
+                    persistencia.export(title, author, controlador.getContingut(title, author), controlador.getData(title, author), controlador.getFavourite(title, author), path);
 
 
             }
