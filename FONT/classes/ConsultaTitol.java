@@ -47,4 +47,11 @@ import java.util.Set;
     public Set<Document> getDocAutor(Frase autor) {
         return coleccions.get(autor.toString());
     }
+
+    public static Set<Document> getDocAutor(Frase autor, TernaryTree<Pair<Frase, HashMap<Frase, Document>>> autor_documents) {
+        Pair<Frase, HashMap<Frase, Document>> autorObtingut = autor_documents.obtenir(autor.toString(), 0);
+        Set<Document> documents = new HashSet<>();
+        for (Document d : autorObtingut.getR().values()) documents.add(d);
+        return documents;
+    }
  }

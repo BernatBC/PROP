@@ -208,16 +208,6 @@ public class Llibreria {
 	 * @return Un parell de Document (el document cercat) i booleà, on el booleà és <b>false</b> si el document no existeix.
 	 */
 	public Pair<Document, Boolean> getDocument(String author, String title){
-		// Donat un autor i títol, ens retorna el document
-		/*for (int i = 0; i < docs0.size(); ++i){
-			if (docs0.get(i).getL().getAutor().toString().equals(author) && docs0.get(i).getL().getTitol().toString().equals(title)){
-				return new Pair<>(docs0.get(i).getL(), true);
-			}
-		}
-
-		// Nothing found
-		return new Pair<>(null, false);*/
-
 		Pair<Frase, HashMap<Frase, Document>> documentsAutor = autor_documents.obtenir(author, 0);
 		if (documentsAutor == null) return new Pair<Document,Boolean>(null, false);
 		Document d = documentsAutor.getR().get(new Frase(title));
