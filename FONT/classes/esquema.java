@@ -463,7 +463,7 @@ public class esquema  {
 
 					//---- menuItem4 ----
 					menuItem4.setText("Importar Documents");
-					menuItem3.addMouseListener(new MouseAdapter() {
+					menuItem4.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseReleased(MouseEvent e) {
 							menuItem4MouseReleased(e);
