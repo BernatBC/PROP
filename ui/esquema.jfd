@@ -222,6 +222,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button4"
 						"text": "Obre"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "obrir_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 2"
 					} )
@@ -424,6 +425,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button10"
 						"text": "Obtenir Documents"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "consulta_semblant_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 4"
 					} )

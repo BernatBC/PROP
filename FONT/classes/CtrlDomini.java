@@ -434,19 +434,18 @@ public class CtrlDomini {
 
 	}
 
-	public String consultaSemb(String titol, String autor, int n, int mode){
+	public ArrayList<String> consultaSemb(String titol, String autor, int n, int mode){
 		Document doc = getDocument(autor, titol).getL();
 
 		ArrayList<Pair<Double, Document>> result = ConsultaSemblant.executeQuery(lib, doc, n, mode);
 
-		StringBuilder strbld = new StringBuilder();
+		ArrayList<String> stg = new ArrayList<>();
 		
 		for (Pair<Double, Document> d: result) {
-            strbld.append("GRAU DE SEMBLANÇA: " + d.getL() + "\n");
-            strbld.append(d.getR().toString() + "\n");
+			stg.add(d.getR().toString() + "(" + d.getL() + ")");
         }
 
-		return strbld.toString();
+		return stg;
 
 	}
 

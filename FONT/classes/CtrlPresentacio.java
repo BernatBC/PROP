@@ -46,6 +46,21 @@ public class CtrlPresentacio {
         CD.eliminarDocument(titol, autor);
     }
 
+    public ArrayList<String> consultaSemb(String titol, String autor, String ndocs){
+
+        Integer N;
+
+        try {
+            N = Integer.parseInt(ndocs);
+        } catch (Exception e){
+            System.out.println(e);
+            return new ArrayList<>();
+        }
+
+
+        return CD.consultaSemb(titol, autor, N, 0);
+    }
+
     public ArrayList<String> consultaDocument(String autor, String titol){
         // La "consultaDocument" retornarà:
         // Autor + Titol + Booleà ("Y"/"N") preferit + data en ISO + Contingut en string

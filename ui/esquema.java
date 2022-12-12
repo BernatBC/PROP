@@ -140,6 +140,8 @@ public class esquema  {
 
 		doc = CP.getAllDocs();
 		updateJList(list7, doc);
+		updateJList(list5, doc);
+		updateJList(list10, doc);
 
 	}
 
@@ -225,11 +227,44 @@ public class esquema  {
 		CP.eliminarDoc(titleautor[0], titleautor[1]);
 
 		updateJList(list7, CP.getAllDocs());
+		updateJList(list5, CP.getAllDocs());
+		updateJList(list10, CP.getAllDocs());
+
+		// Resetegem els camps de la dreta
+		textField3.setText("");
+		textField2.setText("");
+		checkBox1.setSelected(false);
+		textField4.setText("");
+		textField1.setText("");
+	}
+
+	private void obrir_pressed(MouseEvent e) {
+		String doc = (String) list5.getSelectedValue();
+		String[] titleautor = doc.split(" ~ ");
+
+		ArrayList<String> repr = CP.consultaDocument(titleautor[1], titleautor[0]);
+
+		textField3.setText(repr.get(0));
+		textField2.setText(repr.get(1));
+		checkBox1.setSelected(repr.get(2) == "Y");
+		textField4.setText(repr.get(3));
+		textField1.setText(repr.get(4));
+
+	}
+
+	private void consulta_semblant_pressed(MouseEvent e) {
+		String NDocs = textField13.getText();
+		String doc = (String) list10.getSelectedValue();
+		String[] titleautor = doc.split(" ~ ");
+
+		ArrayList<String> listOfDocs = CP.consultaSemb(titleautor[0], titleautor[1], NDocs);
+
+		updateJList(list11, listOfDocs);
 	}
 
 	public void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-		// Generated using JFormDesigner Evaluation license - Wilma Dickfit
+		// Generated using JFormDesigner Evaluation license - Alex Ros
 		frame1 = new JFrame();
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
@@ -539,13 +574,11 @@ public class esquema  {
 
 				//======== panel1 ========
 				{
-					panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
-					. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder
-					. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
-					awt .Font .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) )
-					; panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-					) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
-					;
+					panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+					0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+					. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+					red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+					beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 					panel1.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
@@ -679,6 +712,12 @@ public class esquema  {
 
 					//---- button4 ----
 					button4.setText("Obre");
+					button4.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							obrir_pressed(e);
+						}
+					});
 					panel4.add(button4, "cell 0 2");
 				}
 				tabbedPane1.addTab("Obr", panel4);
@@ -891,6 +930,12 @@ public class esquema  {
 
 					//---- button10 ----
 					button10.setText("Obtenir Documents");
+					button10.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							consulta_semblant_pressed(e);
+						}
+					});
 					panel10.add(button10, "cell 0 4");
 
 					//---- label25 ----
@@ -1305,7 +1350,7 @@ public class esquema  {
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-	// Generated using JFormDesigner Evaluation license - Wilma Dickfit
+	// Generated using JFormDesigner Evaluation license - Alex Ros
 	private JFrame frame1;
 	private JMenuBar menuBar1;
 	private JMenu menu1;
