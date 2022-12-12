@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.DateTimeException;
-import java.util.List;
 
 /** Classe controladora de la capa de persistencia.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
@@ -87,12 +86,7 @@ public class CtrlPersistencia {
      * @return : ArrayList<String> contingut separat per salts de línia
      */
     private ArrayList<String> stringToArrayList(String s) {
-        List<String> splited_content = Arrays.asList(s.split("\n"));
-        ArrayList<String> content = new ArrayList<>();
-        for (String line : splited_content) {
-            content.add(line);
-        }
-        return content;
+        return new ArrayList<>(Arrays.asList(s.split("\n")));
     }
 
     /**
