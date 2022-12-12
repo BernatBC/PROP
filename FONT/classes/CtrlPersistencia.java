@@ -61,13 +61,18 @@ public class CtrlPersistencia {
             String title = s.nextLine();
             String author = s.nextLine();
             ArrayList<String> content = new ArrayList<>();
-            while (s.hasNextLine()) content.add(s.nextLine());
+            String plain_content = new String();
+            while (s.hasNextLine()) {
+                String line = s.nextLine();
+                content.add(line);
+                plain_content = plain_content + "\n" + line;
+            }
             s.close();
             if(domini.getDocument(author, title).getR()) {
                 System.out.println("A document with this title and author already exists!");
                 return;
             }
-            domini.crearDocument(title, author, content, content.toString(), LocalDate.now(), false);
+            domini.crearDocument(title, author, content, plain_content, LocalDate.now(), false);
         }
         catch(Exception e) {
             System.out.println("File not found!");
