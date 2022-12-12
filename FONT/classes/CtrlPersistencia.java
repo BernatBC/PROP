@@ -301,7 +301,7 @@ public class CtrlPersistencia {
 
     /**
      * Importa una expressió booleana a l'applicació.
-     * @param f
+     * @param f fitxer de l'expressió.
      */
     private void importarExpressio(File f) {
         try {
