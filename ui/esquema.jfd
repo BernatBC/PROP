@@ -113,7 +113,7 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3"
 					"$columnConstraints": "[fill]"
-					"$rowConstraints": "[][][]"
+					"$rowConstraints": "[][][][][][][]"
 				} ) {
 					name: "panel2"
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -133,6 +133,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button1"
 						"text": "Exporta"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "exporta_released", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 2"
 					} )
@@ -338,6 +339,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button21"
 						"text": "Obrir"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "obrir_consulta_autor", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 1 13"
 					} )
@@ -384,12 +386,6 @@ new FormModel {
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 6 2 1,width 300::300,height 150::150"
-					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button22"
-						"text": "Obrir"
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 1 8"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "CP"
@@ -492,13 +488,13 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label12"
-						"text": "Ordenar els Documents resultants per:"
+						"text": "Selecciona el mode d'assignació de pesos:"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 8 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "radioButton10"
-						"text": "Ordre alfabètic dels títols"
+						"text": "Índex TF-IDF"
 						"selected": true
 						"$buttonGroup": new FormReference( "buttonGroup4" )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
@@ -506,28 +502,15 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "radioButton11"
-						"text": "Ordre alfabètic dels autors"
+						"text": "Per Ocurrències"
 						"$buttonGroup": new FormReference( "buttonGroup4" )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 10 2 1"
 					} )
-					add( new FormComponent( "javax.swing.JRadioButton" ) {
-						name: "radioButton12"
-						"text": "Data de creació (ascendentment)"
-						"$buttonGroup": new FormReference( "buttonGroup4" )
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 11 2 1"
-					} )
-					add( new FormComponent( "javax.swing.JRadioButton" ) {
-						name: "radioButton13"
-						"text": "Documents Preferits / No Preferits"
-						"$buttonGroup": new FormReference( "buttonGroup4" )
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 12 2 1"
-					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button23"
 						"text": "Obrir"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "obrir_consulta_semb", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 1 13"
 					} )
@@ -645,6 +628,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button24"
 						"text": "Obrir"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "obrir_consulta_rell", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 1 15"
 					} )
@@ -730,6 +714,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button25"
 						"text": "Obrir"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "obrir_consulta_avc", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 1 12"
 					} )
@@ -794,6 +779,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button26"
 						"text": "Obrir"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "obrir_cons_preferit", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 1 10"
 					} )
@@ -915,6 +901,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button27"
 						"text": "Obrir"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "obrir_cons_data", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 1 18"
 					} )

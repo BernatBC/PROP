@@ -46,7 +46,11 @@ public class CtrlPresentacio {
         CD.eliminarDocument(titol, autor);
     }
 
-    public ArrayList<String> consultaSemb(String titol, String autor, String ndocs){
+    public void exporta(String titol, String autor, int ext, String fname){
+        CD.exportarDocument(titol, autor, ext, fname);
+    }
+
+    public ArrayList<String> consultaSemb(String titol, String autor, String ndocs, int mode){
 
         Integer N;
 
@@ -58,7 +62,7 @@ public class CtrlPresentacio {
         }
 
 
-        return CD.consultaSemb(titol, autor, N, 0);
+        return CD.consultaSemb(titol, autor, N, mode);
     }
 
     public ArrayList<String> consultaDocument(String autor, String titol){
@@ -92,8 +96,8 @@ public class CtrlPresentacio {
         return listauthors;
     }
 
-    public ArrayList<String> consultaAvancada(String query){
-        return CD.consultaSeq(query, 0);
+    public ArrayList<String> consultaAvancada(String query, int criteri){
+        return CD.consultaSeq(query, criteri);
     }
 
     public ArrayList<String> consultaTit(String autor, int criteri){
@@ -118,7 +122,7 @@ public class CtrlPresentacio {
         return CD.getAllDocs();
     }
 
-    public ArrayList<String> consultaData(String ant, String post, String option){
+    public ArrayList<String> consultaData(String ant, String post, String option, int criteri){
         LocalDate before = LocalDate.MIN;
         LocalDate after  = LocalDate.MAX;
         
@@ -138,7 +142,7 @@ public class CtrlPresentacio {
             }
         }
 
-        return CD.consultaData(before, after, 0);
+        return CD.consultaData(before, after, criteri);
     }
 
 

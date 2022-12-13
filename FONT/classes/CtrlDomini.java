@@ -14,6 +14,7 @@ public class CtrlDomini {
 	private Vocabulari vocab;
 	private Llibreria lib;
 	private ExpressioBooleanaCtrl EBC;
+	private CtrlPersistencia DISK;
 
 	static private 
 	Comparator<Document> documentDataComparator = new Comparator<Document>(){
@@ -126,6 +127,7 @@ public class CtrlDomini {
 		vocab = new Vocabulari();
 		lib = new Llibreria();
 		EBC = new ExpressioBooleanaCtrl();
+		DISK = new CtrlPersistencia(this);
 	};
 
 	/** Mètode privat que ens descomposa una String 'frase' en una llista de Strings, que són les paraules
@@ -425,7 +427,7 @@ public class CtrlDomini {
 		ArrayList<String> stg = new ArrayList<>();
 		
 		for (Pair<Double, Document> d: result) {
-			stg.add(d.getR().toString() + "(" + d.getL() + ")");
+			stg.add(d.getR().toString() + " (" + d.getL() + ")");
         }
 
 		return stg;
@@ -514,7 +516,37 @@ public class CtrlDomini {
 
 	}
 
+	/** Mètode per a exportar un document.
+	 *  @param titol El títol del document a exportar.
+	 *  @param autor L'autor del document a exportar.
+	 *  @param ext Extensió a emprar (0 = TXT 1 = XML 2 = YAY)
+	 *  @param fname Nom del fitxer
+	 */
 	public void exportarDocument(String titol, String autor, int ext, String fname){
-		
+		if (!docExists(titol, autor)){
+			System.out.println("No existeix el document que vols exportar.");
+			return;
+		}
+
+		Pair<Document, Boolean> docboolean = getDocument(autor, titol);
+		String content = docboolean.getL().getContingut().toString();
+		LocalDate data = docboolean.getL().getData();
+		boolean isFav = docboolean.getL().getFavourite();
+
+		String extension = ".txt";
+
+		switch(ext){
+			case 0:
+			extension = ".txt";
+			break;
+			case 1:
+			extension = ".xml";
+			break;
+			case 2:
+			extension = ".yay";
+			break;
+		}
+
+		DISK.export(titol, autor, content, data, isFav, "~/Desktop/"+fname+extension);
 	}
 }

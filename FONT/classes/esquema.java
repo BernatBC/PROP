@@ -36,6 +36,7 @@ public class esquema  {
 
 		textField2.setEditable(false);
 		textField3.setEditable(false);
+
 	}
 
 
@@ -124,6 +125,14 @@ public class esquema  {
 		tabbedPane1.setSelectedIndex(15);
 	}
 
+	private void update_doc_lists(){
+		ArrayList<String> doc = CP.getAllDocs();
+		updateJList(list3, doc);
+		updateJList(list5, doc);
+		updateJList(list7, doc);
+		updateJList(list10, doc);
+	}
+
 	private void button2MouseReleased(MouseEvent e) {
 		String titol = textField7.getText();
 		String autor = textField6.getText();
@@ -138,17 +147,20 @@ public class esquema  {
 		textField4.setText(doc.get(3));
 		textField1.setText(doc.get(4));
 
-		doc = CP.getAllDocs();
-		updateJList(list7, doc);
-		updateJList(list5, doc);
-		updateJList(list10, doc);
-
+		update_doc_lists();
 	}
 
 	private void ca_search_pressed(MouseEvent e) {
 		String autor = textField9.getText();
 		// Necessitem criteris d'ordenació!!
-		ArrayList<String> myList = CP.consultaTit(autor, 0);
+		int criteri;
+
+		if (radioButton6.isSelected()) criteri = 3;
+		else if (radioButton7.isSelected()) criteri = 2;
+		else if (radioButton8.isSelected()) criteri = 0;
+		else criteri = 1;
+
+		ArrayList<String> myList = CP.consultaTit(autor, criteri);
 		updateJList(list8, myList);
 	}
 
@@ -159,8 +171,13 @@ public class esquema  {
 	}
 
 	private void consulta_preferits_pressed(MouseEvent e) {
-		// Necessitem criteris d'ordenació!!
-		ArrayList<String> listOfDocs = CP.consultaPref(0);
+		int criteri;
+		if (radioButton22.isSelected()) criteri = 3;
+		else if (radioButton23.isSelected()) criteri = 2;
+		else criteri = 0;
+
+
+		ArrayList<String> listOfDocs = CP.consultaPref(criteri);
 		updateJList(list14, listOfDocs);
 	}
 
@@ -208,14 +225,29 @@ public class esquema  {
 		else if (radioButton4.isSelected()) select = "P";
 		else select = "E";
 
-		ArrayList<String> listOfDocs = CP.consultaData(dataAntStr, dataPostStr, select);
+		int criteri;
+		if (radioButton25.isSelected()) criteri = 3;
+		else if (radioButton26.isSelected()) criteri = 2;
+		else if (radioButton27.isSelected()) criteri = 0;
+		else criteri = 1;
+
+
+		ArrayList<String> listOfDocs = CP.consultaData(dataAntStr, dataPostStr, select, criteri);
 		if (listOfDocs.isEmpty()) listOfDocs.add("");
 		updateJList(list15, listOfDocs);
 	}
 
 	private void consulta_avancada_pressed(MouseEvent e) {
 		String query = textField16.getText();
-		ArrayList<String> listOfDocs = CP.consultaAvancada(query);
+		int criteri;
+
+		if (radioButton18.isSelected()) criteri = 3;
+		else if (radioButton19.isSelected()) criteri = 2;
+		else if (radioButton20.isSelected()) criteri = 0;
+		else criteri = 1;
+
+
+		ArrayList<String> listOfDocs = CP.consultaAvancada(query, criteri);
 
 		updateJList(list12, listOfDocs);
 	}
@@ -226,10 +258,7 @@ public class esquema  {
 
 		CP.eliminarDoc(titleautor[0], titleautor[1]);
 
-		updateJList(list7, CP.getAllDocs());
-		updateJList(list5, CP.getAllDocs());
-		updateJList(list10, CP.getAllDocs());
-
+		update_doc_lists();
 		// Resetegem els camps de la dreta
 		textField3.setText("");
 		textField2.setText("");
@@ -239,17 +268,7 @@ public class esquema  {
 	}
 
 	private void obrir_pressed(MouseEvent e) {
-		String doc = (String) list5.getSelectedValue();
-		String[] titleautor = doc.split(" ~ ");
-
-		ArrayList<String> repr = CP.consultaDocument(titleautor[1], titleautor[0]);
-
-		textField3.setText(repr.get(0));
-		textField2.setText(repr.get(1));
-		checkBox1.setSelected(repr.get(2) == "Y");
-		textField4.setText(repr.get(3));
-		textField1.setText(repr.get(4));
-
+		obrir_seleccio_llista(list5);
 	}
 
 	private void consulta_semblant_pressed(MouseEvent e) {
@@ -257,14 +276,65 @@ public class esquema  {
 		String doc = (String) list10.getSelectedValue();
 		String[] titleautor = doc.split(" ~ ");
 
-		ArrayList<String> listOfDocs = CP.consultaSemb(titleautor[0], titleautor[1], NDocs);
+        int mode = 1;
+        if (radioButton10.isSelected()) mode = 0;
+
+
+		ArrayList<String> listOfDocs = CP.consultaSemb(titleautor[0], titleautor[1], NDocs, mode);
 
 		updateJList(list11, listOfDocs);
 	}
 
+	private void exporta_released(MouseEvent e) {
+		String doc = (String) list3.getSelectedValue();
+		String[] titleautor = doc.split(" ~ ");
+
+		CP.exporta(titleautor[0], titleautor[1], 0, "firstdoc");
+	}
+
+	private void obrir_consulta_autor(MouseEvent e) {
+		obrir_seleccio_llista(list8);
+	}
+
+	private void obrir_seleccio_llista(JList myList){
+		String doc = (String) myList.getSelectedValue();
+		String[] titleautor = doc.split(" ");
+
+		ArrayList<String> repr = CP.consultaDocument(titleautor[2], titleautor[0]);
+
+		textField3.setText(repr.get(0));
+		textField2.setText(repr.get(1));
+		checkBox1.setSelected(repr.get(2) == "Y");
+		textField4.setText(repr.get(3));
+		textField1.setText(repr.get(4));
+
+
+	}
+
+	private void obrir_consulta_semb(MouseEvent e) {
+		obrir_seleccio_llista(list11);
+	}
+
+	private void obrir_consulta_rell(MouseEvent e) {
+		obrir_seleccio_llista(list13);
+	}
+
+	private void obrir_consulta_avc(MouseEvent e) {
+		obrir_seleccio_llista(list12);
+	}
+
+	private void obrir_cons_preferit(MouseEvent e) {
+		obrir_seleccio_llista(list14);
+	}
+
+	private void obrir_cons_data(MouseEvent e) {
+		obrir_seleccio_llista(list15);
+	}
+
+
 	public void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-		// Generated using JFormDesigner Evaluation license - Oscar Ramos
+		// Generated using JFormDesigner Evaluation license - Ganondorf
 		frame1 = new JFrame();
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
@@ -352,7 +422,6 @@ public class esquema  {
 		label20 = new JLabel();
 		scrollPane8 = new JScrollPane();
 		list9 = new JList();
-		button22 = new JButton();
 		panel9 = new JPanel();
 		label21 = new JLabel();
 		scrollPane9 = new JScrollPane();
@@ -374,8 +443,6 @@ public class esquema  {
 		label12 = new JLabel();
 		radioButton10 = new JRadioButton();
 		radioButton11 = new JRadioButton();
-		radioButton12 = new JRadioButton();
-		radioButton13 = new JRadioButton();
 		button23 = new JButton();
 		panel11 = new JPanel();
 		label26 = new JLabel();
@@ -505,68 +572,26 @@ public class esquema  {
 
 					//---- menuItem4 ----
 					menuItem4.setText("Importar Documents");
-					menuItem4.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem4MouseReleased(e);
-						}
-					});
-
 					menu1.add(menuItem4);
 
 					//---- menuItem5 ----
 					menuItem5.setText("Exportar Document");
-					menuItem5.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem5MouseReleased(e);
-						}
-					});
-
 					menu1.add(menuItem5);
 
 					//---- menuItem14 ----
 					menuItem14.setText("Crear Nou Document");
-					menuItem14.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem14MouseReleased(e);
-						}
-					});
-
 					menu1.add(menuItem14);
 
 					//---- menuItem15 ----
 					menuItem15.setText("Obrir Document");
-					menuItem15.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem15MouseReleased(e);
-						}
-					});
-
 					menu1.add(menuItem15);
 
 					//---- menuItem16 ----
 					menuItem16.setText("Tancar Document");
-					menuItem16.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem16MouseReleased(e);
-						}
-					});
-
 					menu1.add(menuItem16);
 
 					//---- menuItem18 ----
 					menuItem18.setText("Eliminar Document");
-					menuItem18.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem18MouseReleased(e);
-						}
-					});
-
 					menu1.add(menuItem18);
 				}
 				menuBar1.add(menu1);
@@ -577,90 +602,34 @@ public class esquema  {
 
 					//---- menuItem6 ----
 					menuItem6.setText("Consulta T\u00edtols d'un Autor");
-					menuItem6.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem6MouseReleased(e);
-						}
-					});
-
 					menu2.add(menuItem6);
 
 					//---- menuItem7 ----
 					menuItem7.setText("Consulta Autors per Prefix");
-					menuItem7.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem7MouseReleased(e);
-						}
-					});
-
 					menu2.add(menuItem7);
 
 					//---- menuItem8 ----
 					menuItem8.setText("Consulta Document");
-					menuItem8.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem8MouseReleased(e);
-						}
-					});
-
 					menu2.add(menuItem8);
 
 					//---- menuItem9 ----
 					menuItem9.setText("Consulta per Semblan\u00e7a");
-					menuItem9.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem9MouseReleased(e);
-						}
-					});
-
 					menu2.add(menuItem9);
 
 					//---- menuItem10 ----
 					menuItem10.setText("Consulta per Rellevancia");
-					menuItem10.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem10MouseReleased(e);
-						}
-					});
-
 					menu2.add(menuItem10);
 
 					//---- menuItem11 ----
 					menuItem11.setText("Consulta Avan\u00e7ada");
-					menuItem11.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem11MouseReleased(e);
-						}
-					});
-
 					menu2.add(menuItem11);
 
 					//---- menuItem12 ----
 					menuItem12.setText("Consulta Preferits");
-					menuItem12.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem12MouseReleased(e);
-						}
-					});
-
 					menu2.add(menuItem12);
 
 					//---- menuItem13 ----
 					menuItem13.setText("Consulta per Data");
-					menuItem13.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem13MouseReleased(e);
-						}
-					});
-
 					menu2.add(menuItem13);
 				}
 				menuBar1.add(menu2);
@@ -671,35 +640,14 @@ public class esquema  {
 
 					//---- menuItem1 ----
 					menuItem1.setText("Alta Expressi\u00f3");
-					menuItem1.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem1MouseReleased(e);
-						}
-					});
-
 					menu3.add(menuItem1);
 
 					//---- menuItem2 ----
 					menuItem2.setText("Gesti\u00f3 Expressions Guardades");
-					menuItem2.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem2MouseReleased(e);
-						}
-					});
-
 					menu3.add(menuItem2);
 
 					//---- menuItem3 ----
 					menuItem3.setText("Consulta Expressi\u00f3");
-					menuItem3.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							menuItem3MouseReleased(e);
-						}
-					});
-
 					menu3.add(menuItem3);
 				}
 				menuBar1.add(menu3);
@@ -732,24 +680,15 @@ public class esquema  {
 			//======== tabbedPane1 ========
 			{
 				tabbedPane1.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-				tabbedPane1.setUI(new BasicTabbedPaneUI() {
-					@Override
-					protected int calculateTabAreaHeight(int tab_placement, int run_count, int max_tab_height) {
-						return 0;
-					}
-				});
-
 
 				//======== panel1 ========
 				{
-					panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
-					new javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e"
-					,javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
-					,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12)
-					,java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(
-					new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-					){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException()
-					;}});
+					panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
+					border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e" , javax. swing .border . TitledBorder. CENTER
+					,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069al\u006fg", java .awt . Font
+					. BOLD ,12 ) ,java . awt. Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener(
+					new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062or\u0064er"
+					.equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
 					panel1.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
@@ -790,6 +729,10 @@ public class esquema  {
 						// rows
 						"[]" +
 						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
 						"[]"));
 
 					//---- label5 ----
@@ -804,6 +747,12 @@ public class esquema  {
 
 					//---- button1 ----
 					button1.setText("Exporta");
+					button1.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							exporta_released(e);
+						}
+					});
 					panel2.add(button1, "cell 0 2");
 				}
 				tabbedPane1.addTab("ED", panel2);
@@ -1003,6 +952,12 @@ public class esquema  {
 
 					//---- button21 ----
 					button21.setText("Obrir");
+					button21.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							obrir_consulta_autor(e);
+						}
+					});
 					panel7.add(button21, "cell 1 13");
 				}
 				tabbedPane1.addTab("CA", panel7);
@@ -1054,10 +1009,6 @@ public class esquema  {
 						scrollPane8.setViewportView(list9);
 					}
 					panel8.add(scrollPane8, "cell 0 6 2 1,width 300::300,height 150::150");
-
-					//---- button22 ----
-					button22.setText("Obrir");
-					panel8.add(button22, "cell 1 8");
 				}
 				tabbedPane1.addTab("CP", panel8);
 
@@ -1170,28 +1121,26 @@ public class esquema  {
 					panel10.add(scrollPane12, "cell 0 7 2 1,width 300::300,height 110::110");
 
 					//---- label12 ----
-					label12.setText("Ordenar els Documents resultants per:");
+					label12.setText("Selecciona el mode d'assignaci\u00f3 de pesos:");
 					panel10.add(label12, "cell 0 8 2 1");
 
 					//---- radioButton10 ----
-					radioButton10.setText("Ordre alfab\u00e8tic dels t\u00edtols");
+					radioButton10.setText("\u00cdndex TF-IDF");
 					radioButton10.setSelected(true);
 					panel10.add(radioButton10, "cell 0 9 2 1");
 
 					//---- radioButton11 ----
-					radioButton11.setText("Ordre alfab\u00e8tic dels autors");
+					radioButton11.setText("Per Ocurr\u00e8ncies");
 					panel10.add(radioButton11, "cell 0 10 2 1");
-
-					//---- radioButton12 ----
-					radioButton12.setText("Data de creaci\u00f3 (ascendentment)");
-					panel10.add(radioButton12, "cell 0 11 2 1");
-
-					//---- radioButton13 ----
-					radioButton13.setText("Documents Preferits / No Preferits");
-					panel10.add(radioButton13, "cell 0 12 2 1");
 
 					//---- button23 ----
 					button23.setText("Obrir");
+					button23.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							obrir_consulta_semb(e);
+						}
+					});
 					panel10.add(button23, "cell 1 13");
 				}
 				tabbedPane1.addTab("CS", panel10);
@@ -1292,6 +1241,12 @@ public class esquema  {
 
 					//---- button24 ----
 					button24.setText("Obrir");
+					button24.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							obrir_consulta_rell(e);
+						}
+					});
 					panel11.add(button24, "cell 1 15");
 				}
 				tabbedPane1.addTab("CR", panel11);
@@ -1371,6 +1326,12 @@ public class esquema  {
 
 					//---- button25 ----
 					button25.setText("Obrir");
+					button25.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							obrir_consulta_avc(e);
+						}
+					});
 					panel12.add(button25, "cell 1 12");
 				}
 				tabbedPane1.addTab("CAv", panel12);
@@ -1434,6 +1395,12 @@ public class esquema  {
 
 					//---- button26 ----
 					button26.setText("Obrir");
+					button26.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							obrir_cons_preferit(e);
+						}
+					});
 					panel13.add(button26, "cell 1 10");
 				}
 				tabbedPane1.addTab("CP", panel13);
@@ -1536,6 +1503,12 @@ public class esquema  {
 
 					//---- button27 ----
 					button27.setText("Obrir");
+					button27.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							obrir_cons_data(e);
+						}
+					});
 					panel14.add(button27, "cell 1 18");
 				}
 				tabbedPane1.addTab("CData", panel14);
@@ -1749,8 +1722,6 @@ public class esquema  {
 		ButtonGroup buttonGroup4 = new ButtonGroup();
 		buttonGroup4.add(radioButton10);
 		buttonGroup4.add(radioButton11);
-		buttonGroup4.add(radioButton12);
-		buttonGroup4.add(radioButton13);
 
 		//---- buttonGroup1 ----
 		ButtonGroup buttonGroup1 = new ButtonGroup();
@@ -1763,6 +1734,10 @@ public class esquema  {
 		buttonGroup5.add(radioButton15);
 		buttonGroup5.add(radioButton16);
 		buttonGroup5.add(radioButton17);
+		buttonGroup5.add(radioButton25);
+		buttonGroup5.add(radioButton26);
+		buttonGroup5.add(radioButton27);
+		buttonGroup5.add(radioButton28);
 
 		//---- buttonGroup6 ----
 		ButtonGroup buttonGroup6 = new ButtonGroup();
@@ -1783,13 +1758,6 @@ public class esquema  {
 		buttonGroup2.add(radioButton4);
 		buttonGroup2.add(radioButton5);
 
-		//---- buttonGroup9 ----
-		ButtonGroup buttonGroup9 = new ButtonGroup();
-		buttonGroup9.add(radioButton25);
-		buttonGroup9.add(radioButton26);
-		buttonGroup9.add(radioButton27);
-		buttonGroup9.add(radioButton28);
-
 		//---- buttonGroup8 ----
 		ButtonGroup buttonGroup8 = new ButtonGroup();
 		buttonGroup8.add(radioButton29);
@@ -1800,7 +1768,7 @@ public class esquema  {
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-	// Generated using JFormDesigner Evaluation license - Oscar Ramos
+	// Generated using JFormDesigner Evaluation license - Ganondorf
 	private JFrame frame1;
 	private JMenuBar menuBar1;
 	private JMenu menu1;
@@ -1888,7 +1856,6 @@ public class esquema  {
 	private JLabel label20;
 	private JScrollPane scrollPane8;
 	private JList list9;
-	private JButton button22;
 	private JPanel panel9;
 	private JLabel label21;
 	private JScrollPane scrollPane9;
@@ -1910,8 +1877,6 @@ public class esquema  {
 	private JLabel label12;
 	private JRadioButton radioButton10;
 	private JRadioButton radioButton11;
-	private JRadioButton radioButton12;
-	private JRadioButton radioButton13;
 	private JButton button23;
 	private JPanel panel11;
 	private JLabel label26;

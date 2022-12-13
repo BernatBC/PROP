@@ -246,7 +246,7 @@ public class CtrlPersistencia {
             f.close();
         }
         catch(Exception e) {
-            System.out.println("Error while exporting a txt file.");
+            System.out.println("Error while exporting a txt file." + e);
         }
     }
 
