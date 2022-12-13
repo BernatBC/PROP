@@ -33,7 +33,7 @@ public class Llibreria {
 	private int nDocs;
 
 	//Arbre d'autors i de documents. Cada autor té el seu conjunt de documents, amb el títol com a clau.
-	private TernaryTree<Pair<Frase, HashMap<Frase, Document>>> autor_documents;
+	private TernaryTree<Pair<Frase, HashMap<String, Document>>> autor_documents;
 
 	//Llistat de documents ordenats per data
 	private ArrayList<Document> documents_per_data;
@@ -51,6 +51,7 @@ public class Llibreria {
 
 		docMapper = new HashMap<>();
 		autor_documents = new TernaryTree<>();
+		documents_per_data = new ArrayList<>();
 	}
 	
 	/** Mètode que ens calcula el cosinus entre dos documents existents en la llibreria.
@@ -159,9 +160,9 @@ public class Llibreria {
 		docs1.add(new Pair<>(d, OCURR));
 
 		docMapper.put(d, docs0.size()-1);
-
-		Pair<Frase,HashMap<Frase, Document>> node = autor_documents.inserirObtenir(d.getAutor().toString() ,0, new Pair<Frase, HashMap<Frase, Document>>(d.getAutor(), new HashMap<>()));
-		node.getR().put(d.getTitol(), d);
+		Pair<Frase,HashMap<String, Document>> node = autor_documents.inserirObtenir(d.getAutor().toString() ,0, new Pair<Frase, HashMap<String, Document>>(d.getAutor(), new HashMap<>()));
+		System.out.println(node.toString());
+		node.getR().put(d.getTitol().toString(), d);
 
 		afegir_document_ordenat(d);
 	} 
@@ -196,8 +197,8 @@ public class Llibreria {
 	public void deleteDocument(Document d){
 		docMapper.remove(d);
 		documents_per_data.remove(d);
-		Pair<Frase,HashMap<Frase, Document>> node = autor_documents.obtenir(d.getAutor().toString() ,0);
-		node.getR().remove(d.getTitol());
+		Pair<Frase,HashMap<String, Document>> node = autor_documents.obtenir(d.getAutor().toString() ,0);
+		node.getR().remove(d.getTitol().toString());
 
 		for (int i = 0; i < docs0.size(); ++i){
 			if (d == docs0.get(i).getL()){
@@ -237,9 +238,9 @@ public class Llibreria {
 	 * @return Un parell de Document (el document cercat) i booleà, on el booleà és <b>false</b> si el document no existeix.
 	 */
 	public Pair<Document, Boolean> getDocument(String author, String title){
-		Pair<Frase, HashMap<Frase, Document>> documentsAutor = autor_documents.obtenir(author, 0);
-		if (documentsAutor == null) return new Pair<Document,Boolean>(null, false);
-		Document d = documentsAutor.getR().get(new Frase(title));
+		Pair<Frase, HashMap<String, Document>> documentsAutor = autor_documents.obtenir(author, 0);
+		if (documentsAutor == null || documentsAutor.getR() == null || documentsAutor.getL() == null) return new Pair<Document,Boolean>(null, false);
+		Document d = documentsAutor.getR().get(title);
 		if (d == null) return new Pair<Document,Boolean>(null, false);
 		return new Pair<Document,Boolean>(d, true);
 	}
