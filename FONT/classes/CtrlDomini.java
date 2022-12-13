@@ -216,7 +216,6 @@ public class CtrlDomini {
 		Document doc = new Document(authorPhrase, titlePhrase, isFav, "NULL", dia, contentFinal);
 
 		lib.addDocument(doc);
-		CT.afegirDocument(doc);
 		CD.addDoc(doc);
 
 		if (isFav) CP.afegirDocument(doc);
@@ -296,10 +295,6 @@ public class CtrlDomini {
 		Frase authorPhrase = new Frase(arrWords, newAuth);
 
 		d.setAutor(authorPhrase);
-		
-		// Potser es podria fer només en una instrucció
-		CT.eliminarDocument(d);
-		CT.afegirDocument(d);
 
 		HashMap<String, Document> documentsOldAuthor = lib.getArbre().obtenir(oldAuth, 0).getR();
 		HashMap<String, Document> documentsNewAuthor = lib.getArbre().obtenir(newAuth, 0).getR();
@@ -366,7 +361,6 @@ public class CtrlDomini {
 		// Eliminem el document, paraules i frases eliminant les referències (després es crida al GC de Java)
 		if (doc.getFavourite()) CP.eliminarDocument(doc);
 		
-		CT.eliminarDocument(doc);
 		CD.deleteDoc(doc);
 		lib.deleteDocument(doc);
 
@@ -425,7 +419,7 @@ public class CtrlDomini {
 	}
 
 	public ArrayList<String> consultaTit(String autor, int criteria){
-		Set<Document> setdocs = CT.getDocAutor(new Frase(autor));
+		Set<Document> setdocs = ConsultaTitol.getDocAutor(new Frase(autor), lib.getArbre());
 		if (setdocs == null) return new ArrayList<>();
 		ArrayList<Document> result = sortDocuments(setdocs, criteria);
 

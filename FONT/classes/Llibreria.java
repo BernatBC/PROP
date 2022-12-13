@@ -161,7 +161,6 @@ public class Llibreria {
 
 		docMapper.put(d, docs0.size()-1);
 		Pair<Frase,HashMap<String, Document>> node = autor_documents.inserirObtenir(d.getAutor().toString() ,0, new Pair<Frase, HashMap<String, Document>>(d.getAutor(), new HashMap<>()));
-		System.out.println(node.toString());
 		node.getR().put(d.getTitol().toString(), d);
 
 		afegir_document_ordenat(d);
