@@ -13,9 +13,6 @@ public class CtrlDomini {
 
 	private Vocabulari vocab;
 	private Llibreria lib;
-	private ConsultaData CD;
-	private ConsultaTitol CT;
-	private ConsultaPreferit CP;
 	private ExpressioBooleanaCtrl EBC;
 
 	static private 
@@ -128,9 +125,6 @@ public class CtrlDomini {
 	public CtrlDomini () {
 		vocab = new Vocabulari();
 		lib = new Llibreria();
-		CD = new ConsultaData();
-		CT = new ConsultaTitol();
-		CP = new ConsultaPreferit();
 		EBC = new ExpressioBooleanaCtrl();
 	};
 
@@ -216,7 +210,6 @@ public class CtrlDomini {
 		Document doc = new Document(authorPhrase, titlePhrase, isFav, "NULL", dia, contentFinal);
 
 		lib.addDocument(doc);
-		CD.addDoc(doc);
 	}
 
 	/** Funció que retorna el booleà de preferit d'un document
@@ -274,9 +267,6 @@ public class CtrlDomini {
 		Document d = getDocument(author, title).getL();
 		
 		d.setData(dat);
-
-		CD.deleteDoc(d);
-		CD.addDoc(d);
 	}
 
 	public void modificarAutor(String title, String oldAuth, String newAuth){
@@ -356,7 +346,6 @@ public class CtrlDomini {
 		Paraula[] wordsAutor = authorFrase.getOracio();
 		Paraula[] wordsTitol = titleFrase.getOracio();
 		
-		CD.deleteDoc(doc);
 		lib.deleteDocument(doc);
 
 		//// CONTEM AIXO?
@@ -383,7 +372,7 @@ public class CtrlDomini {
 
 	public ArrayList<String> consultaData(LocalDate ant, LocalDate post, int criteria)
 	{
-		ArrayList<Document> docs = CD.consulta(ant, post);
+		ArrayList<Document> docs = ConsultaData.consulta(lib.getDocArray(), ant, post);
 		docs = sortDocuments(docs, criteria);
 
 		ArrayList<String> myList = new ArrayList<String>();

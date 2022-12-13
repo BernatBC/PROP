@@ -7,8 +7,6 @@ import java.util.Set;
  */
  public class ConsultaPreferit {
 
-    /** Conjunt de documents preferits. */
-
     /**
      * Retorna el conjunt de documents preferits.
      * @param documents conjunt de tots els documents.
