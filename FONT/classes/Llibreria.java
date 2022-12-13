@@ -34,6 +34,9 @@ public class Llibreria {
 
 	//Arbre d'autors i de documents. Cada autor té el seu conjunt de documents, amb el títol com a clau.
 	private TernaryTree<Pair<Frase, HashMap<Frase, Document>>> autor_documents;
+
+	//Llistat de documents ordenats per data
+	private ArrayList<Document> documents_per_data;
 	
 	/**
 	 * Constructora d'una Llibreria per defecte.
@@ -159,7 +162,32 @@ public class Llibreria {
 
 		Pair<Frase,HashMap<Frase, Document>> node = autor_documents.inserirObtenir(d.getAutor().toString() ,0, new Pair<Frase, HashMap<Frase, Document>>(d.getAutor(), new HashMap<>()));
 		node.getR().put(d.getTitol(), d);
+
+		afegir_document_ordenat(d);
 	} 
+
+	public void afegir_document_ordenat(Document D) {
+        int index = 0; boolean tie = false, putted = false;
+        for (int i = 0; i < documents_per_data.size(); ++i) {
+            if (documents_per_data.get(i).getData().isAfter(D.getData())) break;
+            else if (documents_per_data.get(i).getData().isEqual(D.getData())) tie = true;
+            else ++index;
+        }
+        if (tie) {
+            //n'hi ha minim 1 document amb la mateixa data -> s'inserta per ordre alfabètic de títol
+            while (index < documents_per_data.size() && documents_per_data.get(index).getData().isEqual(D.getData())) {
+                if (documents_per_data.get(index).getTitol().toString().compareTo(D.getTitol().toString()) < 0) ++index;
+                else {
+                    documents_per_data.add(index,D); 
+                    putted = true;
+                    break;
+                }
+            }
+            if (!putted) documents_per_data.add(index,D);
+        }
+        
+        else documents_per_data.add(index,D);
+    }
 	
 	/** Mètode per a eliminar un document de la llibreria.
 	 * 
@@ -167,6 +195,7 @@ public class Llibreria {
 	 */
 	public void deleteDocument(Document d){
 		docMapper.remove(d);
+		documents_per_data.remove(d);
 		Pair<Frase,HashMap<Frase, Document>> node = autor_documents.obtenir(d.getAutor().toString() ,0);
 		node.getR().remove(d.getTitol());
 
