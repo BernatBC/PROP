@@ -439,11 +439,8 @@ public class CtrlDomini {
 		Paraula[] arrWords = new Paraula[words.length];
 		for (int i = 0; i < words.length; ++i) arrWords[i] = vocab.inserirObtenirParaula(words[i]);
 
-		ConsultaRellevancia CR;
-		if (modeConsulta == 1) CR = new ConsultaRellevancia(k, arrWords, wordsSepBlank, 1, lib);
-		else CR = new ConsultaRellevancia(k, arrWords, wordsSepBlank, 2, lib);
-
-		return CR.getDocs().toStringArray();
+		if (modeConsulta == 1) return ConsultaRellevancia.ConsultaPerRellevancia(k, arrWords, wordsSepBlank, 1, lib).toStringArray();
+		else return ConsultaRellevancia.ConsultaPerRellevancia(k, arrWords, wordsSepBlank, 2, lib).toStringArray();
 	}
 
 	public ArrayList<String> consultaPref(int criteria){
