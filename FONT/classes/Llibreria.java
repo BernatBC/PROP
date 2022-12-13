@@ -321,4 +321,8 @@ public class Llibreria {
 
 		return str.toString();
 	}
+
+	public TernaryTree<Pair<Frase, HashMap<String, Document>>> getArbre() {
+		return autor_documents;
+	}
 }

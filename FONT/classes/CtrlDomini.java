@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.Set;
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.time.LocalDate;
@@ -15,7 +16,6 @@ public class CtrlDomini {
 	private ConsultaData CD;
 	private ConsultaTitol CT;
 	private ConsultaPreferit CP;
-	private ConsultaAutors CA;
 	private ExpressioBooleanaCtrl EBC;
 
 	static private 
@@ -131,7 +131,6 @@ public class CtrlDomini {
 		CD = new ConsultaData();
 		CT = new ConsultaTitol();
 		CP = new ConsultaPreferit();
-		CA = new ConsultaAutors();
 		EBC = new ExpressioBooleanaCtrl();
 	};
 
@@ -197,8 +196,6 @@ public class CtrlDomini {
 		}
 
 		Frase authorPhrase = new Frase(arrWords, author);
-
-		CA.addAutor(authorPhrase);
 				 
 		Frase[] cont = new Frase[contentdecomp.size()];
 
@@ -273,7 +270,7 @@ public class CtrlDomini {
 	}
 
 	public Set<String> donaAutors(String prefix){
-		return CA.donaAutors(prefix);
+		return ConsultaAutors.donaAutors(prefix, lib.getArbre());
 	}
 
 	public void modificarData(String title, String author, LocalDate dat){
@@ -299,12 +296,15 @@ public class CtrlDomini {
 		Frase authorPhrase = new Frase(arrWords, newAuth);
 
 		d.setAutor(authorPhrase);
-
-		CA.addAutor(authorPhrase);
 		
 		// Potser es podria fer només en una instrucció
 		CT.eliminarDocument(d);
 		CT.afegirDocument(d);
+
+		HashMap<String, Document> documentsOldAuthor = lib.getArbre().obtenir(oldAuth, 0).getR();
+		HashMap<String, Document> documentsNewAuthor = lib.getArbre().obtenir(newAuth, 0).getR();
+		documentsOldAuthor.remove(title);
+		documentsNewAuthor.put(title, d);
 	}
 
 	public void modificarContingut(String title, String author, ArrayList<String> content, String plaintext_content){
@@ -333,6 +333,11 @@ public class CtrlDomini {
 		Frase titolFrase = new Frase(arrWords, newTitle);
 
 		d.setTitol(titolFrase);
+
+		HashMap<String, Document> documentsAutor = lib.getArbre().obtenir(author, 0).getR();
+		documentsAutor.remove(oldTitle);
+		documentsAutor.put(newTitle, d);
+
 	}
 
 
