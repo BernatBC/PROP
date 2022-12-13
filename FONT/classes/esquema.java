@@ -264,7 +264,7 @@ public class esquema  {
 
 	public void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-		// Generated using JFormDesigner Evaluation license - Alex Ros
+		// Generated using JFormDesigner Evaluation license - Oscar Ramos
 		frame1 = new JFrame();
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
@@ -338,6 +338,12 @@ public class esquema  {
 		label18 = new JLabel();
 		scrollPane6 = new JScrollPane();
 		list8 = new JList();
+		label10 = new JLabel();
+		radioButton6 = new JRadioButton();
+		radioButton7 = new JRadioButton();
+		radioButton8 = new JRadioButton();
+		radioButton9 = new JRadioButton();
+		button21 = new JButton();
 		panel8 = new JPanel();
 		label19 = new JLabel();
 		scrollPane7 = new JScrollPane();
@@ -346,6 +352,7 @@ public class esquema  {
 		label20 = new JLabel();
 		scrollPane8 = new JScrollPane();
 		list9 = new JList();
+		button22 = new JButton();
 		panel9 = new JPanel();
 		label21 = new JLabel();
 		scrollPane9 = new JScrollPane();
@@ -364,6 +371,12 @@ public class esquema  {
 		label25 = new JLabel();
 		scrollPane12 = new JScrollPane();
 		list11 = new JList();
+		label12 = new JLabel();
+		radioButton10 = new JRadioButton();
+		radioButton11 = new JRadioButton();
+		radioButton12 = new JRadioButton();
+		radioButton13 = new JRadioButton();
+		button23 = new JButton();
 		panel11 = new JPanel();
 		label26 = new JLabel();
 		scrollPane13 = new JScrollPane();
@@ -377,6 +390,12 @@ public class esquema  {
 		label28 = new JLabel();
 		scrollPane15 = new JScrollPane();
 		list13 = new JList();
+		label15 = new JLabel();
+		radioButton14 = new JRadioButton();
+		radioButton15 = new JRadioButton();
+		radioButton16 = new JRadioButton();
+		radioButton17 = new JRadioButton();
+		button24 = new JButton();
 		panel12 = new JPanel();
 		label30 = new JLabel();
 		scrollPane14 = new JScrollPane();
@@ -385,11 +404,22 @@ public class esquema  {
 		label31 = new JLabel();
 		scrollPane16 = new JScrollPane();
 		list12 = new JList();
+		label46 = new JLabel();
+		radioButton18 = new JRadioButton();
+		radioButton19 = new JRadioButton();
+		radioButton20 = new JRadioButton();
+		radioButton21 = new JRadioButton();
+		button25 = new JButton();
 		panel13 = new JPanel();
 		button13 = new JButton();
 		label32 = new JLabel();
 		scrollPane17 = new JScrollPane();
 		list14 = new JList();
+		label47 = new JLabel();
+		radioButton22 = new JRadioButton();
+		radioButton23 = new JRadioButton();
+		radioButton24 = new JRadioButton();
+		button26 = new JButton();
 		panel14 = new JPanel();
 		label34 = new JLabel();
 		radioButton3 = new JRadioButton();
@@ -403,6 +433,12 @@ public class esquema  {
 		label36 = new JLabel();
 		scrollPane19 = new JScrollPane();
 		list15 = new JList();
+		label48 = new JLabel();
+		radioButton25 = new JRadioButton();
+		radioButton26 = new JRadioButton();
+		radioButton27 = new JRadioButton();
+		radioButton28 = new JRadioButton();
+		button27 = new JButton();
 		panel15 = new JPanel();
 		label33 = new JLabel();
 		textField19 = new JTextField();
@@ -415,7 +451,7 @@ public class esquema  {
 		label40 = new JLabel();
 		scrollPane18 = new JScrollPane();
 		list16 = new JList();
-		label41 = new JLabel();
+		button28 = new JButton();
 		label42 = new JLabel();
 		textField21 = new JTextField();
 		label43 = new JLabel();
@@ -431,6 +467,12 @@ public class esquema  {
 		label45 = new JLabel();
 		scrollPane21 = new JScrollPane();
 		list17 = new JList();
+		label41 = new JLabel();
+		radioButton29 = new JRadioButton();
+		radioButton30 = new JRadioButton();
+		radioButton31 = new JRadioButton();
+		radioButton32 = new JRadioButton();
+		button29 = new JButton();
 		scrollPane22 = new JScrollPane();
 		textField1 = new JTextPane();
 		button5 = new JButton();
@@ -701,10 +743,10 @@ public class esquema  {
 				//======== panel1 ========
 				{
 					panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-					0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-					. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+					0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+					. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
 					red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-					beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+					beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 					panel1.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
@@ -824,6 +866,7 @@ public class esquema  {
 						// rows
 						"[]" +
 						"[]" +
+						"[]" +
 						"[]"));
 
 					//---- label14 ----
@@ -844,7 +887,7 @@ public class esquema  {
 							obrir_pressed(e);
 						}
 					});
-					panel4.add(button4, "cell 0 2");
+					panel4.add(button4, "cell 0 3");
 				}
 				tabbedPane1.addTab("Obr", panel4);
 
@@ -886,6 +929,7 @@ public class esquema  {
 					panel7.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
+						"[167,fill]" +
 						"[fill]",
 						// rows
 						"[]" +
@@ -894,17 +938,24 @@ public class esquema  {
 						"[]" +
 						"[30:n:30]" +
 						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
 						"[]"));
 
 					//---- label17 ----
 					label17.setText("Escriu l'autor desitjat");
-					panel7.add(label17, "cell 0 0");
+					panel7.add(label17, "cell 0 0 2 1");
 
 					//======== scrollPane5 ========
 					{
 						scrollPane5.setViewportView(textField9);
 					}
-					panel7.add(scrollPane5, "cell 0 1,growx,width 300::300");
+					panel7.add(scrollPane5, "cell 0 1 2 1,growx,width 300::300");
 
 					//---- button7 ----
 					button7.setText("Search");
@@ -914,17 +965,42 @@ public class esquema  {
 							ca_search_pressed(e);
 						}
 					});
-					panel7.add(button7, "cell 0 3");
+					panel7.add(button7, "cell 0 3 2 1");
 
 					//---- label18 ----
 					label18.setText("Documents trobats:");
-					panel7.add(label18, "cell 0 5");
+					panel7.add(label18, "cell 0 5 2 1");
 
 					//======== scrollPane6 ========
 					{
 						scrollPane6.setViewportView(list8);
 					}
-					panel7.add(scrollPane6, "cell 0 6,width 300::300,height 150::150");
+					panel7.add(scrollPane6, "cell 0 6 2 1,width 300::300,height 150::150");
+
+					//---- label10 ----
+					label10.setText("Ordenar els Documents resultants per:");
+					panel7.add(label10, "cell 0 7 2 1");
+
+					//---- radioButton6 ----
+					radioButton6.setText("Ordre alfab\u00e8tic dels t\u00edtols");
+					radioButton6.setSelected(true);
+					panel7.add(radioButton6, "cell 0 8 2 1");
+
+					//---- radioButton7 ----
+					radioButton7.setText("Ordre alfab\u00e8tic dels autors");
+					panel7.add(radioButton7, "cell 0 9 2 1");
+
+					//---- radioButton8 ----
+					radioButton8.setText("Data de creaci\u00f3 (ascendentment)");
+					panel7.add(radioButton8, "cell 0 10 2 1");
+
+					//---- radioButton9 ----
+					radioButton9.setText("Documents Preferits / No Preferits");
+					panel7.add(radioButton9, "cell 0 11 2 1");
+
+					//---- button21 ----
+					button21.setText("Obrir");
+					panel7.add(button21, "cell 1 13");
 				}
 				tabbedPane1.addTab("CA", panel7);
 
@@ -933,6 +1009,7 @@ public class esquema  {
 					panel8.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
+						"[167,fill]" +
 						"[fill]",
 						// rows
 						"[]" +
@@ -941,17 +1018,19 @@ public class esquema  {
 						"[]" +
 						"[30:n:30]" +
 						"[]" +
+						"[]" +
+						"[]" +
 						"[]"));
 
 					//---- label19 ----
 					label19.setText("Escriu el prefix");
-					panel8.add(label19, "cell 0 0");
+					panel8.add(label19, "cell 0 0 2 1");
 
 					//======== scrollPane7 ========
 					{
 						scrollPane7.setViewportView(textField10);
 					}
-					panel8.add(scrollPane7, "cell 0 1,growx,width 300::300");
+					panel8.add(scrollPane7, "cell 0 1 2 1,growx,width 300::300");
 
 					//---- button8 ----
 					button8.setText("Search");
@@ -961,17 +1040,21 @@ public class esquema  {
 							consulta_prefix_autor_pressed(e);
 						}
 					});
-					panel8.add(button8, "cell 0 3");
+					panel8.add(button8, "cell 0 3 2 1");
 
 					//---- label20 ----
 					label20.setText("Autors trobats:");
-					panel8.add(label20, "cell 0 5");
+					panel8.add(label20, "cell 0 5 2 1");
 
 					//======== scrollPane8 ========
 					{
 						scrollPane8.setViewportView(list9);
 					}
-					panel8.add(scrollPane8, "cell 0 6,width 300::300,height 150::150");
+					panel8.add(scrollPane8, "cell 0 6 2 1,width 300::300,height 150::150");
+
+					//---- button22 ----
+					button22.setText("Obrir");
+					panel8.add(button22, "cell 1 8");
 				}
 				tabbedPane1.addTab("CP", panel8);
 
@@ -1023,6 +1106,7 @@ public class esquema  {
 					panel10.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
+						"[167,fill]" +
 						"[fill]",
 						// rows
 						"[]" +
@@ -1032,27 +1116,35 @@ public class esquema  {
 						"[30:n:30]" +
 						"[]" +
 						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
 						"[]"));
 
 					//---- label22 ----
 					label22.setText("N\u00famero de Documents desitjats");
-					panel10.add(label22, "cell 0 0");
+					panel10.add(label22, "cell 0 0 2 1");
 
 					//======== scrollPane10 ========
 					{
 						scrollPane10.setViewportView(textField13);
 					}
-					panel10.add(scrollPane10, "cell 0 1,growx,width 300::300");
+					panel10.add(scrollPane10, "cell 0 1 2 1,growx,width 300::300");
 
 					//---- label24 ----
 					label24.setText("Selecciona el document \"refer\u00e8ncia\"");
-					panel10.add(label24, "cell 0 2");
+					panel10.add(label24, "cell 0 2 2 1");
 
 					//======== scrollPane11 ========
 					{
 						scrollPane11.setViewportView(list10);
 					}
-					panel10.add(scrollPane11, "cell 0 3,width 300::300,height 150::150");
+					panel10.add(scrollPane11, "cell 0 3 2 1,width 300::300,height 150::150");
 
 					//---- button10 ----
 					button10.setText("Obtenir Documents");
@@ -1062,17 +1154,42 @@ public class esquema  {
 							consulta_semblant_pressed(e);
 						}
 					});
-					panel10.add(button10, "cell 0 4");
+					panel10.add(button10, "cell 0 4 2 1");
 
 					//---- label25 ----
 					label25.setText("Els documents m\u00e9s semblants s\u00f3n:");
-					panel10.add(label25, "cell 0 6");
+					panel10.add(label25, "cell 0 6 2 1");
 
 					//======== scrollPane12 ========
 					{
 						scrollPane12.setViewportView(list11);
 					}
-					panel10.add(scrollPane12, "cell 0 7,width 300::300,height 150::150");
+					panel10.add(scrollPane12, "cell 0 7 2 1,width 300::300,height 110::110");
+
+					//---- label12 ----
+					label12.setText("Ordenar els Documents resultants per:");
+					panel10.add(label12, "cell 0 8 2 1");
+
+					//---- radioButton10 ----
+					radioButton10.setText("Ordre alfab\u00e8tic dels t\u00edtols");
+					radioButton10.setSelected(true);
+					panel10.add(radioButton10, "cell 0 9 2 1");
+
+					//---- radioButton11 ----
+					radioButton11.setText("Ordre alfab\u00e8tic dels autors");
+					panel10.add(radioButton11, "cell 0 10 2 1");
+
+					//---- radioButton12 ----
+					radioButton12.setText("Data de creaci\u00f3 (ascendentment)");
+					panel10.add(radioButton12, "cell 0 11 2 1");
+
+					//---- radioButton13 ----
+					radioButton13.setText("Documents Preferits / No Preferits");
+					panel10.add(radioButton13, "cell 0 12 2 1");
+
+					//---- button23 ----
+					button23.setText("Obrir");
+					panel10.add(button23, "cell 1 13");
 				}
 				tabbedPane1.addTab("CS", panel10);
 
@@ -1081,6 +1198,7 @@ public class esquema  {
 					panel11.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
+						"[167,fill]" +
 						"[fill]",
 						// rows
 						"[]" +
@@ -1092,35 +1210,41 @@ public class esquema  {
 						"[]" +
 						"[]" +
 						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
 						"[]"));
 
 					//---- label26 ----
 					label26.setText("N\u00famero de Documents desitjats");
-					panel11.add(label26, "cell 0 0");
+					panel11.add(label26, "cell 0 0 2 1");
 
 					//======== scrollPane13 ========
 					{
 						scrollPane13.setViewportView(textField14);
 					}
-					panel11.add(scrollPane13, "cell 0 1,growx,width 300::300");
+					panel11.add(scrollPane13, "cell 0 1 2 1,growx,width 300::300");
 
 					//---- label27 ----
 					label27.setText("Escriu la query");
-					panel11.add(label27, "cell 0 2");
-					panel11.add(textField15, "cell 0 3");
+					panel11.add(label27, "cell 0 2 2 1");
+					panel11.add(textField15, "cell 0 3 2 1");
 
 					//---- label29 ----
 					label29.setText("Selecciona el mode de cerca");
-					panel11.add(label29, "cell 0 4");
+					panel11.add(label29, "cell 0 4 2 1");
 
 					//---- radioButton1 ----
 					radioButton1.setText("N\u00famero d'aparicions de les paraules");
 					radioButton1.setSelected(true);
-					panel11.add(radioButton1, "cell 0 5");
+					panel11.add(radioButton1, "cell 0 5 2 1");
 
 					//---- radioButton2 ----
 					radioButton2.setText("Semblan\u00e7a a la query");
-					panel11.add(radioButton2, "cell 0 6");
+					panel11.add(radioButton2, "cell 0 6 2 1");
 
 					//---- button11 ----
 					button11.setText("Obtenir Documents");
@@ -1130,17 +1254,42 @@ public class esquema  {
 							consulta_rellevancia_pressed(e);
 						}
 					});
-					panel11.add(button11, "cell 0 7");
+					panel11.add(button11, "cell 0 7 2 1");
 
 					//---- label28 ----
 					label28.setText("Els documents m\u00e9s rellevants s\u00f3n:");
-					panel11.add(label28, "cell 0 8");
+					panel11.add(label28, "cell 0 8 2 1");
 
 					//======== scrollPane15 ========
 					{
 						scrollPane15.setViewportView(list13);
 					}
-					panel11.add(scrollPane15, "cell 0 9,width 300::300,height 150::150");
+					panel11.add(scrollPane15, "cell 0 9 2 1,width 300::300,height 150::150");
+
+					//---- label15 ----
+					label15.setText("Ordenar els Documents resultants per:");
+					panel11.add(label15, "cell 0 10 2 1");
+
+					//---- radioButton14 ----
+					radioButton14.setText("Ordre alfab\u00e8tic dels t\u00edtols");
+					radioButton14.setSelected(true);
+					panel11.add(radioButton14, "cell 0 11 2 1");
+
+					//---- radioButton15 ----
+					radioButton15.setText("Ordre alfab\u00e8tic dels autors");
+					panel11.add(radioButton15, "cell 0 12 2 1");
+
+					//---- radioButton16 ----
+					radioButton16.setText("Data de creaci\u00f3 (ascendentment)");
+					panel11.add(radioButton16, "cell 0 13 2 1");
+
+					//---- radioButton17 ----
+					radioButton17.setText("Documents Preferits / No Preferits");
+					panel11.add(radioButton17, "cell 0 14 2 1");
+
+					//---- button24 ----
+					button24.setText("Obrir");
+					panel11.add(button24, "cell 1 15");
 				}
 				tabbedPane1.addTab("CR", panel11);
 
@@ -1149,6 +1298,7 @@ public class esquema  {
 					panel12.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
+						"[167,fill]" +
 						"[fill]",
 						// rows
 						"[]" +
@@ -1157,17 +1307,23 @@ public class esquema  {
 						"[]" +
 						"[30:n:30]" +
 						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
 						"[]"));
 
 					//---- label30 ----
 					label30.setText("Escriu el string a cercar");
-					panel12.add(label30, "cell 0 0");
+					panel12.add(label30, "cell 0 0 2 1");
 
 					//======== scrollPane14 ========
 					{
 						scrollPane14.setViewportView(textField16);
 					}
-					panel12.add(scrollPane14, "cell 0 1,growx,width 300::300");
+					panel12.add(scrollPane14, "cell 0 1 2 1,growx,width 300::300");
 
 					//---- button12 ----
 					button12.setText("Search");
@@ -1177,17 +1333,42 @@ public class esquema  {
 							consulta_avancada_pressed(e);
 						}
 					});
-					panel12.add(button12, "cell 0 3");
+					panel12.add(button12, "cell 0 3 2 1");
 
 					//---- label31 ----
 					label31.setText("Documents on s'ha trobat el string:");
-					panel12.add(label31, "cell 0 5");
+					panel12.add(label31, "cell 0 5 2 1");
 
 					//======== scrollPane16 ========
 					{
 						scrollPane16.setViewportView(list12);
 					}
-					panel12.add(scrollPane16, "cell 0 6,width 300::300,height 150::150");
+					panel12.add(scrollPane16, "cell 0 6 2 1,width 300::300,height 150::150");
+
+					//---- label46 ----
+					label46.setText("Ordenar els Documents resultants per:");
+					panel12.add(label46, "cell 0 7 2 1");
+
+					//---- radioButton18 ----
+					radioButton18.setText("Ordre alfab\u00e8tic dels t\u00edtols");
+					radioButton18.setSelected(true);
+					panel12.add(radioButton18, "cell 0 8 2 1");
+
+					//---- radioButton19 ----
+					radioButton19.setText("Ordre alfab\u00e8tic dels autors");
+					panel12.add(radioButton19, "cell 0 9 2 1");
+
+					//---- radioButton20 ----
+					radioButton20.setText("Data de creaci\u00f3 (ascendentment)");
+					panel12.add(radioButton20, "cell 0 10 2 1");
+
+					//---- radioButton21 ----
+					radioButton21.setText("Documents Preferits / No Preferits");
+					panel12.add(radioButton21, "cell 0 11 2 1");
+
+					//---- button25 ----
+					button25.setText("Obrir");
+					panel12.add(button25, "cell 1 12");
 				}
 				tabbedPane1.addTab("CAv", panel12);
 
@@ -1196,11 +1377,18 @@ public class esquema  {
 					panel13.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
+						"[167,fill]" +
 						"[fill]",
 						// rows
 						"[15:n:15]" +
 						"[]" +
 						"[20:n:20]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
 						"[]" +
 						"[]"));
 
@@ -1212,17 +1400,38 @@ public class esquema  {
 							consulta_preferits_pressed(e);
 						}
 					});
-					panel13.add(button13, "cell 0 1");
+					panel13.add(button13, "cell 0 1 2 1");
 
 					//---- label32 ----
 					label32.setText("Documents preferits:");
-					panel13.add(label32, "cell 0 3");
+					panel13.add(label32, "cell 0 3 2 1");
 
 					//======== scrollPane17 ========
 					{
 						scrollPane17.setViewportView(list14);
 					}
-					panel13.add(scrollPane17, "cell 0 4,growx,width 300::300");
+					panel13.add(scrollPane17, "cell 0 4 2 1,growx,width 300::300");
+
+					//---- label47 ----
+					label47.setText("Ordenar els Documents resultants per:");
+					panel13.add(label47, "cell 0 5 2 1");
+
+					//---- radioButton22 ----
+					radioButton22.setText("Ordre alfab\u00e8tic dels t\u00edtols");
+					radioButton22.setSelected(true);
+					panel13.add(radioButton22, "cell 0 6 2 1");
+
+					//---- radioButton23 ----
+					radioButton23.setText("Ordre alfab\u00e8tic dels autors");
+					panel13.add(radioButton23, "cell 0 7 2 1");
+
+					//---- radioButton24 ----
+					radioButton24.setText("Data de creaci\u00f3 (ascendentment)");
+					panel13.add(radioButton24, "cell 0 8 2 1");
+
+					//---- button26 ----
+					button26.setText("Obrir");
+					panel13.add(button26, "cell 1 10");
 				}
 				tabbedPane1.addTab("CP", panel13);
 
@@ -1231,6 +1440,7 @@ public class esquema  {
 					panel14.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
+						"[167,fill]" +
 						"[fill]",
 						// rows
 						"[15:n:15]" +
@@ -1245,34 +1455,40 @@ public class esquema  {
 						"[]" +
 						"[25:n:25]" +
 						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
 						"[]"));
 
 					//---- label34 ----
 					label34.setText("Selecciona el modede cerca de Documents:");
-					panel14.add(label34, "cell 0 0");
+					panel14.add(label34, "cell 0 0 2 1");
 
 					//---- radioButton3 ----
 					radioButton3.setText("Anteriors a una Data");
 					radioButton3.setSelected(true);
-					panel14.add(radioButton3, "cell 0 1");
+					panel14.add(radioButton3, "cell 0 1 2 1");
 
 					//---- radioButton4 ----
 					radioButton4.setText("Posteriors a una Data");
-					panel14.add(radioButton4, "cell 0 2");
+					panel14.add(radioButton4, "cell 0 2 2 1");
 
 					//---- radioButton5 ----
 					radioButton5.setText("Entre dues Dates");
-					panel14.add(radioButton5, "cell 0 3");
+					panel14.add(radioButton5, "cell 0 3 2 1");
 
 					//---- label37 ----
 					label37.setText("Data anterior: (yyyy-mm-dd)");
-					panel14.add(label37, "cell 0 5");
-					panel14.add(textField17, "cell 0 6");
+					panel14.add(label37, "cell 0 5 2 1");
+					panel14.add(textField17, "cell 0 6 2 1");
 
 					//---- label35 ----
 					label35.setText("Data posterior: (yyyy-mm-dd)");
-					panel14.add(label35, "cell 0 7");
-					panel14.add(textField18, "cell 0 8");
+					panel14.add(label35, "cell 0 7 2 1");
+					panel14.add(textField18, "cell 0 8 2 1");
 
 					//---- button14 ----
 					button14.setText("Cerca");
@@ -1282,17 +1498,42 @@ public class esquema  {
 							consulta_data_presionat(e);
 						}
 					});
-					panel14.add(button14, "cell 0 9");
+					panel14.add(button14, "cell 0 9 2 1");
 
 					//---- label36 ----
 					label36.setText("Els documents resultants s\u00f3n:");
-					panel14.add(label36, "cell 0 11");
+					panel14.add(label36, "cell 0 11 2 1");
 
 					//======== scrollPane19 ========
 					{
 						scrollPane19.setViewportView(list15);
 					}
-					panel14.add(scrollPane19, "cell 0 12");
+					panel14.add(scrollPane19, "cell 0 12 2 1");
+
+					//---- label48 ----
+					label48.setText("Ordenar els Documents resultants per:");
+					panel14.add(label48, "cell 0 13 2 1");
+
+					//---- radioButton25 ----
+					radioButton25.setText("Ordre alfab\u00e8tic dels t\u00edtols");
+					radioButton25.setSelected(true);
+					panel14.add(radioButton25, "cell 0 14 2 1");
+
+					//---- radioButton26 ----
+					radioButton26.setText("Ordre alfab\u00e8tic dels autors");
+					panel14.add(radioButton26, "cell 0 15 2 1");
+
+					//---- radioButton27 ----
+					radioButton27.setText("Data de creaci\u00f3 (ascendentment)");
+					panel14.add(radioButton27, "cell 0 16 2 1");
+
+					//---- radioButton28 ----
+					radioButton28.setText("Documents Preferits / No Preferits");
+					panel14.add(radioButton28, "cell 0 17 2 1");
+
+					//---- button27 ----
+					button27.setText("Obrir");
+					panel14.add(button27, "cell 1 18");
 				}
 				tabbedPane1.addTab("CData", panel14);
 
@@ -1367,9 +1608,9 @@ public class esquema  {
 					}
 					panel16.add(scrollPane18, "cell 0 4,growx,width 300::300");
 
-					//---- label41 ----
-					label41.setText("//Un cop seleccionada una de la llista");
-					panel16.add(label41, "cell 0 5");
+					//---- button28 ----
+					button28.setText("Gestiona");
+					panel16.add(button28, "cell 0 5");
 
 					//---- label42 ----
 					label42.setText("Nom");
@@ -1400,6 +1641,7 @@ public class esquema  {
 					panel17.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
+						"[167,fill]" +
 						"[fill]",
 						// rows
 						"[]" +
@@ -1408,31 +1650,62 @@ public class esquema  {
 						"[]" +
 						"[30:n:30]" +
 						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
 						"[]"));
 
 					//---- label44 ----
 					label44.setText("Escriu l'expressi\u00f3 per cercar");
-					panel17.add(label44, "cell 0 0");
+					panel17.add(label44, "cell 0 0 2 1");
 
 					//======== scrollPane20 ========
 					{
 						scrollPane20.setViewportView(textField23);
 					}
-					panel17.add(scrollPane20, "cell 0 1,growx,width 300::300");
+					panel17.add(scrollPane20, "cell 0 1 2 1,growx,width 300::300");
 
 					//---- button20 ----
 					button20.setText("Search");
-					panel17.add(button20, "cell 0 3");
+					panel17.add(button20, "cell 0 3 2 1");
 
 					//---- label45 ----
 					label45.setText("Documents que compleixen l'expressi\u00f3:");
-					panel17.add(label45, "cell 0 5");
+					panel17.add(label45, "cell 0 5 2 1");
 
 					//======== scrollPane21 ========
 					{
 						scrollPane21.setViewportView(list17);
 					}
-					panel17.add(scrollPane21, "cell 0 6,width 300::300,height 150::150");
+					panel17.add(scrollPane21, "cell 0 6 2 1,width 300::300,height 150::150");
+
+					//---- label41 ----
+					label41.setText("Ordenar els Documents resultants per:");
+					panel17.add(label41, "cell 0 7 2 1");
+
+					//---- radioButton29 ----
+					radioButton29.setText("Ordre alfab\u00e8tic dels t\u00edtols");
+					radioButton29.setSelected(true);
+					panel17.add(radioButton29, "cell 0 8 2 1");
+
+					//---- radioButton30 ----
+					radioButton30.setText("Ordre alfab\u00e8tic dels autors");
+					panel17.add(radioButton30, "cell 0 9 2 1");
+
+					//---- radioButton31 ----
+					radioButton31.setText("Data de creaci\u00f3 (ascendentment)");
+					panel17.add(radioButton31, "cell 0 10 2 1");
+
+					//---- radioButton32 ----
+					radioButton32.setText("Documents Preferits / No Preferits");
+					panel17.add(radioButton32, "cell 0 11 2 1");
+
+					//---- button29 ----
+					button29.setText("Obrir");
+					panel17.add(button29, "cell 1 12");
 				}
 				tabbedPane1.addTab("CB", panel17);
 
@@ -1462,21 +1735,66 @@ public class esquema  {
 			frame1.setLocationRelativeTo(frame1.getOwner());
 		}
 
+		//---- buttonGroup3 ----
+		ButtonGroup buttonGroup3 = new ButtonGroup();
+		buttonGroup3.add(radioButton6);
+		buttonGroup3.add(radioButton7);
+		buttonGroup3.add(radioButton8);
+		buttonGroup3.add(radioButton9);
+
+		//---- buttonGroup4 ----
+		ButtonGroup buttonGroup4 = new ButtonGroup();
+		buttonGroup4.add(radioButton10);
+		buttonGroup4.add(radioButton11);
+		buttonGroup4.add(radioButton12);
+		buttonGroup4.add(radioButton13);
+
 		//---- buttonGroup1 ----
 		ButtonGroup buttonGroup1 = new ButtonGroup();
 		buttonGroup1.add(radioButton1);
 		buttonGroup1.add(radioButton2);
+
+		//---- buttonGroup5 ----
+		ButtonGroup buttonGroup5 = new ButtonGroup();
+		buttonGroup5.add(radioButton14);
+		buttonGroup5.add(radioButton15);
+		buttonGroup5.add(radioButton16);
+		buttonGroup5.add(radioButton17);
+		buttonGroup5.add(radioButton25);
+		buttonGroup5.add(radioButton26);
+		buttonGroup5.add(radioButton27);
+		buttonGroup5.add(radioButton28);
+
+		//---- buttonGroup6 ----
+		ButtonGroup buttonGroup6 = new ButtonGroup();
+		buttonGroup6.add(radioButton18);
+		buttonGroup6.add(radioButton19);
+		buttonGroup6.add(radioButton20);
+		buttonGroup6.add(radioButton21);
+
+		//---- buttonGroup7 ----
+		ButtonGroup buttonGroup7 = new ButtonGroup();
+		buttonGroup7.add(radioButton22);
+		buttonGroup7.add(radioButton23);
+		buttonGroup7.add(radioButton24);
 
 		//---- buttonGroup2 ----
 		ButtonGroup buttonGroup2 = new ButtonGroup();
 		buttonGroup2.add(radioButton3);
 		buttonGroup2.add(radioButton4);
 		buttonGroup2.add(radioButton5);
+
+		//---- buttonGroup8 ----
+		ButtonGroup buttonGroup8 = new ButtonGroup();
+		buttonGroup8.add(radioButton29);
+		buttonGroup8.add(radioButton30);
+		buttonGroup8.add(radioButton31);
+		buttonGroup8.add(radioButton32);
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-	// Generated using JFormDesigner Evaluation license - Alex Ros
+	// Generated using JFormDesigner Evaluation license - Oscar Ramos
 	private JFrame frame1;
 	private JMenuBar menuBar1;
 	private JMenu menu1;
@@ -1550,6 +1868,12 @@ public class esquema  {
 	private JLabel label18;
 	private JScrollPane scrollPane6;
 	private JList list8;
+	private JLabel label10;
+	private JRadioButton radioButton6;
+	private JRadioButton radioButton7;
+	private JRadioButton radioButton8;
+	private JRadioButton radioButton9;
+	private JButton button21;
 	private JPanel panel8;
 	private JLabel label19;
 	private JScrollPane scrollPane7;
@@ -1558,6 +1882,7 @@ public class esquema  {
 	private JLabel label20;
 	private JScrollPane scrollPane8;
 	private JList list9;
+	private JButton button22;
 	private JPanel panel9;
 	private JLabel label21;
 	private JScrollPane scrollPane9;
@@ -1576,6 +1901,12 @@ public class esquema  {
 	private JLabel label25;
 	private JScrollPane scrollPane12;
 	private JList list11;
+	private JLabel label12;
+	private JRadioButton radioButton10;
+	private JRadioButton radioButton11;
+	private JRadioButton radioButton12;
+	private JRadioButton radioButton13;
+	private JButton button23;
 	private JPanel panel11;
 	private JLabel label26;
 	private JScrollPane scrollPane13;
@@ -1589,6 +1920,12 @@ public class esquema  {
 	private JLabel label28;
 	private JScrollPane scrollPane15;
 	private JList list13;
+	private JLabel label15;
+	private JRadioButton radioButton14;
+	private JRadioButton radioButton15;
+	private JRadioButton radioButton16;
+	private JRadioButton radioButton17;
+	private JButton button24;
 	private JPanel panel12;
 	private JLabel label30;
 	private JScrollPane scrollPane14;
@@ -1597,11 +1934,22 @@ public class esquema  {
 	private JLabel label31;
 	private JScrollPane scrollPane16;
 	private JList list12;
+	private JLabel label46;
+	private JRadioButton radioButton18;
+	private JRadioButton radioButton19;
+	private JRadioButton radioButton20;
+	private JRadioButton radioButton21;
+	private JButton button25;
 	private JPanel panel13;
 	private JButton button13;
 	private JLabel label32;
 	private JScrollPane scrollPane17;
 	private JList list14;
+	private JLabel label47;
+	private JRadioButton radioButton22;
+	private JRadioButton radioButton23;
+	private JRadioButton radioButton24;
+	private JButton button26;
 	private JPanel panel14;
 	private JLabel label34;
 	private JRadioButton radioButton3;
@@ -1615,6 +1963,12 @@ public class esquema  {
 	private JLabel label36;
 	private JScrollPane scrollPane19;
 	private JList list15;
+	private JLabel label48;
+	private JRadioButton radioButton25;
+	private JRadioButton radioButton26;
+	private JRadioButton radioButton27;
+	private JRadioButton radioButton28;
+	private JButton button27;
 	private JPanel panel15;
 	private JLabel label33;
 	private JTextField textField19;
@@ -1627,7 +1981,7 @@ public class esquema  {
 	private JLabel label40;
 	private JScrollPane scrollPane18;
 	private JList list16;
-	private JLabel label41;
+	private JButton button28;
 	private JLabel label42;
 	private JTextField textField21;
 	private JLabel label43;
@@ -1643,6 +1997,12 @@ public class esquema  {
 	private JLabel label45;
 	private JScrollPane scrollPane21;
 	private JList list17;
+	private JLabel label41;
+	private JRadioButton radioButton29;
+	private JRadioButton radioButton30;
+	private JRadioButton radioButton31;
+	private JRadioButton radioButton32;
+	private JButton button29;
 	private JScrollPane scrollPane22;
 	private JTextPane textField1;
 	private JButton button5;

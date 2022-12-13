@@ -202,7 +202,7 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3"
 					"$columnConstraints": "[fill]"
-					"$rowConstraints": "[][][]"
+					"$rowConstraints": "[][][][]"
 				} ) {
 					name: "panel4"
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -224,7 +224,7 @@ new FormModel {
 						"text": "Obre"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "obrir_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 2"
+						"value": "cell 0 3"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "Obr"
@@ -261,15 +261,15 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3"
-					"$columnConstraints": "[fill]"
-					"$rowConstraints": "[][][::20][][30:n:30][][]"
+					"$columnConstraints": "[167,fill][fill]"
+					"$rowConstraints": "[][][::20][][30:n:30][][][][][][][][][]"
 				} ) {
 					name: "panel7"
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label17"
 						"text": "Escriu l'autor desitjat"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 0"
+						"value": "cell 0 0 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane5"
@@ -277,20 +277,20 @@ new FormModel {
 							name: "textField9"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 1,growx,width 300::300"
+						"value": "cell 0 1 2 1,growx,width 300::300"
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button7"
 						"text": "Search"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "ca_search_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 3"
+						"value": "cell 0 3 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label18"
 						"text": "Documents trobats:"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 5"
+						"value": "cell 0 5 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane6"
@@ -298,22 +298,63 @@ new FormModel {
 							name: "list8"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 6,width 300::300,height 150::150"
+						"value": "cell 0 6 2 1,width 300::300,height 150::150"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label10"
+						"text": "Ordenar els Documents resultants per:"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 7 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton6"
+						"text": "Ordre alfabètic dels títols"
+						"$buttonGroup": new FormReference( "buttonGroup3" )
+						"selected": true
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 8 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton7"
+						"text": "Ordre alfabètic dels autors"
+						"$buttonGroup": new FormReference( "buttonGroup3" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 9 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton8"
+						"text": "Data de creació (ascendentment)"
+						"$buttonGroup": new FormReference( "buttonGroup3" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 10 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton9"
+						"text": "Documents Preferits / No Preferits"
+						"$buttonGroup": new FormReference( "buttonGroup3" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 11 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button21"
+						"text": "Obrir"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 13"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "CA"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3"
-					"$columnConstraints": "[fill]"
-					"$rowConstraints": "[][][::20][][30:n:30][][]"
+					"$columnConstraints": "[167,fill][fill]"
+					"$rowConstraints": "[][][::20][][30:n:30][][][][]"
 				} ) {
 					name: "panel8"
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label19"
 						"text": "Escriu el prefix"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 0"
+						"value": "cell 0 0 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane7"
@@ -321,20 +362,20 @@ new FormModel {
 							name: "textField10"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 1,growx,width 300::300"
+						"value": "cell 0 1 2 1,growx,width 300::300"
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button8"
 						"text": "Search"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "consulta_prefix_autor_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 3"
+						"value": "cell 0 3 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label20"
 						"text": "Autors trobats:"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 5"
+						"value": "cell 0 5 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane8"
@@ -342,7 +383,13 @@ new FormModel {
 							name: "list9"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 6,width 300::300,height 150::150"
+						"value": "cell 0 6 2 1,width 300::300,height 150::150"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button22"
+						"text": "Obrir"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 8"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "CP"
@@ -390,15 +437,15 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3"
-					"$columnConstraints": "[fill]"
-					"$rowConstraints": "[][][::20][][30:n:30][][][]"
+					"$columnConstraints": "[167,fill][fill]"
+					"$rowConstraints": "[][][::20][][30:n:30][][][][][][][][][][][]"
 				} ) {
 					name: "panel10"
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label22"
 						"text": "Número de Documents desitjats"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 0"
+						"value": "cell 0 0 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane10"
@@ -406,13 +453,13 @@ new FormModel {
 							name: "textField13"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 1,growx,width 300::300"
+						"value": "cell 0 1 2 1,growx,width 300::300"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label24"
 						"text": "Selecciona el document \"referència\""
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 2"
+						"value": "cell 0 2 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane11"
@@ -420,20 +467,20 @@ new FormModel {
 							name: "list10"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 3,width 300::300,height 150::150"
+						"value": "cell 0 3 2 1,width 300::300,height 150::150"
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button10"
 						"text": "Obtenir Documents"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "consulta_semblant_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 4"
+						"value": "cell 0 4 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label25"
 						"text": "Els documents més semblants són:"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 6"
+						"value": "cell 0 6 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane12"
@@ -441,22 +488,63 @@ new FormModel {
 							name: "list11"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 7,width 300::300,height 150::150"
+						"value": "cell 0 7 2 1,width 300::300,height 110::110"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label12"
+						"text": "Ordenar els Documents resultants per:"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 8 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton10"
+						"text": "Ordre alfabètic dels títols"
+						"selected": true
+						"$buttonGroup": new FormReference( "buttonGroup4" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 9 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton11"
+						"text": "Ordre alfabètic dels autors"
+						"$buttonGroup": new FormReference( "buttonGroup4" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 10 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton12"
+						"text": "Data de creació (ascendentment)"
+						"$buttonGroup": new FormReference( "buttonGroup4" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 11 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton13"
+						"text": "Documents Preferits / No Preferits"
+						"$buttonGroup": new FormReference( "buttonGroup4" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 12 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button23"
+						"text": "Obrir"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 13"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "CS"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3"
-					"$columnConstraints": "[fill]"
-					"$rowConstraints": "[][][::20][][30:n:30][][][][][]"
+					"$columnConstraints": "[167,fill][fill]"
+					"$rowConstraints": "[][][::20][][30:n:30][][][][][][][][][][][]"
 				} ) {
 					name: "panel11"
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label26"
 						"text": "Número de Documents desitjats"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 0"
+						"value": "cell 0 0 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane13"
@@ -464,24 +552,24 @@ new FormModel {
 							name: "textField14"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 1,growx,width 300::300"
+						"value": "cell 0 1 2 1,growx,width 300::300"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label27"
 						"text": "Escriu la query"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 2"
+						"value": "cell 0 2 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "textField15"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 3"
+						"value": "cell 0 3 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label29"
 						"text": "Selecciona el mode de cerca"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 4"
+						"value": "cell 0 4 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "radioButton1"
@@ -489,27 +577,27 @@ new FormModel {
 						"$buttonGroup": new FormReference( "buttonGroup1" )
 						"selected": true
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 5"
+						"value": "cell 0 5 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "radioButton2"
 						"text": "Semblança a la query"
 						"$buttonGroup": new FormReference( "buttonGroup1" )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 6"
+						"value": "cell 0 6 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button11"
 						"text": "Obtenir Documents"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "consulta_rellevancia_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 7"
+						"value": "cell 0 7 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label28"
 						"text": "Els documents més rellevants són:"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 8"
+						"value": "cell 0 8 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane15"
@@ -517,22 +605,63 @@ new FormModel {
 							name: "list13"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 9,width 300::300,height 150::150"
+						"value": "cell 0 9 2 1,width 300::300,height 150::150"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label15"
+						"text": "Ordenar els Documents resultants per:"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 10 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton14"
+						"text": "Ordre alfabètic dels títols"
+						"selected": true
+						"$buttonGroup": &FormReference0 new FormReference( "buttonGroup5" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 11 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton15"
+						"text": "Ordre alfabètic dels autors"
+						"$buttonGroup": &FormReference1 new FormReference( "buttonGroup5" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 12 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton16"
+						"text": "Data de creació (ascendentment)"
+						"$buttonGroup": &FormReference2 new FormReference( "buttonGroup5" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 13 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton17"
+						"text": "Documents Preferits / No Preferits"
+						"$buttonGroup": &FormReference3 new FormReference( "buttonGroup5" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 14 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button24"
+						"text": "Obrir"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 15"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "CR"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3"
-					"$columnConstraints": "[fill]"
-					"$rowConstraints": "[][][::20][][30:n:30][][]"
+					"$columnConstraints": "[167,fill][fill]"
+					"$rowConstraints": "[][][::20][][30:n:30][][][][][][][][]"
 				} ) {
 					name: "panel12"
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label30"
 						"text": "Escriu el string a cercar"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 0"
+						"value": "cell 0 0 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane14"
@@ -540,20 +669,20 @@ new FormModel {
 							name: "textField16"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 1,growx,width 300::300"
+						"value": "cell 0 1 2 1,growx,width 300::300"
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button12"
 						"text": "Search"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "consulta_avancada_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 3"
+						"value": "cell 0 3 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label31"
 						"text": "Documents on s'ha trobat el string:"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 5"
+						"value": "cell 0 5 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane16"
@@ -561,15 +690,56 @@ new FormModel {
 							name: "list12"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 6,width 300::300,height 150::150"
+						"value": "cell 0 6 2 1,width 300::300,height 150::150"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label46"
+						"text": "Ordenar els Documents resultants per:"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 7 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton18"
+						"text": "Ordre alfabètic dels títols"
+						"selected": true
+						"$buttonGroup": new FormReference( "buttonGroup6" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 8 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton19"
+						"text": "Ordre alfabètic dels autors"
+						"$buttonGroup": new FormReference( "buttonGroup6" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 9 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton20"
+						"text": "Data de creació (ascendentment)"
+						"$buttonGroup": new FormReference( "buttonGroup6" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 10 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton21"
+						"text": "Documents Preferits / No Preferits"
+						"$buttonGroup": new FormReference( "buttonGroup6" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 11 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button25"
+						"text": "Obrir"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 12"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "CAv"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3"
-					"$columnConstraints": "[fill]"
-					"$rowConstraints": "[15:n:15][][20:n:20][][]"
+					"$columnConstraints": "[167,fill][fill]"
+					"$rowConstraints": "[15:n:15][][20:n:20][][][][][][][][]"
 				} ) {
 					name: "panel13"
 					add( new FormComponent( "javax.swing.JButton" ) {
@@ -577,13 +747,13 @@ new FormModel {
 						"text": "Mostra"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "consulta_preferits_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 1"
+						"value": "cell 0 1 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label32"
 						"text": "Documents preferits:"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 3"
+						"value": "cell 0 3 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane17"
@@ -591,22 +761,56 @@ new FormModel {
 							name: "list14"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 4,growx,width 300::300"
+						"value": "cell 0 4 2 1,growx,width 300::300"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label47"
+						"text": "Ordenar els Documents resultants per:"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 5 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton22"
+						"text": "Ordre alfabètic dels títols"
+						"selected": true
+						"$buttonGroup": new FormReference( "buttonGroup7" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 6 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton23"
+						"text": "Ordre alfabètic dels autors"
+						"$buttonGroup": new FormReference( "buttonGroup7" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 7 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton24"
+						"text": "Data de creació (ascendentment)"
+						"$buttonGroup": new FormReference( "buttonGroup7" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 8 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button26"
+						"text": "Obrir"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 10"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "CP"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3"
-					"$columnConstraints": "[fill]"
-					"$rowConstraints": "[15:n:15][][20:n:20][][20:n:20][][][][][][25:n:25][][]"
+					"$columnConstraints": "[167,fill][fill]"
+					"$rowConstraints": "[15:n:15][][20:n:20][][20:n:20][][][][][][25:n:25][][][][][][][][]"
 				} ) {
 					name: "panel14"
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label34"
 						"text": "Selecciona el modede cerca de Documents:"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 0"
+						"value": "cell 0 0 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "radioButton3"
@@ -614,56 +818,56 @@ new FormModel {
 						"$buttonGroup": new FormReference( "buttonGroup2" )
 						"selected": true
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 1"
+						"value": "cell 0 1 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "radioButton4"
 						"text": "Posteriors a una Data"
 						"$buttonGroup": new FormReference( "buttonGroup2" )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 2"
+						"value": "cell 0 2 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "radioButton5"
 						"text": "Entre dues Dates"
 						"$buttonGroup": new FormReference( "buttonGroup2" )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 3"
+						"value": "cell 0 3 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label37"
 						"text": "Data anterior: (yyyy-mm-dd)"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 5"
+						"value": "cell 0 5 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "textField17"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 6"
+						"value": "cell 0 6 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label35"
 						"text": "Data posterior: (yyyy-mm-dd)"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 7"
+						"value": "cell 0 7 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "textField18"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 8"
+						"value": "cell 0 8 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button14"
 						"text": "Cerca"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "consulta_data_presionat", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 9"
+						"value": "cell 0 9 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label36"
 						"text": "Els documents resultants són:"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 11"
+						"value": "cell 0 11 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane19"
@@ -671,7 +875,48 @@ new FormModel {
 							name: "list15"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 12"
+						"value": "cell 0 12 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label48"
+						"text": "Ordenar els Documents resultants per:"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 13 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton25"
+						"text": "Ordre alfabètic dels títols"
+						"selected": true
+						"$buttonGroup": #FormReference0
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 14 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton26"
+						"text": "Ordre alfabètic dels autors"
+						"$buttonGroup": #FormReference1
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 15 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton27"
+						"text": "Data de creació (ascendentment)"
+						"$buttonGroup": #FormReference2
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 16 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton28"
+						"text": "Documents Preferits / No Preferits"
+						"$buttonGroup": #FormReference3
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 17 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button27"
+						"text": "Obrir"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 18"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "CData"
@@ -745,9 +990,9 @@ new FormModel {
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 4,growx,width 300::300"
 					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label41"
-						"text": "//Un cop seleccionada una de la llista"
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button28"
+						"text": "Gestiona"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 5"
 					} )
@@ -796,15 +1041,15 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "hidemode 3"
-					"$columnConstraints": "[fill]"
-					"$rowConstraints": "[][][::20][][30:n:30][][]"
+					"$columnConstraints": "[167,fill][fill]"
+					"$rowConstraints": "[][][::20][][30:n:30][][][][][][][][]"
 				} ) {
 					name: "panel17"
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label44"
 						"text": "Escriu l'expressió per cercar"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 0"
+						"value": "cell 0 0 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane20"
@@ -812,19 +1057,19 @@ new FormModel {
 							name: "textField23"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 1,growx,width 300::300"
+						"value": "cell 0 1 2 1,growx,width 300::300"
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button20"
 						"text": "Search"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 3"
+						"value": "cell 0 3 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label45"
 						"text": "Documents que compleixen l'expressió:"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 5"
+						"value": "cell 0 5 2 1"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane21"
@@ -832,7 +1077,48 @@ new FormModel {
 							name: "list17"
 						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 6,width 300::300,height 150::150"
+						"value": "cell 0 6 2 1,width 300::300,height 150::150"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label41"
+						"text": "Ordenar els Documents resultants per:"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 7 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton29"
+						"text": "Ordre alfabètic dels títols"
+						"selected": true
+						"$buttonGroup": new FormReference( "buttonGroup8" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 8 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton30"
+						"text": "Ordre alfabètic dels autors"
+						"$buttonGroup": new FormReference( "buttonGroup8" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 9 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton31"
+						"text": "Data de creació (ascendentment)"
+						"$buttonGroup": new FormReference( "buttonGroup8" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 10 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton32"
+						"text": "Documents Preferits / No Preferits"
+						"$buttonGroup": new FormReference( "buttonGroup8" )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 11 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button29"
+						"text": "Obrir"
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 12"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "CB"
@@ -952,6 +1238,36 @@ new FormModel {
 			name: "buttonGroup2"
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 751 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup3"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 807 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup4"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 863 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup5"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 919 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup6"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 975 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup7"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 1031 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup8"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 1087 )
 		} )
 	}
 }
