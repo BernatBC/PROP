@@ -8,31 +8,15 @@ import java.util.Set;
  public class ConsultaPreferit {
 
     /** Conjunt de documents preferits. */
-    Set<Document> preferits;
 
-    /** Constructora per defecte. */
-    public ConsultaPreferit() {
-        preferits = new HashSet<>();
-    }
-
-    /** Afegeix el document al conjunt.
-     * @param d document que es vol afegir.
+    /**
+     * Retorna el conjunt de documents preferits.
+     * @param documents conjunt de tots els documents.
+     * @return conjunt de documents preferits.
      */
-    public void afegirDocument(Document d) {
-        preferits.add(d);
-    }
-
-    /** Elimina el document del conjunt.
-     * @param d document que es vol eliminar.
-     */
-    public void eliminarDocument(Document d) {
-        preferits.remove(d);
-    }
-
-    /** Retorna el conjunt de documents preferits.
-     * @return Conjunt dels documents preferits.
-     */
-    public Set<Document> getDocPreferit() {
+    public static Set<Document> getDocPreferit(Set<Document> documents) {
+        Set<Document> preferits = new HashSet<>();
+        for (Document d : documents) if (d.getFavourite()) preferits.add(d);
         return preferits;
     }
  }

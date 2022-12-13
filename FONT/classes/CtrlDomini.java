@@ -217,8 +217,6 @@ public class CtrlDomini {
 
 		lib.addDocument(doc);
 		CD.addDoc(doc);
-
-		if (isFav) CP.afegirDocument(doc);
 	}
 
 	/** Funció que retorna el booleà de preferit d'un document
@@ -357,9 +355,6 @@ public class CtrlDomini {
 
 		Paraula[] wordsAutor = authorFrase.getOracio();
 		Paraula[] wordsTitol = titleFrase.getOracio();
-
-		// Eliminem el document, paraules i frases eliminant les referències (després es crida al GC de Java)
-		if (doc.getFavourite()) CP.eliminarDocument(doc);
 		
 		CD.deleteDoc(doc);
 		lib.deleteDocument(doc);
@@ -463,7 +458,7 @@ public class CtrlDomini {
 	}
 
 	public ArrayList<String> consultaPref(int criteria){
-		Set<Document> docSet = CP.getDocPreferit();
+		Set<Document> docSet = ConsultaPreferit.getDocPreferit(lib.getSetDocuments());
 		ArrayList<Document> docs = sortDocuments(docSet, criteria);
 
 		ArrayList<String> myList = new ArrayList<String>();
@@ -487,11 +482,6 @@ public class CtrlDomini {
 		Document d = getDocument(author, title).getL();
 
 		d.setFavourite(!d.getFavourite());
-
-		if (d.getFavourite()){
-			// Si hem fet el toggle de 0 -> 1
-			CP.afegirDocument(d);
-		} else CP.eliminarDocument(d);
 
 		return;
 	}
