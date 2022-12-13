@@ -742,11 +742,14 @@ public class esquema  {
 
 				//======== panel1 ========
 				{
-					panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-					0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-					. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-					red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-					beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+					panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
+					new javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e"
+					,javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
+					,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12)
+					,java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(
+					new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+					){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException()
+					;}});
 					panel1.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
@@ -1760,10 +1763,6 @@ public class esquema  {
 		buttonGroup5.add(radioButton15);
 		buttonGroup5.add(radioButton16);
 		buttonGroup5.add(radioButton17);
-		buttonGroup5.add(radioButton25);
-		buttonGroup5.add(radioButton26);
-		buttonGroup5.add(radioButton27);
-		buttonGroup5.add(radioButton28);
 
 		//---- buttonGroup6 ----
 		ButtonGroup buttonGroup6 = new ButtonGroup();
@@ -1783,6 +1782,13 @@ public class esquema  {
 		buttonGroup2.add(radioButton3);
 		buttonGroup2.add(radioButton4);
 		buttonGroup2.add(radioButton5);
+
+		//---- buttonGroup9 ----
+		ButtonGroup buttonGroup9 = new ButtonGroup();
+		buttonGroup9.add(radioButton25);
+		buttonGroup9.add(radioButton26);
+		buttonGroup9.add(radioButton27);
+		buttonGroup9.add(radioButton28);
 
 		//---- buttonGroup8 ----
 		ButtonGroup buttonGroup8 = new ButtonGroup();
