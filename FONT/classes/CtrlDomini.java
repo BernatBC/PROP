@@ -547,6 +547,15 @@ public class CtrlDomini {
 			break;
 		}
 
-		DISK.export(titol, autor, content, data, isFav, "~/Desktop/"+fname+extension);
+		DISK.export(titol, autor, content, data, isFav, fname+extension);
 	}
+
+	/**
+     * Importa un fitxer a l'aplicació.
+     * @param path path del document.
+     */
+    public void importFile(String path) {
+		DISK.importFile(path);
+    }
+
 }

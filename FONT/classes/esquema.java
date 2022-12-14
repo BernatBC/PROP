@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.util.ArrayList;
+import java.io.File;
 
 import net.miginfocom.swing.*;
 /*
@@ -133,6 +134,7 @@ public class esquema  {
 		updateJList(list10, doc);
 	}
 
+	/* --- SIGNALS Alexandre Ros --- */
 	private void button2MouseReleased(MouseEvent e) {
 		String titol = textField7.getText();
 		String autor = textField6.getText();
@@ -152,7 +154,6 @@ public class esquema  {
 
 	private void ca_search_pressed(MouseEvent e) {
 		String autor = textField9.getText();
-		// Necessitem criteris d'ordenació!!
 		int criteri;
 
 		if (radioButton6.isSelected()) criteri = 3;
@@ -289,7 +290,18 @@ public class esquema  {
 		String doc = (String) list3.getSelectedValue();
 		String[] titleautor = doc.split(" ~ ");
 
-		CP.exporta(titleautor[0], titleautor[1], 0, "firstdoc");
+		int format = 0;
+		if (radioButton13.isSelected()) format = 1;
+		else if (radioButton33.isSelected()) format = 2;
+
+		String filename = textField8.getText();
+
+		JFileChooser fc = new JFileChooser();
+		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		int returnVal = fc.showSaveDialog(frame1);
+		File file = fc.getSelectedFile();
+
+		CP.exporta(titleautor[0], titleautor[1], format, file.getPath()+"/"+filename);
 	}
 
 	private void obrir_consulta_autor(MouseEvent e) {
@@ -331,6 +343,18 @@ public class esquema  {
 		obrir_seleccio_llista(list15);
 	}
 
+	private void importar_pressed(MouseEvent e) {
+		JFileChooser fc = new JFileChooser();
+		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		int returnVal = fc.showSaveDialog(frame1);
+		File file = fc.getSelectedFile();
+
+		CP.importa(file.getPath());
+		update_doc_lists();
+
+	}
+
+	/** -- FINAL APARTAT SIGNALS. A partir d'aquí es modificarà amb JFormDesigner. */
 
 	public void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -369,16 +393,16 @@ public class esquema  {
 		textField4 = new JTextField();
 		hSpacer3 = new JPanel(null);
 		tabbedPane1 = new JTabbedPane();
-		panel1 = new JPanel();
-		label4 = new JLabel();
-		textField5 = new JTextField();
-		label13 = new JLabel();
-		list4 = new JList();
-		button3 = new JButton();
 		panel2 = new JPanel();
 		label5 = new JLabel();
 		scrollPane1 = new JScrollPane();
 		list3 = new JList();
+		label49 = new JLabel();
+		radioButton12 = new JRadioButton();
+		radioButton13 = new JRadioButton();
+		radioButton33 = new JRadioButton();
+		label50 = new JLabel();
+		textField8 = new JTextField();
 		button1 = new JButton();
 		panel3 = new JPanel();
 		label6 = new JLabel();
@@ -572,6 +596,12 @@ public class esquema  {
 
 					//---- menuItem4 ----
 					menuItem4.setText("Importar Documents");
+					menuItem4.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							importar_pressed(e);
+						}
+					});
 					menu1.add(menuItem4);
 
 					//---- menuItem5 ----
@@ -681,52 +711,25 @@ public class esquema  {
 			{
 				tabbedPane1.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
-				//======== panel1 ========
-				{
-					panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
-					border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e" , javax. swing .border . TitledBorder. CENTER
-					,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069al\u006fg", java .awt . Font
-					. BOLD ,12 ) ,java . awt. Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener(
-					new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062or\u0064er"
-					.equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
-					panel1.setLayout(new MigLayout(
-						"hidemode 3",
-						// columns
-						"[fill]",
-						// rows
-						"[]" +
-						"[]" +
-						"[]" +
-						"[]" +
-						"[]" +
-						"[]"));
-
-					//---- label4 ----
-					label4.setText("Seleccioni els documents a importar");
-					panel1.add(label4, "cell 0 0");
-
-					//---- textField5 ----
-					textField5.setText("//browser d'arxius");
-					panel1.add(textField5, "cell 0 1");
-
-					//---- label13 ----
-					label13.setText("Documents sleccionats");
-					panel1.add(label13, "cell 0 2");
-					panel1.add(list4, "cell 0 3,width 300::300,height 150::150");
-
-					//---- button3 ----
-					button3.setText("Importa");
-					panel1.add(button3, "cell 0 5");
-				}
-				tabbedPane1.addTab("ID", panel1);
-
 				//======== panel2 ========
 				{
+					panel2.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
+					new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
+					, javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+					, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 )
+					, java. awt. Color. red) ,panel2. getBorder( )) ); panel2. addPropertyChangeListener (
+					new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+					) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
+					; }} );
 					panel2.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
 						"[fill]",
 						// rows
+						"[]" +
+						"[]" +
+						"[]" +
+						"[]" +
 						"[]" +
 						"[]" +
 						"[]" +
@@ -745,6 +748,28 @@ public class esquema  {
 					}
 					panel2.add(scrollPane1, "cell 0 1,growx,width 300::300");
 
+					//---- label49 ----
+					label49.setText("Selecciona el format a exportar");
+					panel2.add(label49, "cell 0 2");
+
+					//---- radioButton12 ----
+					radioButton12.setText("Format TXT");
+					radioButton12.setSelected(true);
+					panel2.add(radioButton12, "cell 0 3");
+
+					//---- radioButton13 ----
+					radioButton13.setText("Format XML");
+					panel2.add(radioButton13, "cell 0 4");
+
+					//---- radioButton33 ----
+					radioButton33.setText("Format YAY");
+					panel2.add(radioButton33, "cell 0 5");
+
+					//---- label50 ----
+					label50.setText("Escriu el nom del fitxer (v\u00e0lid UNIX) per guardar");
+					panel2.add(label50, "cell 0 7");
+					panel2.add(textField8, "cell 0 8");
+
 					//---- button1 ----
 					button1.setText("Exporta");
 					button1.addMouseListener(new MouseAdapter() {
@@ -753,7 +778,7 @@ public class esquema  {
 							exporta_released(e);
 						}
 					});
-					panel2.add(button1, "cell 0 2");
+					panel2.add(button1, "cell 0 10");
 				}
 				tabbedPane1.addTab("ED", panel2);
 
@@ -1711,6 +1736,12 @@ public class esquema  {
 			frame1.setLocationRelativeTo(frame1.getOwner());
 		}
 
+		//---- buttonGroup9 ----
+		ButtonGroup buttonGroup9 = new ButtonGroup();
+		buttonGroup9.add(radioButton12);
+		buttonGroup9.add(radioButton13);
+		buttonGroup9.add(radioButton33);
+
 		//---- buttonGroup3 ----
 		ButtonGroup buttonGroup3 = new ButtonGroup();
 		buttonGroup3.add(radioButton6);
@@ -1803,16 +1834,16 @@ public class esquema  {
 	private JTextField textField4;
 	private JPanel hSpacer3;
 	private JTabbedPane tabbedPane1;
-	private JPanel panel1;
-	private JLabel label4;
-	private JTextField textField5;
-	private JLabel label13;
-	private JList list4;
-	private JButton button3;
 	private JPanel panel2;
 	private JLabel label5;
 	private JScrollPane scrollPane1;
 	private JList list3;
+	private JLabel label49;
+	private JRadioButton radioButton12;
+	private JRadioButton radioButton13;
+	private JRadioButton radioButton33;
+	private JLabel label50;
+	private JTextField textField8;
 	private JButton button1;
 	private JPanel panel3;
 	private JLabel label6;

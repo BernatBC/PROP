@@ -50,6 +50,10 @@ public class CtrlPresentacio {
         CD.exportarDocument(titol, autor, ext, fname);
     }
 
+    public void importa(String path){
+        CD.importFile(path);
+    }
+
     public ArrayList<String> consultaSemb(String titol, String autor, String ndocs, int mode){
 
         Integer N;
