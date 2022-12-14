@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.util.ArrayList;
 import java.io.File;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import net.miginfocom.swing.*;
 /*
@@ -297,11 +298,27 @@ public class esquema  {
 		String filename = textField8.getText();
 
 		JFileChooser fc = new JFileChooser();
-		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		fc.setDialogTitle("Exporta");
+		FileNameExtensionFilter txt_filter = new FileNameExtensionFilter("Plain text files  (*.txt)","txt");
+		fc.addChoosableFileFilter(txt_filter);
+		FileNameExtensionFilter xml_filter = new FileNameExtensionFilter("Extensible Markup Language (*.xml)","xml");
+		fc.addChoosableFileFilter(xml_filter);
+		FileNameExtensionFilter yay_filter = new FileNameExtensionFilter("Propietary files (*.yay)","yay");
+		fc.addChoosableFileFilter(yay_filter);
+		fc.setFileFilter(txt_filter);
+		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		int returnVal = fc.showSaveDialog(frame1);
 		File file = fc.getSelectedFile();
 
-		CP.exporta(titleautor[0], titleautor[1], format, file.getPath()+"/"+filename);
+		String extension = fc.getFileFilter().getDescription();
+		System.out.println("Saved as " + extension);
+
+
+		if (extension == "Plain text files  (*.txt)") format = 0;
+		else if (extension =="Extensible Markup Language (*.xml)") format = 1;
+		else if (extension == "Yay format file (*.yay)") format = 2;
+
+		CP.exporta(titleautor[0], titleautor[1], format, file.getPath());
 	}
 
 	private void obrir_consulta_autor(MouseEvent e) {
@@ -345,6 +362,14 @@ public class esquema  {
 
 	private void importar_pressed(MouseEvent e) {
 		JFileChooser fc = new JFileChooser();
+		fc.setDialogTitle("Importa");
+		FileNameExtensionFilter txt_filter = new FileNameExtensionFilter("Plain text files  (*.txt)","txt");
+		fc.addChoosableFileFilter(txt_filter);
+		FileNameExtensionFilter xml_filter = new FileNameExtensionFilter("Extensible Markup Language (*.xml)","xml");
+		fc.addChoosableFileFilter(xml_filter);
+		FileNameExtensionFilter yay_filter = new FileNameExtensionFilter("Propietary files (*.yay)","yay");
+		fc.addChoosableFileFilter(yay_filter);
+		fc.setFileFilter(txt_filter);
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		int returnVal = fc.showSaveDialog(frame1);
 		File file = fc.getSelectedFile();
