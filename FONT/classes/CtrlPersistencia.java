@@ -356,13 +356,15 @@ public class CtrlPersistencia {
     public void importarDades() {
         File doc_folder = new File(PATH + "Documents/");
         File[] documents = doc_folder.listFiles();
-        for (File d : documents) {
+
+        if (documents != null) for (File d : documents) {
             importYAY(d);
         }
 
         File exp_folder = new File(PATH + "Expressions/");
         File[] expressions = exp_folder.listFiles();
-        for (File e : expressions) {
+        
+        if (expressions != null) for (File e : expressions) {
             importarExpressio(e);
         }
     }
