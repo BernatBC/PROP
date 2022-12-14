@@ -44,22 +44,22 @@ public class esquema  {
 
 	private void menuItem4MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(0);
+		
 	}
 
 	private void menuItem5MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(1);
+		tabbedPane1.setSelectedIndex(0);
 	}
 
 	private void menuItem14MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(2);
+		tabbedPane1.setSelectedIndex(1);
 	}
 
 	private void menuItem15MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(3);
+		tabbedPane1.setSelectedIndex(2);
 	}
 
 	private void menuItem16MouseReleased(MouseEvent e) {
@@ -69,62 +69,62 @@ public class esquema  {
 
 	private void menuItem18MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(4);
+		tabbedPane1.setSelectedIndex(3);
 	}
 
 	private void menuItem6MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(5);
+		tabbedPane1.setSelectedIndex(4);
 	}
 
 	private void menuItem7MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(6);
+		tabbedPane1.setSelectedIndex(5);
 	}
 
 	private void menuItem8MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(7);
+		tabbedPane1.setSelectedIndex(6);
 	}
 
 	private void menuItem9MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(8);
+		tabbedPane1.setSelectedIndex(7);
 	}
 
 	private void menuItem10MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(9);
+		tabbedPane1.setSelectedIndex(8);
 	}
 
 	private void menuItem11MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(10);
+		tabbedPane1.setSelectedIndex(9);
 	}
 
 	private void menuItem12MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(11);
+		tabbedPane1.setSelectedIndex(10);
 	}
 
 	private void menuItem13MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(12);
+		tabbedPane1.setSelectedIndex(11);
 	}
 
 	private void menuItem1MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(13);
+		tabbedPane1.setSelectedIndex(12);
 	}
 
 	private void menuItem2MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(14);
+		tabbedPane1.setSelectedIndex(13);
 	}
 
 	private void menuItem3MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(15);
+		tabbedPane1.setSelectedIndex(14);
 	}
 
 	public void update_doc_lists(){
@@ -626,29 +626,65 @@ public class esquema  {
 					menuItem4.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseReleased(MouseEvent e) {
-							importar_pressed(e);
+							menuItem4MouseReleased(e);
 						}
 					});
+
 					menu1.add(menuItem4);
 
 					//---- menuItem5 ----
 					menuItem5.setText("Exportar Document");
+					menuItem5.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem5MouseReleased(e);
+						}
+					});
+
 					menu1.add(menuItem5);
 
 					//---- menuItem14 ----
 					menuItem14.setText("Crear Nou Document");
+					menuItem14.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem14MouseReleased(e);
+						}
+					});
+
 					menu1.add(menuItem14);
 
 					//---- menuItem15 ----
 					menuItem15.setText("Obrir Document");
+					menuItem15.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem15MouseReleased(e);
+						}
+					});
+
 					menu1.add(menuItem15);
 
 					//---- menuItem16 ----
 					menuItem16.setText("Tancar Document");
+					menuItem16.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem16MouseReleased(e);
+						}
+					});
+
 					menu1.add(menuItem16);
 
 					//---- menuItem18 ----
 					menuItem18.setText("Eliminar Document");
+					menuItem18.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem18MouseReleased(e);
+						}
+					});
+
 					menu1.add(menuItem18);
 				}
 				menuBar1.add(menu1);
@@ -659,34 +695,90 @@ public class esquema  {
 
 					//---- menuItem6 ----
 					menuItem6.setText("Consulta T\u00edtols d'un Autor");
+					menuItem6.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem6MouseReleased(e);
+						}
+					});
+
 					menu2.add(menuItem6);
 
 					//---- menuItem7 ----
 					menuItem7.setText("Consulta Autors per Prefix");
+					menuItem7.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem7MouseReleased(e);
+						}
+					});
+
 					menu2.add(menuItem7);
 
 					//---- menuItem8 ----
 					menuItem8.setText("Consulta Document");
+					menuItem8.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem8MouseReleased(e);
+						}
+					});
+
 					menu2.add(menuItem8);
 
 					//---- menuItem9 ----
 					menuItem9.setText("Consulta per Semblan\u00e7a");
+					menuItem9.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem9MouseReleased(e);
+						}
+					});
+
 					menu2.add(menuItem9);
 
 					//---- menuItem10 ----
 					menuItem10.setText("Consulta per Rellevancia");
+					menuItem10.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem10MouseReleased(e);
+						}
+					});
+
 					menu2.add(menuItem10);
 
 					//---- menuItem11 ----
 					menuItem11.setText("Consulta Avan\u00e7ada");
+					menuItem11.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem11MouseReleased(e);
+						}
+					});
+
 					menu2.add(menuItem11);
 
 					//---- menuItem12 ----
 					menuItem12.setText("Consulta Preferits");
+					menuItem12.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem12MouseReleased(e);
+						}
+					});
+
 					menu2.add(menuItem12);
 
 					//---- menuItem13 ----
 					menuItem13.setText("Consulta per Data");
+					menuItem13.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem13MouseReleased(e);
+						}
+					});
+
 					menu2.add(menuItem13);
 				}
 				menuBar1.add(menu2);
@@ -697,14 +789,35 @@ public class esquema  {
 
 					//---- menuItem1 ----
 					menuItem1.setText("Alta Expressi\u00f3");
+					menuItem1.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem1MouseReleased(e);
+						}
+					});
+
 					menu3.add(menuItem1);
 
 					//---- menuItem2 ----
 					menuItem2.setText("Gesti\u00f3 Expressions Guardades");
+					menuItem2.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem2MouseReleased(e);
+						}
+					});
+
 					menu3.add(menuItem2);
 
 					//---- menuItem3 ----
 					menuItem3.setText("Consulta Expressi\u00f3");
+					menuItem3.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							menuItem3MouseReleased(e);
+						}
+					});
+
 					menu3.add(menuItem3);
 				}
 				menuBar1.add(menu3);
@@ -737,6 +850,12 @@ public class esquema  {
 			//======== tabbedPane1 ========
 			{
 				tabbedPane1.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+				tabbedPane1.setUI(new BasicTabbedPaneUI() {
+					@Override
+					protected int calculateTabAreaHeight(int tab_placement, int run_count, int max_tab_height) {
+						return 0;
+					}
+				});
 
 				//======== panel2 ========
 				{
