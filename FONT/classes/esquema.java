@@ -139,7 +139,6 @@ public class esquema  {
 	private void button2MouseReleased(MouseEvent e) {
 		String titol = textField7.getText();
 		String autor = textField6.getText();
-		String cont = textField1.getText();
 		CP.nouDocument(titol, autor, ""); // A preguntar
 
 		ArrayList<String> doc = CP.consultaDocument(autor, titol);
@@ -341,7 +340,16 @@ public class esquema  {
 	}
 
 	private void obrir_consulta_semb(MouseEvent e) {
-		obrir_seleccio_llista(list11);
+		String doc = (String) list11.getSelectedValue();
+		String[] titleautor = doc.split(" ~ | \\(");
+
+		ArrayList<String> repr = CP.consultaDocument(titleautor[1], titleautor[0]);
+
+		textField3.setText(repr.get(0));
+		textField2.setText(repr.get(1));
+		checkBox1.setSelected(repr.get(2) == "Y");
+		textField4.setText(repr.get(3));
+		textField1.setText(repr.get(4));
 	}
 
 	private void obrir_consulta_rell(MouseEvent e) {
@@ -627,6 +635,7 @@ public class esquema  {
 						@Override
 						public void mouseReleased(MouseEvent e) {
 							menuItem4MouseReleased(e);
+							importar_pressed(e);
 						}
 					});
 
