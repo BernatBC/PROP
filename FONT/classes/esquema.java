@@ -314,9 +314,9 @@ public class esquema  {
 		System.out.println("Saved as " + extension);
 
 
-		if (extension == "Plain text files  (*.txt)") format = 0;
-		else if (extension =="Extensible Markup Language (*.xml)") format = 1;
-		else if (extension == "Yay format file (*.yay)") format = 2;
+		if (extension.equals("Plain text files  (*.txt)")) format = 0;
+		else if (extension.equals("Extensible Markup Language (*.xml)")) format = 1;
+		else if (extension.equals("Yay format file (*.yay)")) format = 2;
 
 		CP.exporta(titleautor[0], titleautor[1], format, file.getPath());
 	}
