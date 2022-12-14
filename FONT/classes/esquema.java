@@ -365,11 +365,13 @@ public class esquema  {
 		fc.setDialogTitle("Importa");
 		FileNameExtensionFilter txt_filter = new FileNameExtensionFilter("Plain text files  (*.txt)","txt");
 		fc.addChoosableFileFilter(txt_filter);
+		FileNameExtensionFilter supported_filter = new FileNameExtensionFilter("All supported file formats (*.txt, *.xml, *.yay)","txt", "xml", "yay");
+		fc.addChoosableFileFilter(supported_filter);
 		FileNameExtensionFilter xml_filter = new FileNameExtensionFilter("Extensible Markup Language (*.xml)","xml");
 		fc.addChoosableFileFilter(xml_filter);
 		FileNameExtensionFilter yay_filter = new FileNameExtensionFilter("Yay format file (*.yay)","yay");
 		fc.addChoosableFileFilter(yay_filter);
-		fc.setFileFilter(txt_filter);
+		fc.setFileFilter(supported_filter);
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		int returnVal = fc.showSaveDialog(frame1);
 		File file = fc.getSelectedFile();
