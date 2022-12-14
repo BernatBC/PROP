@@ -367,7 +367,7 @@ public class esquema  {
 		fc.addChoosableFileFilter(txt_filter);
 		FileNameExtensionFilter xml_filter = new FileNameExtensionFilter("Extensible Markup Language (*.xml)","xml");
 		fc.addChoosableFileFilter(xml_filter);
-		FileNameExtensionFilter yay_filter = new FileNameExtensionFilter("Propietary files (*.yay)","yay");
+		FileNameExtensionFilter yay_filter = new FileNameExtensionFilter("Yay format file (*.yay)","yay");
 		fc.addChoosableFileFilter(yay_filter);
 		fc.setFileFilter(txt_filter);
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
