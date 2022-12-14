@@ -134,7 +134,7 @@ public class CtrlPersistencia {
                 else if (tag.equals("author")) author = contingut;
                 else if (tag.equals("content")) plain_content = new String(contingut);
                 else if (tag.equals("date")) date = stringToDate(contingut);
-                else if (tag.equals("bool name=\"favourite\"") && contingut == "true") favourite = true;
+                else if (tag.equals("bool name=\"favourite\"") && contingut.equals("true")) favourite = true;
             }
             if(domini.getDocument(author, title).getR()) {
                 System.out.println("A document with this title and author already exists!");
@@ -200,7 +200,7 @@ public class CtrlPersistencia {
                 else if (tag.equals("AUTHOR")) author = contingut;
                 else if (tag.equals("CONTENT")) plain_content = new String(contingut);
                 else if (tag.equals("DATE")) date = stringToDate(contingut);
-                else if (tag.equals("FAVOURITE") && contingut == "True") favourite = true;
+                else if (tag.equals("FAVOURITE") && contingut.equals("True")) favourite = true;
             }
             if(domini.getDocument(author, title).getR()) {
                 System.out.println("A document with this title and author already exists!");
