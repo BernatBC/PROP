@@ -363,6 +363,7 @@ public class esquema  {
 	private void importar_pressed(MouseEvent e) {
 		JFileChooser fc = new JFileChooser();
 		fc.setDialogTitle("Importa");
+		fc.setMultiSelectionEnabled(true);
 		FileNameExtensionFilter txt_filter = new FileNameExtensionFilter("Plain text files  (*.txt)","txt");
 		fc.addChoosableFileFilter(txt_filter);
 		FileNameExtensionFilter supported_filter = new FileNameExtensionFilter("All supported file formats (*.txt, *.xml, *.yay)","txt", "xml", "yay");
@@ -374,11 +375,10 @@ public class esquema  {
 		fc.setFileFilter(supported_filter);
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		int returnVal = fc.showSaveDialog(frame1);
-		File file = fc.getSelectedFile();
-
-		CP.importa(file.getPath());
+		File[] files = fc.getSelectedFiles();
+		for (File f : files) CP.importa(f.getPath());
+		
 		update_doc_lists();
-
 	}
 
 	/** -- FINAL APARTAT SIGNALS. A partir d'aquí es modificarà amb JFormDesigner. */
