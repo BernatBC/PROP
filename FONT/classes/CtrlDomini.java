@@ -212,6 +212,8 @@ public class CtrlDomini {
 		Document doc = new Document(authorPhrase, titlePhrase, isFav, "NULL", dia, contentFinal);
 
 		lib.addDocument(doc);
+
+		DISK.crearDocument(title, author, doc.getContingut().toString(), dia, isFav);
 	}
 
 	/** Funció que retorna el booleà de preferit d'un document
@@ -269,6 +271,7 @@ public class CtrlDomini {
 		Document d = getDocument(author, title).getL();
 		
 		d.setData(dat);
+		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), d.getContingut().toString(), d.getData(), d.getFavourite());
 	}
 
 	public void modificarAutor(String title, String oldAuth, String newAuth){
@@ -290,6 +293,8 @@ public class CtrlDomini {
 		HashMap<String, Document> documentsNewAuthor = lib.getArbre().obtenir(newAuth, 0).getR();
 		documentsOldAuthor.remove(title);
 		documentsNewAuthor.put(title, d);
+		DISK.esborrarDocument(title, oldAuth);
+		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), d.getContingut().toString(), d.getData(), d.getFavourite());
 	}
 
 	public void modificarContingut(String title, String author, ArrayList<String> content, String plaintext_content){
@@ -302,6 +307,8 @@ public class CtrlDomini {
 
 		eliminarDocument(title, author);
 		crearDocument(title, author, content, plaintext_content, dat, isFav);
+
+		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), d.getContingut().toString(), d.getData(), d.getFavourite());
 	}
 
 	public void modificarTitol(String oldTitle, String author, String newTitle){
@@ -323,6 +330,8 @@ public class CtrlDomini {
 		documentsAutor.remove(oldTitle);
 		documentsAutor.put(newTitle, d);
 
+		DISK.esborrarDocument(oldTitle, author);
+		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), d.getContingut().toString(), d.getData(), d.getFavourite());
 	}
 
 
@@ -369,7 +378,7 @@ public class CtrlDomini {
 		}
 		
 		System.gc();
-
+		DISK.esborrarDocument(title, author);
 	}
 
 	public ArrayList<String> consultaData(LocalDate ant, LocalDate post, int criteria)
@@ -470,7 +479,7 @@ public class CtrlDomini {
 		Document d = getDocument(author, title).getL();
 
 		d.setFavourite(!d.getFavourite());
-
+		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), d.getContingut().toString(), d.getData(), d.getFavourite());
 		return;
 	}
 
@@ -558,6 +567,9 @@ public class CtrlDomini {
 		DISK.importFile(path);
     }
 
+	/**
+	 * Importa les dades desades a l'aplicació.
+	 */
 	public void importSaved() {
 		DISK.importarDades();
 	}
