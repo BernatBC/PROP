@@ -327,9 +327,11 @@ public class esquema  {
 
 	private void obrir_seleccio_llista(JList myList){
 		String doc = (String) myList.getSelectedValue();
-		String[] titleautor = doc.split(" ");
+		String[] titleautor = doc.split(" ~ ");
 
-		ArrayList<String> repr = CP.consultaDocument(titleautor[2], titleautor[0]);
+		System.out.println("Volem obrir el document amb titol" + titleautor)
+
+		ArrayList<String> repr = CP.consultaDocument(titleautor[1], titleautor[0]);
 
 		textField3.setText(repr.get(0));
 		textField2.setText(repr.get(1));
