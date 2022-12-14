@@ -267,7 +267,7 @@ public class CtrlPersistencia {
             f.write("<author>" + author + "</author>\n");
             f.write("<date>" + date + "</date>\n");
             if (preferit) f.write("<bool name=\"favourite\">true</bool>");
-            else f.write("<bool name=\"favourite\">true</bool>");
+            else f.write("<bool name=\"favourite\">false</bool>");
             f.write("<content>\n");
             f.write(content + "\n");
             f.write("</content>\n");
