@@ -195,7 +195,8 @@ public class CtrlPresentacio {
         JFrame mainframe = ESQ.retorna();
         mainframe.setSize(700,600);
         mainframe.show();
-    
+        CD.importSaved();
+        ESQ.update_doc_lists();
     }
 
     public static void main(String[] args){

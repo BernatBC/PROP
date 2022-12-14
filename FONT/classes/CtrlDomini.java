@@ -558,4 +558,8 @@ public class CtrlDomini {
 		DISK.importFile(path);
     }
 
+	public void importSaved() {
+		DISK.importarDades();
+	}
+
 }

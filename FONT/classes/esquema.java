@@ -127,7 +127,7 @@ public class esquema  {
 		tabbedPane1.setSelectedIndex(15);
 	}
 
-	private void update_doc_lists(){
+	public void update_doc_lists(){
 		ArrayList<String> doc = CP.getAllDocs();
 		updateJList(list3, doc);
 		updateJList(list5, doc);
