@@ -1,7 +1,7 @@
 ## 🎉 A MILLORAR 🎉
 - Diagrama de classes, millorar, posar tipus de dades i posar classes auxiliars **[DONE]**
 - controladors: eliminar classes de domini i atributs a la constructora **[DONE]**
-- consultes: lien
+- consultes: lien **[DONE]**
 - treure controladors de consulta en el controlador de domini
 - només metodes que enllacen presentació amb domini **[DONE]**
 - canviar nom documentctrl a controladordomini **[DONE]**
@@ -19,21 +19,21 @@
 - (??) casus d'us opcionals -> posar a l'uml **[DONE]**
 - explicar disseny ternarytree, com es composa, com funciona, de què tracta  **[ARBRE][ARBRE]**
 - comparar varies estructures
-- eliminar/justificar conjunt autors a cada node  **[ARBRE][ARBRE]**
-- ternarytree afegir conjunt de titols en el ternarytree autors  **[ARBRE][ARBRE]**
+- eliminar/justificar conjunt autors a cada node  **[DONE]**
+- ternarytree afegir conjunt de titols en el ternarytree autors  **[DONE]**
 - consultadata -> 1 cerca per als dos intervals o bé cerca dicotòmica afegir justificació **[DONE]**
 - expression tree -> està a justificació però no a les classes  **[ARBRE][ARBRE]**
 - set document -> no cal dir quines consultes
 - justificar algorismes de funcionalitats demanades
-- llibreria -> consulta titolautor es fa directa -> cercar-ho al ternarytree  **[ARBRE][ARBRE]**
-- matriu distàncies -> precalcular-la
+- llibreria -> consulta titolautor es fa directa -> cercar-ho al ternarytree  **[DONE]**
+- matriu distàncies -> precalcular-la **[DONE]**
 - comentar capçaleres
-- eliminar println() de les classes **[DONE]**
+- eliminar println() de les classes
 - modificar autor, modificar titol, modificar contingut -> separar en diferents mètodes per no haver d'actulaitzar cada cosa **[DONE]**
-- controlador -> eliminar indexos
+- controlador -> eliminar indexos **[DONE]**
 - consultaAvancada -> no funciona amb varies paraules
 - tests -> driver hem fet un mix entre driver i controlador principal  **[DONE]** //no fa falta per l'entrega
-- les consultes són controladors -> no junit
+- les consultes són controladors -> no junit **[DONE]**
 - drivers -> falta documentació + posar més casos  **[DONE]** //no fa falta per l'entrega
 - junit -> molts tests curts + extensos  **[DONE]** //no fa falta per l'entrega
 
