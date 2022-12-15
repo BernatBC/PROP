@@ -32,7 +32,7 @@ public class Llibreria {
 
 	private int nDocs;
 
-	//Arbre d'autors i de documents. Cada autor té el seu conjunt de documents, amb el títol com a clau.
+	//Arbre d'autors i de documents. Cada autor té el seu map de documents, amb el títol com a clau.
 	private TernaryTree<Pair<Frase, HashMap<String, Document>>> autor_documents;
 
 	//Llistat de documents ordenats per data

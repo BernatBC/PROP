@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.util.ArrayList;
 import java.io.File;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import net.miginfocom.swing.*;
 /*
@@ -43,22 +44,22 @@ public class esquema  {
 
 	private void menuItem4MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(0);
+		
 	}
 
 	private void menuItem5MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(1);
+		tabbedPane1.setSelectedIndex(0);
 	}
 
 	private void menuItem14MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(2);
+		tabbedPane1.setSelectedIndex(1);
 	}
 
 	private void menuItem15MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(3);
+		tabbedPane1.setSelectedIndex(2);
 	}
 
 	private void menuItem16MouseReleased(MouseEvent e) {
@@ -68,65 +69,65 @@ public class esquema  {
 
 	private void menuItem18MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(4);
+		tabbedPane1.setSelectedIndex(3);
 	}
 
 	private void menuItem6MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(5);
+		tabbedPane1.setSelectedIndex(4);
 	}
 
 	private void menuItem7MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(6);
+		tabbedPane1.setSelectedIndex(5);
 	}
 
 	private void menuItem8MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(7);
+		tabbedPane1.setSelectedIndex(6);
 	}
 
 	private void menuItem9MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(8);
+		tabbedPane1.setSelectedIndex(7);
 	}
 
 	private void menuItem10MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(9);
+		tabbedPane1.setSelectedIndex(8);
 	}
 
 	private void menuItem11MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(10);
+		tabbedPane1.setSelectedIndex(9);
 	}
 
 	private void menuItem12MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(11);
+		tabbedPane1.setSelectedIndex(10);
 	}
 
 	private void menuItem13MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(12);
+		tabbedPane1.setSelectedIndex(11);
 	}
 
 	private void menuItem1MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(13);
+		tabbedPane1.setSelectedIndex(12);
 	}
 
 	private void menuItem2MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(14);
+		tabbedPane1.setSelectedIndex(13);
 	}
 
 	private void menuItem3MouseReleased(MouseEvent e) {
 		// TODO add your code here
-		tabbedPane1.setSelectedIndex(15);
+		tabbedPane1.setSelectedIndex(14);
 	}
 
-	private void update_doc_lists(){
+	public void update_doc_lists(){
 		ArrayList<String> doc = CP.getAllDocs();
 		updateJList(list3, doc);
 		updateJList(list5, doc);
@@ -135,10 +136,14 @@ public class esquema  {
 	}
 
 	/* --- SIGNALS Alexandre Ros --- */
+	public void update_document(){
+		textField3.setText(textField5.getText());
+		textField2.setText(textField8.getText());
+	}
+
 	private void button2MouseReleased(MouseEvent e) {
 		String titol = textField7.getText();
 		String autor = textField6.getText();
-		String cont = textField1.getText();
 		CP.nouDocument(titol, autor, ""); // A preguntar
 
 		ArrayList<String> doc = CP.consultaDocument(autor, titol);
@@ -263,6 +268,10 @@ public class esquema  {
 		// Resetegem els camps de la dreta
 		textField3.setText("");
 		textField2.setText("");
+		textField5.setText("");
+
+		textField8.setText("");
+
 		checkBox1.setSelected(false);
 		textField4.setText("");
 		textField1.setText("");
@@ -291,17 +300,33 @@ public class esquema  {
 		String[] titleautor = doc.split(" ~ ");
 
 		int format = 0;
-		if (radioButton13.isSelected()) format = 1;
-		else if (radioButton33.isSelected()) format = 2;
+		//if (radioButton13.isSelected()) format = 1;
+		//else if (radioButton33.isSelected()) format = 2;
 
-		String filename = textField8.getText();
+		//String filename = textField8.getText();
 
 		JFileChooser fc = new JFileChooser();
-		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		fc.setDialogTitle("Exporta");
+		FileNameExtensionFilter txt_filter = new FileNameExtensionFilter("Plain text files  (*.txt)","txt");
+		fc.addChoosableFileFilter(txt_filter);
+		FileNameExtensionFilter xml_filter = new FileNameExtensionFilter("Extensible Markup Language (*.xml)","xml");
+		fc.addChoosableFileFilter(xml_filter);
+		FileNameExtensionFilter yay_filter = new FileNameExtensionFilter("Propietary files (*.yay)","yay");
+		fc.addChoosableFileFilter(yay_filter);
+		fc.setFileFilter(txt_filter);
+		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		int returnVal = fc.showSaveDialog(frame1);
 		File file = fc.getSelectedFile();
 
-		CP.exporta(titleautor[0], titleautor[1], format, file.getPath()+"/"+filename);
+		String extension = fc.getFileFilter().getDescription();
+		System.out.println("Saved as " + extension);
+
+
+		if (extension.equals("Plain text files  (*.txt)")) format = 0;
+		else if (extension.equals("Extensible Markup Language (*.xml)")) format = 1;
+		else if (extension.equals("Yay format file (*.yay)")) format = 2;
+
+		CP.exporta(titleautor[0], titleautor[1], format, file.getPath());
 	}
 
 	private void obrir_consulta_autor(MouseEvent e) {
@@ -310,12 +335,16 @@ public class esquema  {
 
 	private void obrir_seleccio_llista(JList myList){
 		String doc = (String) myList.getSelectedValue();
-		String[] titleautor = doc.split(" ");
+		String[] titleautor = doc.split(" ~ ");
 
-		ArrayList<String> repr = CP.consultaDocument(titleautor[2], titleautor[0]);
+		ArrayList<String> repr = CP.consultaDocument(titleautor[1], titleautor[0]);
 
 		textField3.setText(repr.get(0));
+		textField5.setText(repr.get(0));
+
 		textField2.setText(repr.get(1));
+		textField8.setText(repr.get(1));
+
 		checkBox1.setSelected(repr.get(2) == "Y");
 		textField4.setText(repr.get(3));
 		textField1.setText(repr.get(4));
@@ -324,7 +353,19 @@ public class esquema  {
 	}
 
 	private void obrir_consulta_semb(MouseEvent e) {
-		obrir_seleccio_llista(list11);
+		String doc = (String) list11.getSelectedValue();
+		String[] titleautor = doc.split(" ~ | \\(");
+
+		ArrayList<String> repr = CP.consultaDocument(titleautor[1], titleautor[0]);
+
+		textField3.setText(repr.get(0));
+		textField5.setText(repr.get(0));
+		textField2.setText(repr.get(1));
+		textField8.setText(repr.get(1));
+
+		checkBox1.setSelected(repr.get(2) == "Y");
+		textField4.setText(repr.get(3));
+		textField1.setText(repr.get(4));
 	}
 
 	private void obrir_consulta_rell(MouseEvent e) {
@@ -345,20 +386,30 @@ public class esquema  {
 
 	private void importar_pressed(MouseEvent e) {
 		JFileChooser fc = new JFileChooser();
+		fc.setDialogTitle("Importa");
+		fc.setMultiSelectionEnabled(true);
+		FileNameExtensionFilter txt_filter = new FileNameExtensionFilter("Plain text files  (*.txt)","txt");
+		fc.addChoosableFileFilter(txt_filter);
+		FileNameExtensionFilter supported_filter = new FileNameExtensionFilter("All supported file formats (*.txt, *.xml, *.yay)","txt", "xml", "yay");
+		fc.addChoosableFileFilter(supported_filter);
+		FileNameExtensionFilter xml_filter = new FileNameExtensionFilter("Extensible Markup Language (*.xml)","xml");
+		fc.addChoosableFileFilter(xml_filter);
+		FileNameExtensionFilter yay_filter = new FileNameExtensionFilter("Yay format file (*.yay)","yay");
+		fc.addChoosableFileFilter(yay_filter);
+		fc.setFileFilter(supported_filter);
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		int returnVal = fc.showSaveDialog(frame1);
-		File file = fc.getSelectedFile();
-
-		CP.importa(file.getPath());
+		File[] files = fc.getSelectedFiles();
+		for (File f : files) CP.importa(f.getPath());
+		
 		update_doc_lists();
-
 	}
 
 	/** -- FINAL APARTAT SIGNALS. A partir d'aquí es modificarà amb JFormDesigner. */
 
 	public void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-		// Generated using JFormDesigner Evaluation license - Oscar Ramos
+		// Generated using JFormDesigner Evaluation license - Wilma Dickfit
 		frame1 = new JFrame();
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
@@ -383,12 +434,11 @@ public class esquema  {
 		menuItem3 = new JMenuItem();
 		label1 = new JLabel();
 		textField3 = new JTextField();
-		hSpacer5 = new JPanel(null);
+		textField5 = new JTextField();
 		checkBox1 = new JCheckBox();
 		hSpacer2 = new JPanel(null);
 		label2 = new JLabel();
 		textField2 = new JTextField();
-		hSpacer4 = new JPanel(null);
 		label3 = new JLabel();
 		textField4 = new JTextField();
 		hSpacer3 = new JPanel(null);
@@ -558,6 +608,11 @@ public class esquema  {
 		radioButton31 = new JRadioButton();
 		radioButton32 = new JRadioButton();
 		button29 = new JButton();
+		label4 = new JLabel();
+		hSpacer5 = new JPanel(null);
+		label13 = new JLabel();
+		textField8 = new JTextField();
+		hSpacer4 = new JPanel(null);
 		scrollPane22 = new JScrollPane();
 		textField1 = new JTextPane();
 		button5 = new JButton();
@@ -570,6 +625,8 @@ public class esquema  {
 				// columns
 				"[300:n:300,fill]" +
 				"[50:n:50,fill]" +
+				"[fill]" +
+				"[fill]" +
 				"[fill]" +
 				"[fill]" +
 				"[fill]" +
@@ -680,26 +737,28 @@ public class esquema  {
 
 			//---- label1 ----
 			label1.setText("Autor");
+			label1.setHorizontalAlignment(SwingConstants.RIGHT);
 			frame1ContentPane.add(label1, "cell 2 0,hmax 50");
 			frame1ContentPane.add(textField3, "cell 2 0,wmin 150,hmax 50");
-			frame1ContentPane.add(hSpacer5, "cell 3 0");
+			frame1ContentPane.add(textField5, "cell 4 0");
 
 			//---- checkBox1 ----
 			checkBox1.setText("Preferit");
-			frame1ContentPane.add(checkBox1, "cell 4 0,hmax 50");
-			frame1ContentPane.add(hSpacer2, "cell 5 0");
+			frame1ContentPane.add(checkBox1, "cell 6 0,hmax 50");
+			frame1ContentPane.add(hSpacer2, "cell 7 0");
 
 			//---- label2 ----
 			label2.setText("T\u00edtol");
+			label2.setHorizontalAlignment(SwingConstants.RIGHT);
 			frame1ContentPane.add(label2, "cell 2 1,hmax 50");
 			frame1ContentPane.add(textField2, "cell 2 1,wmin 150,hmax 50");
-			frame1ContentPane.add(hSpacer4, "cell 3 1");
 
 			//---- label3 ----
 			label3.setText("Data");
-			frame1ContentPane.add(label3, "cell 4 1,hmax 50");
-			frame1ContentPane.add(textField4, "cell 4 1,width 120::120,hmax 50");
-			frame1ContentPane.add(hSpacer3, "cell 5 1");
+			label3.setHorizontalAlignment(SwingConstants.RIGHT);
+			frame1ContentPane.add(label3, "cell 6 1,hmax 50");
+			frame1ContentPane.add(textField4, "cell 6 1,width 120::120,hmax 50");
+			frame1ContentPane.add(hSpacer3, "cell 7 1");
 
 			//======== tabbedPane1 ========
 			{
@@ -707,12 +766,13 @@ public class esquema  {
 
 				//======== panel2 ========
 				{
-					panel2.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
-					EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER ,javax . swing
-					. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,
-					java . awt. Color .red ) ,panel2. getBorder () ) ); panel2. addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
-					{ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )
-					throw new RuntimeException( ) ;} } );
+					panel2.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
+					swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border
+					. TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog"
+					, java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,panel2. getBorder
+					() ) ); panel2. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
+					. beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException
+					( ) ;} } );
 					panel2.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
@@ -1684,6 +1744,19 @@ public class esquema  {
 			}
 			frame1ContentPane.add(tabbedPane1, "cell 0 0 1 3,grow");
 
+			//---- label4 ----
+			label4.setText("Nou autor");
+			label4.setHorizontalAlignment(SwingConstants.RIGHT);
+			frame1ContentPane.add(label4, "cell 3 0");
+			frame1ContentPane.add(hSpacer5, "cell 5 0");
+
+			//---- label13 ----
+			label13.setText("Nou T\u00edtol");
+			label13.setHorizontalAlignment(SwingConstants.RIGHT);
+			frame1ContentPane.add(label13, "cell 3 1");
+			frame1ContentPane.add(textField8, "cell 4 1");
+			frame1ContentPane.add(hSpacer4, "cell 5 1");
+
 			//======== scrollPane22 ========
 			{
 
@@ -1691,7 +1764,7 @@ public class esquema  {
 				textField1.setText("Una vegada creat un document, escriu el contingut aqu\u00ed!");
 				scrollPane22.setViewportView(textField1);
 			}
-			frame1ContentPane.add(scrollPane22, "cell 2 2 3 1,grow,wmin 200,hmin 200");
+			frame1ContentPane.add(scrollPane22, "cell 2 2 5 1,grow,wmin 200,hmin 200");
 
 			//---- button5 ----
 			button5.setText("Modifica");
@@ -1701,7 +1774,7 @@ public class esquema  {
 					modifica_pressed(e);
 				}
 			});
-			frame1ContentPane.add(button5, "cell 3 3");
+			frame1ContentPane.add(button5, "cell 4 3");
 			frame1.pack();
 			frame1.setLocationRelativeTo(frame1.getOwner());
 		}
@@ -1763,7 +1836,7 @@ public class esquema  {
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-	// Generated using JFormDesigner Evaluation license - Oscar Ramos
+	// Generated using JFormDesigner Evaluation license - Wilma Dickfit
 	private JFrame frame1;
 	private JMenuBar menuBar1;
 	private JMenu menu1;
@@ -1788,12 +1861,11 @@ public class esquema  {
 	private JMenuItem menuItem3;
 	private JLabel label1;
 	private JTextField textField3;
-	private JPanel hSpacer5;
+	private JTextField textField5;
 	private JCheckBox checkBox1;
 	private JPanel hSpacer2;
 	private JLabel label2;
 	private JTextField textField2;
-	private JPanel hSpacer4;
 	private JLabel label3;
 	private JTextField textField4;
 	private JPanel hSpacer3;
@@ -1963,6 +2035,11 @@ public class esquema  {
 	private JRadioButton radioButton31;
 	private JRadioButton radioButton32;
 	private JButton button29;
+	private JLabel label4;
+	private JPanel hSpacer5;
+	private JLabel label13;
+	private JTextField textField8;
+	private JPanel hSpacer4;
 	private JScrollPane scrollPane22;
 	private JTextPane textField1;
 	private JButton button5;

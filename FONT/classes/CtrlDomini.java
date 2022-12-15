@@ -291,9 +291,17 @@ public class CtrlDomini {
 		d.setAutor(authorPhrase);
 
 		HashMap<String, Document> documentsOldAuthor = lib.getArbre().obtenir(oldAuth, 0).getR();
-		HashMap<String, Document> documentsNewAuthor = lib.getArbre().obtenir(newAuth, 0).getR();
+		Pair<Frase, HashMap<String, Document>> documentsNewAuthor = lib.getArbre().obtenir(newAuth, 0);
+
+		if (documentsNewAuthor == null)
+		{
+			// Nou autor
+			documentsNewAuthor = lib.getArbre().inserirObtenir(newAuth, 0, new Pair<Frase, HashMap<String, Document>>(d.getAutor(), new HashMap<>()));
+		}
+
+		//HashMap<String, Document> documentsNewAuthor = lib.getArbre().obtenir(newAuth, 0).getR();
 		documentsOldAuthor.remove(title);
-		documentsNewAuthor.put(title, d);
+		documentsNewAuthor.getR().put(title, d);
 		DISK.esborrarDocument(title, oldAuth);
 		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), d.getContingut().toString(), d.getData(), d.getFavourite());
 	}

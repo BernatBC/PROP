@@ -152,7 +152,7 @@ public class CtrlPresentacio {
 
 
 
-    public void modificar_general(String autor, String titol, String contingut, Boolean isFav, String date){
+    public void modificar_general(String autor, String titol, String contingut, Boolean isFav, String date, String newautor, String newtitol){
         if (!CD.docExists(titol, autor)){
             mostraError("Document no existeix");
             return;
@@ -177,11 +177,27 @@ public class CtrlPresentacio {
             CD.modificarContingut(titol, autor, content, contingut);
         }
 
-        // Modificar data
         CD.modificarData(titol, autor, dat);
 
         // Modificar preferit
         if (isFav != CD.getFavourite(titol, autor)) CD.togglePreferit(titol, autor);
+
+
+        if (!autor.equals(newautor)){
+            // S'ha modificat l'autor
+            System.out.println("Modificació de l'autor");
+
+            CD.modificarAutor(titol, autor, newautor);
+        }
+
+        if (!titol.equals(newtitol)){
+            System.out.println("Modificació del titol.");
+            CD.modificarTitol(titol, newautor, newtitol);
+        }
+
+        // Modificar data
+
+        ESQ.update_document();
 
         System.out.println("Sha modificat tot correctament");
     }
