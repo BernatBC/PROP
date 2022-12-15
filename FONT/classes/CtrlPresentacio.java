@@ -192,6 +192,7 @@ public class CtrlPresentacio {
 
     public void mostraError(String missatge) {
         ERR.SetMissatge(missatge);
+        ERR.setSize(800, 200);
         ERR.setVisible(true);
     }
 
@@ -211,6 +212,7 @@ public class CtrlPresentacio {
         PopupError ERR = new PopupError();
 
         CtrlPresentacio CP = new CtrlPresentacio(CD, ESQ, ERR);
+        CD.setControladorPresentacio(CP);
         CP.run();
     }
 

@@ -22,7 +22,7 @@ public class PopupError extends JFrame {
 	}
 
 	public void SetMissatge(String missatge) {
-		label1.setText(missatge);
+		label1.setText("<html><p style=\"width:600px\">" + missatge + "</p></html>");
 	}
 
 	private void initComponents() {

@@ -96,7 +96,7 @@ public class Contingut {
 	 */
 	public boolean conteSequencia(String str){
 		if (str.equals("")){
-			System.out.println("La seqüència no conté cap caràcter.");
+			CtrlDomini.mostraError("La seqüència no conté cap caràcter.");
 			return false;
 		}
 

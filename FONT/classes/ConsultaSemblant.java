@@ -29,7 +29,7 @@ public class ConsultaSemblant {
         ArrayList<Pair<Double, Document>> orderedDocs = new ArrayList<>();
 
         if (!mySet.contains(doc)){
-            System.out.println("Document is not in the library!");
+            CtrlDomini.mostraError("Document is not in the library!");
             return (new ArrayList<Pair<Double, Document>>());
         }
 

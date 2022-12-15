@@ -15,6 +15,7 @@ public class CtrlDomini {
 	private Llibreria lib;
 	private ExpressioBooleanaCtrl EBC;
 	private CtrlPersistencia DISK;
+	private static CtrlPresentacio UI;
 
 	static private 
 	Comparator<Document> documentDataComparator = new Comparator<Document>(){
@@ -536,7 +537,7 @@ public class CtrlDomini {
 	 */
 	public void exportarDocument(String titol, String autor, int ext, String fname){
 		if (!docExists(titol, autor)){
-			System.out.println("No existeix el document que vols exportar.");
+			mostraError("No existeix el document que vols exportar.");
 			return;
 		}
 
@@ -577,4 +578,11 @@ public class CtrlDomini {
 		DISK.importarDades();
 	}
 
+	public void setControladorPresentacio(CtrlPresentacio presentacio) {
+		UI = presentacio;
+	}
+
+	public static void mostraError(String missatge) {
+		UI.mostraError(missatge);
+	}
 }

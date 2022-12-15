@@ -70,13 +70,13 @@ public class CtrlPersistencia {
             }
             s.close();
             if(domini.getDocument(author, title).getR()) {
-                System.out.println("A document with this title and author already exists!");
+                CtrlDomini.mostraError("S'ha produit un error al importar el fitxer " + f.getAbsolutePath() + ": Ja existeix un document amb aquest títol i autor.");
                 return;
             }
             domini.crearDocument(title, author, content, plain_content, LocalDate.now(), false);
         }
         catch(Exception e) {
-            System.out.println("File not found!");
+            CtrlDomini.mostraError("S'ha produit un error al importar el fitxer " + f.getAbsolutePath() + ": error de lectura.");
         }
     }
 
@@ -137,13 +137,13 @@ public class CtrlPersistencia {
                 else if (tag.equals("bool name=\"favourite\"") && contingut.equals("true")) favourite = true;
             }
             if(domini.getDocument(author, title).getR()) {
-                System.out.println("A document with this title and author already exists!");
+                CtrlDomini.mostraError("S'ha produit un error al importar el fitxer " + f.getAbsolutePath() + ": Ja existeix un document amb aquest títol i autor.");
                 return;
             }
             domini.crearDocument(title, author, stringToArrayList(plain_content), plain_content, date, favourite);
         }
         catch(Exception e) {
-            System.out.println("An error has ocurred while reading the xml file");
+            CtrlDomini.mostraError("S'ha produit un error al importar el fitxer " + f.getAbsolutePath() + ": error de lectura.");
         }
     }
 
@@ -154,7 +154,7 @@ public class CtrlPersistencia {
         try {
             return LocalDate.of(year, month, day);
         } catch (DateTimeException e){
-            System.out.println("\nError when reading date");
+            CtrlDomini.mostraError("S'ha produit un error al traduir la data " + date + ". Aquesta data no existeix, o bé està en un format incorrecte.");
         }
         return null;
     }
@@ -203,13 +203,13 @@ public class CtrlPersistencia {
                 else if (tag.equals("FAVOURITE") && contingut.equals("True")) favourite = true;
             }
             if(domini.getDocument(author, title).getR()) {
-                System.out.println("A document with this title and author already exists!");
+                CtrlDomini.mostraError("S'ha produit un error al importar el fitxer " + f.getAbsolutePath() + ": Ja existeix un document amb aquest títol i autor.");
                 return;
             }
             domini.crearDocument(title, author, stringToArrayList(plain_content), plain_content, date, favourite);
         }
         catch(Exception e) {
-            System.out.println("An error has ocurred while reading the yay file");
+            CtrlDomini.mostraError("S'ha produit un error al importar el fitxer " + f.getAbsolutePath() + ": error de lectura.");
         }
     }
 
@@ -246,7 +246,7 @@ public class CtrlPersistencia {
             f.close();
         }
         catch(Exception e) {
-            System.out.println("Error while exporting a txt file." + e);
+            CtrlDomini.mostraError("S'ha produit un error al exportar el fitxer " + path + ": error d'escriptura.");
         }
     }
 
@@ -275,7 +275,7 @@ public class CtrlPersistencia {
             f.close();
         }
         catch(Exception e) {
-            System.out.println("Error while exporting a xml file.");
+            CtrlDomini.mostraError("S'ha produit un error al exportar el fitxer " + path + ": error d'escriptura.");
         }
     }
 
@@ -302,7 +302,7 @@ public class CtrlPersistencia {
             f.close();
         }
         catch(Exception e) {
-            System.out.println("Error while exporting a yay file.");
+            CtrlDomini.mostraError("S'ha produit un error al exportar el fitxer " + path + ": error d'escriptura.");
         }
     }
 
@@ -346,7 +346,7 @@ public class CtrlPersistencia {
             domini.novaEB(name, expression);
         }
         catch(Exception e) {
-            System.out.println("An error has ocurred while reading the boolean expression file");
+            CtrlDomini.mostraError("S'ha produit un error al importar el fitxer " + f.getAbsolutePath() + ": error de lectura.");
         }
     }
 
@@ -432,7 +432,7 @@ public class CtrlPersistencia {
             f.close();
         }
         catch(Exception e) {
-            System.out.println("Error while exporting a yae file.");
+            CtrlDomini.mostraError("S'ha produit un error al exportar el crear l'expressió booleana " + nom + ": error d'escriptura.");
         }
     }
 
