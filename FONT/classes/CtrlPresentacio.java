@@ -15,10 +15,11 @@ public class CtrlPresentacio {
 
     CtrlDomini CD;
     esquema ESQ;
+    PopupError ERR;
 
-    private CtrlPresentacio(CtrlDomini cd, esquema esq)
+    private CtrlPresentacio(CtrlDomini cd, esquema esq, PopupError err)
     {
-        CD = cd; ESQ = esq;        
+        CD = cd; ESQ = esq; ERR = err;
     }
 
     public void nouDocument(String title, String author, String contingut){
@@ -189,6 +190,11 @@ public class CtrlPresentacio {
         return CD.consultaPref(criteri);
     }
 
+    public void mostraError(String missatge) {
+        ERR.SetMissatge(missatge);
+        ERR.setVisible(true);
+    }
+
     private void run(){
         ESQ.initComponents();
         ESQ.sendCP(this); // to be used with signals and slots
@@ -202,8 +208,9 @@ public class CtrlPresentacio {
     public static void main(String[] args){
         CtrlDomini CD = new CtrlDomini();
         esquema ESQ = new esquema();
+        PopupError ERR = new PopupError();
 
-        CtrlPresentacio CP = new CtrlPresentacio(CD, ESQ);
+        CtrlPresentacio CP = new CtrlPresentacio(CD, ESQ, ERR);
         CP.run();
     }
 
