@@ -25,7 +25,7 @@ public class CtrlPresentacio {
     public void nouDocument(String title, String author, String contingut){
 
         if (CD.docExists(title, author)){
-            System.out.println("Document already exists!");
+            mostraError("Document already exists!");
             return;
         }
 
@@ -74,7 +74,7 @@ public class CtrlPresentacio {
         // La "consultaDocument" retornarà:
         // Autor + Titol + Booleà ("Y"/"N") preferit + data en ISO + Contingut en string
         if (!CD.docExists(titol, autor)){
-            System.out.println("Document doesn't exist");
+            mostraError("Document doesn't exist");
             return new ArrayList<>();
         }
 
@@ -154,7 +154,7 @@ public class CtrlPresentacio {
 
     public void modificar_general(String autor, String titol, String contingut, Boolean isFav, String date){
         if (!CD.docExists(titol, autor)){
-            System.out.println("Document no existeix");
+            mostraError("Document no existeix");
             return;
         }
 
@@ -162,7 +162,7 @@ public class CtrlPresentacio {
 
         try {dat = LocalDate.parse(date);}
         catch (DateTimeParseException e){
-            System.out.println(date + " is not a valid date yyyy-mm-dd");
+            mostraError(date + " is not a valid date yyyy-mm-dd");
             return;
         }
 
