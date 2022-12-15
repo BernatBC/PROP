@@ -358,7 +358,7 @@ public class esquema  {
 
 	public void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-		// Generated using JFormDesigner Evaluation license - Ganondorf
+		// Generated using JFormDesigner Evaluation license - Oscar Ramos
 		frame1 = new JFrame();
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
@@ -397,12 +397,6 @@ public class esquema  {
 		label5 = new JLabel();
 		scrollPane1 = new JScrollPane();
 		list3 = new JList();
-		label49 = new JLabel();
-		radioButton12 = new JRadioButton();
-		radioButton13 = new JRadioButton();
-		radioButton33 = new JRadioButton();
-		label50 = new JLabel();
-		textField8 = new JTextField();
 		button1 = new JButton();
 		panel3 = new JPanel();
 		label6 = new JLabel();
@@ -713,14 +707,12 @@ public class esquema  {
 
 				//======== panel2 ========
 				{
-					panel2.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
-					new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
-					, javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-					, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 )
-					, java. awt. Color. red) ,panel2. getBorder( )) ); panel2. addPropertyChangeListener (
-					new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-					) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
-					; }} );
+					panel2.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
+					EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER ,javax . swing
+					. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,
+					java . awt. Color .red ) ,panel2. getBorder () ) ); panel2. addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
+					{ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )
+					throw new RuntimeException( ) ;} } );
 					panel2.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
@@ -748,28 +740,6 @@ public class esquema  {
 					}
 					panel2.add(scrollPane1, "cell 0 1,growx,width 300::300");
 
-					//---- label49 ----
-					label49.setText("Selecciona el format a exportar");
-					panel2.add(label49, "cell 0 2");
-
-					//---- radioButton12 ----
-					radioButton12.setText("Format TXT");
-					radioButton12.setSelected(true);
-					panel2.add(radioButton12, "cell 0 3");
-
-					//---- radioButton13 ----
-					radioButton13.setText("Format XML");
-					panel2.add(radioButton13, "cell 0 4");
-
-					//---- radioButton33 ----
-					radioButton33.setText("Format YAY");
-					panel2.add(radioButton33, "cell 0 5");
-
-					//---- label50 ----
-					label50.setText("Escriu el nom del fitxer (v\u00e0lid UNIX) per guardar");
-					panel2.add(label50, "cell 0 7");
-					panel2.add(textField8, "cell 0 8");
-
 					//---- button1 ----
 					button1.setText("Exporta");
 					button1.addMouseListener(new MouseAdapter() {
@@ -778,7 +748,7 @@ public class esquema  {
 							exporta_released(e);
 						}
 					});
-					panel2.add(button1, "cell 0 10");
+					panel2.add(button1, "cell 0 3");
 				}
 				tabbedPane1.addTab("ED", panel2);
 
@@ -1736,12 +1706,6 @@ public class esquema  {
 			frame1.setLocationRelativeTo(frame1.getOwner());
 		}
 
-		//---- buttonGroup9 ----
-		ButtonGroup buttonGroup9 = new ButtonGroup();
-		buttonGroup9.add(radioButton12);
-		buttonGroup9.add(radioButton13);
-		buttonGroup9.add(radioButton33);
-
 		//---- buttonGroup3 ----
 		ButtonGroup buttonGroup3 = new ButtonGroup();
 		buttonGroup3.add(radioButton6);
@@ -1799,7 +1763,7 @@ public class esquema  {
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-	// Generated using JFormDesigner Evaluation license - Ganondorf
+	// Generated using JFormDesigner Evaluation license - Oscar Ramos
 	private JFrame frame1;
 	private JMenuBar menuBar1;
 	private JMenu menu1;
@@ -1838,12 +1802,6 @@ public class esquema  {
 	private JLabel label5;
 	private JScrollPane scrollPane1;
 	private JList list3;
-	private JLabel label49;
-	private JRadioButton radioButton12;
-	private JRadioButton radioButton13;
-	private JRadioButton radioButton33;
-	private JLabel label50;
-	private JTextField textField8;
 	private JButton button1;
 	private JPanel panel3;
 	private JLabel label6;
