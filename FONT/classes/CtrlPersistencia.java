@@ -354,6 +354,15 @@ public class CtrlPersistencia {
      * Importa tots els documents i expressions booleanes desades a l'applicació.
      */
     public void importarDades() {
+        File dataDirectory = new File(PATH);
+        if (!dataDirectory.exists()) {
+            dataDirectory.mkdir();
+            File doc_folder = new File(PATH + "Documents/");
+            doc_folder.mkdir();
+            File exp_folder = new File(PATH + "Expressions/");
+            exp_folder.mkdir();
+            return;
+        }
         File doc_folder = new File(PATH + "Documents/");
         File[] documents = doc_folder.listFiles();
 

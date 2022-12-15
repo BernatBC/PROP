@@ -485,14 +485,17 @@ public class CtrlDomini {
 
 	public void novaEB(String nom, String cos){
 		EBC.AddExpressioBooleana(nom, cos);
+		DISK.crearExpressio(nom, cos);
 	}
 
 	public void canviarEB(String nom, String noucos){
 		EBC.SetExpressioBooleana(nom, noucos);
+		DISK.crearExpressio(nom, noucos);
 	}
 
 	public void eliminarEB(String nom){
 		EBC.DeleteExpressioBooleana(nom);
+		DISK.esborrarExpressio(nom);
 	}
 
 	public int numberOfEBS(){
