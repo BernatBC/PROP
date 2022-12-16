@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.DateTimeException;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 
 /** Classe controladora de la capa de persistencia.
  * @author Bernat Borràs Civil (bernat.borras.civil@estudiantat.upc.edu)
@@ -226,7 +228,7 @@ public class CtrlPersistencia {
         Thread thread1 = new Thread();
         thread1.start();
         if (getExtension(path).equals("xml")) exportXML(title, author, content, date, preferit, path);
-        else if (getExtension(path).equals("yay")) exportYAY(title, author, content, date, preferit, path);
+        else if (getExtension(path).equals("yay")) copiarYAY(title, author, path);
         else exportTXT(title, author, content, path);
     }
 
@@ -280,29 +282,17 @@ public class CtrlPersistencia {
     }
 
     /**
-     * Exporta un document yay (format propietari).
-     * @param title Títol a imprimir.
-     * @param author Autor a imprimir.
-     * @param content Contingut a imprimir.
-     * @param date Data a imprimir.
-     * @param preferit Marcat com a preferit.
-     * @param path path del document.
+     * Copia un fitxer del directori DATA/Documents al path indicat
+     * @param title títol del document
+     * @param author autor del document
+     * @param path path destinació del fitxer
      */
-    private void exportYAY(String title, String author, String content, LocalDate date, Boolean preferit, String path) {
+    private void copiarYAY(String title, String author, String path) {
         try {
-            FileWriter f = new FileWriter(path);
-            f.write("#TITLE:" + title + "#\n");
-            f.write("#AUTHOR:" + author + "#\n");
-            f.write("#DATE:" + date + "#\n");
-            if (preferit) f.write("#FAVOURITE:True#\n");
-            else f.write("#FAVOURITE:False#\n");
-            f.write("#CONTENT:\n");
-            f.write(content + "\n");
-            f.write("#\n");
-            f.close();
+            Files.copy(Paths.get(getPathDoc(title, author)), Paths.get(path));
         }
         catch(Exception e) {
-            CtrlDomini.mostraError("S'ha produit un error al exportar el fitxer " + path + ": error d'escriptura.");
+            CtrlDomini.mostraError("S'ha produit un error al exportar el fitxer " + path + ": error al copiar el document.");
         }
     }
 
@@ -406,7 +396,21 @@ public class CtrlPersistencia {
      * @param preferit Marcat com a preferit.
      */
     public void crearDocument(String title, String author, String content, LocalDate date, Boolean preferit) {
-        exportYAY(title, author, content, date, preferit, getPathDoc(title, author));
+        try {
+            FileWriter f = new FileWriter(getPathDoc(title, author));
+            f.write("#TITLE:" + title + "#\n");
+            f.write("#AUTHOR:" + author + "#\n");
+            f.write("#DATE:" + date + "#\n");
+            if (preferit) f.write("#FAVOURITE:True#\n");
+            else f.write("#FAVOURITE:False#\n");
+            f.write("#CONTENT:\n");
+            f.write(content + "\n");
+            f.write("#\n");
+            f.close();
+        }
+        catch(Exception e) {
+            CtrlDomini.mostraError("S'ha produit un error al exportar el fitxer " + getPathDoc(title, author) + ": error d'escriptura.");
+        }
     }
 
     /**
