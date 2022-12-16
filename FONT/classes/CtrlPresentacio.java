@@ -216,8 +216,8 @@ public class CtrlPresentacio {
         ESQ.initComponents();
         ESQ.sendCP(this); // to be used with signals and slots
         JFrame mainframe = ESQ.retorna();
-        mainframe.setSize(700,600);
-        mainframe.show();
+        mainframe.setSize(900,900);
+        mainframe.setVisible(true);
         CD.importSaved();
         ESQ.update_doc_lists();
     }
