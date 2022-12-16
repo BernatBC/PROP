@@ -25,7 +25,7 @@ public class Document {
 	 * @param date Data de creació del document.
 	 * @param cont Contingut del document.
 	 */
-	public Document(Frase author, Frase title, boolean isFav, String path, LocalDate date, Contingut cont, CtrlDomini CD){
+	public Document(Frase author, Frase title, boolean isFav, LocalDate date, Contingut cont, CtrlDomini CD){
 		this.author = author;
 		this.title = title;
 		this.isFav = isFav;

@@ -7,9 +7,6 @@ import java.util.HashSet;
  */
 public class ConsultaAvancada {
 
-    /**Constructora per defecte de ConsultaAvançada. */
-    public ConsultaAvancada() {};
-
     /**
      * Retorna el conjunt de documents dins de l que contenen la seqüència s.
      * @param l conjunt de documents del sistema.

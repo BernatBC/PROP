@@ -244,13 +244,9 @@ public class CtrlDomini {
 
 		Contingut contentFinal = new Contingut(plaintext_cont, cont);
 		
-		Document doc = new Document(authorPhrase, titlePhrase, isFav, "NULL", dia, contentFinal, this);
-
-		System.out.println("a" + contentFinal.toString());
+		Document doc = new Document(authorPhrase, titlePhrase, isFav, dia, contentFinal, this);
 
 		lib.addDocument(doc);
-
-		System.out.println("HELLO");
 
 		DISK.crearDocument(title, author, plaintext_cont, dia, isFav);
 
@@ -383,10 +379,6 @@ public class CtrlDomini {
 	}
 
 
-
-	/**
-	 * Mètode que interacciona amb l'usuari amb l'objectiu d'eliminar un document.
-	 */
 	public void eliminarDocument(String title, String author){
 		Document doc = getDocument(author, title).getL();;
 		
@@ -409,13 +401,11 @@ public class CtrlDomini {
 		
 		lib.deleteDocument(doc);
 
-		//// CONTEM AIXO?
 		for (int i = 0; i < wordsAutor.length; ++i){
 			vocab.decrementarOcurrencia(wordsAutor[i]);
 			
 		}
 
-		// CONTEM AIXÒ?
 		for (int i = 0; i < wordsTitol.length; ++i){
 			vocab.decrementarOcurrencia(wordsTitol[i]);
 		}

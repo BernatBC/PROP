@@ -73,7 +73,7 @@ public class ConsultaRellevancia {
             Frase titol = new Frase(words, frase);
             Frase[] frases = {titol};
             Contingut contingut = new Contingut(frase,frases);
-            Document auxiliar = new Document(titol, titol, false, null, LocalDate.now(),contingut, null);
+            Document auxiliar = new Document(titol, titol, false, LocalDate.now(),contingut, null);
             documents.addDocument(auxiliar);
 
             ArrayList<Pair<Double,Document>> result = ConsultaSemblant.executeQuery(documents, auxiliar, k_docs, 0);

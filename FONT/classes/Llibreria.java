@@ -22,7 +22,7 @@ public class Llibreria {
 	// HashMap that maps all words in the library to the number of documents it appears in.
 	private HashMap<Integer, Integer> word_ocurrences;
 
-	// Matriu de TF-IDF precalculats. El booleà significa si el contingut està calculat o no.
+	// Matriu de TF-IDF precalculats. 
 	private HashMap<Document, HashMap<Document, Double>> precalculat0;
 	private HashMap<Document, HashMap<Document, Double>> precalculat1;
 

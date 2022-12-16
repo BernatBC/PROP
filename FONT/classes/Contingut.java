@@ -14,30 +14,6 @@ public class Contingut {
 	private HashMap<Integer, Integer> words;
 	private int n_paraules;
 
-	/** Mètode privat que ens descomposa una String 'frase' en una llista de Strings, que són les paraules
-	 *  que extraiem de 'frase'. Només es tenen en compte cadenes de lletres per a identificar les paraules.
-	 * 
-	 * @param frase La String que volem descomposar en paraules
-	 * @return Una llista de Strings, que representa la descomposició de 'frase' en paraules.
-	 */
-	static private ArrayList<String> decomposeWords(String frase) {
-        ArrayList<String> paraules = new ArrayList<>();
-        String a_insert = "";
-
-        for (char c: frase.toCharArray()) {
-            if (!Character.isLetter(c)) {
-                if (a_insert.length() != 0) {
-                    paraules.add(a_insert);
-                    a_insert = "";
-                }
-            }
-            else a_insert += c;
-        }
-		if (a_insert.length() != 0) paraules.add(a_insert);
-
-        return paraules;
-    }
-
 
 	/** Constructora per a la classe Contingut, que representa un contingut d'un document.
 	 * 
