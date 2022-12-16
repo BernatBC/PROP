@@ -444,4 +444,54 @@ public class CtrlPersistencia {
         File f = new File(getPathExp(nom));
         f.delete();
     }
+
+    /**
+     * Retorna el contingut d'un document identificat pel títol i autor.
+     * @param title Títol del document.
+     * @param author Autor del contingut
+     * @return String : contingut del document.
+     */
+    public String getContingut(String title, String author) {
+        File f = new File(getPathDoc(title, author));
+        try {
+            Scanner s = new Scanner(f);
+            String file = new String("");
+            while (s.hasNextLine()) file += s.nextLine();
+            s.close();
+
+            int i = 0;
+            while (i < file.length()) {
+                if (file.charAt(i) != '#') {
+                    ++i;
+                    continue;
+                }
+                //Llegir tag
+                String tag = new String("");
+                ++i;
+                while (file.charAt(i) != ':') {
+                    tag += file.charAt(i);
+                    ++i;
+                }
+                ++i;
+                if (tag.equals("CONTENT")) {
+                    //Llegir contingut
+                    String contingut = new String("");
+                    while (file.charAt(i) != '#') {
+                        contingut += file.charAt(i);
+                        ++i;
+                    }
+                    return contingut;
+                }
+                else {
+                    while (file.charAt(i) != '#') ++i;
+                }
+                ++i;
+            }
+        }
+        catch(Exception e) {
+            CtrlDomini.mostraError("S'ha produit un error al importar el fitxer " + f.getAbsolutePath() + ": error de lectura.");
+        }
+        CtrlDomini.mostraError("S'ha produit un error al importar el fitxer " + f.getAbsolutePath() + ": no s'ha trobat el contingut del fitxer.");
+        return null;
+    }
 }
