@@ -14,6 +14,7 @@ import net.miginfocom.swing.*;
  */
 public class PopupError extends JFrame {
 	public PopupError() {
+		this.setTitle("S'ha produit un error!");
 		initComponents();
 	}
 
