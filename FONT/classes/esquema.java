@@ -319,7 +319,7 @@ public class esquema  {
 		fc.addChoosableFileFilter(txt_filter);
 		FileNameExtensionFilter xml_filter = new FileNameExtensionFilter("Extensible Markup Language (*.xml)","xml");
 		fc.addChoosableFileFilter(xml_filter);
-		FileNameExtensionFilter yay_filter = new FileNameExtensionFilter("Propietary files (*.yay)","yay");
+		FileNameExtensionFilter yay_filter = new FileNameExtensionFilter("Yay format file (*.yay)","yay");
 		fc.addChoosableFileFilter(yay_filter);
 		fc.setFileFilter(txt_filter);
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -333,7 +333,6 @@ public class esquema  {
 		if (extension.equals("Plain text files  (*.txt)")) format = 0;
 		else if (extension.equals("Extensible Markup Language (*.xml)")) format = 1;
 		else if (extension.equals("Yay format file (*.yay)")) format = 2;
-
 		CP.exporta(titleautor[0], titleautor[1], format, file.getPath());
 	}
 
