@@ -417,7 +417,7 @@ public class esquema  {
 
 	public void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-		// Generated using JFormDesigner Evaluation license - Wilma Dickfit
+		// Generated using JFormDesigner Evaluation license - Oscar Ramos
 		frame1 = new JFrame();
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
@@ -533,11 +533,6 @@ public class esquema  {
 		label28 = new JLabel();
 		scrollPane15 = new JScrollPane();
 		list13 = new JList();
-		label15 = new JLabel();
-		radioButton14 = new JRadioButton();
-		radioButton15 = new JRadioButton();
-		radioButton16 = new JRadioButton();
-		radioButton17 = new JRadioButton();
 		button24 = new JButton();
 		panel12 = new JPanel();
 		label30 = new JLabel();
@@ -774,13 +769,13 @@ public class esquema  {
 
 				//======== panel2 ========
 				{
-					panel2.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
-					swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border
-					. TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog"
-					, java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,panel2. getBorder
-					() ) ); panel2. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
-					. beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException
-					( ) ;} } );
+					panel2.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
+					javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax
+					. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
+					.awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+					. Color. red) ,panel2. getBorder( )) ); panel2. addPropertyChangeListener (new java. beans.
+					PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .
+					equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 					panel2.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
@@ -1227,10 +1222,6 @@ public class esquema  {
 						"[]" +
 						"[]" +
 						"[]" +
-						"[]" +
-						"[]" +
-						"[]" +
-						"[]" +
 						"[]"));
 
 					//---- label26 ----
@@ -1281,27 +1272,6 @@ public class esquema  {
 					}
 					panel11.add(scrollPane15, "cell 0 9 2 1,width 300::300,height 150::150");
 
-					//---- label15 ----
-					label15.setText("Ordenar els Documents resultants per:");
-					panel11.add(label15, "cell 0 10 2 1");
-
-					//---- radioButton14 ----
-					radioButton14.setText("Ordre alfab\u00e8tic dels t\u00edtols");
-					radioButton14.setSelected(true);
-					panel11.add(radioButton14, "cell 0 11 2 1");
-
-					//---- radioButton15 ----
-					radioButton15.setText("Ordre alfab\u00e8tic dels autors");
-					panel11.add(radioButton15, "cell 0 12 2 1");
-
-					//---- radioButton16 ----
-					radioButton16.setText("Data de creaci\u00f3 (ascendentment)");
-					panel11.add(radioButton16, "cell 0 13 2 1");
-
-					//---- radioButton17 ----
-					radioButton17.setText("Documents Preferits / No Preferits");
-					panel11.add(radioButton17, "cell 0 14 2 1");
-
 					//---- button24 ----
 					button24.setText("Obrir");
 					button24.addMouseListener(new MouseAdapter() {
@@ -1310,7 +1280,7 @@ public class esquema  {
 							obrir_consulta_rell(e);
 						}
 					});
-					panel11.add(button24, "cell 1 15");
+					panel11.add(button24, "cell 1 11");
 				}
 				tabbedPane1.addTab("CR", panel11);
 
@@ -1804,17 +1774,6 @@ public class esquema  {
 		buttonGroup1.add(radioButton1);
 		buttonGroup1.add(radioButton2);
 
-		//---- buttonGroup5 ----
-		ButtonGroup buttonGroup5 = new ButtonGroup();
-		buttonGroup5.add(radioButton14);
-		buttonGroup5.add(radioButton15);
-		buttonGroup5.add(radioButton16);
-		buttonGroup5.add(radioButton17);
-		buttonGroup5.add(radioButton25);
-		buttonGroup5.add(radioButton26);
-		buttonGroup5.add(radioButton27);
-		buttonGroup5.add(radioButton28);
-
 		//---- buttonGroup6 ----
 		ButtonGroup buttonGroup6 = new ButtonGroup();
 		buttonGroup6.add(radioButton18);
@@ -1834,6 +1793,13 @@ public class esquema  {
 		buttonGroup2.add(radioButton4);
 		buttonGroup2.add(radioButton5);
 
+		//---- buttonGroup5 ----
+		ButtonGroup buttonGroup5 = new ButtonGroup();
+		buttonGroup5.add(radioButton25);
+		buttonGroup5.add(radioButton26);
+		buttonGroup5.add(radioButton27);
+		buttonGroup5.add(radioButton28);
+
 		//---- buttonGroup8 ----
 		ButtonGroup buttonGroup8 = new ButtonGroup();
 		buttonGroup8.add(radioButton29);
@@ -1844,7 +1810,7 @@ public class esquema  {
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-	// Generated using JFormDesigner Evaluation license - Wilma Dickfit
+	// Generated using JFormDesigner Evaluation license - Oscar Ramos
 	private JFrame frame1;
 	private JMenuBar menuBar1;
 	private JMenu menu1;
@@ -1960,11 +1926,6 @@ public class esquema  {
 	private JLabel label28;
 	private JScrollPane scrollPane15;
 	private JList list13;
-	private JLabel label15;
-	private JRadioButton radioButton14;
-	private JRadioButton radioButton15;
-	private JRadioButton radioButton16;
-	private JRadioButton radioButton17;
 	private JButton button24;
 	private JPanel panel12;
 	private JLabel label30;
