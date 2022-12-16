@@ -1,7 +1,8 @@
 package classes;
 
 import java.util.HashMap;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /** Contingut d'un document.
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
@@ -12,7 +13,32 @@ public class Contingut {
 	private Frase[] phrases;
 	private HashMap<Integer, Integer> words;
 	private int n_paraules;
-	
+
+	/** Mètode privat que ens descomposa una String 'frase' en una llista de Strings, que són les paraules
+	 *  que extraiem de 'frase'. Només es tenen en compte cadenes de lletres per a identificar les paraules.
+	 * 
+	 * @param frase La String que volem descomposar en paraules
+	 * @return Una llista de Strings, que representa la descomposició de 'frase' en paraules.
+	 */
+	static private ArrayList<String> decomposeWords(String frase) {
+        ArrayList<String> paraules = new ArrayList<>();
+        String a_insert = "";
+
+        for (char c: frase.toCharArray()) {
+            if (!Character.isLetter(c)) {
+                if (a_insert.length() != 0) {
+                    paraules.add(a_insert);
+                    a_insert = "";
+                }
+            }
+            else a_insert += c;
+        }
+		if (a_insert.length() != 0) paraules.add(a_insert);
+
+        return paraules;
+    }
+
+
 	/** Constructora per a la classe Contingut, que representa un contingut d'un document.
 	 * 
 	 * @param plaintext El text de tot el contingut com a String, tal i com va ser escrita per l'usuari.
@@ -45,7 +71,7 @@ public class Contingut {
 			}
 		}
 	}
-	
+
 	/** Funció que retorna la Term Frequency (TF) d'una paraula al contingut
 	 * 
 	 * @param index Índex de la paraula de la qual volem obtenir el TF.

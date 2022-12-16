@@ -11,9 +11,9 @@ public class Document {
 	private Frase author;
 	private Frase title;
 	private boolean isFav;
-	private String path;
 	private LocalDate date;
 	private Contingut cont;
+	private CtrlDomini CD;
 	
 	/**
 	 * Constructora d'un Document.
@@ -25,13 +25,13 @@ public class Document {
 	 * @param date Data de creació del document.
 	 * @param cont Contingut del document.
 	 */
-	public Document(Frase author, Frase title, boolean isFav, String path, LocalDate date, Contingut cont){
+	public Document(Frase author, Frase title, boolean isFav, String path, LocalDate date, Contingut cont, CtrlDomini CD){
 		this.author = author;
 		this.title = title;
 		this.isFav = isFav;
-		this.path = path;
 		this.date = date;
 		this.cont = cont;
+		this.CD = CD;
 	}
 	
 	/** Mètode setter per a l'atribut <i>isFav</i>
@@ -71,7 +71,16 @@ public class Document {
 	 * @return Contingut del document.
 	 */
 	public Contingut getContingut(){
-		return cont;
+		if (cont == null) return CD.generateContent(CD.getContingut(title.toString(), author.toString()));
+		else return cont;
+	}
+
+	/** Funció que elimina el contingut del document
+	 * 
+	 * @return void
+	 */
+	public void oblidaContingut(){
+		cont = null;
 	}
 	
 	/** Getter de la Frase Títol del document.
@@ -113,6 +122,7 @@ public class Document {
 	 */
 	public double getTFofWord(int index)
 	{
+		if (cont == null) return getContingut().getTFofWord(index);
 		return cont.getTFofWord(index);
 	}
 
@@ -121,6 +131,7 @@ public class Document {
 	 * @return Reotnra un HashMap que mapeja cada índex de paraula amb el seu TF (double) al contingut.
 	 */
 	public HashMap<Integer, Double> getTF(){
+		if (cont == null) return getContingut().getTF();
 		return cont.getTF();
 	}
 	
@@ -130,25 +141,11 @@ public class Document {
 	 * @return Booleà que indica si la seqüència 'seq' es troba al document (o al títol, o a l'autor, o al contingut).
 	 */
 	public boolean conteSequencia(String seq){
-		return (author.conteCaracters(seq) || title.conteCaracters(seq) || cont.conteSequencia(seq));
+		if (cont != null) return (author.conteCaracters(seq) || title.conteCaracters(seq) || cont.conteSequencia(seq));
+		return (author.conteCaracters(seq) || title.conteCaracters(seq) || getContingut().conteSequencia(seq));
 	}
 
-	/* 
-	public String toString(){
-		StringBuilder str = new StringBuilder("\n");
-		
-		str.append(title + "\n");
-		str.append(author + "\n\n");
-		str.append(cont + "\n\n");
-		
-		str.append("Date creation: "+date.toString()+" / Marked as favourite: ");
-		if (isFav) str.append("YES");
-		else str.append("NO");
 
-		str.append("\n");
-
-		return str.toString();
-	}*/
 
 	public String toString(){
 		return title + " ~ " + author;

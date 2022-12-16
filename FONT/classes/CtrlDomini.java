@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 /** Classe controladora de les classes de domini.
  * @author Alexandre Ros i Roger (alexandre.ros.roger@estudiantat.upc.edu)
@@ -165,6 +166,39 @@ public class CtrlDomini {
 		return lib.getDocument(nomAutor, nomTitol);
 	}
 	
+	public Frase[] generatePhrases(String plaintext){
+		String[] contarray = plaintext.split("\\p{Punct}");
+        ArrayList<String> content = new ArrayList<String>(Arrays.asList(contarray));
+
+		ArrayList<ArrayList<String>> contentdecomp = new ArrayList<ArrayList<String>>();
+
+		ArrayList<Paraula> arrWords = new ArrayList<Paraula>();
+
+		for (int s = 0; s < content.size(); ++s){
+			contentdecomp.add(decomposeWords(content.get(s)));
+		}
+
+		Frase[] cont = new Frase[contentdecomp.size()];
+
+		for (int w = 0; w < contentdecomp.size(); ++w){
+			ArrayList<String> currphrase = contentdecomp.get(w);
+			arrWords.clear();
+
+			for (int y = 0; y < currphrase.size(); ++y){
+				Paraula wd = vocab.inserirObtenirParaula(currphrase.get(y));
+				arrWords.add(wd);
+			}
+
+			cont[w] = new Frase(arrWords, content.get(w));
+		}
+
+		return cont;
+	}
+
+	public Contingut generateContent(String plaintext){
+		return new Contingut(plaintext, generatePhrases(plaintext));
+	}
+
 	public void crearDocument(String title, String author, ArrayList<String> content, String plaintext_cont, LocalDate dia, boolean isFav){
 		
 		ArrayList<String> titledecomp = decomposeWords(title);
@@ -210,11 +244,17 @@ public class CtrlDomini {
 
 		Contingut contentFinal = new Contingut(plaintext_cont, cont);
 		
-		Document doc = new Document(authorPhrase, titlePhrase, isFav, "NULL", dia, contentFinal);
+		Document doc = new Document(authorPhrase, titlePhrase, isFav, "NULL", dia, contentFinal, this);
+
+		System.out.println("a" + contentFinal.toString());
 
 		lib.addDocument(doc);
 
-		DISK.crearDocument(title, author, doc.getContingut().toString(), dia, isFav);
+		System.out.println("HELLO");
+
+		DISK.crearDocument(title, author, plaintext_cont, dia, isFav);
+
+		doc.oblidaContingut();
 	}
 
 	/** Funció que retorna el booleà de preferit d'un document
@@ -253,10 +293,9 @@ public class CtrlDomini {
 	 */
 
 	public String getContingut(String title, String author){
-		Pair<Document, Boolean> doc = getDocument(author, title);
-		if (!doc.getR()) return "";
+		String ptext = DISK.getContingut(title, author);
 
-		return doc.getL().getContingut().toString();
+		return ptext;
 	}
 
 	// PRECONDICIÓ: Existeix (title, author).
@@ -303,7 +342,7 @@ public class CtrlDomini {
 		documentsOldAuthor.remove(title);
 		documentsNewAuthor.getR().put(title, d);
 		DISK.esborrarDocument(title, oldAuth);
-		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), d.getContingut().toString(), d.getData(), d.getFavourite());
+		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), DISK.getContingut(d.getTitol().toString(), d.getAutor().toString()), d.getData(), d.getFavourite());
 	}
 
 	public void modificarContingut(String title, String author, ArrayList<String> content, String plaintext_content){
@@ -317,7 +356,7 @@ public class CtrlDomini {
 		eliminarDocument(title, author);
 		crearDocument(title, author, content, plaintext_content, dat, isFav);
 
-		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), d.getContingut().toString(), d.getData(), d.getFavourite());
+		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), DISK.getContingut(d.getTitol().toString(), d.getAutor().toString()), d.getData(), d.getFavourite());
 	}
 
 	public void modificarTitol(String oldTitle, String author, String newTitle){
@@ -340,7 +379,7 @@ public class CtrlDomini {
 		documentsAutor.put(newTitle, d);
 
 		DISK.esborrarDocument(oldTitle, author);
-		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), d.getContingut().toString(), d.getData(), d.getFavourite());
+		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), DISK.getContingut(d.getTitol().toString(), d.getAutor().toString()), d.getData(), d.getFavourite());
 	}
 
 
@@ -354,7 +393,9 @@ public class CtrlDomini {
 		// Rebaixar per 1 les ocurrències de cada paraula
 		Frase authorFrase = doc.getAutor();
 		Frase titleFrase  =doc.getTitol();
-		Contingut content = doc.getContingut();
+		String plaintext = DISK.getContingut(title, author);
+		//Contingut content = doc.getContingut();
+		Contingut content = new Contingut(plaintext, generatePhrases(plaintext));
 
 		Frase[] frasesContingut = content.getFrases();
 		ArrayList<Paraula[]> wordsContingut = new ArrayList<>();
@@ -488,7 +529,7 @@ public class CtrlDomini {
 		Document d = getDocument(author, title).getL();
 
 		d.setFavourite(!d.getFavourite());
-		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), d.getContingut().toString(), d.getData(), d.getFavourite());
+		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), DISK.getContingut(title, author), d.getData(), d.getFavourite());
 		return;
 	}
 
@@ -550,7 +591,8 @@ public class CtrlDomini {
 		}
 
 		Pair<Document, Boolean> docboolean = getDocument(autor, titol);
-		String content = docboolean.getL().getContingut().toString();
+		//String content = docboolean.getL().getContingut().toString();
+		String content = DISK.getContingut(docboolean.getL().getTitol().toString(), docboolean.getL().getAutor().toString());
 		LocalDate data = docboolean.getL().getData();
 		boolean isFav = docboolean.getL().getFavourite();
 
