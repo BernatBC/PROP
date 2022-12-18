@@ -481,7 +481,7 @@ public class esquema  {
 
 	public void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-		// Generated using JFormDesigner Evaluation license - Wilma Dickfit
+		// Generated using JFormDesigner Evaluation license - Alexandre Ros
 		frame1 = new JFrame();
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
@@ -1940,7 +1940,7 @@ public class esquema  {
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-	// Generated using JFormDesigner Evaluation license - Wilma Dickfit
+	// Generated using JFormDesigner Evaluation license - Alexandre Ros
 	private JFrame frame1;
 	private JMenuBar menuBar1;
 	private JMenu menu1;
