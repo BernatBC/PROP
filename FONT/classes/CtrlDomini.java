@@ -455,7 +455,7 @@ public class CtrlDomini {
 
 	public ArrayList<String> consultaTit(String autor, int criteria){
 		Set<Document> setdocs = ConsultaTitol.getDocAutor(new Frase(autor), lib.getArbre());
-		if (setdocs == null) return new ArrayList<>();
+		//if (setdocs == null) return new ArrayList<>();
 		ArrayList<Document> result = sortDocuments(setdocs, criteria);
 
 		ArrayList<String> myList = new ArrayList<>();

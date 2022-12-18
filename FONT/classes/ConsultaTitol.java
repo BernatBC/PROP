@@ -17,6 +17,8 @@ import java.util.Set;
     public static Set<Document> getDocAutor(Frase autor, TernaryTree<Pair<Frase, HashMap<String, Document>>> autor_documents) {
         Pair<Frase, HashMap<String, Document>> autorObtingut = autor_documents.obtenir(autor.toString(), 0);
         Set<Document> documents = new HashSet<>();
+        if (autorObtingut == null) return documents; // Si no hi ha titols de l'autor
+
         for (Document d : autorObtingut.getR().values()) documents.add(d);
         return documents;
     }
