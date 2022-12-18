@@ -314,12 +314,12 @@ public class esquema  {
 		//String filename = textField8.getText();
 
 		JFileChooser fc = new JFileChooser();
-		fc.setDialogTitle("Exporta");
+		fc.setDialogTitle("Exporta un fitxer");
 		FileNameExtensionFilter txt_filter = new FileNameExtensionFilter("Plain text files  (*.txt)","txt");
 		fc.addChoosableFileFilter(txt_filter);
 		FileNameExtensionFilter xml_filter = new FileNameExtensionFilter("Extensible Markup Language (*.xml)","xml");
 		fc.addChoosableFileFilter(xml_filter);
-		FileNameExtensionFilter yay_filter = new FileNameExtensionFilter("Propietary files (*.yay)","yay");
+		FileNameExtensionFilter yay_filter = new FileNameExtensionFilter("Yay format file (*.yay)","yay");
 		fc.addChoosableFileFilter(yay_filter);
 		fc.setFileFilter(txt_filter);
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -394,7 +394,7 @@ public class esquema  {
 
 	private void importar_pressed(MouseEvent e) {
 		JFileChooser fc = new JFileChooser();
-		fc.setDialogTitle("Importa");
+		fc.setDialogTitle("Importa un fitxer");
 		fc.setMultiSelectionEnabled(true);
 		FileNameExtensionFilter txt_filter = new FileNameExtensionFilter("Plain text files  (*.txt)","txt");
 		fc.addChoosableFileFilter(txt_filter);
@@ -406,7 +406,7 @@ public class esquema  {
 		fc.addChoosableFileFilter(yay_filter);
 		fc.setFileFilter(supported_filter);
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		int returnVal = fc.showSaveDialog(frame1);
+		int returnVal = fc.showOpenDialog(frame1);
 		File[] files = fc.getSelectedFiles();
 		for (File f : files) CP.importa(f.getPath());
 		
