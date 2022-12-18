@@ -21,6 +21,14 @@ public class ExpressioBooleanaCtrl{
         return SetDeExpressions.size();
     }
 
+    public ArrayList<String> getAllEBS(){
+        ArrayList<String> names = new ArrayList<>();
+
+        for (String s : SetDeExpressions.keySet()) names.add(s);
+
+        return names;
+    }
+
     public boolean existsEB(String nom){
         return SetDeExpressions.containsKey(nom);
     }

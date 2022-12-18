@@ -127,6 +127,10 @@ public class CtrlPresentacio {
         return CD.getAllDocs();
     }
 
+    public void novaEB(String cos, String nom){
+        CD.novaEB(nom, cos);
+    }
+
     public ArrayList<String> consultaData(String ant, String post, String option, int criteri){
         LocalDate before = LocalDate.MIN;
         LocalDate after  = LocalDate.MAX;
@@ -150,7 +154,10 @@ public class CtrlPresentacio {
         return CD.consultaData(before, after, criteri);
     }
 
+    public ArrayList<String> getEBS(){
 
+        return CD.getAllEBS();
+    }
 
     public void modificar_general(String autor, String titol, String contingut, Boolean isFav, String date, String newautor, String newtitol){
         if (!CD.docExists(titol, autor)){

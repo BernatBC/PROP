@@ -533,6 +533,10 @@ public class CtrlDomini {
 		DISK.crearExpressio(nom, noucos);
 	}
 
+	public ArrayList<String> getAllEBS(){
+		return EBC.getAllEBS();
+	}
+
 	public void eliminarEB(String nom){
 		EBC.DeleteExpressioBooleana(nom);
 		DISK.esborrarExpressio(nom);

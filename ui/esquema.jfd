@@ -870,6 +870,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button15"
 						"text": "Crea"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "alta_eb_pressed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 7"
 					} )
@@ -885,6 +886,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button16"
 						"text": "Mostra"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "mostra_ebs_guardades", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 1"
 					} )

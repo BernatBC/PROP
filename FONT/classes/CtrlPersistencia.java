@@ -430,7 +430,7 @@ public class CtrlPersistencia {
      */
     public void crearExpressio(String nom, String expressio) {
         try {
-            FileWriter f = new FileWriter(getPathExp(expressio));
+            FileWriter f = new FileWriter(getPathExp(nom));
             f.write("#NAME:" + nom + "#\n");
             f.write("#EXPRESSION:" + expressio + "#\n");
             f.close();
