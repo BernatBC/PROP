@@ -550,6 +550,10 @@ public class CtrlDomini {
 		return EBC.existsEB(name);
 	}
 
+	public String getCos(String name){
+		return EBC.getCos(name);
+	}
+
 	public ArrayList<String> consultaEB(String cos, String nom, int mode, int criteria)
 	{
 		Set<Document> setdoc;

@@ -131,6 +131,24 @@ public class CtrlPresentacio {
         CD.novaEB(nom, cos);
     }
 
+    public String getCos(String nom){
+        return CD.getCos(nom);
+    }
+
+    public void canviaEB(String nom, String noucos){
+        CD.canviarEB(nom, noucos);
+    }
+
+    public void eliminaEB(String nom)
+    {
+        CD.eliminarEB(nom);
+    }
+
+    public ArrayList<String> consultaEB(String cos, String nom, int mode, int criteria)
+    {
+        return CD.consultaEB(cos, nom, mode, criteria);
+    }
+
     public ArrayList<String> consultaData(String ant, String post, String option, int criteri){
         LocalDate before = LocalDate.MIN;
         LocalDate after  = LocalDate.MAX;

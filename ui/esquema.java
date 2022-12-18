@@ -38,7 +38,7 @@ public class esquema  {
 
 		textField2.setEditable(false);
 		textField3.setEditable(false);
-
+		textField21.setEditable(false);
 	}
 
 
@@ -430,6 +430,53 @@ public class esquema  {
 		updateJList(list16, expressions);
 	}
 
+	private void gestiona_eb_pressed(MouseEvent e) {
+		// Simplement significa mostrar-la als textfields 21 i 22
+		String eb = (String) list16.getSelectedValue();
+		textField21.setText(eb);
+		textField22.setText(CP.getCos(eb));
+
+	}
+
+	private void actualitza_eb_pressed(MouseEvent e) {
+		String nom = textField21.getText();
+		String cos = textField22.getText();
+
+		CP.canviaEB(nom, cos);
+	}
+
+	private void esborra_eb_pressed(MouseEvent e) {
+		String nom = textField21.getText();
+		CP.eliminaEB(nom);
+		textField21.setText("");
+		textField22.setText("");
+		mostra_ebs_guardades(e);
+	}
+
+	private void search_eb_pressed(MouseEvent e) {
+		boolean directa = radioButton12.isSelected();
+
+		int criteri;
+		if (radioButton29.isSelected()) criteri = 3;
+		else if (radioButton30.isSelected()) criteri = 2;
+		else if (radioButton31.isSelected()) criteri = 0;
+		else criteri = 1;
+
+		ArrayList<String> docs;
+
+		if (directa){
+			docs = CP.consultaEB(textField24.getText(), "", 1, criteri); 
+		} else docs = CP.consultaEB("", textField23.getText(), 0, criteri);
+		
+		updateJList(list17, docs);
+
+		
+	}
+
+	private void obrir_eb_pressed(MouseEvent e) {
+		obrir_seleccio_llista(list17);
+	}
+
 	/** -- FINAL APARTAT SIGNALS. A partir d'aquí es modificarà amb JFormDesigner. */
 
 	public void initComponents() {
@@ -612,12 +659,16 @@ public class esquema  {
 		label43 = new JLabel();
 		textField22 = new JTextField();
 		button18 = new JButton();
-		button19 = new JButton();
 		button17 = new JButton();
 		panel17 = new JPanel();
 		label44 = new JLabel();
 		scrollPane20 = new JScrollPane();
 		textField23 = new JTextField();
+		label15 = new JLabel();
+		textField24 = new JTextField();
+		label49 = new JLabel();
+		radioButton13 = new JRadioButton();
+		radioButton12 = new JRadioButton();
 		button20 = new JButton();
 		label45 = new JLabel();
 		scrollPane21 = new JScrollPane();
@@ -786,13 +837,12 @@ public class esquema  {
 
 				//======== panel2 ========
 				{
-					panel2.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
-					. swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing
-					.border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
-					Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
-					) ,panel2. getBorder () ) ); panel2. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
-					public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName (
-					) ) )throw new RuntimeException( ) ;} } );
+					panel2.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+					( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+					. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt
+					. Color. red) ,panel2. getBorder( )) ); panel2. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+					propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
+					; }} );
 					panel2.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
@@ -1648,6 +1698,12 @@ public class esquema  {
 
 					//---- button28 ----
 					button28.setText("Gestiona");
+					button28.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							gestiona_eb_pressed(e);
+						}
+					});
 					panel16.add(button28, "cell 0 5");
 
 					//---- label42 ----
@@ -1662,14 +1718,22 @@ public class esquema  {
 
 					//---- button18 ----
 					button18.setText("Actualitza");
+					button18.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							actualitza_eb_pressed(e);
+						}
+					});
 					panel16.add(button18, "cell 0 10");
-
-					//---- button19 ----
-					button19.setText("Cerca per aquesta expressi\u00f3");
-					panel16.add(button19, "cell 0 11");
 
 					//---- button17 ----
 					button17.setText("Esborra");
+					button17.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							esborra_eb_pressed(e);
+						}
+					});
 					panel16.add(button17, "cell 0 12");
 				}
 				tabbedPane1.addTab("GEB", panel16);
@@ -1694,10 +1758,12 @@ public class esquema  {
 						"[]" +
 						"[]" +
 						"[]" +
+						"[]" +
+						"[]" +
 						"[]"));
 
 					//---- label44 ----
-					label44.setText("Escriu l'expressi\u00f3 per cercar");
+					label44.setText("Escriu el nom de l'expressi\u00f3");
 					panel17.add(label44, "cell 0 0 2 1");
 
 					//======== scrollPane20 ========
@@ -1706,44 +1772,74 @@ public class esquema  {
 					}
 					panel17.add(scrollPane20, "cell 0 1 2 1,growx,width 300::300");
 
+					//---- label15 ----
+					label15.setText("Escriu el cos d'una expressi\u00f3 directa:");
+					panel17.add(label15, "cell 0 2");
+					panel17.add(textField24, "cell 0 3 2 1");
+
+					//---- label49 ----
+					label49.setText("Vull cercar per:");
+					panel17.add(label49, "cell 0 4");
+
+					//---- radioButton13 ----
+					radioButton13.setText("Expressi\u00f3 amb nom");
+					radioButton13.setSelected(true);
+					panel17.add(radioButton13, "cell 0 5");
+
+					//---- radioButton12 ----
+					radioButton12.setText("Expressi\u00f3 directa");
+					panel17.add(radioButton12, "cell 0 5");
+
 					//---- button20 ----
 					button20.setText("Search");
-					panel17.add(button20, "cell 0 3 2 1");
+					button20.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							search_eb_pressed(e);
+						}
+					});
+					panel17.add(button20, "cell 0 6 2 1");
 
 					//---- label45 ----
 					label45.setText("Documents que compleixen l'expressi\u00f3:");
-					panel17.add(label45, "cell 0 5 2 1");
+					panel17.add(label45, "cell 0 7 2 1");
 
 					//======== scrollPane21 ========
 					{
 						scrollPane21.setViewportView(list17);
 					}
-					panel17.add(scrollPane21, "cell 0 6 2 1,width 300::300,height 150::150");
+					panel17.add(scrollPane21, "cell 0 8 2 1,width 300::300,height 150::150");
 
 					//---- label41 ----
 					label41.setText("Ordenar els Documents resultants per:");
-					panel17.add(label41, "cell 0 7 2 1");
+					panel17.add(label41, "cell 0 9 2 1");
 
 					//---- radioButton29 ----
 					radioButton29.setText("Ordre alfab\u00e8tic dels t\u00edtols");
 					radioButton29.setSelected(true);
-					panel17.add(radioButton29, "cell 0 8 2 1");
+					panel17.add(radioButton29, "cell 0 10 2 1");
 
 					//---- radioButton30 ----
 					radioButton30.setText("Ordre alfab\u00e8tic dels autors");
-					panel17.add(radioButton30, "cell 0 9 2 1");
+					panel17.add(radioButton30, "cell 0 11 2 1");
 
 					//---- radioButton31 ----
 					radioButton31.setText("Data de creaci\u00f3 (ascendentment)");
-					panel17.add(radioButton31, "cell 0 10 2 1");
+					panel17.add(radioButton31, "cell 0 12 2 1");
 
 					//---- radioButton32 ----
 					radioButton32.setText("Documents Preferits / No Preferits");
-					panel17.add(radioButton32, "cell 0 11 2 1");
+					panel17.add(radioButton32, "cell 0 13 2 1");
 
 					//---- button29 ----
 					button29.setText("Obrir");
-					panel17.add(button29, "cell 1 12");
+					button29.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							obrir_eb_pressed(e);
+						}
+					});
+					panel17.add(button29, "cell 1 14");
 				}
 				tabbedPane1.addTab("CB", panel17);
 
@@ -1828,6 +1924,11 @@ public class esquema  {
 		buttonGroup5.add(radioButton26);
 		buttonGroup5.add(radioButton27);
 		buttonGroup5.add(radioButton28);
+
+		//---- buttonGroup10 ----
+		ButtonGroup buttonGroup10 = new ButtonGroup();
+		buttonGroup10.add(radioButton13);
+		buttonGroup10.add(radioButton12);
 
 		//---- buttonGroup8 ----
 		ButtonGroup buttonGroup8 = new ButtonGroup();
@@ -2017,12 +2118,16 @@ public class esquema  {
 	private JLabel label43;
 	private JTextField textField22;
 	private JButton button18;
-	private JButton button19;
 	private JButton button17;
 	private JPanel panel17;
 	private JLabel label44;
 	private JScrollPane scrollPane20;
 	private JTextField textField23;
+	private JLabel label15;
+	private JTextField textField24;
+	private JLabel label49;
+	private JRadioButton radioButton13;
+	private JRadioButton radioButton12;
 	private JButton button20;
 	private JLabel label45;
 	private JScrollPane scrollPane21;
