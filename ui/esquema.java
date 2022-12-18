@@ -197,7 +197,11 @@ public class esquema  {
 		ArrayList<String> doc = CP.consultaDocument(autor, titol);
 
 		textField3.setText(doc.get(0));
+		textField5.setText(doc.get(0));
+
 		textField2.setText(doc.get(1));
+		textField8.setText(doc.get(1));
+
 		checkBox1.setSelected(doc.get(2) == "Y");
 		textField4.setText(doc.get(3));
 		textField1.setText(doc.get(4));
