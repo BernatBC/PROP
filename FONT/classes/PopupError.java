@@ -9,23 +9,37 @@ import net.miginfocom.swing.*;
 
 
 
-/**
+/** Classe que conté la interfície gràfica dels popups d'error.
  * @author Bernat Borràs
  */
 public class PopupError extends JFrame {
+
+	/**
+	 * Constructora per defecte.
+	 */
 	public PopupError() {
 		this.setTitle("S'ha produit un error!");
 		initComponents();
 	}
 
+	/**
+	 * Amagar el popup al pulsar el botó "D'acord".
+	 * @param e MouseEvent.
+	 */
 	private void okButtonMouseReleased(MouseEvent e) {
 		this.setVisible(false);
 	}
 
+	/**
+	 * Assigna el missatge d'error al label corresponent.
+	 */
 	public void SetMissatge(String missatge) {
 		label1.setText("<html><p style=\"width:600px\">" + missatge + "</p></html>");
 	}
 
+	/**
+	 * Inicialitza els components de l'interfície.
+	 */
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
 		// Generated using JFormDesigner Evaluation license - Bernat Borràs

@@ -21,7 +21,7 @@ public class CtrlPersistencia {
 
     /**
      * Constructora per defecte.
-     * @param controladorDomini Controlador de domini.
+     * @param controladorDomini Controlador de la capa de domini.
      */
     public CtrlPersistencia(CtrlDomini controladorDomini) {
         domini = controladorDomini;
@@ -56,7 +56,7 @@ public class CtrlPersistencia {
 
     /**
      * Importa un fitxer TXT a l'aplicació.
-     * @param f document.
+     * @param f fitxer a importar.
      */
     private void importTXT(File f) {
         try {
@@ -93,7 +93,7 @@ public class CtrlPersistencia {
 
     /**
      * Importa un fitxer XML a l'aplicació.
-     * @param f document.
+     * @param f fitxer a importar.
      */
     private void importXML(File f) {
         try {
@@ -149,6 +149,11 @@ public class CtrlPersistencia {
         }
     }
 
+    /**
+     * Converteix la data en format string a LocalDate.
+     * @param date data en format string.
+     * @return LocalDate : data en format LocalDate.
+     */
     private LocalDate stringToDate(String date) {
         int year = Integer.parseInt(date.substring(0, 4));
         int month = Integer.parseInt(date.substring(5, 7));
@@ -163,7 +168,7 @@ public class CtrlPersistencia {
 
     /**
      * Importa un fitxer YAY a l'aplicació.
-     * @param f document.
+     * @param f fitxer a importar.
      */
     private void importYAY(File f) {
         try {
@@ -388,7 +393,7 @@ public class CtrlPersistencia {
     }
 
     /**
-     * Crea un fitxer nou per al document creeat.
+     * Crea un fitxer nou per al document creeat, o sobreescriu si ja existeix al directori DATA/Documents.
      * @param title Títol.
      * @param author Autor.
      * @param content Contingut.
@@ -414,7 +419,7 @@ public class CtrlPersistencia {
     }
 
     /**
-     * Esborra el document.
+     * Esborra el document del directori DATA/Documents.
      * @param title Títol.
      * @param author Autor.
      */
@@ -424,7 +429,7 @@ public class CtrlPersistencia {
     }
 
     /**
-     * Crea un fitxer nou per a l'expressió creada.
+     * Crea un fitxer nou per a l'expressió creada al directori DATA/Expressions.
      * @param nom Nom de l'expressió boobleana.
      * @param expressio Expressió booleana
      */
@@ -441,7 +446,7 @@ public class CtrlPersistencia {
     }
 
     /**
-     * Esborra el fitxer de l'expressió creada.
+     * Esborra el fitxer de l'expressió creada del directori DATA/Expressions.
      * @param nom Nom de l'expressió boobleana.
      */
     public void esborrarExpressio(String nom) {
