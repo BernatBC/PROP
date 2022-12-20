@@ -368,6 +368,9 @@ public class CtrlDomini {
 
 		Frase titolFrase = new Frase(arrWords, newTitle);
 
+		String cont = DISK.getContingut(d.getTitol().toString(), d.getAutor().toString());
+
+
 		d.setTitol(titolFrase);
 
 		HashMap<String, Document> documentsAutor = lib.getArbre().obtenir(author, 0).getR();
@@ -375,7 +378,8 @@ public class CtrlDomini {
 		documentsAutor.put(newTitle, d);
 
 		DISK.esborrarDocument(oldTitle, author);
-		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), DISK.getContingut(d.getTitol().toString(), d.getAutor().toString()), d.getData(), d.getFavourite());
+		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), cont, d.getData(), d.getFavourite());
+
 	}
 
 
