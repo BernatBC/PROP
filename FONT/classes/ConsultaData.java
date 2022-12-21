@@ -16,9 +16,49 @@ public class ConsultaData {
     public static ArrayList<Document> consulta(ArrayList<Document> documents, LocalDate anterior, LocalDate posterior) {
         int i = 0;
         int j = documents.size() - 1;
+        int iaux = 0; //m en la primera cerca
+        while (i <= j) {
+            iaux = i + (j - i) / 2;
 
-        while (i < documents.size() && documents.get(i).getData().isBefore(anterior)) ++i;
-        while (j >= 0 && documents.get(j).getData().isAfter(posterior)) --j;
+            if (documents.get(iaux).getData().isEqual(anterior)) {
+                /** en cas d'empat anem a buscar el primer element */
+                while (iaux > 0 && documents.get(iaux-1).getData().isEqual(anterior)) --iaux;
+                break;
+            }
+
+            if (documents.get(iaux).getData().isAfter(anterior)) {
+                j = iaux-1;
+            }
+
+            else i = iaux+1;
+
+        }
+
+        i = 0;
+        j = documents.size() - 1;
+        int jaux = 0;
+        while (i <= j) {
+            jaux = i + (j - i) / 2;
+
+            if (documents.get(jaux).getData().isEqual(posterior)) {
+                /** en cas d'empat anem a buscar el primer element */
+                while (jaux < documents.size() -1 && documents.get(jaux+1).getData().isEqual(posterior)) ++jaux;
+                break;
+            }
+
+            if (documents.get(jaux).getData().isAfter(posterior)) {
+                j = jaux-1;
+            }
+
+            else i = jaux+1;
+
+        }
+
+        i = iaux;
+        j = jaux;
+
+        //while (i < documents.size() && documents.get(i).getData().isBefore(anterior)) ++i;
+        //while (j >= 0 && documents.get(j).getData().isAfter(posterior)) --j;
 
         ArrayList<Document> interval = new ArrayList<>();
 
