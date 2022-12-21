@@ -883,13 +883,6 @@ new FormModel {
 					"$rowConstraints": "[15:n:15][][20:n:20][][][][][][][][][][]"
 				} ) {
 					name: "panel16"
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button16"
-						"text": "Mostra"
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "mostra_ebs_guardades", true ) )
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 1"
-					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label40"
 						"text": "Expressions guardades:"

@@ -245,6 +245,7 @@ public class CtrlPresentacio {
         mainframe.setVisible(true);
         CD.importSaved();
         ESQ.update_doc_lists();
+        ESQ.mostra_ebs_guardades(null);
     }
 
     public static void main(String[] args){

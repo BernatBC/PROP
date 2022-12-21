@@ -422,9 +422,10 @@ public class esquema  {
 		String nom = textField20.getText();
 
 		CP.novaEB(cos, nom);
+		mostra_ebs_guardades(e);
 	}
 
-	private void mostra_ebs_guardades(MouseEvent e) {
+	public void mostra_ebs_guardades(MouseEvent e) {
 		ArrayList<String> expressions = CP.getEBS();
 
 		updateJList(list16, expressions);
@@ -481,7 +482,7 @@ public class esquema  {
 
 	public void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-		// Generated using JFormDesigner Evaluation license - Alexandre Ros
+		// Generated using JFormDesigner Evaluation license - Wilma Dickfit
 		frame1 = new JFrame();
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
@@ -649,7 +650,6 @@ public class esquema  {
 		textField20 = new JTextField();
 		button15 = new JButton();
 		panel16 = new JPanel();
-		button16 = new JButton();
 		label40 = new JLabel();
 		scrollPane18 = new JScrollPane();
 		list16 = new JList();
@@ -837,12 +837,12 @@ public class esquema  {
 
 				//======== panel2 ========
 				{
-					panel2.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-					( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-					. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt
-					. Color. red) ,panel2. getBorder( )) ); panel2. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-					propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
-					; }} );
+					panel2.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
+					EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER ,javax . swing
+					. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,
+					java . awt. Color .red ) ,panel2. getBorder () ) ); panel2. addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
+					{ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName () ) )
+					throw new RuntimeException( ) ;} } );
 					panel2.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
@@ -1676,16 +1676,6 @@ public class esquema  {
 						"[]" +
 						"[]"));
 
-					//---- button16 ----
-					button16.setText("Mostra");
-					button16.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							mostra_ebs_guardades(e);
-						}
-					});
-					panel16.add(button16, "cell 0 1");
-
 					//---- label40 ----
 					label40.setText("Expressions guardades:");
 					panel16.add(label40, "cell 0 3");
@@ -1940,7 +1930,7 @@ public class esquema  {
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-	// Generated using JFormDesigner Evaluation license - Alexandre Ros
+	// Generated using JFormDesigner Evaluation license - Wilma Dickfit
 	private JFrame frame1;
 	private JMenuBar menuBar1;
 	private JMenu menu1;
@@ -2108,7 +2098,6 @@ public class esquema  {
 	private JTextField textField20;
 	private JButton button15;
 	private JPanel panel16;
-	private JButton button16;
 	private JLabel label40;
 	private JScrollPane scrollPane18;
 	private JList list16;
