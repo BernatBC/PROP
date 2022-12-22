@@ -99,7 +99,7 @@ public class CtrlPersistencia {
         try {
             Scanner s = new Scanner(f);
             String file = new String("");
-            while (s.hasNextLine()) file += s.nextLine();
+            while (s.hasNextLine()) file += s.nextLine()  + '\n';;
             s.close();
 
             String author = new String("");
@@ -174,7 +174,7 @@ public class CtrlPersistencia {
         try {
             Scanner s = new Scanner(f);
             String file = new String("");
-            while (s.hasNextLine()) file += s.nextLine();
+            while (s.hasNextLine()) file += s.nextLine() + '\n';
             s.close();
             
             String author = new String("");
@@ -414,6 +414,7 @@ public class CtrlPersistencia {
         }
     }
 
+
     /**
      * Esborra el document del directori DATA/Documents.
      * @param title Títol.
@@ -461,7 +462,7 @@ public class CtrlPersistencia {
         try {
             Scanner s = new Scanner(f);
             String file = new String("");
-            while (s.hasNextLine()) file += s.nextLine();
+            while (s.hasNextLine()) file += s.nextLine() + "\n";
             s.close();
 
             int i = 0;
