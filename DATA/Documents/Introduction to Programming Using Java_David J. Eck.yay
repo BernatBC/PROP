@@ -1,0 +1,7 @@
+#TITLE:Introduction to Programming Using Java#
+#AUTHOR:David J. Eck#
+#DATE:2006-12-04#
+#FAVOURITE:False#
+#CONTENT:
+PrefaceIntroduction to Programming Using Java is a free introductory computer programmingtextbook that uses Java as the language of instruction. It is suitable for use in an introductoryprogramming course and for people who are trying to learn programming on their own. Thereare no prerequisites beyond a general familiarity with the ideas of computers and programs.There is enough material for a full year of college-level programming. Chapters 1 through 7can be used as a textbook in a one-semester college-level course or in a year-long high schoolcourse.This version of the book covers “Java 5.0”, and many of the examples use features that werenot present in earlier versions of Java. (Sometimes, you will see this version of Java referredto as Java 1.5 instead of Java 5.0.) Note that Java applets appear throughout the pages of theon-line version of this book. Many of those applets will be non-functional in Web browsers thatdo not support Java 5.0.The home web site for this book is http://math.hws.edu/javanotes/. The page at thataddress contains links for downloading a copy of the web site and for downloading a PDFversion of the book.
+#

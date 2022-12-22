@@ -361,16 +361,12 @@ public class CtrlPersistencia {
         File doc_folder = new File(PATH + "Documents/");
         File[] documents = doc_folder.listFiles();
 
-        if (documents != null) for (File d : documents) {
-            importYAY(d);
-        }
+        if (documents != null) for (File d : documents) importYAY(d);
 
         File exp_folder = new File(PATH + "Expressions/");
         File[] expressions = exp_folder.listFiles();
         
-        if (expressions != null) for (File e : expressions) {
-            importarExpressio(e);
-        }
+        if (expressions != null) for (File e : expressions) importarExpressio(e);
     }
     
     /**
