@@ -489,7 +489,7 @@ public class esquema  {
 
 	public void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-		// Generated using JFormDesigner Evaluation license - Wilma Dickfit
+		// Generated using JFormDesigner Evaluation license - Oscar Ramos
 		frame1 = new JFrame();
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
@@ -1879,31 +1879,31 @@ public class esquema  {
 
 					//---- label44 ----
 					label44.setText("Escriu el nom de l'expressi\u00f3");
-					panel17.add(label44, "cell 0 0 2 1");
+					panel17.add(label44, "cell 0 0 3 1");
 
 					//======== scrollPane20 ========
 					{
 						scrollPane20.setViewportView(textField23);
 					}
-					panel17.add(scrollPane20, "cell 0 1 2 1,growx,width 300::300");
+					panel17.add(scrollPane20, "cell 0 1 3 1,growx,width 300::300");
 
 					//---- label15 ----
 					label15.setText("Escriu el cos d'una expressi\u00f3 directa:");
-					panel17.add(label15, "cell 0 2");
+					panel17.add(label15, "cell 0 2 2 1");
 					panel17.add(textField24, "cell 0 3 2 1");
 
 					//---- label49 ----
 					label49.setText("Vull cercar per:");
-					panel17.add(label49, "cell 0 4");
+					panel17.add(label49, "cell 0 4 2 1");
 
 					//---- radioButton13 ----
 					radioButton13.setText("Expressi\u00f3 amb nom");
 					radioButton13.setSelected(true);
-					panel17.add(radioButton13, "cell 0 5");
+					panel17.add(radioButton13, "cell 0 5 2 1");
 
 					//---- radioButton12 ----
 					radioButton12.setText("Expressi\u00f3 directa");
-					panel17.add(radioButton12, "cell 0 5");
+					panel17.add(radioButton12, "cell 0 5 2 1");
 
 					//---- button20 ----
 					button20.setText("Search");
@@ -1917,34 +1917,34 @@ public class esquema  {
 
 					//---- label45 ----
 					label45.setText("Documents que compleixen l'expressi\u00f3:");
-					panel17.add(label45, "cell 0 7 2 1");
+					panel17.add(label45, "cell 0 7 3 1");
 
 					//======== scrollPane21 ========
 					{
 						scrollPane21.setViewportView(list17);
 					}
-					panel17.add(scrollPane21, "cell 0 8 2 1,width 300::300,height 150::150");
+					panel17.add(scrollPane21, "cell 0 8 3 1,width 300::300,height 150::150");
 
 					//---- label41 ----
 					label41.setText("Ordenar els Documents resultants per:");
-					panel17.add(label41, "cell 0 9 2 1");
+					panel17.add(label41, "cell 0 9 3 1");
 
 					//---- radioButton29 ----
 					radioButton29.setText("Ordre alfab\u00e8tic dels t\u00edtols");
 					radioButton29.setSelected(true);
-					panel17.add(radioButton29, "cell 0 10 2 1");
+					panel17.add(radioButton29, "cell 0 10 3 1");
 
 					//---- radioButton30 ----
 					radioButton30.setText("Ordre alfab\u00e8tic dels autors");
-					panel17.add(radioButton30, "cell 0 11 2 1");
+					panel17.add(radioButton30, "cell 0 11 3 1");
 
 					//---- radioButton31 ----
 					radioButton31.setText("Data de creaci\u00f3 (ascendentment)");
-					panel17.add(radioButton31, "cell 0 12 2 1");
+					panel17.add(radioButton31, "cell 0 12 3 1");
 
 					//---- radioButton32 ----
 					radioButton32.setText("Documents Preferits / No Preferits");
-					panel17.add(radioButton32, "cell 0 13 2 1");
+					panel17.add(radioButton32, "cell 0 13 3 1");
 
 					//---- button29 ----
 					button29.setText("Obrir");
@@ -2055,7 +2055,7 @@ public class esquema  {
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-	// Generated using JFormDesigner Evaluation license - Wilma Dickfit
+	// Generated using JFormDesigner Evaluation license - Oscar Ramos
 	private JFrame frame1;
 	private JMenuBar menuBar1;
 	private JMenu menu1;
