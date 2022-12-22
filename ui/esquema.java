@@ -558,7 +558,6 @@ public class esquema  {
 		list8 = new JList();
 		label10 = new JLabel();
 		radioButton6 = new JRadioButton();
-		radioButton7 = new JRadioButton();
 		radioButton8 = new JRadioButton();
 		radioButton9 = new JRadioButton();
 		button21 = new JButton();
@@ -844,13 +843,13 @@ public class esquema  {
 
 				//======== panel2 ========
 				{
-					panel2.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
-					. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder
-					. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .
-					awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,panel2. getBorder () ) )
-					; panel2. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
-					) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
-					;
+					panel2.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
+					swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border
+					. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog"
+					,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,panel2. getBorder
+					( )) ); panel2. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
+					.beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException
+					( ); }} );
 					panel2.setLayout(new MigLayout(
 						"hidemode 3",
 						// columns
@@ -1071,17 +1070,13 @@ public class esquema  {
 					radioButton6.setSelected(true);
 					panel7.add(radioButton6, "cell 0 8 2 1");
 
-					//---- radioButton7 ----
-					radioButton7.setText("Ordre alfab\u00e8tic dels autors");
-					panel7.add(radioButton7, "cell 0 9 2 1");
-
 					//---- radioButton8 ----
 					radioButton8.setText("Data de creaci\u00f3 (ascendentment)");
-					panel7.add(radioButton8, "cell 0 10 2 1");
+					panel7.add(radioButton8, "cell 0 9 2 1");
 
 					//---- radioButton9 ----
 					radioButton9.setText("Documents Preferits / No Preferits");
-					panel7.add(radioButton9, "cell 0 11 2 1");
+					panel7.add(radioButton9, "cell 0 10 2 1");
 
 					//---- button21 ----
 					button21.setText("Obrir");
@@ -1883,7 +1878,6 @@ public class esquema  {
 		//---- buttonGroup3 ----
 		ButtonGroup buttonGroup3 = new ButtonGroup();
 		buttonGroup3.add(radioButton6);
-		buttonGroup3.add(radioButton7);
 		buttonGroup3.add(radioButton8);
 		buttonGroup3.add(radioButton9);
 
@@ -2007,7 +2001,6 @@ public class esquema  {
 	private JList list8;
 	private JLabel label10;
 	private JRadioButton radioButton6;
-	private JRadioButton radioButton7;
 	private JRadioButton radioButton8;
 	private JRadioButton radioButton9;
 	private JButton button21;

@@ -276,25 +276,18 @@ new FormModel {
 						"value": "cell 0 8 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
-						name: "radioButton7"
-						"text": "Ordre alfabètic dels autors"
-						"$buttonGroup": new FormReference( "buttonGroup3" )
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 9 2 1"
-					} )
-					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "radioButton8"
 						"text": "Data de creació (ascendentment)"
 						"$buttonGroup": new FormReference( "buttonGroup3" )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 10 2 1"
+						"value": "cell 0 9 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "radioButton9"
 						"text": "Documents Preferits / No Preferits"
 						"$buttonGroup": new FormReference( "buttonGroup3" )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 11 2 1"
+						"value": "cell 0 10 2 1"
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button21"
