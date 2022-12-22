@@ -404,9 +404,8 @@ public class CtrlPersistencia {
             f.write("#DATE:" + date + "#\n");
             if (preferit) f.write("#FAVOURITE:True#\n");
             else f.write("#FAVOURITE:False#\n");
-            f.write("#CONTENT:\n");
-            f.write(content + "\n");
-            f.write("#\n");
+            f.write("#CONTENT:");
+            f.write(content + "#\n");
             f.close();
         }
         catch(Exception e) {
