@@ -488,7 +488,7 @@ public class esquema  {
 
 	public void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-		// Generated using JFormDesigner Evaluation license - Oscar Ramos
+		// Generated using JFormDesigner Evaluation license - PROP
 		frame1 = new JFrame();
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
@@ -1781,6 +1781,7 @@ public class esquema  {
 						// columns
 						"[fill]",
 						// rows
+						"[]" +
 						"[15:n:15]" +
 						"[]" +
 						"[20:n:20]" +
@@ -1797,13 +1798,13 @@ public class esquema  {
 
 					//---- label40 ----
 					label40.setText("Expressions guardades:");
-					panel16.add(label40, "cell 0 3");
+					panel16.add(label40, "cell 0 4");
 
 					//======== scrollPane18 ========
 					{
 						scrollPane18.setViewportView(list16);
 					}
-					panel16.add(scrollPane18, "cell 0 4,growx,width 300::300");
+					panel16.add(scrollPane18, "cell 0 5,growx,width 300::300,hmin 150");
 
 					//---- button28 ----
 					button28.setText("Gestiona");
@@ -1813,17 +1814,17 @@ public class esquema  {
 							gestiona_eb_pressed(e);
 						}
 					});
-					panel16.add(button28, "cell 0 5");
+					panel16.add(button28, "cell 0 6");
 
 					//---- label42 ----
 					label42.setText("Nom");
-					panel16.add(label42, "cell 0 6");
-					panel16.add(textField21, "cell 0 7");
+					panel16.add(label42, "cell 0 7");
+					panel16.add(textField21, "cell 0 8");
 
 					//---- label43 ----
 					label43.setText("Expressi\u00f3");
-					panel16.add(label43, "cell 0 8");
-					panel16.add(textField22, "cell 0 9");
+					panel16.add(label43, "cell 0 9");
+					panel16.add(textField22, "cell 0 10");
 
 					//---- button18 ----
 					button18.setText("Actualitza");
@@ -1833,7 +1834,7 @@ public class esquema  {
 							actualitza_eb_pressed(e);
 						}
 					});
-					panel16.add(button18, "cell 0 10");
+					panel16.add(button18, "cell 0 11");
 
 					//---- button17 ----
 					button17.setText("Esborra");
@@ -1843,7 +1844,7 @@ public class esquema  {
 							esborra_eb_pressed(e);
 						}
 					});
-					panel16.add(button17, "cell 0 12");
+					panel16.add(button17, "cell 0 13");
 				}
 				tabbedPane1.addTab("GEB", panel16);
 
@@ -2048,7 +2049,7 @@ public class esquema  {
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-	// Generated using JFormDesigner Evaluation license - Oscar Ramos
+	// Generated using JFormDesigner Evaluation license - PROP
 	private JFrame frame1;
 	private JMenuBar menuBar1;
 	private JMenu menu1;
