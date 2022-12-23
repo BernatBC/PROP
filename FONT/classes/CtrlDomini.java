@@ -66,7 +66,13 @@ public class CtrlDomini {
 		}
 	};
 
-
+	/** Mètode public per a determinar si un document existeix o no.
+	 * 
+	 * @param title Títol del document a cercar
+	 * @param author Autor del document a cercar
+	 * 
+	 * @return Booleà que estarà a <b>true</b> si, i només si,  
+	 */
 	public boolean docExists(String title, String author){
 		return lib.getDocument(author, title).getR();
 	}
@@ -166,6 +172,11 @@ public class CtrlDomini {
 		return lib.getDocument(nomAutor, nomTitol);
 	}
 	
+	/** Mètode públic per a generar les frases a partir del plaintext d'un document.
+	 * 
+	 * @param plaintext El plaintext del qual volem extreure'n les frases.
+	 * @return Una array de referències a objectes Frase, la unió dels quals composa el plaintext.
+	 */
 	public Frase[] generatePhrases(String plaintext){
 		String[] contarray = plaintext.split("\\p{Punct}");
         ArrayList<String> content = new ArrayList<String>(Arrays.asList(contarray));
@@ -195,10 +206,23 @@ public class CtrlDomini {
 		return cont;
 	}
 
+	/** Mètode públic per a generar un objecte Contingut donat el seu plaintext.
+	 * 
+	 * @return Una referència a l'objecte Contingut generat.
+	 */
 	public Contingut generateContent(String plaintext){
 		return new Contingut(plaintext, generatePhrases(plaintext));
 	}
 
+	/** Mètode públic per a crear un document.
+	 * 
+	 * @param title Títol del document a crear
+	 * @param author Autor del docuemnt a crear
+	 * @param content Contingut separat per frases del document a crear.
+	 * @param plaintext_cont Contingut sencer sense separar.
+	 * @param dia LocalDate de la data de creació del document.
+	 * @param isFav Booleà que indica si el document hauria de ser preferit o no.
+	 */
 	public void crearDocument(String title, String author, ArrayList<String> content, String plaintext_cont, LocalDate dia, boolean isFav){
 		
 		ArrayList<String> titledecomp = decomposeWords(title);
@@ -294,15 +318,33 @@ public class CtrlDomini {
 		return ptext;
 	}
 
-	// PRECONDICIÓ: Existeix (title, author).
+	/** Mètode públic per a fer un preview d'una sola línia d'un document
+	 * 
+	 * <i>Nota: el document (title, author) hauria d'existir</i>
+	 * 
+	 * @param title Títol del document
+	 * @param author Autor del document
+	 * @return String del preview del document
+	 */
 	public String preview(String title, String author){
 		return getDocument(author, title).getL().toString();
 	}
 
+	/** Mètode públic que implementa la consulta d'Autors per Prefix.
+	 * 
+	 * @param prefix Prefix amb el qual cercar els autors
+	 * @return Un Set d'Strings que contindrà tots els autors començant pel prefix.
+	 */
 	public Set<String> donaAutors(String prefix){
 		return ConsultaAutors.donaAutors(prefix, lib.getArbre());
 	}
 
+	/** Mètode públic que implementa la modificació de la data d'un document.
+	 * 
+	 * @param title Títol del document a modificar
+	 * @param author Autor del document a modificar
+	 * @param dat Nova data del document
+	 */
 	public void modificarData(String title, String author, LocalDate dat){
 		Document d = getDocument(author, title).getL();
 		
@@ -310,6 +352,12 @@ public class CtrlDomini {
 		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), d.getContingut().toString(), d.getData(), d.getFavourite());
 	}
 
+	/** Mètode públic que implementa la modificació de l'autor d'un document
+	 * 
+	 * @param title Títol del document a modificar.
+	 * @param oldAuth Autor del document a modificar.
+	 * @param newAuth Nou autor del document
+	 */
 	public void modificarAutor(String title, String oldAuth, String newAuth){
 		Document d = getDocument(oldAuth, title).getL();
 		
@@ -343,6 +391,13 @@ public class CtrlDomini {
 		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), cont, d.getData(), d.getFavourite());
 	}
 
+	/** Mètode públic que implementa la modificació del contingut d'un document.
+	 * 
+	 * @param title Títol del document a modificar.
+	 * @param author Autor del document a modificar.
+	 * @param content Nou contingut separat per frases.
+	 * @param plaintext_content El nou contingut sencer, sense separar.
+	 */
 	public void modificarContingut(String title, String author, ArrayList<String> content, String plaintext_content){
 
 		// Suposarem que d existeix.
@@ -356,6 +411,13 @@ public class CtrlDomini {
 
 		DISK.crearDocument(d.getTitol().toString(), d.getAutor().toString(), DISK.getContingut(d.getTitol().toString(), d.getAutor().toString()), d.getData(), d.getFavourite());
 	}
+
+	/** Mètode públic que implementa la modificació del títol d'un document
+	 * 
+	 * @param oldTitle Títol del document a modificar.
+	 * @param author Autor del document a modificar.
+	 * @param newTitle Nou títol del document
+	 */
 
 	public void modificarTitol(String oldTitle, String author, String newTitle){
 		Document d = getDocument(author, oldTitle).getL();
@@ -384,7 +446,11 @@ public class CtrlDomini {
 
 	}
 
-
+	/** Mètode públic que elimina un document.
+	 * 
+	 * @param title Títol del document a eliminar.
+	 * @param author Autor del document a eliminar.
+	 */
 	public void eliminarDocument(String title, String author){
 		Document doc = getDocument(author, title).getL();;
 		
@@ -427,6 +493,13 @@ public class CtrlDomini {
 		DISK.esborrarDocument(title, author);
 	}
 
+	/** Mètode públic que implementa la consulta per Data.
+	 * 
+	 * @param ant Límit inferior de les dates.
+	 * @param post Límit superior de les dates.
+	 * @param criteria Criteri d'ordenació dels resultats
+	 * @return Una ArrayList amb els preview dels documents creats entre ant i post.
+	 */
 	public ArrayList<String> consultaData(LocalDate ant, LocalDate post, int criteria)
 	{
 		ArrayList<Document> docs = ConsultaData.consulta(lib.getDocArray(), ant, post);
@@ -441,6 +514,12 @@ public class CtrlDomini {
 		return myList;
 	}
 
+	/** Mètode públic que implementa la consulta per Seqüència
+	 * 
+	 * @param seq Cadena de caràcters a cercar.
+	 * @param criteria Criteri d'ordenació pel qual ordenar els documents resultants.
+	 * @return Una ArrayList amb els preview dels documents que contenen la seqüència <i>seq</i>
+	 */
 	public ArrayList<String> consultaSeq(String seq, int criteria){
 		Set<Document> setdocs = ConsultaAvancada.obtenirDocuments(lib, seq);
 		if (setdocs == null) return new ArrayList<>();
@@ -455,10 +534,20 @@ public class CtrlDomini {
 		return myList;
 	}
 
+	/** Mètode públic que retorna tots els documents.
+	 * 
+	 * @return Una ArrayList amb els preview de tots els documents.
+	 */
 	public ArrayList<String> getAllDocs(){
 		return lib.toStringArray();
 	}
 
+	/** Mètode públic que implementa la consulta dels Títols d'un Document.
+	 * 
+	 * @param autor Autor dels documents a cercar.
+	 * @param criteria Criteri d'ordenació pel qual ordenar els documents resultants.
+	 * @return Una ArrayList amb els preview dels documents de l'autor <i>autor</i>
+	 */
 	public ArrayList<String> consultaTit(String autor, int criteria){
 		Set<Document> setdocs = ConsultaTitol.getDocAutor(new Frase(autor), lib.getArbre());
 		//if (setdocs == null) return new ArrayList<>();
@@ -474,6 +563,14 @@ public class CtrlDomini {
 
 	}
 
+	/** Mètode públic que implementa la consulta per Semblança de documents.
+	 * 
+	 * @param titol Títol del document referència per a cercar.
+	 * @param autor Autor del document referència per a cercar.
+	 * @param n Nombre de documents a retornar
+	 * @param mode Mode de Consulta per Semblança (0=tf-idf, 1=ocurrències).
+	 * @return Una ArrayList amb els preview dels <i>n</i> documents més semblants al referència.
+	 */
 	public ArrayList<String> consultaSemb(String titol, String autor, int n, int mode){
 		Document doc = getDocument(autor, titol).getL();
 
@@ -489,6 +586,13 @@ public class CtrlDomini {
 
 	}
 
+	/** Mètode públic que implementa la consulta per Rellevància de documents
+	 * 
+	 * @param wordsSepBlank String amb totes les paraules a cercar amb espais.
+	 * @param k Nombre de documents a retornar.
+	 * @param modeConsulta Mode propi de consulta per Rellevància.
+	 * @return Una ArrayList amb els preview dels <i>k</i> documents més rellevants segons la query.
+	 */
 	public ArrayList<String> consultaRell(String wordsSepBlank, int k, int modeConsulta)
 	{
 		String[] words = wordsSepBlank.split(" ");
@@ -500,6 +604,11 @@ public class CtrlDomini {
 		else return ConsultaRellevancia.ConsultaPerRellevancia(k, arrWords, wordsSepBlank, 2, lib).toStringArray();
 	}
 
+	/** Mètode públic que implementa la cerca dels documents preferits.
+	 * 
+	 * @param criteria Criteri d'ordenació dels documents resultants.
+	 * @return Una ArrayList amb els preview dels documents preferits.
+	 */
 	public ArrayList<String> consultaPref(int criteria){
 		Set<Document> docSet = ConsultaPreferit.getDocPreferit(lib.getSetDocuments());
 		ArrayList<Document> docs = sortDocuments(docSet, criteria);
@@ -529,37 +638,77 @@ public class CtrlDomini {
 		return;
 	}
 
+	/** Mètode públic per a crear una Expressió Booleana.
+	 * 
+	 * @param nom Nom de l'EB a crear
+	 * @param cos Cos de l'EB a crear
+	 */
 	public void novaEB(String nom, String cos){
 		EBC.AddExpressioBooleana(nom, cos);
 		DISK.crearExpressio(nom, cos);
 	}
 
+	/** Mètode públic per a modificar el cos d'una Expressió Booleana.
+	 * 
+	 * @param nom Nom de l'EB a modificar
+	 * @param noucos Nou cos de l'EB
+	 */
 	public void canviarEB(String nom, String noucos){
 		EBC.SetExpressioBooleana(nom, noucos);
 		DISK.crearExpressio(nom, noucos);
 	}
 
+	/** Mètode públic que retorna totes les Expressions Booleanes guardades.
+	 * 
+	 * @return Una ArrayList dels noms de totes les EBs emmagatzemades.
+	 */
 	public ArrayList<String> getAllEBS(){
 		return EBC.getAllEBS();
 	}
 
+	/** Mètode públic per a eliminar una Expressió Booleana.
+	 * 
+	 * @param nom Nom de l'EB a eliminar
+	 */
 	public void eliminarEB(String nom){
 		EBC.DeleteExpressioBooleana(nom);
 		DISK.esborrarExpressio(nom);
 	}
 
+	/** Mètode públic que retorna el nombre d'Expressions Booleanes emmagatzemades.
+	 * 
+	 * @return Nombre d'EBs emmagatzemades.
+	 */
 	public int numberOfEBS(){
 		return EBC.getNEBS();
 	}
 
+	/** Mètode públic per a comprovar si l'Expressió Booleana amb un nom exiseix.
+	 * 
+	 * @param name Nom de l'EB a cercar
+	 * @return Booleà que serà <i>true</i> si, i només si, l'EB "name" existeix.
+	 */
 	public boolean existsEB(String name){
 		return EBC.existsEB(name);
 	}
 
+	/** Mètode públic per a retornar el cos d'una Expressió Booleana.
+	 * 
+	 * @param name Expressió Booleana a cercar.
+	 * @return String del cos de l'EB "name".
+	 */
 	public String getCos(String name){
 		return EBC.getCos(name);
 	}
 
+	/** Mètode públic que implementa la Consulta per Expressió Booleana
+	 * 
+	 * @param cos Cos de l'expressió booleana directa.
+	 * @param nom Nom de l'expressió booleana emmagatzemada.
+	 * @param mode Mode de consulta (0=per expressió amb nom, 1=expressió directa amb cos)
+	 * @param criteria Criteri d'ordenació dels documents resultants.
+	 * @return Una ArrayList dels documents que compleixin l'expressió booleana.
+	 */
 	public ArrayList<String> consultaEB(String cos, String nom, int mode, int criteria)
 	{
 		Set<Document> setdoc;
@@ -632,10 +781,18 @@ public class CtrlDomini {
 		DISK.importarDades();
 	}
 
+	/** Setter per al Controlador de Presentació
+	 * 
+	 * @param presentacio Referència al Controlador Presentació
+	 */
 	public void setControladorPresentacio(CtrlPresentacio presentacio) {
 		UI = presentacio;
 	}
 
+	/** Mètode públic i estàtic per a mostrar un error per pantalla.
+	 * 
+	 * @param missatge Missatge d'error a mostrar.
+	 */
 	public static void mostraError(String missatge) {
 		UI.mostraError(missatge);
 	}
